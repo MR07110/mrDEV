@@ -76,30 +76,66 @@ window.toggleMobileSearch = function () {
         if (searchInput) setTimeout(() => searchInput.focus(), 400);
     }
 };
-// MRDEV Info toggle funksiyasi
-window.toggleMrdevInfo = function(event) {
-    event.preventDefault();
-    
-    // Qaysi qadamda ekanligiga qarab
-    const infoBox = document.getElementById('mrdevInfoBox');
-    const helpBox = document.getElementById('mrdevHelpBox');
-    
-    if (infoBox && infoBox.style.display !== 'none') {
-        infoBox.style.display = 'none';
-        if (event.target) event.target.textContent = 'Ko\'proq ma\'lumot ▼';
-    } else if (infoBox && infoBox.style.display === 'none') {
-        infoBox.style.display = 'block';
-        if (event.target) event.target.textContent = 'Yopish ▲';
-    }
-    
-    if (helpBox && helpBox.style.display !== 'none') {
-        helpBox.style.display = 'none';
-        if (event.target) event.target.textContent = event.target.textContent.includes('▲') ? 'Kod kelmadimi? ▼' : event.target.textContent;
-    } else if (helpBox && helpBox.style.display === 'none') {
-        helpBox.style.display = 'block';
-        if (event.target) event.target.textContent = 'Yopish ▲';
-    }
-};
+
+// ==================== MRDEV INFO TOGGLE ====================
+// Bu funksiya module tashqarisida ishlaydi
+function setupMrdevInfoToggle() {
+    const modal = document.getElementById('mrdevLoginModal');
+    if (!modal) return;
+
+    // Barcha "onclick" li linklarni topish
+    const links = modal.querySelectorAll('a[onclick]');
+    links.forEach(link => {
+        const onclick = link.getAttribute('onclick');
+        if (onclick && onclick.includes('toggleMrdevInfo')) {
+            // Eski onclick ni o'chirish
+            link.removeAttribute('onclick');
+            // Yangi event listener qo'shish
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const infoBox = document.getElementById('mrdevInfoBox');
+                const helpBox = document.getElementById('mrdevHelpBox');
+                
+                // Qaysi box ko'rinayotganini aniqlash
+                if (infoBox && helpBox) {
+                    const infoVisible = infoBox.style.display === 'block';
+                    const helpVisible = helpBox.style.display === 'block';
+                    
+                    if (infoVisible) {
+                        infoBox.style.display = 'none';
+                        this.textContent = 'Ko\'proq ma\'lumot ▼';
+                    } else if (helpVisible) {
+                        helpBox.style.display = 'none';
+                        this.textContent = 'Kod kelmadimi? ▼';
+                    } else {
+                        // Ikkalasi ham yopiq — qaysi biri ko'rinishini aniqlash
+                        // 1-qadam da infoBox, 2-qadam da helpBox
+                        const step1 = document.getElementById('mrdevStep1');
+                        const step2 = document.getElementById('mrdevStep2');
+                        
+                        if (step2 && step2.style.display !== 'none') {
+                            helpBox.style.display = 'block';
+                            this.textContent = 'Yopish ▲';
+                        } else {
+                            infoBox.style.display = 'block';
+                            this.textContent = 'Yopish ▲';
+                        }
+                    }
+                } else if (infoBox) {
+                    const isVisible = infoBox.style.display === 'block';
+                    infoBox.style.display = isVisible ? 'none' : 'block';
+                    this.textContent = isVisible ? 'Ko\'proq ma\'lumot ▼' : 'Yopish ▲';
+                } else if (helpBox) {
+                    const isVisible = helpBox.style.display === 'block';
+                    helpBox.style.display = isVisible ? 'none' : 'block';
+                    this.textContent = isVisible ? 'Kod kelmadimi? ▼' : 'Yopish ▲';
+                }
+            });
+        }
+    });
+}
+
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded', () => {
     logger.platformStart();
@@ -110,6 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initSearch();
     initModals();
     initUserMenu();
+
+    // MRDEV Info Toggle ni sozlash
+    setupMrdevInfoToggle();
 
     // Click outside - userMenu yopilishi
     document.addEventListener('click', (e) => {
