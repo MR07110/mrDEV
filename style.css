@@ -1,7 +1,16 @@
-/* ==================== MRDEV STYLE v6.0 | ROOT DEFAULT ==================== */
+/* ==================== MRDEV STYLE v6.0 | GOOGLE MATERIAL EDITION ==================== */
 
 /* 1. CSS Variables */
 @import url('./assets/css/variables.css');
+/* Maslahat: variables.css faylingizda Google ranglaridan foydalaning:
+   --accent: #1a73e8; 
+   --accent-dim: rgba(26, 115, 232, 0.1);
+   --surface: #ffffff;
+   --surface-2: #f1f3f4;
+   --text: #202124;
+   --text-2: #5f6368;
+   --border: #dadce0; 
+*/
 
 /* 2. Reset */
 @import url('./assets/css/reset.css');
@@ -27,156 +36,160 @@
 /* 9. Responsive */
 @import url('./assets/css/responsive.css');
 
-/* ==================== DEFAULT EXTRA ANIMATIONS ==================== */
 
-/* Smooth page load */
+/* ==================== MATERIAL DESIGN ANIMATIONS & EFFECTS ==================== */
+
+/* Google Material Easing xususiyatlari */
+:root {
+    --md-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+    --md-easing-accelerate: cubic-bezier(0.3, 0, 1, 1);
+    --md-easing-decelerate: cubic-bezier(0, 0, 0, 1);
+}
+
+/* Smooth page load - Silliqroq va tabiiy */
 @keyframes pageLoad {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from { opacity: 0; transform: scale(0.99); }
+    to   { opacity: 1; transform: scale(1); }
 }
 
 body {
-    animation: pageLoad 0.3s ease-out;
+    animation: pageLoad 0.4s var(--md-easing-standard) forwards;
+    background-color: var(--surface, #ffffff);
+    color: var(--text, #202124);
+    font-family: 'Google Sans', Roboto, Arial, sans-serif; /* Google shriftlari uchun tavsiya */
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Focus visible - accessibility */
+/* Focus visible - Google ko'k rangi bilan aniq va silliq border */
 :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--accent, #1a73e8);
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: var(--radius-sm, 4px);
+    transition: outline 0.2s ease;
 }
 
-/* Selection color */
+/* Selection color - Google'ga xos och ko'k fon */
 ::selection {
-    background: var(--accent-dim);
-    color: var(--accent);
+    background: var(--accent-dim, rgba(26, 115, 232, 0.2));
+    color: var(--text, #202124);
 }
 
-/* Skeleton loading animation */
+/* Skeleton loading animation - Google YouTube/Drive uslubidagi silliq o'tish */
 @keyframes shimmer {
     0%   { background-position: -200% 0; }
     100% { background-position: 200% 0; }
 }
 
 .skeleton {
-    background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface) 50%, var(--surface-2) 75%);
+    background: linear-gradient(90deg, 
+        var(--surface-2, #f1f3f4) 25%, 
+        var(--surface, #ffffff) 50%, 
+        var(--surface-2, #f1f3f4) 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    border-radius: var(--radius-sm);
+    animation: shimmer 2s infinite linear;
+    border-radius: var(--radius-sm, 4px);
 }
 
-/* Fade in up */
+/* Fade in up - Minimalist pastdan tepaga chiqish (masofa qisqartirildi) */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in-up {
-    animation: fadeInUp 0.4s var(--ease-out) both;
+    animation: fadeInUp 0.5s var(--md-easing-standard) both;
 }
 
-/* Stagger children */
-.stagger > *:nth-child(1) { animation-delay: 0.05s; }
-.stagger > *:nth-child(2) { animation-delay: 0.10s; }
-.stagger > *:nth-child(3) { animation-delay: 0.15s; }
-.stagger > *:nth-child(4) { animation-delay: 0.20s; }
-.stagger > *:nth-child(5) { animation-delay: 0.25s; }
-.stagger > *:nth-child(6) { animation-delay: 0.30s; }
+/* Stagger children - Silliq ketma-ketlik */
+.stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.stagger > *:nth-child(2) { animation-delay: 0.08s; }
+.stagger > *:nth-child(3) { animation-delay: 0.12s; }
+.stagger > *:nth-child(4) { animation-delay: 0.16s; }
+.stagger > *:nth-child(5) { animation-delay: 0.20s; }
+.stagger > *:nth-child(6) { animation-delay: 0.24s; }
 
-/* Pulse animation for notifications */
+/* Pulse animation for notifications - Yumshoq urish */
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.1); }
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.05); opacity: 0.8; }
 }
 
 .pulse {
-    animation: pulse 2s infinite;
+    animation: pulse 2.5s var(--md-easing-standard) infinite;
 }
 
 /* Slide in right */
 @keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
 .slide-in-right {
-    animation: slideInRight 0.3s var(--ease-out) both;
+    animation: slideInRight 0.4s var(--md-easing-standard) both;
 }
 
-/* Scale in */
+/* Scale in - Pop-uplar uchun silliq ochilish */
 @keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
 }
 
 .scale-in {
-    animation: scaleIn 0.3s var(--ease-out) both;
+    animation: scaleIn 0.3s var(--md-easing-standard) both;
 }
 
-/* Ripple effect */
+/* Ripple effect - Google Material Ripple (sekin tarqalib, tez yo'qoladi) */
 .ripple {
     position: relative;
     overflow: hidden;
+    transform: translate3d(0, 0, 0);
 }
 
 .ripple::after {
     content: '';
     position: absolute;
+    border-radius: 50%;
     inset: 0;
-    background: radial-gradient(circle, var(--accent-dim) 10%, transparent 10%);
-    background-position: center;
-    background-repeat: no-repeat;
+    background: var(--text, #202124);
     opacity: 0;
-    transition: all 0.5s;
+    transform: scale(1);
+    transition: opacity 0.6s, transform 0.6s var(--md-easing-standard);
+    pointer-events: none;
 }
 
 .ripple:active::after {
-    background-size: 20000%;
-    opacity: 1;
-    transition: background-size 0s;
+    transform: scale(0);
+    opacity: 0.12; /* Material ripple opacity */
+    transition: 0s;
 }
 
-/* Hover lift */
+/* Hover lift - Google Card Elevation (Soya bilan silliq ko'tarilish) */
 .hover-lift {
-    transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    transition: transform 0.25s var(--md-easing-standard), 
+                box-shadow 0.25s var(--md-easing-standard);
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15); /* Baseline shadow */
 }
 
 .hover-lift:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15); /* Hover shadow */
 }
 
-/* Glass morphism */
+/* Glass morphism - Google uslubida juda toza va xira qilingan oynasimon effekt */
 .glass {
-    background: var(--glass);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(218, 220, 224, 0.5); /* Google border color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Disable state */
 .disabled, [disabled] {
-    opacity: 0.5;
+    opacity: 0.38; /* Material disabled state standard */
     cursor: not-allowed !important;
     pointer-events: none;
+    box-shadow: none !important;
 }
 
 /* Truncate text */
@@ -185,6 +198,9 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
+/* ==================== UTILITIES ==================== */
 
 /* Flex center */
 .flex-center {
@@ -219,15 +235,15 @@ body {
 .text-left   { text-align: left; }
 .text-right  { text-align: right; }
 
-.font-bold    { font-weight: 600; }
+.font-bold    { font-weight: 500; } /* Google ko'pincha 500 dan foydalanadi (Medium) */
 .font-medium  { font-weight: 500; }
 .font-normal  { font-weight: 400; }
 
-.text-xs   { font-size: 10px; }
-.text-sm   { font-size: 12px; }
-.text-base { font-size: 14px; }
+.text-xs   { font-size: 11px; letter-spacing: 0.5px; } /* Material typography updates */
+.text-sm   { font-size: 13px; letter-spacing: 0.25px; }
+.text-base { font-size: 14px; letter-spacing: 0.1px; }
 .text-lg   { font-size: 16px; }
-.text-xl   { font-size: 20px; }
+.text-xl   { font-size: 20px; letter-spacing: -0.25px; }
 .text-2xl  { font-size: 24px; }
 
 /* Color utilities */
@@ -243,20 +259,20 @@ body {
 .bg-surface2 { background: var(--surface-2); }
 .bg-accent   { background: var(--accent); color: white; }
 
-/* Border utilities */
-.rounded-sm  { border-radius: var(--radius-sm); }
-.rounded-md  { border-radius: var(--radius-md); }
-.rounded-lg  { border-radius: var(--radius-lg); }
-.rounded-xl  { border-radius: var(--radius-xl); }
-.rounded-full { border-radius: var(--radius-full); }
+/* Border utilities - Material uslubi bo'yicha silliqlangan burchaklar */
+.rounded-sm   { border-radius: 4px; } /* Yoki var(--radius-sm) */
+.rounded-md   { border-radius: 8px; }
+.rounded-lg   { border-radius: 12px; }
+.rounded-xl   { border-radius: 24px; }
+.rounded-full { border-radius: 50px; }
 
-.border { border: 1px solid var(--border); }
+.border { border: 1px solid var(--border, #dadce0); }
 
-/* Shadow utilities */
-.shadow-xs { box-shadow: var(--shadow-xs); }
-.shadow-sm { box-shadow: var(--shadow-sm); }
-.shadow-md { box-shadow: var(--shadow-md); }
-.shadow-lg { box-shadow: var(--shadow-lg); }
+/* Shadow utilities - Material Elevation */
+.shadow-xs { box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15); }
+.shadow-sm { box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15); }
+.shadow-md { box-shadow: 0 4px 6px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15); }
+.shadow-lg { box-shadow: 0 8px 12px 1px rgba(60,64,67,0.15), 0 3px 16px 2px rgba(60,64,67,0.1), 0 5px 6px -3px rgba(60,64,67,0.2); }
 
 /* Display utilities */
 .d-none         { display: none; }
@@ -303,21 +319,21 @@ body {
 
 /* Barcha bosiladigan elementlar */
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    -webkit-tap-highlight-color: transparent !important;
 }
 
 /* Header ichidagi barcha elementlar */
 header * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Qidiruv tugmasi maxsus override */
+/* Qidiruv tugmasi maxsus override - Google search tugmasidek toza va xatosiz */
 .mobile-search-btn,
 .mobile-search-btn *,
 #mobileSearchBtn,
 #mobileSearchBtn * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-    -webkit-focus-ring-color: rgba(0,0,0,0) !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-focus-ring-color: transparent !important;
     outline: none !important;
 }
 
@@ -331,8 +347,8 @@ header * {
 #mobileSearchBtn:focus-visible,
 #mobileSearchBtn:focus-within,
 #mobileSearchBtn:hover {
-    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-    -webkit-focus-ring-color: rgba(0,0,0,0) !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-focus-ring-color: transparent !important;
     outline: none !important;
     background-color: transparent !important;
     background: transparent !important;
