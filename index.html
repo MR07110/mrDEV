@@ -442,32 +442,141 @@ B) WINDOW EXPORTS qismida quyidagilarni qo'shing/almashtiring:
 
 -->
     <!-- ==================== MRDEV LOGIN MODAL ==================== -->
-    <div id="mrdevLoginModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>MRDEV orqali kirish</h3>
-                <button class="modal-close" onclick="closeMrdevLoginModal()">✕</button>
-            </div>
-            <div class="modal-body">
-                <div id="mrdevStep1">
-                    <div class="input-group">
-                        <label>MRDEV ID kiriting</label>
-                        <input type="text" id="mrdevIdInput" class="input-field" placeholder="#123456" maxlength="7" autocomplete="off">
+<!-- ==================== MRDEV LOGIN MODAL ==================== -->
+<div id="mrdevLoginModal" class="modal">
+    <div class="modal-content" style="max-width: 400px;">
+        <div class="modal-header">
+            <h3>MRDEV orqali kirish</h3>
+            <button class="modal-close" onclick="closeMrdevLoginModal()">✕</button>
+        </div>
+        <div class="modal-body">
+            
+            <!-- 1-QADAM: MRDEV ID kiritish -->
+            <div id="mrdevStep1">
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <div style="width: 64px; height: 64px; background: var(--accent-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                            <path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/>
+                            <line x1="8" y1="12" x2="16" y2="12"/>
+                        </svg>
                     </div>
-                    <button class="auth-submit-btn" onclick="submitMrdevId()">Davom etish</button>
+                    <p style="font-size: 14px; color: var(--text-2); margin: 0 0 4px;">
+                        MRDEV ID kiriting
+                    </p>
+                    <p style="font-size: 11px; color: var(--text-3); margin: 0;">
+                        # belgisi bilan boshlanadigan 7 xonali kod
+                    </p>
                 </div>
-                <div id="mrdevStep2" style="display:none;">
-                    <div class="input-group">
-                        <label>Tasdiqlash paroli</label>
-                        <input type="text" id="mrdevPassInput" class="input-field" placeholder="6 xonali parol" maxlength="6" autocomplete="off">
-                    </div>
-                    <div id="mrdevTimer" style="text-align:center;font-size:13px;color:var(--text-3);margin-bottom:12px;"></div>
-                    <button class="auth-submit-btn" onclick="verifyMrdevPass()">Tasdiqlash</button>
+
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="mrdevIdInput" 
+                        class="input-field" 
+                        placeholder="#123456" 
+                        maxlength="7" 
+                        autocomplete="off"
+                        style="text-align: center; font-size: 20px; letter-spacing: 3px; font-weight: 500;"
+                    >
                 </div>
-                <div id="mrdevError" style="color:var(--red);font-size:12px;text-align:center;margin-top:8px;"></div>
+
+                <button class="auth-submit-btn" onclick="submitMrdevId()">
+                    Davom etish
+                </button>
+
+                <!-- YANGI: Ko'proq tugmasi -->
+                <div style="text-align: center; margin-top: 16px;">
+                    <a href="#" onclick="toggleMrdevInfo(event)" style="color: var(--accent); font-size: 12px; font-weight: 500; text-decoration: none;">
+                        Ko'proq ma'lumot ▼
+                    </a>
+                </div>
+
+                <!-- YANGI: Batafsil ma'lumot (yashirin) -->
+                <div id="mrdevInfoBox" style="display: none; margin-top: 12px; padding: 14px; background: var(--surface-2); border-radius: 12px; border: 1px solid var(--border);">
+                    <p style="font-size: 12px; color: var(--text-2); margin: 0 0 8px; font-weight: 500;">
+                        📱 MRDEV ID nima?
+                    </p>
+                    <p style="font-size: 11px; color: var(--text-3); margin: 0 0 8px; line-height: 1.6;">
+                        MRDEV ID — bu sizning shaxsiy raqamingiz. Uni boshqalarga aytsangiz, ular sizning hisobingizga kirib, ma'lumotlaringizni <strong>ko'rishi</strong> mumkin (lekin o'zgartira olmaydi).
+                    </p>
+                    <p style="font-size: 12px; color: var(--text-2); margin: 0 0 8px; font-weight: 500;">
+                        🔒 Qanday xavfsiz?
+                    </p>
+                    <p style="font-size: 11px; color: var(--text-3); margin: 0 0 8px; line-height: 1.6;">
+                        ID kiritgandan keyin sizga <strong>tasdiqlash kodi</strong> yuboriladi. Bu kodni faqat hisob egasi ko'ra oladi. Kodsiz kira olmaysiz.
+                    </p>
+                    <p style="font-size: 12px; color: var(--text-2); margin: 0 0 8px; font-weight: 500;">
+                        👨‍👩‍👧 Oilaviy ulanish
+                    </p>
+                    <p style="font-size: 11px; color: var(--text-3); margin: 0; line-height: 1.6;">
+                        Agar siz boshqa birovning hisobiga ulangan bo'lsangiz, o'sha hisob ma'lumotlarini ko'rasiz. Bu oila a'zolaringiz bilan ma'lumot almashish uchun qulay.
+                    </p>
+                </div>
             </div>
+
+            <!-- 2-QADAM: Parol kiritish -->
+            <div id="mrdevStep2" style="display:none;">
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <div style="width: 64px; height: 64px; background: var(--green-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </div>
+                    <p style="font-size: 14px; color: var(--text-2); margin: 0 0 4px;">
+                        Tasdiqlash kodini kiriting
+                    </p>
+                    <p style="font-size: 11px; color: var(--text-3); margin: 0;">
+                        Hisob egasiga yuborilgan 6 xonali kod
+                    </p>
+                </div>
+
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="mrdevPassInput" 
+                        class="input-field" 
+                        placeholder="000000" 
+                        maxlength="6" 
+                        autocomplete="off"
+                        style="text-align: center; font-size: 24px; letter-spacing: 8px; font-weight: 500;"
+                    >
+                </div>
+
+                <div id="mrdevTimer" style="text-align:center; font-size:13px; color:var(--text-3); margin-bottom:12px;"></div>
+
+                <button class="auth-submit-btn" onclick="verifyMrdevPass()">
+                    Tasdiqlash
+                </button>
+
+                <!-- YANGI: Ko'proq tugmasi (2-qadam ham) -->
+                <div style="text-align: center; margin-top: 16px;">
+                    <a href="#" onclick="toggleMrdevInfo(event)" style="color: var(--accent); font-size: 12px; font-weight: 500; text-decoration: none;">
+                        Kod kelmadimi? ▼
+                    </a>
+                </div>
+
+                <div id="mrdevHelpBox" style="display: none; margin-top: 12px; padding: 14px; background: var(--surface-2); border-radius: 12px; border: 1px solid var(--border);">
+                    <p style="font-size: 12px; color: var(--text-2); margin: 0 0 8px; font-weight: 500;">
+                        📩 Kod qayerga yuboriladi?
+                    </p>
+                    <p style="font-size: 11px; color: var(--text-3); margin: 0 0 8px; line-height: 1.6;">
+                        Tasdiqlash kodi <strong>hisob egasining "Parol xabarlari"</strong> bo'limiga yuboriladi. Hisob egasi o'z qurilmasida MRDEV platformasini ochib, "Parol xabarlari" menyusidan kodni ko'rishi mumkin.
+                    </p>
+                    <p style="font-size: 12px; color: var(--text-2); margin: 0 0 8px; font-weight: 500;">
+                        ⏰ Kod muddati
+                    </p>
+                    <p style="font-size: 11px; color: var(--text-3); margin: 0; line-height: 1.6;">
+                        Kod <strong>2 daqiqa</strong> davomida amal qiladi. Agar muddati tugasa, qaytadan "Davom etish" tugmasini bosing.
+                    </p>
+                </div>
+            </div>
+
+            <p id="mrdevError" style="color: var(--red); font-size: 12px; text-align: center; margin-top: 8px; display: none;"></p>
+
         </div>
     </div>
+</div>
 
     <!-- ==================== PASS NOTIFICATIONS MODAL ==================== -->
     <div id="passNotifModal" class="modal">

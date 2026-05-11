@@ -76,7 +76,30 @@ window.toggleMobileSearch = function () {
         if (searchInput) setTimeout(() => searchInput.focus(), 400);
     }
 };
-
+// MRDEV Info toggle funksiyasi
+window.toggleMrdevInfo = function(event) {
+    event.preventDefault();
+    
+    // Qaysi qadamda ekanligiga qarab
+    const infoBox = document.getElementById('mrdevInfoBox');
+    const helpBox = document.getElementById('mrdevHelpBox');
+    
+    if (infoBox && infoBox.style.display !== 'none') {
+        infoBox.style.display = 'none';
+        if (event.target) event.target.textContent = 'Ko\'proq ma\'lumot ▼';
+    } else if (infoBox && infoBox.style.display === 'none') {
+        infoBox.style.display = 'block';
+        if (event.target) event.target.textContent = 'Yopish ▲';
+    }
+    
+    if (helpBox && helpBox.style.display !== 'none') {
+        helpBox.style.display = 'none';
+        if (event.target) event.target.textContent = event.target.textContent.includes('▲') ? 'Kod kelmadimi? ▼' : event.target.textContent;
+    } else if (helpBox && helpBox.style.display === 'none') {
+        helpBox.style.display = 'block';
+        if (event.target) event.target.textContent = 'Yopish ▲';
+    }
+};
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded', () => {
     logger.platformStart();
