@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27-Dars: Styling images | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "27",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=lJgrsg7frnQ",
+            "lessonTitle": "Styling images"
+        }
+    </script>
+    
+    <!-- Test javoblari (27-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>27-Dars: Styling images</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 6:22
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/lJgrsg7frnQ" 
+                            title="CSS | 27. Styling images"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 27. Styling images</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 6:22</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Styling images - Rasmlarni stillash</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 3-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Background va Rasmlar</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da <code>&lt;img&gt;</code> elementlarini qanday qilib professional darajada stillashni o'rganasiz. Rasmlarni moslashuvchan (responsive) qilish, shakl berish, filterlar va hover effektlar qo'shish - bularning barchasi zamonaviy web dizaynning ajralmas qismi.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>width</code> va <code>height</code> - rasm o'lchamlarini boshqarish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>object-fit</code> - rasmni konteynerga moslash (cover, contain, fill)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>border-radius</code> - yumaloq va doira shaklidagi rasmlar</li>
+                        <li><i class="fas fa-check-circle"></i> <code>box-shadow</code> - rasmga soya qo'shish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>filter</code> - rasmga effektlar berish (blur, brightness, grayscale)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>transition</code> + <code>:hover</code> - hover animatsiyalar</li>
+                        <li><i class="fas fa-check-circle"></i> Responsive rasmlar - <code>max-width: 100%</code></li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>object-fit vs background-size:</strong> <code>object-fit</code> <code>&lt;img&gt;</code> uchun, <code>background-size</code> fon rasmlari uchun. Ikkalasini aralashtirmang!</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Performance:</strong> <code>filter</code> va <code>box-shadow</code> ko'p ishlatilsa, sahifa sekinlashadi. Muhim elementlardagina ishlating.</span>
+                            <span class="badge good-to-know">Optimizatsiya</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>aspect-ratio:</strong> Zamonaviy CSS da <code>aspect-ratio</code> xususiyati rasm nisbatini saqlash uchun juda qulay.</span>
+                            <span class="badge tip">Yangi xususiyat</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span><strong>srcset va picture:</strong> Responsive rasmlar uchun HTML da <code>srcset</code> va <code>&lt;picture&gt;</code> elementlaridan foydalaning.</span>
+                            <span class="badge tip">Senior yondashuv</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: RASM O'LCHAMLARI ==================== -->
+                <section class="lesson-section" id="image-dimensions">
+                    <h2><i class="fas fa-arrows-alt"></i> Rasm o'lchamlari</h2>
+                    
+                    <p>Rasmlarning <code>width</code> va <code>height</code> xususiyatlari orqali o'lchamlarini boshqarish. Responsive dizayn uchun foizlardan foydalanish tavsiya etiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Rasm o'lchamlari */
+img {
+    width: 100%;           /* Ota element kengligicha */
+    height: auto;          /* Nisbat saqlanadi */
+    max-width: 100%;       /* Asl o'lchamidan katta bo'lmaydi */
+}
+
+/* Belgilangan o'lcham */
+.fixed-img {
+    width: 300px;
+    height: 200px;
+}
+
+/* Foizda - responsive */
+.responsive-img {
+    width: 100%;
+    height: auto;
+}
+
+/* Max-width bilan */
+.max-width-img {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Senior biladi:</strong> <code>width: 100%</code> va <code>max-width: 100%</code> farqi: <code>width: 100%</code> rasmni har doim ota element kengligicha cho'zadi (sifati buzilishi mumkin). <code>max-width: 100%</code> esa rasm asl o'lchamidan katta bo'lmaydi, faqat kichik ekranlarda kichiklashadi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: OBJECT-FIT ==================== -->
+                <section class="lesson-section" id="object-fit">
+                    <h2><i class="fas fa-crop"></i> object-fit - Rasmni moslash</h2>
+                    
+                    <p><strong><code>object-fit</code></strong> xususiyati <code>&lt;img&gt;</code> yoki <code>&lt;video&gt;</code> elementining konteynerga qanday moslashishini belgilaydi. Bu <code>background-size</code> ning rasm versiyasi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* object-fit qiymatlari */
+.img-cover {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;      /* Konteynerni to'liq qoplaydi, kesilishi mumkin */
+}
+
+.img-contain {
+    width: 300px;
+    height: 200px;
+    object-fit: contain;    /* Rasm to'liq ko'rinadi, bo'sh joy qolishi mumkin */
+}
+
+.img-fill {
+    width: 300px;
+    height: 200px;
+    object-fit: fill;       /* Konteynerni to'ldiradi, nisbat buziladi (default) */
+}
+
+.img-scale-down {
+    width: 300px;
+    height: 200px;
+    object-fit: scale-down; /* contain yoki none, qaysi kichikroq bo'lsa */
+}
+
+.img-none {
+    width: 300px;
+    height: 200px;
+    object-fit: none;       /* Asl o'lcham, kesilishi mumkin */
+}</code></pre>
+                    </div>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Qiymat</th><th>Tavsif</th><th>Qachon ishlatiladi</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>cover</code></td><td>Nisbat saqlanadi, konteyner to'liq qoplanadi</td><td>Profil rasmi, galereya</td></tr>
+                                <tr><td><code>contain</code></td><td>Nisbat saqlanadi, rasm to'liq ko'rinadi</td><td>Logotip, mahsulot rasmi</td></tr>
+                                <tr><td><code>fill</code></td><td>Nisbat buziladi, konteyner to'liq to'ladi</td><td>Juda kam (deyarli ishlatilmaydi)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>object-fit + object-position:</strong> <code>object-position</code> xususiyati rasmning qaysi qismi ko'rinishini belgilaydi. Masalan: <code>object-position: top left;</code>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: BORDER-RADIUS ==================== -->
+                <section class="lesson-section" id="border-radius">
+                    <h2><i class="fas fa-circle"></i> border-radius - Yumaloq rasmlar</h2>
+                    
+                    <p><strong><code>border-radius</code></strong> xususiyati rasmga yumaloq burchaklar berish yoki butunlay doira shakliga keltirish uchun ishlatiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* border-radius qiymatlari */
+.rounded-sm {
+    border-radius: 4px;        /* Kichik yumaloqlik */
+}
+
+.rounded-md {
+    border-radius: 8px;        /* O'rta yumaloqlik */
+}
+
+.rounded-lg {
+    border-radius: 16px;       /* Katta yumaloqlik */
+}
+
+.rounded-full {
+    border-radius: 50%;        /* Doira shakli (kvadrat rasm uchun) */
+}
+
+/* Doira shaklidagi avatar */
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;         /* Rasm to'g'ri ko'rinishi uchun */
+}
+
+/* Alohida burchaklar */
+.custom-radius {
+    border-radius: 20px 5px 40px 10px;  /* yuqori-chap, yuqori-o'ng, pastki-o'ng, pastki-chap */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: BOX-SHADOW VA FILTER ==================== -->
+                <section class="lesson-section" id="shadow-filter">
+                    <h2><i class="fas fa-magic"></i> box-shadow va filter</h2>
+                    
+                    <p><strong><code>box-shadow</code></strong> rasmga soya qo'shadi. <strong><code>filter</code></strong> esa rasmga turli xil vizual effektlar beradi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* box-shadow */
+.img-shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.img-shadow-lg {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* filter effektlari */
+.img-grayscale {
+    filter: grayscale(100%);    /* Oq-qora */
+}
+
+.img-blur {
+    filter: blur(5px);          /* Xiralashgan */
+}
+
+.img-brightness {
+    filter: brightness(1.2);    /* Yorqinroq (1 = normal) */
+}
+
+.img-contrast {
+    filter: contrast(1.5);      /* Kontrastli */
+}
+
+.img-sepia {
+    filter: sepia(100%);        /* Sepia (eski rasm) effekti */
+}
+
+/* Bir nechta filter birgalikda */
+.img-combined {
+    filter: grayscale(50%) blur(2px) brightness(1.1);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: HOVER EFFEKTLAR ==================== -->
+                <section class="lesson-section" id="hover-effects">
+                    <h2><i class="fas fa-hand-pointer"></i> Hover effektlar</h2>
+                    
+                    <p><code>:hover</code> psevdo-klassi va <code>transition</code> xususiyati orqali rasmlarga silliq animatsiyalar qo'shish.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Asosiy hover effektlari */
+.img-hover {
+    transition: all 0.3s ease;
+}
+
+.img-hover:hover {
+    transform: scale(1.05);         /* Kattalashish */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Zoom effekti (overflow: hidden bilan) */
+.img-zoom-container {
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.img-zoom {
+    transition: transform 0.5s ease;
+}
+
+.img-zoom:hover {
+    transform: scale(1.2);
+}
+
+/* Oq-qora dan rangliga */
+.img-color-transition {
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+}
+
+.img-color-transition:hover {
+    filter: grayscale(0%);
+}
+
+/* Yorqinlik o'zgarishi */
+.img-brightness-hover {
+    transition: filter 0.3s ease;
+}
+
+.img-brightness-hover:hover {
+    filter: brightness(1.2);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 6-BO'LIM: PROFESSIONAL GALEREYA ==================== -->
+                <section class="lesson-section" id="professional-gallery">
+                    <h2><i class="fas fa-images"></i> Professional galereya namunasi</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Zamonaviy galereya kartasi */
+.gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.gallery-card:hover img {
+    transform: scale(1.1);
+    filter: brightness(0.8);
+}
+
+/* Overlay effekti */
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 27-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">1</span><code>&lt;img&gt;</code> elementini konteynerga moslash uchun qaysi xususiyat ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>background-size</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>object-fit</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>image-fit</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>resize</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">2</span>Rasmni doira shakliga keltirish uchun qaysi xususiyat ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>shape: circle</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>clip-path: circle()</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>border-radius: 50%</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>round: true</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">3</span>Rasmni oq-qora qilish uchun qaysi filter ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>grayscale(100%)</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>black-and-white(true)</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>color(0)</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>monochrome(100%)</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">4</span>Responsive rasm uchun eng to'g'ri kombinatsiya qaysi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>width: 100%; height: 100%;</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>width: auto; height: auto;</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>width: 100%; height: fixed;</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>max-width: 100%; height: auto;</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Rasmlarni professional darajada stillab, zamonaviy galereya yarating.</p>
+                        <ol>
+                            <li>3 ta rasm uchun karta yarating (<code>display: grid</code> yoki <code>flex</code>)</li>
+                            <li>Har bir rasmga <code>object-fit: cover</code> va belgilangan o'lcham bering</li>
+                            <li><code>border-radius</code> bilan yumaloq burchaklar qo'shing</li>
+                            <li>Hover bo'lganda rasm kattalashsin (<code>transform: scale()</code>)</li>
+                            <li><code>overflow: hidden</code> bilan zoom effekti yarating</li>
+                            <li>Rasm ustiga shaffof overlay va matn qo'shing</li>
+                            <li>Barcha animatsiyalarga <code>transition</code> qo'shing</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-html">&lt;div class="gallery"&gt;
+    &lt;div class="gallery-item"&gt;
+        &lt;img src="img1.jpg" alt="Rasm 1"&gt;
+        &lt;div class="overlay"&gt;
+            &lt;span&gt;Tabiat&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="gallery-item"&gt;
+        &lt;img src="img2.jpg" alt="Rasm 2"&gt;
+        &lt;div class="overlay"&gt;
+            &lt;span&gt;Shahar&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="gallery-item"&gt;
+        &lt;img src="img3.jpg" alt="Rasm 3"&gt;
+        &lt;div class="overlay"&gt;
+            &lt;span&gt;Tog'lar&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;  /* Kvadrat nisbat */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.15);
+    filter: brightness(0.7);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.overlay span {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover .overlay span {
+    transform: translateY(0);
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>max-width: 100% + height: auto</strong> - responsive rasmlar uchun standart</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>object-fit</strong> - <code>&lt;img&gt;</code> uchun, <code>background-size</code> fon uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>border-radius: 50%</strong> - doira shaklidagi avatar uchun (kvadrat rasmda)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>filter</strong> - grayscale, blur, brightness va boshqa effektlar</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>transition + :hover</strong> - silliq animatsiyalar uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>overflow: hidden</strong> - zoom effekti uchun muhim</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>aspect-ratio</strong> - zamonaviy CSS da rasm nisbatini saqlash</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Gradient va Filterlar</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../26/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../28/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#image-dimensions">Rasm o'lchamlari</a></li>
+                    <li><a href="#object-fit">object-fit</a></li>
+                    <li><a href="#border-radius">border-radius</a></li>
+                    <li><a href="#shadow-filter">box-shadow va filter</a></li>
+                    <li><a href="#hover-effects">Hover effektlar</a></li>
+                    <li><a href="#professional-gallery">Professional galereya</a></li>
+                    <li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">27/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 42.9%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

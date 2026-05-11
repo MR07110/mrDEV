@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Dars: HTML hujjat va CSS. Loyiha strukturasi | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "3",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=0nz5wXX_ppw",
+            "lessonTitle": "HTML hujjat va CSS. Loyiha strukturasi"
+        }
+    </script>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>3-Dars: HTML hujjat va CSS</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 9:41
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/0nz5wXX_ppw" 
+                            title="CSS | 3. HTML hujjat va CSS. Loyiha strukturasi"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 3. HTML hujjat va CSS. Loyiha strukturasi</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 9:41</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>HTML hujjat va CSS. Loyiha strukturasi</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 10-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS ni HTML hujjatiga ulashning 3 xil usulini (inline, internal, external), har bir usulning afzallik va kamchiliklarini, va professional loyihalar uchun to'g'ri papka tuzilmasini o'rganasiz. Bu bilimlar har bir web dasturchi uchun fundamental ahamiyatga ega.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> CSS ni HTML ga ulashning 3 ta usuli</li>
+                        <li><i class="fas fa-check-circle"></i> Inline CSS - satr ichidagi stillar</li>
+                        <li><i class="fas fa-check-circle"></i> Internal CSS - ichki stillar</li>
+                        <li><i class="fas fa-check-circle"></i> External CSS - tashqi stillar (eng tavsiya etilgan)</li>
+                        <li><i class="fas fa-check-circle"></i> Professional loyiha papka tuzilmasi</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>External CSS dan foydalaning:</strong> Har doim CSS ni alohida faylda saqlang. Bu kodni qayta ishlatish, brauzer kesh xotirasi va jamoaviy ishlash uchun eng yaxshi usul.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Inline CSS dan qoching:</strong> Inline CSS faqat juda kam holatlarda, masalan JavaScript orqali dinamik stillashda ishlatiladi. Doimiy stillar uchun ishlatmang.</span>
+                            <span class="badge good-to-know">tushunish kerak</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Papka tuzilmasi muhim:</strong> CSS fayllarni <code>css/</code> papkasida, rasmlarni <code>img/</code> papkasida saqlang. Bu loyihangizni tartibli saqlaydi.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: INLINE CSS ==================== -->
+                <section class="lesson-section" id="inline-css">
+                    <h2><i class="fas fa-paint-brush"></i> 1-usul: Inline CSS (Satr ichidagi)</h2>
+                    
+                    <p><strong>Inline CSS</strong> - bu CSS kodlarini to'g'ridan-to'g'ri HTML elementining <code>style</code> atributi ichida yozish usuli. Bu usul faqat bitta elementga ta'sir qiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">&lt;p style="color: red; font-size: 20px;"&gt;
+    Bu qizil va katta matn
+&lt;/p&gt;
+
+&lt;div style="background-color: #f0f0f0; padding: 15px; border-radius: 8px;"&gt;
+    Bu och kulrang fonli va yumaloq burchakli blok
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <div class="pros-cons-grid">
+                        <div class="pros-box">
+                            <h4><i class="fas fa-check-circle"></i> Afzalliklari</h4>
+                            <ul>
+                                <li>Tez va oson test qilish uchun qulay</li>
+                                <li>JavaScript orqali dinamik o'zgartirish uchun</li>
+                                <li>Alohida fayl kerak emas</li>
+                            </ul>
+                        </div>
+                        <div class="cons-box">
+                            <h4><i class="fas fa-times-circle"></i> Kamchiliklari</h4>
+                            <ul>
+                                <li>Kod takrorlanadi (har bir elementga alohida yozish kerak)</li>
+                                <li>HTML va CSS aralashib ketadi, kod o'qilishi qiyinlashadi</li>
+                                <li>Katta loyihalarda boshqarish juda qiyin</li>
+                                <li>Specificity muammolarini keltirib chiqaradi</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Muhim:</strong> Inline CSS ni faqat test uchun yoki JavaScript orqali dinamik stillash kerak bo'lganda ishlating. Doimiy stillar uchun bu usuldan foydalanmang!
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: INTERNAL CSS ==================== -->
+                <section class="lesson-section" id="internal-css">
+                    <h2><i class="fas fa-file-code"></i> 2-usul: Internal CSS (Ichki)</h2>
+                    
+                    <p><strong>Internal CSS</strong> - CSS kodlarini HTML hujjatining <code>&lt;head&gt;</code> qismida <code>&lt;style&gt;</code> tegi ichida yozish usuli. Bu usul faqat bitta sahifaga ta'sir qiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">&lt;!DOCTYPE html&gt;
+&lt;html lang="uz"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Sahifa nomi&lt;/title&gt;
+    &lt;style&gt;
+        h1 {
+            color: navy;
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .highlight {
+            background-color: #fef3c7;
+            padding: 10px;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        #main-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Salom Dunyo!&lt;/h1&gt;
+    &lt;p class="highlight"&gt;Bu sariq fonli matn&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                    
+                    <div class="pros-cons-grid">
+                        <div class="pros-box">
+                            <h4><i class="fas fa-check-circle"></i> Afzalliklari</h4>
+                            <ul>
+                                <li>Bitta sahifa uchun barcha stillar bir joyda</li>
+                                <li>Inline CSS ga qaraganda ancha toza va tartibli</li>
+                                <li>Alohida fayl yaratish shart emas</li>
+                            </ul>
+                        </div>
+                        <div class="cons-box">
+                            <h4><i class="fas fa-times-circle"></i> Kamchiliklari</h4>
+                            <ul>
+                                <li>Bir nechta sahifalarda kod takrorlanadi</li>
+                                <li>HTML fayl hajmi kattalashadi</li>
+                                <li>Brauzer kesh xotirasida saqlanmaydi (har safar yuklanadi)</li>
+                                <li>Katta loyihalar uchun noqulay</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: EXTERNAL CSS ==================== -->
+                <section class="lesson-section" id="external-css">
+                    <h2><i class="fas fa-file-export"></i> 3-usul: External CSS (Tashqi) ⭐ Tavsiya etiladi</h2>
+                    
+                    <p><strong>External CSS</strong> - CSS kodlarini alohida <code>.css</code> faylda saqlash va <code>&lt;link&gt;</code> tegi orqali HTML ga ulash usuli. Bu eng professional va keng tarqalgan usul.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML (index.html)</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">&lt;!DOCTYPE html&gt;
+&lt;html lang="uz"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Sahifa nomi&lt;/title&gt;
+    &lt;!-- CSS faylni ulash --&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Salom Dunyo!&lt;/h1&gt;
+    &lt;p class="text"&gt;Bu paragraf&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS (css/style.css)</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* style.css */
+h1 {
+    color: navy;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}</code></pre>
+                    </div>
+                    
+                    <div class="pros-cons-grid">
+                        <div class="pros-box">
+                            <h4><i class="fas fa-check-circle"></i> Afzalliklari</h4>
+                            <ul>
+                                <li>HTML va CSS ajratilgan - kod toza va o'qishga qulay</li>
+                                <li>Bitta CSS fayl ko'plab sahifalarda ishlatiladi - kod takrorlanmaydi</li>
+                                <li>Brauzer kesh xotirasida saqlanadi - sahifa tez yuklanadi</li>
+                                <li>Katta loyihalar uchun ideal</li>
+                                <li>Jamoa bilan ishlash oson</li>
+                            </ul>
+                        </div>
+                        <div class="cons-box">
+                            <h4><i class="fas fa-times-circle"></i> Kamchiliklari</h4>
+                            <ul>
+                                <li>Alohida fayl yaratish kerak</li>
+                                <li>CSS fayl yuklanmaguncha sahifa ko'rinishi buzilishi mumkin (FOUC)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Professional maslahat:</strong> Har doim External CSS dan foydalaning. Bu nafaqat kodni toza saqlaydi, balki brauzer kesh xotirasi tufayli saytingiz tezroq yuklanadi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: USULLAR TAQQOSLASH ==================== -->
+                <section class="lesson-section" id="comparison">
+                    <h2><i class="fas fa-balance-scale"></i> Usullarni taqqoslash</h2>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Xususiyat</th>
+                                    <th>Inline CSS</th>
+                                    <th>Internal CSS</th>
+                                    <th>External CSS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Qayta ishlatish</strong></td>
+                                    <td><i class="fas fa-times"></i> Yo'q</td>
+                                    <td><i class="fas fa-times"></i> Yo'q</td>
+                                    <td><i class="fas fa-check"></i> Ha</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Kesh xotira</strong></td>
+                                    <td><i class="fas fa-times"></i> Yo'q</td>
+                                    <td><i class="fas fa-times"></i> Yo'q</td>
+                                    <td><i class="fas fa-check"></i> Ha</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Kod tozaligi</strong></td>
+                                    <td>Past</td>
+                                    <td>O'rta</td>
+                                    <td>Yuqori</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Katta loyihalar uchun</strong></td>
+                                    <td><i class="fas fa-times"></i> Tavsiya etilmaydi</td>
+                                    <td><i class="fas fa-times"></i> Tavsiya etilmaydi</td>
+                                    <td><i class="fas fa-check"></i> Tavsiya etiladi</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tez test qilish</strong></td>
+                                    <td><i class="fas fa-check"></i> Juda oson</td>
+                                    <td><i class="fas fa-check"></i> Oson</td>
+                                    <td><i class="fas fa-minus"></i> Fayl ochish kerak</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: LOYIHA STRUKTURASI ==================== -->
+                <section class="lesson-section" id="project-structure">
+                    <h2><i class="fas fa-folder-tree"></i> Professional loyiha strukturasi</h2>
+                    
+                    <p>Katta loyihalarda fayllarni tartibli saqlash juda muhim. Quyida professional loyihalar uchun tavsiya etilgan papka tuzilmasi keltirilgan:</p>
+                    
+                    <div class="folder-structure">
+                        <div class="folder-tree">
+                            <pre><code class="language-css">loyiha-nomi/
+├── index.html
+├── about.html
+├── contact.html
+│
+├── css/
+│   ├── style.css
+│   ├── responsive.css
+│   └── normalize.css
+│
+├── js/
+│   ├── main.js
+│   └── utils.js
+│
+├── img/
+│   ├── logo.svg
+│   ├── hero-bg.jpg
+│   └── icons/
+│       ├── icon1.svg
+│       └── icon2.svg
+│
+├── fonts/
+│   ├── custom-font.woff2
+│   └── custom-font.woff
+│
+└── assets/
+    └── videos/
+        └── intro.mp4</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Papkalar tavsifi:</strong>
+                        <ul>
+                            <li><strong>css/</strong> - barcha CSS fayllar (style.css, responsive.css, normalize.css)</li>
+                            <li><strong>js/</strong> - barcha JavaScript fayllar</li>
+                            <li><strong>img/</strong> - barcha rasm fayllar</li>
+                            <li><strong>fonts/</strong> - maxsus shrift fayllari</li>
+                            <li><strong>assets/</strong> - video, audio va boshqa media fayllar</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Maslahat:</strong> CSS fayllaringizni vazifasiga qarab ajrating. Masalan: <code>style.css</code> (asosiy stillar), <code>responsive.css</code> (media queries), <code>normalize.css</code> (brauzer default stillarini nollash).
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3>
+                        <span class="test-badge">3-dars testi</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            CSS ni HTML ga ulashning eng tavsiya etilgan usuli qaysi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1a" value="a">
+                                <label for="q1a">Inline CSS</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1b" value="b">
+                                <label for="q1b">Internal CSS</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1c" value="c">
+                                <label for="q1c">External CSS</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1d" value="d">
+                                <label for="q1d">Barchasi bir xil</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            External CSS ni HTML ga ulash uchun qaysi teg ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2a" value="a">
+                                <label for="q2a">&lt;style&gt;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2b" value="b">
+                                <label for="q2b">&lt;link&gt;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2c" value="c">
+                                <label for="q2c">&lt;css&gt;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2d" value="d">
+                                <label for="q2d">&lt;script&gt;</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                        Inline CSS qaysi atribut orqali yoziladi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3a" value="a">
+                                <label for="q3a">class</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3b" value="b">
+                                <label for="q3b">id</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3c" value="c">
+                                <label for="q3c">style</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3d" value="d">
+                                <label for="q3d">css</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> External CSS usulidan foydalanib, oddiy web sahifa yarating.</p>
+                        <ol>
+                            <li>Yangi papka yarating va uni <code>mening-loyiham</code> deb nomlang</li>
+                            <li>Ichida <code>index.html</code> va <code>css/style.css</code> fayllarini yarating</li>
+                            <li><code>index.html</code> da asosiy HTML strukturani yozing</li>
+                            <li><code>style.css</code> da quyidagi stillarni yozing:
+                                <ul>
+                                    <li><code>h1</code> - ko'k rang, markazga tekislangan</li>
+                                    <li><code>p</code> - 18px o'lcham, qator oralig'i 1.6</li>
+                                    <li><code>.box</code> - och kulrang fon, 20px ichki bo'shliq, yumaloq burchaklar</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4> Namunaviy yechim:</h4>
+                        <p><strong>index.html:</strong></p>
+                        <pre><code class="language-css">&lt;!DOCTYPE html&gt;
+&lt;html lang="uz"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Mening Loyiham&lt;/title&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Mening birinchi CSS sahifam&lt;/h1&gt;
+    &lt;p&gt;Bu paragraf 18px o'lchamda va qator oralig'i 1.6.&lt;/p&gt;
+    &lt;div class="box"&gt;
+        Bu och kulrang fonli, ichki bo'shliqli va yumaloq burchakli blok.
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        
+                        <p><strong>css/style.css:</strong></p>
+                        <pre><code class="language-css">h1 {
+    color: #2563eb;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.box {
+    background-color: #f3f4f6;
+    padding: 20px;
+    border-radius: 8px;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Inline CSS</strong> - <code>style</code> atributi orqali, faqat test uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Internal CSS</strong> - <code>&lt;style&gt;</code> tegi ichida, bitta sahifa uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>External CSS</strong> - <code>&lt;link&gt;</code> tegi orqali, professional loyihalar uchun ⭐</li>
+                        <li><i class="fas fa-check-circle"></i> CSS fayllarni <code>css/</code> papkasida saqlang</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Selectors (Tanlab oluvchilar)</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../2/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../4/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#inline-css">Inline CSS</a></li>
+                        <li><a href="#internal-css">Internal CSS</a></li>
+                        <li><a href="#external-css">External CSS</a></li>
+                        <li><a href="#comparison">Usullar taqqoslash</a></li>
+                        <li><a href="#project-structure">Loyiha strukturasi</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">3/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 4.8%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

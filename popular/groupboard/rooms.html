@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>MR BOARD · Mening xonalarim</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        :root {
+            --bg-alt: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --brand-primary: #007aff;
+            --brand-danger: #ff3b30;
+            --border-subtle: #e2e8f0;
+        }
+
+        body { background: var(--bg-alt); color: var(--text-main); padding: 20px; padding-bottom: 100px; }
+
+        .header-section { margin-bottom: 24px; }
+        .header-section h2 { font-size: 1.5rem; font-weight: 800; }
+
+        .rooms-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .room-item {
+            background: white; padding: 16px; border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            display: flex; justify-content: space-between; align-items: center;
+            transition: 0.2s;
+        }
+
+        .room-info h4 { margin-bottom: 4px; font-size: 1rem; }
+        .room-info p { font-size: 0.8rem; color: var(--text-muted); }
+
+        .room-actions { display: flex; gap: 8px; }
+        
+        .action-btn {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            border: none; cursor: pointer; transition: 0.2s;
+        }
+        .btn-edit { background: #f1f5f9; color: var(--text-main); }
+        .btn-delete { background: #fff1f0; color: var(--brand-danger); }
+        .action-btn:active { transform: scale(0.9); }
+
+        /* Empty state */
+        .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); }
+
+        /* Modal simple style */
+        .modal { 
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5); 
+            display: none; align-items: center; justify-content: center; z-index: 1000; 
+        }
+        .modal-content { background: white; padding: 24px; border-radius: 24px; width: 90%; max-width: 400px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid var(--border-subtle); border-radius: 10px; }
+        .btn-save { background: var(--brand-primary); color: white; border: none; width: 100%; padding: 12px; border-radius: 12px; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <h2>Mening xonalarim</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Siz yaratgan barcha doskalar shu yerda.</p>
+    </div>
+
+    <div id="myRoomsList" class="rooms-list">
+        <p class="empty-state">Yuklanmoqda...</p>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h3>Xonani tahrirlash</h3>
+            <input type="text" id="editRoomName" placeholder="Xona nomi">
+            <button class="btn-save" onclick="saveRoomEdit()">Saqlash</button>
+            <button onclick="document.getElementById('editModal').style.display='none'" style="width:100%; background:none; border:none; margin-top:10px; color:var(--text-muted)">Bekor qilish</button>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = { /* CONFIG */ };
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const auth = firebase.auth();
+
+        let currentUser = null;
+        let currentEditingId = null;
+
+        function loadMyRooms() {
+            const container = document.getElementById('myRoomsList');
+            if (!currentUser) return;
+
+            db.ref('rooms').orderByChild('creatorId').equalTo(currentUser.uid).on('value', snapshot => {
+                container.innerHTML = "";
+                if (!snapshot.exists()) {
+                    container.innerHTML = `<div class="empty-state"><i data-lucide="folder-open"></i><p>Sizda hali xonalar yo'q.</p></div>`;
+                    lucide.createIcons();
+                    return;
+                }
+
+                snapshot.forEach(child => {
+                    const room = child.val();
+                    const div = document.createElement('div');
+                    div.className = 'room-item';
+                    div.innerHTML = `
+                        <div class="room-info">
+                            <h4>${room.name}</h4>
+                            <p>${new Date(room.createdAt).toLocaleDateString()}</p>
+                        </div>
+                        <div class="room-actions">
+                            <button class="action-btn btn-edit" onclick="openEdit('${child.key}', '${room.name}')"><i data-lucide="edit-3" style="width:18px"></i></button>
+                            <button class="action-btn btn-delete" onclick="deleteRoom('${child.key}')"><i data-lucide="trash-2" style="width:18px"></i></button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+                lucide.createIcons();
+            });
+        }
+
+        function openEdit(id, name) {
+            currentEditingId = id;
+            document.getElementById('editRoomName').value = name;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+
+        function saveRoomEdit() {
+            const newName = document.getElementById('editRoomName').value;
+            if (!newName || !currentEditingId) return;
+
+            db.ref(`rooms/${currentEditingId}`).update({ name: newName })
+                .then(() => {
+                    document.getElementById('editModal').style.display = 'none';
+                    // Dashboardga xabar yuborish (home dagi ro'yxat ham yangilanishi uchun)
+                    window.parent.postMessage('roomsUpdated', '*');
+                });
+        }
+
+        function deleteRoom(id) {
+            if (confirm("Haqiqatdan ham ushbu xonani o'chirmoqchimisiz?")) {
+                db.ref(`rooms/${id}`).remove().then(() => {
+                    window.parent.postMessage('roomsUpdated', '*');
+                });
+            }
+        }
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                currentUser = user;
+                loadMyRooms();
+            } else {
+                window.parent.location.href = 'board.html';
+            }
+        });
+    </script>
+</body>
+</html>

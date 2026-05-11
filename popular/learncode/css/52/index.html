@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>52-Dars: Animations (1-qism) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "52",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=js-Te68zyu8",
+            "lessonTitle": "Animations (1-qism)"
+        }
+    </script>
+    
+    <!-- Test javoblari (52-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>52-Dars: Animations (1-qism)</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 10:30
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/js-Te68zyu8" 
+                            title="CSS | 52. Animations (1-qism)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 52. Animations (1-qism)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 10:30</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Animations (1-qism)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 28-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Transitions va Animations</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da <code>@keyframes</code> qoidasi va <code>animation</code> xususiyatlari yordamida murakkab, ko'p bosqichli animatsiyalar yaratishni o'rganasiz. <strong>Transition</strong> faqat ikki holat o'rtasida silliq o'tish yaratsa, <strong>animation</strong> orqali cheksiz ko'p holatli, avtomatik boshlanadigan, takrorlanuvchi animatsiyalar yaratish mumkin. Bu zamonaviy web dizaynning ajralmas qismidir.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>@keyframes</code> - animatsiya kadrlarini belgilash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>animation-name</code> - animatsiya nomini bog'lash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>animation-duration</code> - animatsiya davomiyligi</li>
+                        <li><i class="fas fa-check-circle"></i> <code>animation-timing-function</code> - tezlik egri chizig'i</li>
+                        <li><i class="fas fa-check-circle"></i> <code>animation-delay</code> - animatsiya boshlanish kechikishi</li>
+                        <li><i class="fas fa-check-circle"></i> <code>animation-iteration-count</code> - takrorlanishlar soni</li>
+                        <li><i class="fas fa-check-circle"></i> <code>animation-direction</code> - yo'nalish (normal, reverse, alternate)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>animation-fill-mode</code> - animatsiya tugagandan keyingi holat</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: @KEYFRAMES - ANIMATSIYA ASOSI ==================== -->
+                <section class="lesson-section" id="keyframes">
+                    <h2><i class="fas fa-film"></i> @keyframes - Animatsiya kadrlari</h2>
+                    
+                    <p><code>@keyframes</code> - bu CSS animatsiyasining eng asosiy qismi. U orqali siz animatsiyaning boshlanishi, o'rtasi va oxiridagi holatlarini (kadrlarini) belgilaysiz. Brauzer siz belgilagan kadrlar orasidagi barcha o'tishlarni avtomatik hisoblab, silliq animatsiya yaratadi.</p>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title"><i class="fas fa-lightbulb"></i><span>Oddiy tushuntirish</span></div>
+                        <div class="analogy-content">
+                            <p><strong>@keyframes</strong> - bu xuddi kinoplyonka. Siz plyonkaga bir nechta rasm (kadr) qo'yasiz, brauzer esa ular orasidagi bo'shliqni to'ldirib, silliq video yaratadi.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS - @keyframes sintaksisi</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* @keyframes asosiy sintaksisi */
+@keyframes animatsiyaNomi {
+    0% {
+        /* Animatsiya boshidagi stillar */
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    50% {
+        /* Animatsiya o'rtasidagi stillar */
+        opacity: 0.5;
+        transform: translateX(50px);
+    }
+    100% {
+        /* Animatsiya oxiridagi stillar */
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* from va to kalit so'zlari bilan (0% va 100% o'rniga) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Foizlar mantiqi:</strong> <code>0%</code> - animatsiya boshi, <code>100%</code> - animatsiya oxiri. <code>50%</code> - yarmi. Istalgan foizni ishlatishingiz mumkin (<code>25%</code>, <code>75%</code>). Brauzer siz belgilagan kadrlar orasidagi barcha qiymatlarni avtomatik interpolyatsiya qiladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: ANIMATION-NAME & ANIMATION-DURATION ==================== -->
+                <section class="lesson-section" id="animation-name-duration">
+                    <h2><i class="fas fa-tag"></i> animation-name va animation-duration</h2>
+                    
+                    <p><code>@keyframes</code> yaratganingizdan so'ng, uni elementga qo'llash uchun <code>animation-name</code> (qaysi animatsiya) va <code>animation-duration</code> (qancha davom etishi) xususiyatlarini berishingiz shart. Bu ikki xususiyat animatsiya ishlashi uchun <strong>majburiy</strong> hisoblanadi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Animatsiyani qo'llash - majburiy xususiyatlar */
+.animated-element {
+    animation-name: fadeIn;      /* @keyframes nomi */
+    animation-duration: 2s;      /* 2 sekund davom etadi */
+}
+
+/* Agar duration berilmasa, animatsiya ISHLAMAYDI! */
+.no-duration {
+    animation-name: fadeIn;
+    /* animation-duration berilmagan - animatsiya ko'rinmaydi! */
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Muhim:</strong> <code>animation-duration</code> berilmasa yoki <code>0s</code> bo'lsa, animatsiya ishlamaydi! Bu yangi o'rganuvchilar eng ko'p qiladigan xato.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: ANIMATION-TIMING-FUNCTION ==================== -->
+                <section class="lesson-section" id="animation-timing">
+                    <h2><i class="fas fa-chart-line"></i> animation-timing-function</h2>
+                    
+                    <p><code>animation-timing-function</code> animatsiya tezligining vaqt bo'yicha qanday o'zgarishini belgilaydi. Xuddi <code>transition-timing-function</code> kabi ishlaydi, lekin butun animatsiya davomida yoki har bir kadrlar o'rtasida qo'llanilishi mumkin.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Asosiy timing funksiyalari */
+.linear { animation-timing-function: linear; }        /* Bir xil tezlik */
+.ease { animation-timing-function: ease; }            /* Default - sekin-tez-sekin */
+.ease-in { animation-timing-function: ease-in; }      /* Sekin boshlanib tezlashadi */
+.ease-out { animation-timing-function: ease-out; }    /* Tez boshlanib sekinlashadi */
+.ease-in-out { animation-timing-function: ease-in-out; } /* Sekin-tez-sekin */
+
+/* Custom cubic-bezier - o'zingizning egri chiziq */
+.custom { animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+
+/* steps() - pog'onali animatsiya */
+.steps { animation-timing-function: steps(5, end); }  /* 5 ta pog'onada */</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> <code>steps()</code> funksiyasi sprite animatsiyalar yoki yuklanish indikatorlari uchun juda foydali. Har bir kadr aniq alohida ko'rinadi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: ANIMATION-DELAY ==================== -->
+                <section class="lesson-section" id="animation-delay">
+                    <h2><i class="fas fa-clock"></i> animation-delay</h2>
+                    
+                    <p><code>animation-delay</code> animatsiya boshlanishidan oldin qancha vaqt kutish kerakligini belgilaydi. Manfiy qiymat berilsa, animatsiya darhol boshlanadi, lekin xuddi shu vaqt oldin boshlangandek davom etadi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Musbat kechikish */
+.delayed {
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-delay: 1s;        /* 1 sekund kutib, keyin boshlanadi */
+}
+
+/* Manfiy kechikish - darhol boshlanadi, lekin oldinroq boshlangandek */
+.negative-delay {
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-delay: -0.5s;     /* Animatsiya 0.5s oldin boshlangandek, yarmidan davom etadi */
+}
+
+/* Staggered animatsiyalar - ketma-ket chiroyli effekt */
+.stagger-item { animation: fadeIn 0.5s ease forwards; opacity: 0; }
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.3s; }
+.stagger-item:nth-child(3) { animation-delay: 0.5s; }
+.stagger-item:nth-child(4) { animation-delay: 0.7s; }</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: ANIMATION-ITERATION-COUNT ==================== -->
+                <section class="lesson-section" id="animation-iteration">
+                    <h2><i class="fas fa-repeat"></i> animation-iteration-count</h2>
+                    
+                    <p><code>animation-iteration-count</code> animatsiya necha marta takrorlanishini belgilaydi. Butun son yoki <code>infinite</code> (cheksiz) qiymatini olishi mumkin.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Aniq son */
+.once { animation-iteration-count: 1; }           /* 1 marta (default) */
+.twice { animation-iteration-count: 2; }          /* 2 marta */
+.three-times { animation-iteration-count: 3; }    /* 3 marta */
+.half { animation-iteration-count: 0.5; }         /* Yarim marta (50% da to'xtaydi) */
+
+/* Cheksiz takrorlanish */
+.infinite { animation-iteration-count: infinite; } /* To'xtovsiz takrorlanadi */</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Ehtiyot bo'ling:</strong> <code>infinite</code> animatsiyalar foydalanuvchi diqqatini chalg'itishi mumkin. Faqat zarur hollarda (loader, progress bar) ishlating.
+                    </div>
+                </section>
+                
+                <!-- ==================== 6-BO'LIM: ANIMATION-DIRECTION ==================== -->
+                <section class="lesson-section" id="animation-direction">
+                    <h2><i class="fas fa-arrows-left-right"></i> animation-direction</h2>
+                    
+                    <p><code>animation-direction</code> animatsiya yo'nalishini belgilaydi. Bu ayniqsa <code>infinite</code> takrorlanuvchi animatsiyalarda juda foydali.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Yo'nalish qiymatlari */
+.normal { animation-direction: normal; }        /* 0% → 100% (default) */
+.reverse { animation-direction: reverse; }      /* 100% → 0% (teskari) */
+.alternate { animation-direction: alternate; }  /* normal → reverse → normal → ... */
+.alternate-reverse { animation-direction: alternate-reverse; } /* reverse → normal → ... */
+
+/* alternate - yumshoq qaytish effekti */
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+.pulse {
+    animation: pulse 1s ease infinite alternate;  /* Kattalashib-kichiklashib turadi */
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>alternate fokus:</strong> <code>alternate</code> yordamida bitta yo'nalishda animatsiya yozib, avtomatik qaytish effektini olish mumkin. Bu kodni ikki barobar qisqartiradi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 7-BO'LIM: ANIMATION-FILL-MODE ==================== -->
+                <section class="lesson-section" id="animation-fill-mode">
+                    <h2><i class="fas fa-paint-bucket"></i> animation-fill-mode</h2>
+                    
+                    <p><code>animation-fill-mode</code> animatsiya boshlanishidan oldin va tugagandan keyin element qanday ko'rinishda qolishini belgilaydi. Bu juda muhim xususiyat - busiz animatsiya tugagach, element avvalgi holatiga sakrab qaytadi!</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* fill-mode qiymatlari */
+.none { animation-fill-mode: none; }          /* Default - hech qanday stillar qo'llanmaydi */
+.forwards { animation-fill-mode: forwards; }  /* Animatsiya tugagach, oxirgi kadr stillari saqlanadi */
+.backwards { animation-fill-mode: backwards; } /* Animatsiya boshlanishidan oldin birinchi kadr stillari qo'llanadi */
+.both { animation-fill-mode: both; }          /* forwards + backwards - eng foydali! */
+
+/* Amaliy misol - forwards ishlatilmasa */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.box-without-fill {
+    animation: slideIn 1s;
+    /* Animatsiya tugagach, element sakrab avvalgi holatiga qaytadi! */
+}
+
+.box-with-fill {
+    animation: slideIn 1s forwards;
+    /* Animatsiya tugagach, oxirgi holatda (opacity: 1, translateX: 0) qoladi */
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Eng ko'p xato:</strong> Aksariyat hollarda siz <code>forwards</code> yoki <code>both</code> ishlatishni xohlaysiz. Aks holda animatsiya tugagach, element sakrab avvalgi holatiga qaytadi!
+                    </div>
+                </section>
+                
+                <!-- ==================== 8-BO'LIM: ANIMATION SHORTHAND ==================== -->
+                <section class="lesson-section" id="animation-shorthand">
+                    <h2><i class="fas fa-compress"></i> Animation shorthand</h2>
+                    
+                    <p><code>animation</code> shorthand barcha xususiyatlarni bir qatorda yozish imkonini beradi. Tartib muhim emas, lekin birinchi vaqt qiymati <code>duration</code>, ikkinchisi <code>delay</code> sifatida qabul qilinadi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Shorthand sintaksisi */
+/* animation: name duration timing-function delay iteration-count direction fill-mode; */
+
+/* Asosiy shorthand */
+.fade-in {
+    animation: fadeIn 2s ease-out;
+}
+
+/* To'liq shorthand */
+.complex {
+    animation: slideIn 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s 3 alternate both;
+}
+
+/* Bir nechta animatsiya */
+.multiple {
+    animation: 
+        fadeIn 1s ease-out,
+        pulse 2s ease-in-out 1s infinite;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 9-BO'LIM: TRANSITION VS ANIMATION ==================== -->
+                <section class="lesson-section" id="transition-vs-animation">
+                    <h2><i class="fas fa-balance-scale"></i> Transition vs Animation - qachon qaysi biri?</h2>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Xususiyat</th><th>Transition</th><th>Animation</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Tetik</strong></td><td>Hodisa kerak (:hover, :focus)</td><td>Avtomatik boshlanadi</td></tr>
+                                <tr><td><strong>Yo'nalish</strong></td><td>Faqat ikki holat (A → B)</td><td>Ko'p kadrli (A → B → C → ...)</td></tr>
+                                <tr><td><strong>Takrorlanish</strong></td><td>Yo'q</td><td>Cheksiz yoki aniq son</td></tr>
+                                <tr><td><strong>Murakkablik</strong></td><td>Oddiy</td><td>Murakkab</td></tr>
+                                <tr><td><strong>Qachon ishlatiladi</strong></td><td>Hover, oddiy o'zgarishlar</td><td>Loader, e'tibor tortuvchi elementlar</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior qoidasi:</strong> Oddiy hover effektlar uchun <code>transition</code>, murakkab avtomatik animatsiyalar uchun <code>animation</code> ishlating.
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> 52-dars testi</h3><span class="test-badge">4 ta savol</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span><code>@keyframes</code> nima uchun ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>Element rangini o'zgartirish</label></div><div class="option"><input type="radio" name="q1" value="b"><label>Animatsiya kadrlarini belgilash</label></div><div class="option"><input type="radio" name="q1" value="c"><label>Transition yaratish</label></div><div class="option"><input type="radio" name="q1" value="d"><label>Media query yozish</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>Animatsiya tugagach oxirgi holatda qolishi uchun qaysi xususiyat kerak?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>animation-iteration-count</label></div><div class="option"><input type="radio" name="q2" value="b"><label>animation-direction</label></div><div class="option"><input type="radio" name="q2" value="c"><label>animation-fill-mode: forwards</label></div><div class="option"><input type="radio" name="q2" value="d"><label>animation-delay</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span>Animatsiya cheksiz takrorlanishi uchun qaysi qiymat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>infinite</label></div><div class="option"><input type="radio" name="q3" value="b"><label>loop</label></div><div class="option"><input type="radio" name="q3" value="c"><label>repeat</label></div><div class="option"><input type="radio" name="q3" value="d"><label>forever</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Transition va Animation asosiy farqi nimada?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>Transition tezroq</label></div><div class="option"><input type="radio" name="q4" value="b"><label>Animation ko'proq brauzerda ishlaydi</label></div><div class="option"><input type="radio" name="q4" value="c"><label>Transition faqat rang uchun</label></div><div class="option"><input type="radio" name="q4" value="d"><label>Animation avtomatik boshlanadi va ko'p kadrli</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Animations yordamida loader va e'tibor tortuvchi elementlar yarating.</p>
+                        <ol><li><code>@keyframes</code> yordamida <code>spin</code> (aylanish) animatsiyasi yarating</li><li>Loader elementiga <code>infinite</code> va <code>linear</code> qo'llang</li><li><code>pulse</code> animatsiyasi yarating (scale o'zgarishi)</li><li><code>alternate</code> yo'nalishidan foydalaning</li><li>Barcha animatsiyalarda <code>forwards</code> yoki <code>both</code> ishlating</li></ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-css">/* Loader - aylanish animatsiyasi */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.loader {
+    width: 50px; height: 50px;
+    border: 5px solid #e2e8f0;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Pulse - e'tibor tortish */
+@keyframes pulse {
+    from { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+    to { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+}
+.pulse-btn {
+    animation: pulse 2s ease-out infinite;
+}
+
+/* Staggered fade-in */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.stagger-item {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.3s; }
+.stagger-item:nth-child(3) { animation-delay: 0.5s; }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>@keyframes</strong> - animatsiya kadrlarini belgilaydi (0%, 50%, 100% yoki from/to)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>animation-name + animation-duration</strong> - animatsiya ishlashi uchun MAJBURIY</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>animation-fill-mode: forwards/both</strong> - animatsiya tugagach oxirgi holatda qolish uchun (eng ko'p unutiladi!)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>animation-iteration-count: infinite</strong> - cheksiz takrorlash (loaderlar uchun)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>animation-direction: alternate</strong> - qaytish effekti (pulse uchun)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Transition vs Animation:</strong> oddiy hover = transition, murakkab avtomatik = animation</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Animations (2-qism)</li>
+                    </ul>
+                </div>
+                
+                <!-- IZOHLAR, NAVIGATSIYA, SIDEBAR, FOOTER, JAVASCRIPT - STANDART -->
+                <!-- (Oldingi darslar bilan bir xil) -->
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../51/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../53/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#keyframes">@keyframes</a></li><li><a href="#animation-name-duration">name & duration</a></li>
+                    <li><a href="#animation-timing">timing-function</a></li><li><a href="#animation-delay">delay</a></li>
+                    <li><a href="#animation-iteration">iteration-count</a></li><li><a href="#animation-direction">direction</a></li>
+                    <li><a href="#animation-fill-mode">fill-mode</a></li><li><a href="#animation-shorthand">shorthand</a></li>
+                    <li><a href="#transition-vs-animation">Transition vs Animation</a></li>
+                    <li><a href="#test">Test</a></li><li><a href="#practice">Amaliy mashq</a></li><li><a href="#summary">Xulosa</a></li><li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">52/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 82.5%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>MR BOARD · Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        :root {
+            --bg-base: #ffffff;
+            --bg-alt: #f8fafc;
+            --bg-glass: rgba(255,255,255,0.65);
+            --bg-panel: rgba(255,255,255,0.85);
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-subtle: #e2e8f0;
+            --border-strong: rgba(0,0,0,0.05);
+            --brand-primary: #007aff;
+            --brand-primary-dark: #0056b3;
+            --brand-alpha: rgba(0,122,255,0.1);
+            --state-danger: #ff3b30;
+            --state-success: #34c759;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 24px 48px -12px rgba(0,0,0,0.15);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-fast: 0.2s;
+            --transition-normal: 0.3s;
+        }
+        
+        [data-theme="dark"] {
+            --bg-base: #020617;
+            --bg-alt: #0f172a;
+            --bg-glass: rgba(15,23,42,0.65);
+            --bg-panel: rgba(15,23,42,0.85);
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-subtle: rgba(255,255,255,0.1);
+            --border-strong: rgba(255,255,255,0.05);
+            --brand-primary: #0a84ff;
+            --brand-primary-dark: #007aff;
+            --brand-alpha: rgba(10,132,255,0.15);
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif; 
+            background: var(--bg-alt); color: var(--text-main); height: 100vh; overflow: hidden; 
+            display: flex; flex-direction: column; transition: background var(--transition-normal), color var(--transition-normal);
+        }
+        
+        /* Header */
+        .header { padding: 16px 20px; background: var(--bg-glass); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 800; text-decoration: none; color: var(--text-main); transition: transform var(--transition-fast) var(--ease-spring); }
+        .logo:hover { transform: scale(1.02); }
+        .logo span { color: var(--brand-primary); }
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+        
+        .search-container { position: relative; }
+        .search-input { background: var(--bg-panel); border: 1px solid var(--border-subtle); border-radius: 40px; padding: 8px 16px 8px 40px; font-size: 14px; width: 220px; transition: all var(--transition-fast); color: var(--text-main); }
+        .search-input:focus { outline: none; border-color: var(--brand-primary); width: 280px; }
+        .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        
+        .theme-toggle { background: var(--bg-panel); border: 1px solid var(--border-subtle); border-radius: 40px; padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all var(--transition-fast) var(--ease-spring); }
+        .theme-toggle:hover { transform: scale(1.05); background: var(--brand-alpha); }
+        
+        .user-info { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px; transition: all var(--transition-fast) var(--ease-spring); overflow: hidden; background-size: cover; background-position: center; }
+        .user-avatar:hover { transform: scale(1.05); box-shadow: 0 0 0 3px var(--brand-alpha); }
+        .user-name { font-weight: 600; font-size: 14px; }
+        
+        .main-content { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 80px; }
+        
+        .welcome-card { background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%); border-radius: 28px; padding: 24px; color: white; margin-bottom: 24px; animation: slideDown 0.5s var(--ease-spring); }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .welcome-card h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+        .welcome-card p { font-size: 14px; opacity: 0.9; }
+        
+        .quick-actions { display: flex; gap: 12px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 4px; }
+        .quick-action { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 40px; padding: 12px 20px; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all var(--transition-fast) var(--ease-spring); white-space: nowrap; color: var(--text-main); }
+        .quick-action:hover { transform: translateY(-3px); border-color: var(--brand-primary); }
+        .quick-action.create { background: var(--brand-primary); color: white; border: none; }
+        
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin: 24px 0 16px; }
+        .section-title { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .refresh-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 8px; border-radius: 50%; transition: all var(--transition-fast); }
+        .refresh-btn:hover { background: var(--brand-alpha); color: var(--brand-primary); transform: rotate(180deg); }
+        
+        .rooms-container { max-height: 420px; overflow-y: auto; padding-right: 4px; }
+        .rooms-container::-webkit-scrollbar { width: 4px; }
+        .rooms-container::-webkit-scrollbar-track { background: var(--border-strong); border-radius: 10px; }
+        .rooms-container::-webkit-scrollbar-thumb { background: var(--brand-primary); border-radius: 10px; }
+        .rooms-grid { display: flex; flex-direction: column; gap: 16px; }
+        
+        .room-card { background: var(--bg-card); border-radius: 24px; padding: 20px; cursor: pointer; transition: all var(--transition-normal) var(--ease-spring); border: 1px solid var(--border-subtle); position: relative; overflow: hidden; }
+        .room-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--brand-primary), var(--state-success)); opacity: 0; transition: opacity var(--transition-normal); }
+        .room-card:hover { transform: translateY(-4px); border-color: var(--brand-primary); box-shadow: var(--shadow-hover); }
+        .room-card:hover::before { opacity: 1; }
+        .room-card-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px; }
+        .room-name { font-size: 16px; font-weight: 700; }
+        .room-badge { font-size: 11px; padding: 4px 10px; border-radius: 20px; background: var(--brand-alpha); color: var(--brand-primary); }
+        .room-badge.active { background: rgba(52,199,89,0.15); color: var(--state-success); }
+        .creator-info { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .creator-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600; cursor: pointer; transition: all var(--transition-fast); background-size: cover; background-position: center; }
+        .creator-name { font-size: 12px; font-weight: 600; color: var(--text-main); cursor: pointer; }
+        .creator-name:hover { color: var(--brand-primary); }
+        .room-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+        .room-join-btn { width: 100%; padding: 12px; background: var(--brand-primary); color: white; border: none; border-radius: 16px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all var(--transition-fast); }
+        .room-join-btn:hover { background: var(--brand-primary-dark); transform: translateY(-2px); }
+        .empty-state { text-align: center; padding: 40px; color: var(--text-muted); background: var(--bg-card); border-radius: 24px; border: 1px solid var(--border-subtle); }
+        
+        /* Bottom Tab Bar */
+        .bottom-tab-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-glass); backdrop-filter: blur(40px); border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-around; align-items: center; padding: 10px 20px 20px; z-index: 100; }
+        .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; background: none; border: none; color: var(--text-muted); font-size: 10px; font-weight: 600; cursor: pointer; transition: all var(--transition-fast); padding: 8px 16px; border-radius: 40px; }
+        .tab-item i { font-size: 24px; transition: transform var(--transition-fast); }
+        .tab-item.active { color: var(--brand-primary); background: var(--brand-alpha); }
+        
+        /* My Rooms Modal */
+        .myrooms-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(12px);
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s var(--ease-spring);
+        }
+        .myrooms-modal.active { opacity: 1; visibility: visible; }
+        .myrooms-modal-content {
+            background: var(--bg-panel);
+            backdrop-filter: blur(40px);
+            border-radius: 32px;
+            width: 90%;
+            max-width: 550px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.3s var(--ease-spring);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-lg);
+        }
+        .myrooms-modal.active .myrooms-modal-content { transform: scale(1); }
+        .myrooms-modal-header { padding: 20px 24px; border-bottom: 1px solid var(--border-strong); display: flex; justify-content: space-between; align-items: center; }
+        .myrooms-modal-header h3 { font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .myrooms-modal-close { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-base); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition-fast); }
+        .myrooms-modal-close:hover { background: var(--brand-alpha); transform: rotate(90deg); }
+        .myrooms-modal-body { flex: 1; overflow-y: auto; padding: 20px; }
+        .myrooms-list { display: flex; flex-direction: column; gap: 12px; }
+        .myroom-item { background: var(--bg-card); border-radius: 20px; padding: 16px; border: 1px solid var(--border-subtle); transition: all var(--transition-fast); }
+        .myroom-item:hover { transform: translateY(-2px); border-color: var(--brand-primary); box-shadow: var(--shadow-md); }
+        .myroom-name { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .myroom-info { display: flex; gap: 16px; font-size: 12px; color: var(--text-muted); margin-bottom: 12px; flex-wrap: wrap; }
+        .myroom-badge { font-size: 11px; padding: 4px 10px; border-radius: 20px; background: var(--brand-alpha); color: var(--brand-primary); display: inline-block; }
+        .myroom-badge.private { background: rgba(255,59,48,0.1); color: var(--state-danger); }
+        .myroom-actions { display: flex; gap: 8px; margin-top: 12px; }
+        .myroom-btn { flex: 1; padding: 8px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; text-align: center; transition: all var(--transition-fast); display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .myroom-join { background: var(--brand-primary); color: white; border: none; }
+        .myroom-edit { background: var(--bg-alt); border: 1px solid var(--border-subtle); color: var(--text-main); }
+        .myroom-delete { background: rgba(255,59,48,0.1); border: 1px solid rgba(255,59,48,0.2); color: var(--state-danger); }
+        
+        /* User Profile Modal */
+        .user-profile-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            z-index: 400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-normal);
+        }
+        .user-profile-modal.active { opacity: 1; visibility: visible; }
+        .user-profile-content {
+            background: var(--bg-panel);
+            backdrop-filter: blur(40px);
+            border-radius: 32px;
+            padding: 28px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform var(--transition-normal) var(--ease-spring);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-lg);
+        }
+        .user-profile-modal.active .user-profile-content { transform: scale(1); }
+        .user-profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--brand-primary);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-weight: 800;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: transform var(--transition-fast);
+        }
+        .user-profile-avatar:hover { transform: scale(1.05); }
+        .user-profile-fullname { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+        .user-profile-username { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .user-profile-bio { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+        .user-profile-close {
+            background: var(--brand-primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Edit Room Modal */
+        .edit-room-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            z-index: 450;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-normal);
+        }
+        .edit-room-modal.active { opacity: 1; visibility: visible; }
+        .edit-room-content {
+            background: var(--bg-panel);
+            backdrop-filter: blur(40px);
+            border-radius: 32px;
+            padding: 28px;
+            width: 90%;
+            max-width: 400px;
+            transform: scale(0.9);
+            transition: transform var(--transition-normal) var(--ease-spring);
+            border: 1px solid var(--border-subtle);
+        }
+        .edit-room-modal.active .edit-room-content { transform: scale(1); }
+        .edit-room-header { font-size: 20px; font-weight: 800; margin-bottom: 20px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        
+        /* Profile Section */
+        .profile-card { background: var(--bg-card); border-radius: 28px; padding: 24px; text-align: center; }
+        .profile-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--brand-primary); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 40px; font-weight: 800; cursor: pointer; transition: all var(--transition-normal); background-size: cover; background-position: center; }
+        .profile-avatar:hover { transform: scale(1.05); box-shadow: 0 0 0 4px var(--brand-alpha); }
+        .profile-field { margin-bottom: 20px; text-align: left; }
+        .profile-field label { font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 6px; }
+        .profile-field input, .profile-field textarea { width: 100%; padding: 12px 16px; background: var(--bg-alt); border: 1px solid var(--border-strong); border-radius: 16px; font-size: 15px; color: var(--text-main); }
+        .profile-field input:focus, .profile-field textarea:focus { border-color: var(--brand-primary); outline: none; }
+        .profile-actions { display: flex; gap: 12px; margin-top: 24px; }
+        
+        /* Common Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-normal);
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-panel);
+            backdrop-filter: blur(40px);
+            border-radius: 28px 28px 0 0;
+            padding: 24px;
+            z-index: 201;
+            transform: translateY(100%);
+            transition: transform var(--transition-normal) var(--ease-spring);
+        }
+        .modal-bottom.active { transform: translateY(0); }
+        .modal-header { font-size: 20px; font-weight: 800; margin-bottom: 20px; text-align: center; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .form-input { width: 100%; padding: 14px 18px; background: var(--bg-base); border: 2px solid var(--border-strong); border-radius: 20px; font-size: 15px; }
+        .form-input:focus { border-color: var(--brand-primary); outline: none; }
+        .room-type-selector { display: flex; gap: 12px; margin-top: 8px; }
+        .type-btn { flex: 1; padding: 12px; border-radius: 16px; background: var(--bg-base); border: 1px solid var(--border-strong); font-weight: 600; cursor: pointer; }
+        .type-btn.active { background: var(--brand-alpha); border-color: var(--brand-primary); color: var(--brand-primary); }
+        .modal-actions { display: flex; gap: 12px; margin-top: 24px; }
+        .btn { flex: 1; padding: 14px; border-radius: 40px; font-weight: 600; cursor: pointer; text-align: center; }
+        .btn-primary { background: var(--brand-primary); color: white; border: none; }
+        .btn-ghost { background: var(--bg-base); border: 1px solid var(--border-strong); color: var(--text-main); }
+        
+        .section-page { display: none; }
+        .section-page.active { display: block; }
+        
+        .toast-wrapper {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+        .toast-item {
+            background: var(--bg-panel);
+            backdrop-filter: blur(40px);
+            padding: 12px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 13px;
+            box-shadow: var(--shadow-lg);
+            animation: toastIn 0.3s var(--ease-spring);
+        }
+        @keyframes toastIn { from { opacity: 0; transform: translateY(-20px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        
+        @media (max-width: 768px) {
+            .search-input { width: 140px; }
+            .search-input:focus { width: 180px; }
+            .user-name { display: none; }
+            .myrooms-modal-content { width: 95%; max-height: 85vh; }
+            .myroom-info { gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toast-wrapper" id="toastWrapper"></div>
+
+    <div class="header">
+        <a href="index.html" class="logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="1.5">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            MR <span>BOARD</span>
+        </a>
+        <div class="header-actions">
+            <div class="search-container"><i data-lucide="search" size="16" class="search-icon"></i><input type="text" id="searchInput" class="search-input" placeholder="Xona yoki foydalanuvchi..."></div>
+            <button class="theme-toggle" id="themeToggle"><i data-lucide="sun" id="themeIcon"></i><span id="themeText">Light</span></button>
+            <div class="user-info" id="currentUserInfo"><span class="user-name" id="userName"></span><div class="user-avatar" id="userAvatar"></div></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Home Section -->
+        <div class="section-page active" id="homeSection">
+            <div class="welcome-card"><h1 id="welcomeMessage">Assalomu alaykum!</h1><p>Birgalikda ishlashni boshlang</p></div>
+            <div class="quick-actions"><button class="quick-action create" id="quickCreateBtn"><i data-lucide="plus-circle"></i> Yangi xona</button><button class="quick-action" id="quickJoinBtn"><i data-lucide="log-in"></i> Kod bilan kirish</button></div>
+            <div class="section-header"><h2 class="section-title"><i data-lucide="layout-list"></i> Barcha xonalar</h2><button class="refresh-btn" id="refreshRoomsBtn"><i data-lucide="refresh-cw"></i></button></div>
+            <div class="rooms-container"><div id="roomsList" class="rooms-grid"><div class="empty-state">Yuklanmoqda...</div></div></div>
+        </div>
+
+        <!-- My Rooms Section -->
+        <div class="section-page" id="myRoomsSection">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px;">
+                <div style="text-align: center;">
+                    <i data-lucide="star" size="48" style="color: var(--brand-primary); margin-bottom: 16px;"></i>
+                    <h3 style="margin-bottom: 12px;">Mening xonalarim</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">Barcha xonalaringizni modal oynada ko'ring</p>
+                    <button id="openMyRoomsModalBtn" class="quick-action create" style="background: var(--brand-primary); color: white; padding: 14px 28px; font-size: 16px;">
+                        <i data-lucide="eye"></i> Xonalarimni ko'rish
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="section-page" id="profileSection">
+            <div class="profile-card">
+                <div class="profile-avatar" id="profileAvatar" onclick="document.getElementById('avatarInput').click()"><span id="avatarText">U</span></div>
+                <input type="file" id="avatarInput" style="display: none;" accept="image/*">
+                <div class="profile-field"><label><i data-lucide="user"></i> Ism</label><input type="text" id="profileFullname" placeholder="Ismingiz"></div>
+                <div class="profile-field"><label><i data-lucide="users"></i> Familiya</label><input type="text" id="profileLastname" placeholder="Familiyangiz"></div>
+                <div class="profile-field"><label><i data-lucide="at-sign"></i> Username</label><input type="text" id="profileUsername" placeholder="username"></div>
+                <div class="profile-field"><label><i data-lucide="file-text"></i> Bio</label><textarea id="profileBio" rows="3" placeholder="O'zingiz haqingizda..."></textarea></div>
+                <div class="profile-actions"><button class="btn btn-primary" id="saveProfileBtn"><i data-lucide="save"></i> Saqlash</button><button class="btn btn-ghost" id="logoutBtn"><i data-lucide="log-out"></i> Chiqish</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-tab-bar">
+        <button class="tab-item active" data-tab="home"><i data-lucide="home"></i><span>Bosh sahifa</span></button>
+        <button class="tab-item" data-tab="myrooms"><i data-lucide="star"></i><span>Mening xonalar</span></button>
+        <button class="tab-item" data-tab="profile"><i data-lucide="user"></i><span>Profil</span></button>
+    </div>
+
+    <!-- ========== FLOATING AI BUTTON (MODAL UCHUN) ========== -->
+    <button class="floating-ai-btn" id="floatingAiBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 8V4H8"/>
+            <rect x="4" y="4" width="16" height="16" rx="2"/>
+            <path d="M8 12h8"/>
+            <path d="M12 8v8"/>
+        </svg>
+    </button>
+
+    <style>
+        .floating-ai-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007aff, #0056b3);
+            box-shadow: 0 8px 24px rgba(0,122,255,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            animation: floatPulse 2s ease-in-out infinite;
+        }
+        .floating-ai-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(0,122,255,0.6);
+        }
+        @keyframes floatPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @media (max-width: 768px) {
+            .floating-ai-btn {
+                bottom: 80px;
+                right: 16px;
+                width: 48px;
+                height: 48px;
+            }
+            .floating-ai-btn svg { width: 24px; height: 24px; }
+        }
+    </style>
+
+    <!-- My Rooms Modal -->
+    <div class="myrooms-modal" id="myRoomsModal">
+        <div class="myrooms-modal-content">
+            <div class="myrooms-modal-header">
+                <h3><i data-lucide="star"></i> Mening xonalarim</h3>
+                <button class="myrooms-modal-close" id="closeMyRoomsModal"><i data-lucide="x"></i></button>
+            </div>
+            <div class="myrooms-modal-body" id="myRoomsModalBody">
+                <div class="myrooms-list" id="myRoomsModalList">
+                    <div class="empty-state">Yuklanmoqda...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="user-profile-modal" id="userProfileModal">
+        <div class="user-profile-content">
+            <div class="user-profile-avatar" id="userProfileAvatar" onclick="showLargeAvatar()"><span id="userProfileAvatarText">U</span></div>
+            <div class="user-profile-fullname" id="userProfileFullname"></div>
+            <div class="user-profile-username" id="userProfileUsername"></div>
+            <div class="user-profile-bio" id="userProfileBio"></div>
+            <button class="user-profile-close" onclick="closeUserProfileModal()"><i data-lucide="x"></i> Yopish</button>
+        </div>
+    </div>
+
+    <!-- Large Avatar Modal -->
+    <div class="user-profile-modal" id="largeAvatarModal" style="background: rgba(0,0,0,0.9);" onclick="closeLargeAvatarModal()">
+        <div class="user-profile-content" style="background: transparent; box-shadow: none; padding: 0;" onclick="event.stopPropagation()">
+            <img id="largeAvatarImg" style="max-width: 90vw; max-height: 90vh; border-radius: 24px; object-fit: cover;" src="">
+        </div>
+    </div>
+
+    <!-- Edit Room Modal -->
+    <div class="edit-room-modal" id="editRoomModal">
+        <div class="edit-room-content">
+            <div class="edit-room-header"><i data-lucide="pencil"></i> Xonani tahrirlash</div>
+            <div class="form-group"><label><i data-lucide="tag"></i> Xona nomi</label><input type="text" id="editRoomName" class="form-input"></div>
+            <div class="form-group">
+                <label><i data-lucide="globe"></i> Xona turi</label>
+                <div class="room-type-selector">
+                    <button class="type-btn" data-type="public" id="editPublicBtn"><i data-lucide="globe"></i> Public</button>
+                    <button class="type-btn" data-type="private" id="editPrivateBtn"><i data-lucide="lock"></i> Private</button>
+                </div>
+            </div>
+            <div class="form-group" id="editPasswordGroup" style="display: none;"><label><i data-lucide="key"></i> Parol</label><input type="password" id="editRoomPassword" class="form-input" placeholder="Parol"></div>
+            <div class="modal-actions"><button class="btn btn-ghost" id="cancelEditBtn"><i data-lucide="x"></i> Bekor</button><button class="btn btn-primary" id="saveEditBtn"><i data-lucide="save"></i> Saqlash</button></div>
+        </div>
+    </div>
+
+    <!-- Create/Join Modals -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-bottom" id="createRoomModal">
+        <div class="modal-header"><i data-lucide="plus-circle"></i> Yangi xona yaratish</div>
+        <div class="form-group"><label><i data-lucide="tag"></i> Xona nomi</label><input type="text" id="roomNameInput" class="form-input" placeholder="Masalan: Matematika 7-sinf"></div>
+        <div class="form-group"><label><i data-lucide="globe"></i> Xona turi</label><div class="room-type-selector"><button class="type-btn active" data-type="public"><i data-lucide="globe"></i> Public</button><button class="type-btn" data-type="private"><i data-lucide="lock"></i> Private</button></div></div>
+        <div class="form-group" id="passwordGroup" style="display: none;"><label><i data-lucide="key"></i> Parol</label><input type="password" id="roomPassword" class="form-input" placeholder="Parol qo'yish"></div>
+        <div class="modal-actions"><button class="btn btn-ghost" id="cancelCreateBtn"><i data-lucide="x"></i> Bekor</button><button class="btn btn-primary" id="confirmCreateBtn"><i data-lucide="check"></i> Yaratish</button></div>
+    </div>
+
+    <div class="modal-bottom" id="joinRoomModal">
+        <div class="modal-header"><i data-lucide="log-in"></i> Xona kod bilan kirish</div>
+        <div class="form-group"><label><i data-lucide="hash"></i> Xona kodi</label><input type="text" id="joinCodeInput" class="form-input" placeholder="Masalan: ABC123" maxlength="6" style="text-transform: uppercase;"></div>
+        <div class="form-group" id="joinPasswordGroup" style="display: none;"><label><i data-lucide="key"></i> Parol</label><input type="password" id="joinPassword" class="form-input" placeholder="Xona paroli"></div>
+        <div class="modal-actions"><button class="btn btn-ghost" id="cancelJoinBtn"><i data-lucide="x"></i> Bekor</button><button class="btn btn-primary" id="confirmJoinBtn"><i data-lucide="check"></i> Kirish</button></div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // ========== THEME ==========
+        function initTheme() {
+            const saved = localStorage.getItem('mrboard_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+            updateThemeUI(saved);
+        }
+        function updateThemeUI(theme) {
+            const icon = document.getElementById('themeIcon'), text = document.getElementById('themeText');
+            if (theme === 'dark') { icon.setAttribute('data-lucide', 'moon'); text.textContent = 'Dark'; }
+            else { icon.setAttribute('data-lucide', 'sun'); text.textContent = 'Light'; }
+            lucide.createIcons();
+        }
+        function toggleTheme() {
+            const cur = document.documentElement.getAttribute('data-theme');
+            const n = cur === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', n);
+            localStorage.setItem('mrboard_theme', n);
+            updateThemeUI(n);
+            showToast(n === 'dark' ? 'Dark mode yoqildi' : 'Light mode yoqildi', 'success');
+        }
+        document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+        initTheme();
+
+        // ========== FIREBASE ==========
+        const firebaseConfig = {
+            apiKey: "window.__ENV__?.MAIN_API_KEY || """,
+            authDomain: "basic-formula-484419-k8.firebaseapp.com",
+            databaseURL: "https://basic-formula-484419-k8-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "basic-formula-484419-k8",
+            storageBucket: "basic-formula-484419-k8.firebasestorage.app",
+            messagingSenderId: "629679926764",
+            appId: "1:629679926764:web:0cff483e9c4752fbd024c9"
+        };
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.database();
+
+        let currentUser = null, currentAvatar = null, allRooms = [], searchQuery = '', editingRoomId = null;
+        const userCache = new Map();
+
+        async function getUserData(uid) {
+            if (userCache.has(uid)) return userCache.get(uid);
+            const snap = await db.ref(`users/${uid}`).once('value');
+            const data = snap.val() || {};
+            userCache.set(uid, data);
+            return data;
+        }
+
+        // ========== TAB SWITCH ==========
+        function switchTab(tabId) {
+            document.querySelectorAll('.section-page').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(`${tabId}Section`);
+            if (target) target.classList.add('active');
+            
+            document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+            const activeTab = document.querySelector(`.tab-item[data-tab="${tabId}"]`);
+            if (activeTab) activeTab.classList.add('active');
+            
+            if (tabId === 'home') loadPublicRooms();
+            else if (tabId === 'myrooms') openMyRoomsModal();
+            else if (tabId === 'profile') loadProfile();
+        }
+
+        // ========== PUBLIC ROOMS ==========
+        async function loadPublicRooms() {
+            const container = document.getElementById('roomsList');
+            container.innerHTML = '<div class="empty-state">Yuklanmoqda...</div>';
+            try {
+                const snap = await db.ref('rooms').once('value');
+                const rooms = snap.val() || {};
+                allRooms = Object.entries(rooms).filter(([id, r]) => r.isActive !== false && r.isPublic === true)
+                    .sort((a,b)=>b[1].createdAt - a[1].createdAt).map(([id,r])=>({id,...r}));
+                renderPublicRooms();
+            } catch(e) { container.innerHTML = '<div class="empty-state">Xatolik yuz berdi</div>'; }
+        }
+
+        function filterRooms(rooms) {
+            if (!searchQuery) return rooms;
+            const q = searchQuery.toLowerCase();
+            return rooms.filter(r => r.name?.toLowerCase().includes(q) || r.createdByName?.toLowerCase().includes(q) || r.id?.toLowerCase().includes(q));
+        }
+
+        async function renderPublicRooms() {
+            const container = document.getElementById('roomsList');
+            const filtered = filterRooms(allRooms);
+            if (filtered.length === 0) { container.innerHTML = '<div class="empty-state">Hech narsa topilmadi</div>'; return; }
+            let html = '';
+            for (const room of filtered) {
+                const ud = await getUserData(room.createdBy);
+                const avatarLetter = (ud.fullName || ud.username || 'U').charAt(0).toUpperCase();
+                const userCount = room.users ? Object.keys(room.users).length : 0;
+                const avatarStyle = ud.avatarBase64 ? `background-image: url('${ud.avatarBase64}'); background-size: cover;` : `background-color: var(--brand-primary);`;
+                html += `<div class="room-card" onclick="goToRoom('${room.id}')">
+                    <div class="room-card-header"><span class="room-name">${escapeHtml(room.name || 'Nomsiz xona')}</span><span class="room-badge ${userCount>0?'active':''}">${userCount>0?'Faol':'Faol emas'}</span></div>
+                    <div class="creator-info"><div class="creator-avatar" onclick="event.stopPropagation(); showUserProfileModal('${room.createdBy}')" style="${avatarStyle}">${!ud.avatarBase64 ? avatarLetter : ''}</div><span class="creator-name" onclick="event.stopPropagation(); showUserProfileModal('${room.createdBy}')">${escapeHtml(ud.fullName || ud.username || room.createdByName || 'Foydalanuvchi')}</span></div>
+                    <div class="room-meta"><span><i data-lucide="users" size="12"></i> ${userCount}</span><span><i data-lucide="calendar" size="12"></i> ${new Date(room.createdAt).toLocaleDateString()}</span></div>
+                    <button class="room-join-btn" onclick="event.stopPropagation(); joinRoom('${room.id}', ${room.hasPassword})"><i data-lucide="log-in"></i> Kirish</button>
+                </div>`;
+            }
+            container.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        // ========== MY ROOMS MODAL ==========
+        async function loadMyRoomsData() {
+            if (!currentUser) return [];
+            const snapshot = await db.ref('rooms').once('value');
+            const rooms = snapshot.val() || {};
+            const myRooms = [];
+            for (const [roomId, roomData] of Object.entries(rooms)) {
+                if (roomData.isActive !== false && roomData.createdBy === currentUser.uid) {
+                    myRooms.push({ id: roomId, ...roomData });
+                }
+            }
+            myRooms.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+            return myRooms;
+        }
+
+        async function openMyRoomsModal() {
+            const modal = document.getElementById('myRoomsModal');
+            const container = document.getElementById('myRoomsModalList');
+            modal.classList.add('active');
+            container.innerHTML = '<div class="empty-state">Yuklanmoqda...</div>';
+            
+            try {
+                const myRooms = await loadMyRoomsData();
+                if (myRooms.length === 0) {
+                    container.innerHTML = '<div class="empty-state">Siz hali xona yaratmagansiz</div>';
+                } else {
+                    let html = '<div class="myrooms-list">';
+                    for (const room of myRooms) {
+                        const userCount = room.users ? Object.keys(room.users).length : 0;
+                        html += `
+                            <div class="myroom-item">
+                                <div class="myroom-name">${escapeHtml(room.name || 'Nomsiz xona')}</div>
+                                <div class="myroom-info">
+                                    <span><i data-lucide="users" size="12"></i> ${userCount}</span>
+                                    <span><i data-lucide="calendar" size="12"></i> ${new Date(room.createdAt).toLocaleDateString()}</span>
+                                    <span class="myroom-badge ${room.isPublic ? '' : 'private'}">${room.isPublic ? '<i data-lucide="globe"></i> Public' : '<i data-lucide="lock"></i> Private'}</span>
+                                    <span>${room.hasPassword ? '<i data-lucide="key"></i> Parol bor' : '<i数据-lucide="unlock"></i> Parolsiz'}</span>
+                                </div>
+                                <div class="myroom-actions">
+                                    <button class="myroom-btn myroom-join" onclick="goToRoom('${room.id}')"><i data-lucide="log-in"></i> Kirish</button>
+                                    <button class="myroom-btn myroom-edit" onclick="openEditRoomModal('${room.id}', '${escapeHtml(room.name).replace(/'/g, "\\'")}', ${room.isPublic}, '${(room.password || '').replace(/'/g, "\\'")}')"><i data-lucide="pencil"></i> Tahrirlash</button>
+                                    <button class="myroom-btn myroom-delete" onclick="deleteRoomConfirm('${room.id}', '${escapeHtml(room.name).replace(/'/g, "\\'")}')"><i data-lucide="trash-2"></i> O'chirish</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    html += '</div>';
+                    container.innerHTML = html;
+                    lucide.createIcons();
+                }
+                modal.onclick = (e) => { if (e.target === modal) closeMyRoomsModal(); };
+            } catch(e) {
+                container.innerHTML = '<div class="empty-state">Xatolik yuz berdi</div>';
+            }
+        }
+
+        function closeMyRoomsModal() {
+            document.getElementById('myRoomsModal').classList.remove('active');
+        }
+
+        // ========== USER PROFILE MODAL ==========
+        let currentProfileUser = null;
+        
+        async function showUserProfileModal(uid) {
+            currentProfileUser = await getUserData(uid);
+            const modal = document.getElementById('userProfileModal');
+            const avatarDiv = document.getElementById('userProfileAvatar');
+            
+            if (currentProfileUser.avatarBase64) {
+                avatarDiv.style.backgroundImage = `url(${currentProfileUser.avatarBase64})`;
+                avatarDiv.style.backgroundSize = 'cover';
+                avatarDiv.innerHTML = '';
+            } else {
+                avatarDiv.style.backgroundImage = 'none';
+                avatarDiv.style.backgroundColor = 'var(--brand-primary)';
+                avatarDiv.innerHTML = `<span>${(currentProfileUser.fullName || currentProfileUser.username || 'U').charAt(0).toUpperCase()}</span>`;
+            }
+            
+            document.getElementById('userProfileFullname').textContent = currentProfileUser.fullName || 'Ism kiritilmagan';
+            document.getElementById('userProfileUsername').innerHTML = `<i data-lucide="at-sign" size="12"></i> ${currentProfileUser.username || 'username'}`;
+            document.getElementById('userProfileBio').textContent = currentProfileUser.bio || 'Bio mavjud emas';
+            
+            modal.classList.add('active');
+            lucide.createIcons();
+        }
+
+        function closeUserProfileModal() {
+            document.getElementById('userProfileModal').classList.remove('active');
+        }
+
+        function showLargeAvatar() {
+            if (!currentProfileUser || !currentProfileUser.avatarBase64) {
+                showToast('Rasm mavjud emas', 'error');
+                return;
+            }
+            const modal = document.getElementById('largeAvatarModal');
+            const img = document.getElementById('largeAvatarImg');
+            img.src = currentProfileUser.avatarBase64;
+            modal.classList.add('active');
+        }
+
+        function closeLargeAvatarModal() {
+            document.getElementById('largeAvatarModal').classList.remove('active');
+        }
+
+        // ========== EDIT ROOM MODAL ==========
+        function openEditRoomModal(roomId, roomName, isPublic, password) {
+            editingRoomId = roomId;
+            document.getElementById('editRoomName').value = roomName;
+            
+            if (isPublic) {
+                document.getElementById('editPublicBtn').classList.add('active');
+                document.getElementById('editPrivateBtn').classList.remove('active');
+                document.getElementById('editPasswordGroup').style.display = 'none';
+            } else {
+                document.getElementById('editPrivateBtn').classList.add('active');
+                document.getElementById('editPublicBtn').classList.remove('active');
+                document.getElementById('editPasswordGroup').style.display = 'block';
+                document.getElementById('editRoomPassword').value = password;
+            }
+            
+            document.getElementById('editRoomModal').classList.add('active');
+        }
+
+        async function saveEditRoom() {
+            if (!editingRoomId) return;
+            const newName = document.getElementById('editRoomName').value.trim();
+            if (!newName) { showToast('Xona nomini kiriting!', 'error'); return; }
+            const isPublic = document.getElementById('editPublicBtn').classList.contains('active');
+            const newPass = document.getElementById('editRoomPassword').value;
+            await db.ref(`rooms/${editingRoomId}`).update({ 
+                name: newName, 
+                isPublic: isPublic, 
+                hasPassword: !isPublic && newPass ? true : false, 
+                password: !isPublic ? newPass || null : null 
+            });
+            closeEditModal();
+            showToast('Xona yangilandi!', 'success');
+            loadPublicRooms();
+            if (document.getElementById('myRoomsModal').classList.contains('active')) {
+                openMyRoomsModal();
+            }
+        }
+
+        function closeEditModal() {
+            document.getElementById('editRoomModal').classList.remove('active');
+            editingRoomId = null;
+        }
+
+        async function deleteRoomConfirm(roomId, roomName) {
+            if (confirm(`"${roomName}" xonasini o'chirishni xohlaysizmi? Bu amal qaytarilmaydi!`)) {
+                await db.ref(`rooms/${roomId}`).update({ isActive: false });
+                showToast(`"${roomName}" xonasi o'chirildi`, 'success');
+                loadPublicRooms();
+                if (document.getElementById('myRoomsModal').classList.contains('active')) {
+                    openMyRoomsModal();
+                }
+            }
+        }
+
+        // ========== ROOM ACTIONS ==========
+        function joinRoom(roomId, hasPassword) {
+            if (hasPassword) {
+                document.getElementById('joinCodeInput').value = roomId;
+                document.getElementById('joinPasswordGroup').style.display = 'block';
+                document.getElementById('joinRoomModal').classList.add('active');
+                document.getElementById('modalOverlay').classList.add('active');
+            } else { goToRoom(roomId); }
+        }
+        function goToRoom(roomId) { localStorage.setItem('lastRoomId', roomId); window.location.href = `board.html?room=${roomId}`; }
+
+        // ========== PROFILE ==========
+        async function loadProfile() {
+            if (!currentUser) return;
+            const snap = await db.ref(`users/${currentUser.uid}`).once('value');
+            const data = snap.val() || {};
+            document.getElementById('profileFullname').value = data.fullName || '';
+            document.getElementById('profileLastname').value = data.lastName || '';
+            document.getElementById('profileUsername').value = data.username || currentUser.email?.split('@')[0] || '';
+            document.getElementById('profileBio').value = data.bio || '';
+            currentAvatar = data.avatarBase64 || null;
+            updateAvatarUI(currentAvatar, data.fullName || currentUser.displayName);
+        }
+
+        function updateAvatarUI(avatar, name) {
+            const avDiv = document.getElementById('userAvatar');
+            const profAv = document.getElementById('profileAvatar');
+            const letter = (name || 'U').charAt(0).toUpperCase();
+            if (avatar && avatar.startsWith('data:image')) {
+                avDiv.style.backgroundImage = `url(${avatar})`; avDiv.style.backgroundSize = 'cover'; avDiv.innerHTML = '';
+                profAv.style.backgroundImage = `url(${avatar})`; profAv.style.backgroundSize = 'cover'; profAv.innerHTML = '';
+            } else {
+                avDiv.style.backgroundImage = 'none'; avDiv.style.backgroundColor = 'var(--brand-primary)'; avDiv.innerHTML = letter;
+                profAv.style.backgroundImage = 'none'; profAv.style.backgroundColor = 'var(--brand-primary)'; profAv.innerHTML = `<span>${letter}</span>`;
+            }
+        }
+
+        async function saveProfile() {
+            if (!currentUser) return;
+            const full = document.getElementById('profileFullname').value.trim();
+            const last = document.getElementById('profileLastname').value.trim();
+            const uname = document.getElementById('profileUsername').value.trim();
+            const bio = document.getElementById('profileBio').value.trim();
+            const upd = { fullName: full, lastName: last, username: uname, bio, updatedAt: Date.now() };
+            if (currentAvatar) upd.avatarBase64 = currentAvatar;
+            await db.ref(`users/${currentUser.uid}`).update(upd);
+            if (full) await currentUser.updateProfile({ displayName: full });
+            showToast('Profil saqlandi!', 'success');
+            loadProfile();
+            document.getElementById('userName').textContent = uname || full || currentUser.email?.split('@')[0];
+        }
+
+        document.getElementById('avatarInput')?.addEventListener('change', (e) => {
+            const f = e.target.files[0];
+            if (!f) return;
+            const r = new FileReader();
+            r.onload = (ev) => { currentAvatar = ev.target.result; updateAvatarUI(currentAvatar, document.getElementById('profileFullname').value); showToast('Avatar yangilandi. Saqlash tugmasini bosing!', 'success'); };
+            r.readAsDataURL(f);
+        });
+
+        // ========== CREATE ROOM ==========
+        let roomType = 'public';
+        document.querySelectorAll('.type-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                roomType = btn.dataset.type;
+                document.getElementById('passwordGroup').style.display = roomType === 'private' ? 'block' : 'none';
+            };
+        });
+
+        async function createRoom() {
+            const name = document.getElementById('roomNameInput').value.trim();
+            if (!name) { showToast('Xona nomini kiriting!', 'error'); return; }
+            const pass = document.getElementById('roomPassword').value;
+            const code = Math.random().toString(36).substr(2, 6).toUpperCase();
+            const secret = Math.random().toString(36).substr(2, 16);
+            const ud = await getUserData(currentUser.uid);
+            await db.ref(`rooms/${code}`).set({
+                name, createdBy: currentUser.uid,
+                createdByName: ud.fullName || ud.username || currentUser.email?.split('@')[0],
+                createdAt: Date.now(), isPublic: roomType === 'public',
+                hasPassword: roomType === 'private' && pass ? true : false,
+                password: roomType === 'private' ? pass || null : null,
+                isActive: true, teacherSecret: secret, elements: {}
+            });
+            closeModals();
+            showToast(`"${name}" xonasi yaratildi! Kod: ${code}`, 'success');
+            setTimeout(() => goToRoom(code), 1000);
+        }
+
+        async function confirmJoin() {
+            const code = document.getElementById('joinCodeInput').value.trim().toUpperCase();
+            if (!code) { showToast('Xona kodini kiriting!', 'error'); return; }
+            const pass = document.getElementById('joinPassword').value;
+            const snap = await db.ref(`rooms/${code}`).once('value');
+            const room = snap.val();
+            if (!room) { showToast('Xona topilmadi!', 'error'); return; }
+            if (room.hasPassword && room.password !== pass) { showToast('Parol noto\'g\'ri!', 'error'); return; }
+            closeModals();
+            goToRoom(code);
+        }
+
+        function openCreateModal() {
+            document.getElementById('roomNameInput').value = '';
+            document.getElementById('roomPassword').value = '';
+            document.getElementById('passwordGroup').style.display = 'none';
+            document.querySelector('.type-btn.active')?.classList.remove('active');
+            document.querySelector('.type-btn[data-type="public"]')?.classList.add('active');
+            roomType = 'public';
+            document.getElementById('createRoomModal').classList.add('active');
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+        function openJoinModal() {
+            document.getElementById('joinCodeInput').value = '';
+            document.getElementById('joinPassword').value = '';
+            document.getElementById('joinPasswordGroup').style.display = 'none';
+            document.getElementById('joinRoomModal').classList.add('active');
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+        function closeModals() {
+            document.querySelectorAll('.modal-bottom').forEach(m => m.classList.remove('active'));
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        function showToast(msg, type) {
+            const c = document.getElementById('toastWrapper');
+            const t = document.createElement('div');
+            t.className = 'toast-item';
+            t.innerHTML = `<span>${msg}</span>`;
+            c.appendChild(t);
+            setTimeout(() => t.remove(), 3000);
+        }
+
+        function escapeHtml(s) { if (!s) return ''; return s.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m])); }
+
+        // ========== SEARCH ==========
+        document.getElementById('searchInput')?.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            if (document.getElementById('homeSection').classList.contains('active')) renderPublicRooms();
+        });
+
+        // ========== AUTH ==========
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                currentUser = user;
+                const snap = await db.ref(`users/${user.uid}`).once('value');
+                const data = snap.val() || {};
+                const un = data.username || user.email?.split('@')[0] || 'User';
+                const fn = data.fullName || un;
+                document.getElementById('userName').textContent = un;
+                document.getElementById('welcomeMessage').textContent = `Assalomu alaykum, ${fn}!`;
+                updateAvatarUI(data.avatarBase64, fn);
+                loadPublicRooms();
+                loadProfile();
+                lucide.createIcons();
+                
+                const btn = document.getElementById('openMyRoomsModalBtn');
+                if (btn) {
+                    const myRooms = await loadMyRoomsData();
+                    btn.innerHTML = `<i data-lucide="eye"></i> Xonalarimni ko'rish (${myRooms.length})`;
+                    lucide.createIcons();
+                }
+            } else { window.location.href = 'board.html'; }
+        });
+
+        // ========== EVENT LISTENERS ==========
+        document.getElementById('quickCreateBtn')?.addEventListener('click', openCreateModal);
+        document.getElementById('quickJoinBtn')?.addEventListener('click', openJoinModal);
+        document.getElementById('cancelCreateBtn')?.addEventListener('click', closeModals);
+        document.getElementById('confirmCreateBtn')?.addEventListener('click', createRoom);
+        document.getElementById('cancelJoinBtn')?.addEventListener('click', closeModals);
+        document.getElementById('confirmJoinBtn')?.addEventListener('click', confirmJoin);
+        document.getElementById('refreshRoomsBtn')?.addEventListener('click', () => { if (document.getElementById('homeSection').classList.contains('active')) loadPublicRooms(); });
+        document.getElementById('refreshMyRoomsBtn')?.addEventListener('click', () => { if (document.getElementById('myRoomsModal').classList.contains('active')) openMyRoomsModal(); });
+        document.getElementById('saveProfileBtn')?.addEventListener('click', saveProfile);
+        document.getElementById('logoutBtn')?.addEventListener('click', () => auth.signOut());
+        document.getElementById('modalOverlay')?.addEventListener('click', closeModals);
+        document.getElementById('currentUserInfo')?.addEventListener('click', () => switchTab('profile'));
+        document.getElementById('openMyRoomsModalBtn')?.addEventListener('click', openMyRoomsModal);
+        document.getElementById('closeMyRoomsModal')?.addEventListener('click', closeMyRoomsModal);
+        document.getElementById('cancelEditBtn')?.addEventListener('click', closeEditModal);
+        document.getElementById('saveEditBtn')?.addEventListener('click', saveEditRoom);
+        document.getElementById('editPublicBtn')?.addEventListener('click', () => {
+            document.getElementById('editPublicBtn').classList.add('active');
+            document.getElementById('editPrivateBtn').classList.remove('active');
+            document.getElementById('editPasswordGroup').style.display = 'none';
+        });
+        document.getElementById('editPrivateBtn')?.addEventListener('click', () => {
+            document.getElementById('editPrivateBtn').classList.add('active');
+            document.getElementById('editPublicBtn').classList.remove('active');
+            document.getElementById('editPasswordGroup').style.display = 'block';
+        });
+        
+        document.querySelectorAll('.tab-item').forEach(tab => {
+            tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+        });
+
+        window.joinRoom = joinRoom; window.goToRoom = goToRoom; window.switchTab = switchTab;
+        window.showUserProfileModal = showUserProfileModal; window.closeUserProfileModal = closeUserProfileModal;
+        window.showLargeAvatar = showLargeAvatar; window.closeLargeAvatarModal = closeLargeAvatarModal;
+        window.openEditRoomModal = openEditRoomModal; window.deleteRoomConfirm = deleteRoomConfirm;
+    </script>
+    
+    <!-- ✅ AI MODAL - UNIVERSAL -->
+    <script src="js/ai-modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13-Dars: Margin collapsing. Shorthands | CSS Kurs</title>
+    
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../style.css">
+    
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "13",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=WKUqpFVQnj8",
+            "lessonTitle": "Margin collapsing. Shorthands"
+        }
+    </script>
+    
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "d",
+            "q4": "a"
+        }
+    </script>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<body>
+    
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn"><i class="fas fa-chevron-left"></i><span>Darslar ro'yxati</span></a>
+                <div class="course-title-header"><img src="../../icons/css3.svg" alt="CSS"><h1>13-Dars: Margin collapsing. Shorthands</h1></div>
+                <div class="progress-info"><i class="far fa-clock"></i> 13:29</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="lesson-grid">
+            <div class="lesson-content">
+                
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/WKUqpFVQnj8" title="CSS | 13. Margin collapsing. Shorthands" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 13. Margin collapsing. Shorthands</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 13:29</span>
+                    </div>
+                </div>
+                
+                <div class="lesson-header">
+                    <h1>Margin collapsing. Shorthands (Qisqartmalar)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 20-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>Margin collapsing - bu ikki elementning marginlari ustma-ust tushganda yuz beradigan maxsus holat. Shuningdek, CSS da kodni qisqartirish uchun ishlatiladigan shorthand (qisqa yozuv) xususiyatlarini o'rganasiz.</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Margin collapsing nima va u qachon yuz beradi?</li>
+                        <li><i class="fas fa-check-circle"></i> Qo'shni elementlar margin collapsing</li>
+                        <li><i class="fas fa-check-circle"></i> Ota-bola elementlar margin collapsing</li>
+                        <li><i class="fas fa-check-circle"></i> Margin collapsing ni oldini olish usullari</li>
+                        <li><i class="fas fa-check-circle"></i> CSS shorthand (qisqa yozuv) xususiyatlari</li>
+                    </ul>
+                </div>
+                
+                <div class="advice-box">
+                    <div class="advice-header"><i class="fas fa-lightbulb"></i><h4>Bu dars uchun maslahatlar</h4></div>
+                    <div class="advice-content">
+                        <div class="advice-item"><i class="fas fa-brain"></i><span><strong>Margin collapsing faqat vertikal:</strong> Margin collapsing faqat yuqori va past marginlar uchun yuz beradi. Chap va o'ng marginlar uchun bu holat kuzatilmaydi.</span><span class="badge must-know">yodlash shart</span></div>
+                        <div class="advice-item"><i class="fas fa-bookmark"></i><span><strong>Shorthand tartibi:</strong> margin va padding shorthand da qiymatlar soat strelkasi bo'yicha: yuqori, o'ng, past, chap.</span><span class="badge good-to-know">muhim</span></div>
+                        <div class="advice-item"><i class="fas fa-code"></i><span><strong>border/padding qo'shish:</strong> Ota-bola margin collapsing ni oldini olish uchun ota elementga border yoki padding berish kifoya.</span><span class="badge tip">amaliyot</span></div>
+                    </div>
+                </div>
+                
+                <!-- 1-bo'lim: Margin collapsing nima? -->
+                <section class="lesson-section" id="what-is-margin-collapsing">
+                    <h2><i class="fas fa-compress-alt"></i> Margin collapsing nima?</h2>
+                    <p><strong>Margin collapsing</strong> - bu ikki elementning vertikal marginlari ustma-ust tushganda, ularning qo'shilmay, balki kattaroq margin qolib, kichigi "yopilib" qolish hodisasi.</p>
+                    <div class="analogy-box">
+                        <div class="analogy-title"><i class="fas fa-arrows-alt-v"></i><span>Oddiy misol</span></div>
+                        <div class="analogy-content" style="flex-direction: column; gap: 10px;">
+                            <div style="background: #93c5fd; padding: 10px; text-align: center;">Element 1: margin-bottom: 30px</div>
+                            <div style="background: #fcd34d; padding: 10px; text-align: center; margin: 20px 0;">Oraliq: 30px (50px emas!)</div>
+                            <div style="background: #6ee7b7; padding: 10px; text-align: center;">Element 2: margin-top: 20px</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 2-bo'lim: Qo'shni elementlar margin collapsing -->
+                <section class="lesson-section" id="adjacent-collapsing">
+                    <h2><i class="fas fa-arrows-alt-v"></i> Qo'shni elementlarda margin collapsing</h2>
+                    <p>Ketma-ket kelgan ikki elementning vertikal marginlari orasida margin collapsing yuz beradi. Natijada ular orasidagi masofa marginlarning yig'indisi emas, balki kattaroq margin bo'ladi.</p>
+                    <div class="code-block"><div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i></button></div><pre><code class="language-css">.box1 {
+    margin-bottom: 30px;
+}
+
+.box2 {
+    margin-top: 20px;
+}
+
+/* Oraliq 50px (30+20) emas, 30px bo'ladi! */</code></pre></div>
+                    <div class="warning-box"><i class="fas fa-exclamation-triangle"></i><strong>Diqqat:</strong> Agar ikkala margin teng bo'lsa, oraliq o'sha qiymatga teng bo'ladi. Agar biri manfiy bo'lsa, qiymatlar qo'shiladi (masalan, 30px + (-10px) = 20px).</div>
+                </section>
+                
+                <!-- 3-bo'lim: Ota-bola margin collapsing -->
+                <section class="lesson-section" id="parent-child-collapsing">
+                    <h2><i class="fas fa-sitemap"></i> Ota-bola margin collapsing</h2>
+                    <p>Agar ota elementning yuqori/past marginidan oldin hech qanday kontent (border, padding, matn) bo'lmasa, bola elementning margini ota elementdan "tashqariga chiqib" ketadi.</p>
+                    <div class="code-block"><div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i></button></div><pre><code class="language-css">.parent {
+    background: #f0f9ff;
+    /* border yoki padding yo'q */
+}
+
+.child {
+    margin-top: 40px;
+}
+
+/* .child ning margin-top .parent dan tashqariga chiqadi! */</code></pre></div>
+                    <div class="tip-box"><i class="fas fa-lightbulb"></i><strong>Yechim:</strong> Ota elementga <code>border</code>, <code>padding</code>, <code>overflow: hidden</code> yoki <code>display: flow-root</code> berish orqali margin collapsing ni oldini olish mumkin.</div>
+                </section>
+                
+                <!-- 4-bo'lim: Margin collapsing ni oldini olish -->
+                <section class="lesson-section" id="prevent-collapsing">
+                    <h2><i class="fas fa-shield-alt"></i> Margin collapsing ni oldini olish</h2>
+                    <div class="tips-list">
+                        <div class="tip-item"><div class="tip-icon">1</div><div class="tip-content"><strong>Border yoki padding qo'shish</strong><p>Ota elementga <code>border: 1px solid transparent</code> yoki <code>padding: 1px</code> berish.</p></div></div>
+                        <div class="tip-item"><div class="tip-icon">2</div><div class="tip-content"><strong>overflow: hidden</strong><p>Ota elementga <code>overflow: hidden</code> berish BFC (Block Formatting Context) yaratadi.</p></div></div>
+                        <div class="tip-item"><div class="tip-icon">3</div><div class="tip-content"><strong>display: flow-root</strong><p>Eng zamonaviy va to'g'ri usul: <code>display: flow-root</code>.</p></div></div>
+                        <div class="tip-item"><div class="tip-icon">4</div><div class="tip-content"><strong>Flexbox yoki Grid</strong><p><code>display: flex</code> yoki <code>display: grid</code> ichida margin collapsing yuz bermaydi.</p></div></div>
+                    </div>
+                </section>
+                
+                <!-- 5-bo'lim: CSS Shorthands -->
+                <section class="lesson-section" id="shorthands">
+                    <h2><i class="fas fa-compress"></i> CSS Shorthands (Qisqartmalar)</h2>
+                    <p>Shorthand - bu bir nechta CSS xususiyatlarini bitta qatorda yozish imkonini beruvchi qisqa yozuv.</p>
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Shorthand</th><th>To'liq yozuv</th><th>Qisqa yozuv namunasi</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>margin</code></td><td>margin-top, -right, -bottom, -left</td><td><code>margin: 10px 20px 15px 25px;</code></td></tr>
+                                <tr><td><code>padding</code></td><td>padding-top, -right, -bottom, -left</td><td><code>padding: 20px 15px;</code></td></tr>
+                                <tr><td><code>border</code></td><td>border-width, border-style, border-color</td><td><code>border: 2px solid #3b82f6;</code></td></tr>
+                                <tr><td><code>background</code></td><td>background-color, -image, -position, -size, -repeat</td><td><code>background: #fff url('bg.jpg') center/cover;</code></td></tr>
+                                <tr><td><code>font</code></td><td>font-style, font-weight, font-size, line-height, font-family</td><td><code>font: italic bold 16px/1.5 'Inter', sans-serif;</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-block"><div class="code-header"><span class="code-lang">Margin/Padding qiymatlar tartibi</span><button class="copy-btn"><i class="far fa-copy"></i></button></div><pre><code class="language-css">/* 1 ta qiymat - hamma tomon */
+margin: 20px;
+
+/* 2 ta qiymat - yuqori/past, o'ng/chap */
+margin: 10px 20px;
+
+/* 3 ta qiymat - yuqori, o'ng/chap, past */
+margin: 10px 20px 15px;
+
+/* 4 ta qiymat - yuqori, o'ng, past, chap (soat strelkasi) */
+margin: 10px 20px 15px 25px;</code></pre></div>
+                </section>
+                
+                <!-- Test -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3><span class="test-badge">13-dars testi</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>Margin collapsing qaysi yo'nalishda yuz beradi?</div><div class="options">
+                        <div class="option"><input type="radio" name="q1" value="a"><label>Gorizontal (chap/o'ng)</label></div>
+                        <div class="option"><input type="radio" name="q1" value="b"><label>Vertikal (yuqori/past)</label></div>
+                        <div class="option"><input type="radio" name="q1" value="c"><label>Ikkala yo'nalishda ham</label></div>
+                        <div class="option"><input type="radio" name="q1" value="d"><label>Hech qaysi yo'nalishda</label></div>
+                    </div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>Ota-bola margin collapsing ni oldini olish uchun qaysi xususiyat ishlatiladi?</div><div class="options">
+                        <div class="option"><input type="radio" name="q2" value="a"><label>margin: auto</label></div>
+                        <div class="option"><input type="radio" name="q2" value="b"><label>position: absolute</label></div>
+                        <div class="option"><input type="radio" name="q2" value="c"><label>overflow: hidden</label></div>
+                        <div class="option"><input type="radio" name="q2" value="d"><label>display: inline</label></div>
+                    </div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span><code>margin: 10px 20px 30px;</code> qisqa yozuvida chap tomon qiymati qaysi?</div><div class="options">
+                        <div class="option"><input type="radio" name="q3" value="a"><label>10px</label></div>
+                        <div class="option"><input type="radio" name="q3" value="b"><label>30px</label></div>
+                        <div class="option"><input type="radio" name="q3" value="c"><label>20px (o'ng bilan bir xil)</label></div>
+                        <div class="option"><input type="radio" name="q3" value="d"><label>20px</label></div>
+                    </div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span><code>padding: 15px 25px;</code> qisqa yozuvida pastki padding qiymati qaysi?</div><div class="options">
+                        <div class="option"><input type="radio" name="q4" value="a"><label>15px</label></div>
+                        <div class="option"><input type="radio" name="q4" value="b"><label>25px</label></div>
+                        <div class="option"><input type="radio" name="q4" value="c"><label>0</label></div>
+                        <div class="option"><input type="radio" name="q4" value="d"><label>Belgilanmagan</label></div>
+                    </div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- Amaliy mashq -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Margin collapsing ni kuzating va oldini oling.</p>
+                        <ol>
+                            <li>Ikkita <code>div</code> yarating, birinchisiga <code>margin-bottom: 40px</code>, ikkinchisiga <code>margin-top: 30px</code> bering. Oraliq qancha bo'ladi?</li>
+                            <li>Ota <code>div</code> va bola <code>h1</code> yarating. <code>h1</code> ga <code>margin-top: 50px</code> bering. Nima bo'ladi?</li>
+                            <li>Ota elementga <code>border: 1px solid transparent</code> qo'shib, collapsing ni oldini oling.</li>
+                            <li>Shorthand yordamida <code>margin</code> va <code>padding</code> larni qisqa yozuvda bering.</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4> Namunaviy yechim:</h4>
+                        <pre><code class="language-css">&lt;style&gt;
+.box1 { margin-bottom: 40px; background: #93c5fd; padding: 20px; }
+.box2 { margin-top: 30px; background: #6ee7b7; padding: 20px; }
+/* Oraliq 40px bo'ladi (30px collapsing bo'ladi) */
+
+.parent { background: #fef3c7; /* border: 1px solid transparent; */ }
+.child { margin-top: 50px; }
+/* border qo'shilmasa, .child margin .parent dan tashqariga chiqadi */
+
+/* Shorthand */
+.card { margin: 20px 15px; padding: 25px 20px 15px; }
+&lt;/style&gt;
+
+&lt;div class="box1"&gt;Birinchi element (margin-bottom: 40px)&lt;/div&gt;
+&lt;div class="box2"&gt;Ikkinchi element (margin-top: 30px)&lt;/div&gt;
+
+&lt;div class="parent"&gt;
+    &lt;h1 class="child"&gt;Sarlavha (margin-top: 50px)&lt;/h1&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- Xulosa -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Margin collapsing</strong> faqat vertikal marginlarda yuz beradi</li>
+                        <li><i class="fas fa-check-circle"></i> Qo'shni elementlarda marginlar qo'shilmay, kattasi qoladi</li>
+                        <li><i class="fas fa-check-circle"></i> Ota-bola collapsing ni oldini olish uchun <code>border</code>, <code>padding</code>, <code>overflow: hidden</code> yoki <code>display: flow-root</code></li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Shorthand</strong> kodni qisqartiradi: <code>margin: 10px 20px 15px 25px;</code></li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Height, Width. Max / Min - height / width</li>
+                    </ul>
+                </div>
+                
+                <!-- Izohlar -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form">
+                        <div class="comment-avatar"><i class="fas fa-user"></i></div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div>
+                        </div>
+                    </div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- Navigatsiya -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../12/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../14/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#what-is-margin-collapsing">Margin collapsing nima?</a></li>
+                    <li><a href="#adjacent-collapsing">Qo'shni elementlar</a></li>
+                    <li><a href="#parent-child-collapsing">Ota-bola collapsing</a></li>
+                    <li><a href="#prevent-collapsing">Oldini olish</a></li>
+                    <li><a href="#shorthands">Shorthands</a></li>
+                    <li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">13/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 20.6%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

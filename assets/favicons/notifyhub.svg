@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="rocketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8ab4f8"/>
+      <stop offset="100%" style="stop-color:#4285f4"/>
+    </linearGradient>
+  </defs>
+  
+  <circle cx="50" cy="50" r="46" fill="url(#rocketGrad)"/>
+  
+  <g transform="translate(14, 14) scale(0.72)"> <path d="M50 15C35 30 35 55 35 70L65 70C65 55 65 30 50 15Z" fill="white" opacity="0.95"/>
+    
+    <path d="M50 15C42 23 40 35 40 45H60C60 35 58 23 50 15Z" fill="white"/>
+    
+    <path d="M35 55L25 70V75L35 70Z" fill="white" opacity="0.8"/>
+    <path d="M65 55L75 70V75L65 70Z" fill="white" opacity="0.8"/>
+    
+    <rect x="44" y="70" width="12" height="6" rx="1" fill="white" opacity="0.8"/>
+    
+    <circle cx="50" cy="45" r="5" fill="url(#rocketGrad)"/>
+    
+    <path d="M40 78Q50 90 60 78" stroke="white" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+  </g>
+</svg>
+

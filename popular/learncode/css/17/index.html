@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17-Dars: Text decoration. Pseudo classes | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "17",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=fEjwgMUvW1E",
+            "lessonTitle": "Text decoration. Pseudo classes"
+        }
+    </script>
+    
+    <!-- Test javoblari (17-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>17-Dars: Text decoration. Pseudo classes</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 10:47
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/fEjwgMUvW1E" 
+                            title="CSS | 17. Text decoration. Pseudo classes va qoidalarni guruhlash"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 17. Text decoration. Pseudo classes va qoidalarni guruhlash</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 10:47</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Text decoration. Pseudo classes va qoidalarni guruhlash</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 24-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Display va Positioning</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da matn bezaklari (<code>text-decoration</code>), psevdo-klasslar (<code>:hover</code>, <code>:active</code>, <code>:visited</code>, <code>:focus</code>) va CSS qoidalarini guruhlash (bir nechta selektorga bir xil stillar berish) haqida batafsil ma'lumot olasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>text-decoration</code> - matn bezaklari (underline, overline, line-through, none)</li>
+                        <li><i class="fas fa-check-circle"></i> Pseudo-classes nima va ular qanday ishlaydi?</li>
+                        <li><i class="fas fa-check-circle"></i> <code>:hover</code> - sichqoncha ustiga kelganda</li>
+                        <li><i class="fas fa-check-circle"></i> <code>:active</code>, <code>:visited</code>, <code>:focus</code> psevdo-klasslari</li>
+                        <li><i class="fas fa-check-circle"></i> CSS qoidalarini guruhlash (bir nechta selektorga bir xil stillar)</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Linklar uchun text-decoration:</strong> Linklarning tagidagi chiziqni olib tashlash uchun <code>text-decoration: none;</code> juda ko'p ishlatiladi.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>:hover eng ko'p ishlatiladi:</strong> Interaktiv elementlar uchun hover effektlar qo'shish foydalanuvchi tajribasini yaxshilaydi.</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Qoidalarni guruhlash:</strong> Bir xil stillarni bir nechta selektorga berish orqali kod hajmini kamaytirish mumkin.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: TEXT-DECORATION ==================== -->
+                <section class="lesson-section" id="text-decoration">
+                    <h2><i class="fas fa-underline"></i> Text decoration - matn bezaklari</h2>
+                    
+                    <p><strong><code>text-decoration</code></strong> xususiyati matnga turli xil bezak chiziqlar qo'shish uchun ishlatiladi. Bu xususiyat ayniqsa linklar bilan ishlashda juda foydali.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* text-decoration qiymatlari */
+.underline {
+    text-decoration: underline;      /* Tagiga chiziq */
+}
+
+.overline {
+    text-decoration: overline;       /* Ustiga chiziq */
+}
+
+.line-through {
+    text-decoration: line-through;   /* O'rtasiga chiziq */
+}
+
+.no-decoration {
+    text-decoration: none;           /* Bezaklarni olib tashlash */
+}
+
+/* Linklar uchun eng ko'p ishlatiladigan */
+a {
+    text-decoration: none;           /* Link tagidagi chiziqni olib tashlash */
+}
+
+a:hover {
+    text-decoration: underline;      /* Hover bo'lganda tagiga chiziq */
+}
+
+/* Bir nechta bezak birgalikda */
+.combined {
+    text-decoration: underline overline;  /* Ham tagiga, ham ustiga */
+}
+
+/* Chiziq rangi va uslubi */
+.colored-underline {
+    text-decoration: underline wavy #3b82f6;  /* To'lqinsimon ko'k chiziq */
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Eslatma:</strong> <code>text-decoration</code> shorthand xususiyat bo'lib, <code>text-decoration-line</code>, <code>text-decoration-color</code>, <code>text-decoration-style</code> va <code>text-decoration-thickness</code> larni birlashtiradi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: PSEUDO-CLASSES NIMA? ==================== -->
+                <section class="lesson-section" id="what-are-pseudo-classes">
+                    <h2><i class="fas fa-mouse-pointer"></i> Pseudo-classes nima?</h2>
+                    
+                    <p><strong>Pseudo-classes (psevdo-klasslar)</strong> - bu elementning maxsus holatini tanlash uchun ishlatiladigan kalit so'zlar. Ular ikki nuqta (<code>:</code>) bilan boshlanadi.</p>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title">
+                            <i class="fas fa-tag"></i>
+                            <span>Pseudo-classes tushunchasi</span>
+                        </div>
+                        <div class="analogy-content">
+                            <div class="analogy-item">
+                                <div style="background: #dbeafe; padding: 10px 20px; border-radius: 8px;">
+                                    <code>a:hover</code>
+                                </div>
+                                <div class="analogy-text">Sichqoncha ustiga kelganda</div>
+                            </div>
+                            <div class="analogy-item">
+                                <div style="background: #dcfce7; padding: 10px 20px; border-radius: 8px;">
+                                    <code>a:active</code>
+                                </div>
+                                <div class="analogy-text">Bosilgan paytda</div>
+                            </div>
+                            <div class="analogy-item">
+                                <div style="background: #fef3c7; padding: 10px 20px; border-radius: 8px;">
+                                    <code>a:visited</code>
+                                </div>
+                                <div class="analogy-text">Tashrif buyurilgan link</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Asosiy psevdo-klasslar */
+a:link {
+    color: blue;           /* Hali bosilmagan link */
+}
+
+a:visited {
+    color: purple;         /* Bosilgan link */
+}
+
+a:hover {
+    color: red;            /* Sichqoncha ustida */
+}
+
+a:active {
+    color: green;          /* Bosilgan paytda */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: ASOSIY PSEVDO-KLASSLAR ==================== -->
+                <section class="lesson-section" id="main-pseudo-classes">
+                    <h2><i class="fas fa-list"></i> Asosiy psevdo-klasslar</h2>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-mouse"></i>
+                            <h4>:hover</h4>
+                            <p>Sichqoncha elementi ustiga kelganda ishlaydi. Eng ko'p ishlatiladigan psevdo-klass.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-hand-pointer"></i>
+                            <h4>:active</h4>
+                            <p>Element bosilgan paytda (klik vaqtida) ishlaydi.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-history"></i>
+                            <h4>:visited</h4>
+                            <p>Foydalanuvchi tashrif buyurgan linklar uchun. Faqat linklarda ishlaydi.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-keyboard"></i>
+                            <h4>:focus</h4>
+                            <p>Element fokusda bo'lganda (masalan, input maydoni tanlanganda).</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-baby"></i>
+                            <h4>:first-child</h4>
+                            <p>Ota elementning birinchi farzandini tanlaydi.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-user-plus"></i>
+                            <h4>:last-child</h4>
+                            <p>Ota elementning oxirgi farzandini tanlaydi.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* :hover misoli */
+.btn {
+    background: #3b82f6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* :focus misoli */
+input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* :first-child va :last-child */
+li:first-child {
+    font-weight: bold;
+}
+
+li:last-child {
+    border-bottom: none;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: QOIDALARNI GURUHLASH ==================== -->
+                <section class="lesson-section" id="grouping-rules">
+                    <h2><i class="fas fa-object-group"></i> CSS qoidalarini guruhlash</h2>
+                    
+                    <p>Bir nechta selektorga bir xil stillar berish kerak bo'lganda, ularni vergul (<code>,</code>) bilan ajratib guruhlash mumkin. Bu kodni qisqartiradi va o'qishni osonlashtiradi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Guruhlanmagan - kod takrorlanadi */
+h1 {
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
+}
+h2 {
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
+}
+h3 {
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
+}
+
+/* Guruhlangan - toza va qisqa */
+h1, h2, h3 {
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
+}
+
+/* Amaliy misol */
+.btn-primary, .btn-secondary, .btn-outline {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-secondary {
+    background: #64748b;
+    color: white;
+}
+
+/* Pseudo-classes bilan guruhlash */
+.btn-primary:hover, 
+.btn-secondary:hover, 
+.btn-outline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Guruhlash qoidalari:</strong> Selektorlar vergul bilan ajratiladi. Har bir selektor alohida qatorda yozilsa, kod o'qishga qulay bo'ladi. Pseudo-classes bilan birgalikda ham guruhlash mumkin.
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: AMALIY MISOL ==================== -->
+                <section class="lesson-section" id="practical-example">
+                    <h2><i class="fas fa-laptop"></i> Amaliy misol: Link va tugmalar</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Link stillari */
+.nav-link {
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+.nav-link:active {
+    color: #2563eb;
+}
+
+.nav-link:visited {
+    color: #6b7280;
+}
+
+/* Tugmalar uchun umumiy stillar */
+.btn, button[type="submit"], .button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:active {
+    background: #1d4ed8;
+    transform: translateY(0);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 17-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            Link tagidagi chiziqni olib tashlash uchun qaysi xususiyat ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>text-style: none;</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>text-decoration: none;</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>text-underline: none;</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>font-decoration: none;</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            Sichqoncha elementi ustiga kelganda ishlaydigan psevdo-klass qaysi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>:active</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>:visited</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>:hover</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>:focus</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            CSS da bir nechta selektorga bir xil stillar berish uchun ular qanday ajratiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>Vergul (,) bilan</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>Nuqta (.) bilan</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>Bo'shliq bilan</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>Nuqtali vergul (;) bilan</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Qaysi psevdo-klass foydalanuvchi tashrif buyurgan linklarni tanlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>:hover</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>:active</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>:focus</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>:visited</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Text-decoration, pseudo-classes va qoidalarni guruhlashdan foydalanib navigatsiya menyusi yarating.</p>
+                        <ol>
+                            <li>5 ta linkdan iborat navigatsiya menyusi yarating</li>
+                            <li>Linklarning tagidagi chiziqni <code>text-decoration: none</code> bilan olib tashlang</li>
+                            <li><code>:hover</code> holati uchun fon rangi va matn rangini o'zgartiring</li>
+                            <li><code>:active</code> holati uchun alohida stil bering</li>
+                            <li>Barcha sarlavhalar (h1, h2, h3) uchun umumiy stillarni guruhlab yozing</li>
+                            <li>Tugmalar uchun umumiy stillarni guruhlab, har bir tugma turiga alohida rang bering</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-html">&lt;nav class="navbar"&gt;
+    &lt;a href="#" class="nav-link"&gt;Asosiy&lt;/a&gt;
+    &lt;a href="#" class="nav-link"&gt;Biz haqimizda&lt;/a&gt;
+    &lt;a href="#" class="nav-link"&gt;Xizmatlar&lt;/a&gt;
+    &lt;a href="#" class="nav-link"&gt;Portfolio&lt;/a&gt;
+    &lt;a href="#" class="nav-link"&gt;Aloqa&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;h1&gt;Sarlavha 1&lt;/h1&gt;
+&lt;h2&gt;Sarlavha 2&lt;/h2&gt;
+&lt;h3&gt;Sarlavha 3&lt;/h3&gt;
+
+&lt;button class="btn btn-primary"&gt;Asosiy tugma&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Ikkinchi tugma&lt;/button&gt;
+&lt;button class="btn btn-outline"&gt;Chiziqli tugma&lt;/button&gt;</code></pre>
+                        <pre><code class="language-css">/* Navigatsiya linklari */
+.nav-link {
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+.nav-link:active {
+    color: #1d4ed8;
+    background: #dbeafe;
+}
+
+/* Sarlavhalarni guruhlash */
+h1, h2, h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #1e293b;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+/* Tugmalar uchun umumiy stillar */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    margin: 5px;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-secondary {
+    background: #64748b;
+    color: white;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
+}
+
+/* Barcha tugmalar uchun hover */
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>text-decoration</strong> - matn bezaklari: underline, overline, line-through, none</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Pseudo-classes</strong> - elementning maxsus holatini tanlash: <code>:hover</code>, <code>:active</code>, <code>:visited</code>, <code>:focus</code></li>
+                        <li><i class="fas fa-check-circle"></i> <strong>:hover</strong> - sichqoncha ustiga kelganda, eng ko'p ishlatiladi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Qoidalarni guruhlash</strong> - vergul (,) bilan selektorlarni ajratish orqali kodni qisqartirish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Asosiy xossalar yordamida loyihani yaxshilash (1-qism)</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../16/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../18/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#text-decoration">Text decoration</a></li>
+                        <li><a href="#what-are-pseudo-classes">Pseudo-classes nima?</a></li>
+                        <li><a href="#main-pseudo-classes">Asosiy psevdo-klasslar</a></li>
+                        <li><a href="#grouping-rules">Qoidalarni guruhlash</a></li>
+                        <li><a href="#practical-example">Amaliy misol</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">17/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 27.0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

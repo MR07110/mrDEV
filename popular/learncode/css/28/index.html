@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28-Dars: Gradient va Filterlar | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "28",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=Cyzt81nvVcM",
+            "lessonTitle": "Gradient va Filterlar"
+        }
+    </script>
+    
+    <!-- Test javoblari (28-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>28-Dars: Gradient va Filterlar</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 13:27
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/Cyzt81nvVcM" 
+                            title="CSS | 28. Gradient va Filterlar"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 28. Gradient va Filterlar</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 13:27</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Gradient va Filterlar</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 4-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Background va Rasmlar</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da <code>linear-gradient</code>, <code>radial-gradient</code>, <code>conic-gradient</code> va <code>filter</code> xususiyatlarini chuqur o'rganasiz. Gradientlar orqali rangsiz o'tishlar (transition), filterlar orqali esa turli vizual effektlar yaratishni o'rganasiz. Bu bilimlar zamonaviy web dizaynning ajralmas qismidir.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>linear-gradient</code> - chiziqli gradient (yo'nalishli)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>radial-gradient</code> - radial gradient (markazdan tarqaluvchi)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>conic-gradient</code> - konus shaklidagi gradient</li>
+                        <li><i class="fas fa-check-circle"></i> <code>repeating-linear-gradient</code> - takrorlanuvchi gradient</li>
+                        <li><i class="fas fa-check-circle"></i> <code>filter</code> - blur, brightness, contrast, grayscale, sepia va boshqalar</li>
+                        <li><i class="fas fa-check-circle"></i> <code>backdrop-filter</code> - element orqasidagi kontentga filter qo'llash</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Gradient - bu rasm:</strong> CSS da gradientlar <code>background-image</code> sifatida ishlatiladi, <code>background-color</code> emas!</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Performance:</strong> Murakkab gradientlar va filterlar GPU yuklamasini oshiradi. Iloji boricha oddiy gradientlardan foydalaning.</span>
+                            <span class="badge good-to-know">Optimizatsiya</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>backdrop-filter:</strong> Element orqasidagi kontentni xiralashtirish uchun. Glassmorphism dizayn uchun asosiy vosita.</span>
+                            <span class="badge tip">Zamonaviy dizayn</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span><strong>CSS Gradient Generator:</strong> Murakkab gradientlarni qo'lda yozish qiyin. Onlayn generatorlardan foydalaning.</span>
+                            <span class="badge tip">Vaqt tejash</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: LINEAR-GRADIENT ==================== -->
+                <section class="lesson-section" id="linear-gradient">
+                    <h2><i class="fas fa-arrow-right"></i> linear-gradient - Chiziqli gradient</h2>
+                    
+                    <p><strong><code>linear-gradient</code></strong> - bir yoki bir nechta ranglar orasidagi silliq o'tish. Eng ko'p ishlatiladigan gradient turi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* linear-gradient sintaksisi */
+/*
+    linear-gradient([yo'nalish], rang1 [stop1], rang2 [stop2], ...)
+    yo'nalish: to right, to bottom, 45deg, 0.25turn
+*/
+
+/* Asosiy gradientlar */
+.gradient-1 {
+    background-image: linear-gradient(to right, #3b82f6, #10b981);
+    /* Chapdan o'ngga: ko'k → yashil */
+}
+
+.gradient-2 {
+    background-image: linear-gradient(to bottom, #f59e0b, #ef4444);
+    /* Yuqoridan pastga: sariq → qizil */
+}
+
+.gradient-3 {
+    background-image: linear-gradient(45deg, #667eea, #764ba2);
+    /* 45 gradus burchak ostida */
+}
+
+/* Bir nechta rang */
+.gradient-4 {
+    background-image: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff);
+    /* Ko'p rangli gradient */
+}
+
+/* Rang stoplari (to'xtash nuqtalari) */
+.gradient-5 {
+    background-image: linear-gradient(to right, #3b82f6 0%, #10b981 50%, #f59e0b 100%);
+    /* 0% da ko'k, 50% da yashil, 100% da sariq */
+}
+
+/* Qattiq o'tish (stripes) */
+.gradient-6 {
+    background-image: linear-gradient(to right, #3b82f6 0%, #3b82f6 40%, #10b981 40%, #10b981 100%);
+    /* Ko'k va yashil chiziqlar (stripes) */
+}</code></pre>
+                    </div>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title"><i class="fas fa-palette"></i><span>Yo'nalish qiymatlari</span></div>
+                        <div class="analogy-content" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                            <div style="background: linear-gradient(to right, #3b82f6, #ef4444); padding: 20px; border-radius: 8px; color: white;">to right</div>
+                            <div style="background: linear-gradient(to bottom, #3b82f6, #ef4444); padding: 20px; border-radius: 8px; color: white;">to bottom</div>
+                            <div style="background: linear-gradient(45deg, #3b82f6, #ef4444); padding: 20px; border-radius: 8px; color: white;">45deg</div>
+                            <div style="background: linear-gradient(to top left, #3b82f6, #ef4444); padding: 20px; border-radius: 8px; color: white;">to top left</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: RADIAL-GRADIENT ==================== -->
+                <section class="lesson-section" id="radial-gradient">
+                    <h2><i class="fas fa-circle"></i> radial-gradient - Radial gradient</h2>
+                    
+                    <p><strong><code>radial-gradient</code></strong> - markazdan tashqariga tarqaluvchi gradient. Doira yoki ellips shaklida bo'lishi mumkin.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* radial-gradient sintaksisi */
+/*
+    radial-gradient([shakl] [o'lcham] at [joylashuv], rang1, rang2, ...)
+*/
+
+/* Asosiy radial gradient */
+.radial-1 {
+    background-image: radial-gradient(circle, #3b82f6, #1e3a5f);
+    /* Doira shaklida, markazdan tashqariga */
+}
+
+.radial-2 {
+    background-image: radial-gradient(ellipse, #f59e0b, #ef4444);
+    /* Ellips shaklida (default) */
+}
+
+/* Joylashuv bilan */
+.radial-3 {
+    background-image: radial-gradient(circle at top left, #10b981, #064e3b);
+    /* Yuqori chap burchakdan boshlanadi */
+}
+
+.radial-4 {
+    background-image: radial-gradient(circle at 20% 80%, #667eea, #764ba2);
+    /* Aniq koordinatadan (20% chapdan, 80% yuqoridan) */
+}
+
+/* O'lcham bilan */
+.radial-5 {
+    background-image: radial-gradient(circle closest-side, #3b82f6, #1e3a5f);
+    /* closest-side, farthest-side, closest-corner, farthest-corner */
+}
+
+/* Bir nechta rang */
+.radial-6 {
+    background-image: radial-gradient(circle, #ff0000, #ffff00, #00ff00);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: CONIC-GRADIENT ==================== -->
+                <section class="lesson-section" id="conic-gradient">
+                    <h2><i class="fas fa-chart-pie"></i> conic-gradient - Konus gradient</h2>
+                    
+                    <p><strong><code>conic-gradient</code></strong> - markaz atrofida aylanuvchi gradient. Diagramma va loaderlar yaratish uchun juda foydali.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* conic-gradient sintaksisi */
+/*
+    conic-gradient([from burchak] [at joylashuv], rang1, rang2, ...)
+*/
+
+/* Asosiy konus gradient */
+.conic-1 {
+    background-image: conic-gradient(#3b82f6, #10b981, #f59e0b, #ef4444, #3b82f6);
+    /* 360 gradus bo'ylab ranglar */
+}
+
+/* Boshlang'ich burchak bilan */
+.conic-2 {
+    background-image: conic-gradient(from 45deg, #3b82f6, #10b981, #f59e0b);
+    /* 45 gradusdan boshlanadi */
+}
+
+/* Joylashuv bilan */
+.conic-3 {
+    background-image: conic-gradient(at 30% 70%, #3b82f6, #10b981, #f59e0b);
+    /* Markaz 30% 70% nuqtada */
+}
+
+/* Pie chart (diagramma) */
+.conic-pie {
+    background-image: conic-gradient(
+        #3b82f6 0deg 120deg,   /* 0-120 gradus: ko'k */
+        #10b981 120deg 240deg, /* 120-240 gradus: yashil */
+        #f59e0b 240deg 360deg  /* 240-360 gradus: sariq */
+    );
+    border-radius: 50%;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: REPEATING GRADIENTS ==================== -->
+                <section class="lesson-section" id="repeating-gradients">
+                    <h2><i class="fas fa-repeat"></i> Takrorlanuvchi gradientlar</h2>
+                    
+                    <p><strong><code>repeating-linear-gradient</code></strong> va <strong><code>repeating-radial-gradient</code></strong> - gradient patternlarini takrorlash uchun ishlatiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Takrorlanuvchi chiziqli gradient */
+.repeating-linear {
+    background-image: repeating-linear-gradient(
+        45deg,
+        #3b82f6 0px,
+        #3b82f6 10px,
+        #10b981 10px,
+        #10b981 20px
+    );
+    /* 10px ko'k, 10px yashil chiziqlar takrorlanadi */
+}
+
+/* Takrorlanuvchi radial gradient */
+.repeating-radial {
+    background-image: repeating-radial-gradient(
+        circle at center,
+        #3b82f6 0px,
+        #3b82f6 10px,
+        #10b981 10px,
+        #10b981 20px
+    );
+    /* Doira shaklida takrorlanuvchi halqalar */
+}
+
+/* Takrorlanuvchi konus gradient */
+.repeating-conic {
+    background-image: repeating-conic-gradient(
+        from 0deg,
+        #3b82f6 0deg 30deg,
+        #10b981 30deg 60deg
+    );
+    border-radius: 50%;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: FILTER ==================== -->
+                <section class="lesson-section" id="filter">
+                    <h2><i class="fas fa-filter"></i> filter - Vizual effektlar</h2>
+                    
+                    <p><strong><code>filter</code></strong> xususiyati elementga (rasm, div, matn) turli xil vizual effektlar berish uchun ishlatiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* filter funksiyalari */
+.filter-blur {
+    filter: blur(5px);           /* Xiralashtirish */
+}
+
+.filter-brightness {
+    filter: brightness(1.5);     /* Yorqinlik (1 = normal, >1 yorqin, <1 qorong'i) */
+}
+
+.filter-contrast {
+    filter: contrast(200%);      /* Kontrast (100% = normal) */
+}
+
+.filter-grayscale {
+    filter: grayscale(100%);     /* Oq-qora (100% = to'liq oq-qora) */
+}
+
+.filter-sepia {
+    filter: sepia(100%);         /* Sepia (eski rasm) effekti */
+}
+
+.filter-hue-rotate {
+    filter: hue-rotate(90deg);   /* Rang o'zgartirish (0-360deg) */
+}
+
+.filter-invert {
+    filter: invert(100%);        /* Ranglarni teskarilash */
+}
+
+.filter-saturate {
+    filter: saturate(200%);      /* To'yinganlik (100% = normal) */
+}
+
+.filter-opacity {
+    filter: opacity(50%);        /* Shaffoflik (100% = normal) */
+}
+
+.filter-drop-shadow {
+    filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.3)); /* Soya (box-shadow ga o'xshash) */
+}
+
+/* Bir nechta filter birgalikda */
+.filter-combined {
+    filter: grayscale(50%) blur(2px) brightness(1.1);
+}</code></pre>
+                    </div>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Funksiya</th><th>Qiymat oralig'i</th><th>Tavsif</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>blur()</code></td><td>0px+</td><td>Xiralashtirish darajasi</td></tr>
+                                <tr><td><code>brightness()</code></td><td>0%+ (1 = 100%)</td><td>Yorqinlik, 0 - qora, >1 - yorqinroq</td></tr>
+                                <tr><td><code>contrast()</code></td><td>0%+ (1 = 100%)</td><td>Kontrast, 0 - kulrang, >1 - kontrastli</td></tr>
+                                <tr><td><code>grayscale()</code></td><td>0% - 100%</td><td>Oq-qora darajasi</td></tr>
+                                <tr><td><code>sepia()</code></td><td>0% - 100%</td><td>Sepia effekti darajasi</td></tr>
+                                <tr><td><code>hue-rotate()</code></td><td>0deg - 360deg</td><td>Rang aylanishi</td></tr>
+                                <tr><td><code>invert()</code></td><td>0% - 100%</td><td>Ranglarni teskarilash</td></tr>
+                                <tr><td><code>saturate()</code></td><td>0%+ (1 = 100%)</td><td>To'yinganlik, 0 - oq-qora, >1 - to'yingan</td></tr>
+                                <tr><td><code>opacity()</code></td><td>0% - 100%</td><td>Shaffoflik (filter orqali)</td></tr>
+                                <tr><td><code>drop-shadow()</code></td><td>offset-x offset-y blur radius color</td><td>Soya (PNG shaffof rasmlar uchun)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== 6-BO'LIM: BACKDROP-FILTER ==================== -->
+                <section class="lesson-section" id="backdrop-filter">
+                    <h2><i class="fas fa-glass"></i> backdrop-filter - Glassmorphism</h2>
+                    
+                    <p><strong><code>backdrop-filter</code></strong> xususiyati element orqasidagi kontentga filter qo'llash uchun ishlatiladi. Zamonaviy "glassmorphism" dizayn uchun asosiy vosita.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* backdrop-filter - Glassmorphism */
+.glass-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari uchun */
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
+}
+
+/* Bir nechta effekt */
+.glass-combined {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px) brightness(1.2);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+/* Navigatsiya menyusi uchun */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 15px 0;
+    z-index: 100;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>backdrop-filter vs filter:</strong> <code>filter</code> elementning o'ziga ta'sir qiladi. <code>backdrop-filter</code> element ORQASIDAGI kontentga ta'sir qiladi. Shuning uchun glassmorphism effektlar uchun <code>backdrop-filter</code> ishlatiladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 28-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">1</span>CSS da gradient qaysi xususiyat orqali qo'llaniladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>background-color</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>background-image</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>background-gradient</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>gradient</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">2</span>Rasmni oq-qora qilish uchun qaysi filter ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>black-and-white()</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>monochrome()</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>grayscale()</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>desaturate()</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">3</span>Glassmorphism (shisha) effekti uchun qaysi xususiyat ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>backdrop-filter</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>filter</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>opacity</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>blend-mode</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">4</span>Qaysi gradient turi markaz atrofida aylanuvchi effekt yaratadi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>linear-gradient</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>radial-gradient</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>repeating-gradient</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>conic-gradient</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Gradient va filterlardan foydalanib zamonaviy UI komponentlarini yarating.</p>
+                        <ol>
+                            <li>Hero section uchun <code>linear-gradient</code> overlay yarating</li>
+                            <li>Glassmorphism karta yarating (<code>backdrop-filter: blur()</code>)</li>
+                            <li>Hover bo'lganda rasmga <code>grayscale()</code> va <code>brightness()</code> filter qo'llang</li>
+                            <li><code>conic-gradient</code> yordamida progress loader yarating</li>
+                            <li>Takrorlanuvchi gradient bilan pattern background yarating</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-css">/* 1. Hero section overlay */
+.hero {
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)),
+        url('../img/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* 2. Glassmorphism karta */
+.glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* 3. Hover filter effekti */
+.hover-filter {
+    transition: filter 0.4s ease;
+}
+.hover-filter:hover {
+    filter: grayscale(100%) brightness(1.1);
+}
+
+/* 4. Conic gradient loader */
+.loader {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(#3b82f6 0deg 120deg, #10b981 120deg 240deg, #f59e0b 240deg 360deg);
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 5. Pattern background */
+.pattern-bg {
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(59, 130, 246, 0.1) 0px,
+        rgba(59, 130, 246, 0.1) 10px,
+        transparent 10px,
+        transparent 20px
+    );
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>linear-gradient</strong> - eng ko'p ishlatiladigan, yo'nalish va rang stoplari bilan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>radial-gradient</strong> - markazdan tarqaluvchi, circle/ellipse shaklida</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>conic-gradient</strong> - diagramma va loaderlar uchun ideal</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>repeating-gradients</strong> - patternlar yaratish uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>filter</strong> - blur, brightness, grayscale, sepia va boshqa 10+ effekt</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>backdrop-filter</strong> - glassmorphism uchun, element orqasiga ta'sir qiladi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Gradient - bu rasm:</strong> <code>background-image</code> da ishlatiladi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Rasmlar yordamida loyihani yaxshilash</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../27/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../29/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#linear-gradient">linear-gradient</a></li>
+                    <li><a href="#radial-gradient">radial-gradient</a></li>
+                    <li><a href="#conic-gradient">conic-gradient</a></li>
+                    <li><a href="#repeating-gradients">Takrorlanuvchi gradientlar</a></li>
+                    <li><a href="#filter">filter</a></li>
+                    <li><a href="#backdrop-filter">backdrop-filter</a></li>
+                    <li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">28/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 44.4%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

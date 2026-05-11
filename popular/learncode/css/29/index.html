@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>29-Dars: Rasmlar bilan loyihani yaxshilash | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "29",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=l42-781rgOE",
+            "lessonTitle": "Rasmlar yordamida loyihani yaxshilash"
+        }
+    </script>
+    
+    <!-- Test javoblari (29-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>29-Dars: Rasmlar bilan loyihani yaxshilash</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 20:27
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/l42-781rgOE" 
+                            title="CSS | 29. Rasmlar yordamida loyihani yaxshilash"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 29. Rasmlar yordamida loyihani yaxshilash</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 20:27</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Rasmlar (images) yordamida loyihani yaxshilash</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 5-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Amaliy loyiha</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>Bu darsda 26-28 darslarda o'rgangan <strong>Background, Styling images, Gradient va Filterlar</strong> mavzularini amaliyotda qo'llab, <strong>Natour</strong> loyihasini yaxshilaymiz. Rasmlar bilan ishlash, hover effektlar va professional galereya yaratishni o'rganamiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni qilamiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Loyihaga yangi rasmlar qo'shish va ularni stillash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>object-fit</code> yordamida rasmlarni konteynerga moslash</li>
+                        <li><i class="fas fa-check-circle"></i> Rasmlarga hover effektlar qo'shish (scale, brightness, overlay)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>backdrop-filter</code> bilan glassmorphism effektlar</li>
+                        <li><i class="fas fa-check-circle"></i> Professional rasm galereyasi yaratish</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Rasm optimizatsiyasi:</strong> WebP formatidagi rasmlar JPEG/PNG dan 30-50% kichik. Zamonaviy saytlarda WebP ishlating.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Lazy loading:</strong> <code>loading="lazy"</code> atributi orqali rasmlarni kerak bo'lgandagina yuklang. Bu sahifa tezligini oshiradi.</span>
+                            <span class="badge good-to-know">Optimizatsiya</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Picture elementi:</strong> Turli ekran o'lchamlari uchun turli rasmlar yuklash uchun <code>&lt;picture&gt;</code> elementidan foydalaning.</span>
+                            <span class="badge tip">Professional yondashuv</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span><strong>Mobile-first rasmlar:</strong> Mobil qurilmalar uchun kichikroq o'lchamli rasmlar tayyorlang. Bu trafikni tejaydi.</span>
+                            <span class="badge tip">Senior texnikasi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: LOYIHAGA RASMLAR QO'SHISH ==================== -->
+                <section class="lesson-section" id="adding-images">
+                    <h2><i class="fas fa-image"></i> Loyihaga rasmlar qo'shish</h2>
+                    
+                    <p>Natour loyihasining features bo'limiga rasmlar qo'shamiz. Har bir feature uchun ikonka rasmi va hover effektlar.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Features section --&gt;
+&lt;section class="section-features"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-1-of-4"&gt;
+            &lt;div class="feature-box"&gt;
+                &lt;img src="img/globe.png" alt="Globe" class="feature-box__icon"&gt;
+                &lt;h3 class="heading-tertiary u-margin-bottom-small"&gt;Explore the world&lt;/h3&gt;
+                &lt;p class="feature-box__text"&gt;
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- Yana 3 ta feature --&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Features section */
+.section-features {
+    padding: 20rem 0;
+    background-image: 
+        linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)),
+        url(../img/nat-4.jpg);
+    background-size: cover;
+    transform: skewY(-7deg);
+    margin-top: -10rem;
+}
+
+.section-features > * {
+    transform: skewY(7deg);
+}
+
+.feature-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    padding: 2.5rem;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s;
+}
+
+.feature-box:hover {
+    transform: translateY(-1.5rem) scale(1.03);
+}
+
+.feature-box__icon {
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: 2rem;
+    object-fit: contain;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: RASMLARGA HOVER EFFEKTLAR ==================== -->
+                <section class="lesson-section" id="hover-effects">
+                    <h2><i class="fas fa-hand-pointer"></i> Rasmlarga hover effektlar qo'shish</h2>
+                    
+                    <p>Rasmlarga hover bo'lganda kattalashish, yorqinlashish yoki overlay qo'shish effektlari.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Rasm kartasi */
+.image-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.image-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.image-card:hover img {
+    transform: scale(1.15);
+    filter: brightness(0.8);
+}
+
+/* Overlay effekti */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.image-card:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-overlay span {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.image-card:hover .image-overlay span {
+    transform: translateY(0);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: PROFESSIONAL GALEREYA ==================== -->
+                <section class="lesson-section" id="professional-gallery">
+                    <h2><i class="fas fa-images"></i> Professional galereya yaratish</h2>
+                    
+                    <p>Grid yoki Flexbox yordamida zamonaviy rasm galereyasi yaratish.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Galereya grid */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 40px 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.2);
+}
+
+/* Glassmorphism karta */
+.glass-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: RESPONSIVE RASMLAR ==================== -->
+                <section class="lesson-section" id="responsive-images">
+                    <h2><i class="fas fa-mobile-alt"></i> Responsive rasmlar</h2>
+                    
+                    <p>Turli ekran o'lchamlari uchun moslashuvchan rasmlar yaratish.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Picture elementi - turli ekranlar uchun turli rasmlar --&gt;
+&lt;picture&gt;
+    &lt;source media="(max-width: 600px)" srcset="img/small.jpg"&gt;
+    &lt;source media="(max-width: 1200px)" srcset="img/medium.jpg"&gt;
+    &lt;img src="img/large.jpg" alt="Responsive rasm" loading="lazy"&gt;
+&lt;/picture&gt;
+
+&lt;!-- srcset bilan --&gt;
+&lt;img 
+    src="img/small.jpg" 
+    srcset="img/small.jpg 480w, img/medium.jpg 800w, img/large.jpg 1200w"
+    sizes="(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px"
+    alt="Responsive rasm"
+    loading="lazy"
+&gt;</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> <code>loading="lazy"</code> atributi rasmni faqat ekranda ko'ringanda yuklaydi. Bu sahifa yuklanish tezligini sezilarli darajada oshiradi.
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 29-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">1</span>Rasmni konteynerga moslash uchun qaysi xususiyat ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>background-size</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>object-fit</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>image-fit</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>resize</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">2</span>Rasmni kerak bo'lgandagina yuklash uchun qaysi atribut ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>loading="eager"</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>defer</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>loading="lazy"</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>async</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">3</span>Glassmorphism effekti uchun qaysi xususiyat ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>backdrop-filter</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>filter</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>opacity</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>blend-mode</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">4</span>Turli ekranlar uchun turli rasmlar yuklash uchun qaysi element ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>&lt;img&gt;</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>&lt;figure&gt;</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>&lt;div&gt;</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>&lt;picture&gt;</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Rasmlar bilan professional galereya yarating.</p>
+                        <ol>
+                            <li>6 ta rasm uchun grid galereya yarating</li>
+                            <li>Har bir rasmga <code>object-fit: cover</code> va <code>aspect-ratio: 1/1</code> bering</li>
+                            <li>Hover bo'lganda rasm kattalashsin va overlay qo'shilsin</li>
+                            <li>Overlay da rasm nomi ko'rinib tursin</li>
+                            <li><code>loading="lazy"</code> atributini qo'shing</li>
+                            <li>Mobil qurilmalar uchun <code>&lt;picture&gt;</code> elementi ishlating</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-html">&lt;div class="gallery"&gt;
+    &lt;div class="gallery-item"&gt;
+        &lt;picture&gt;
+            &lt;source media="(max-width: 600px)" srcset="img/nature-1-small.jpg"&gt;
+            &lt;img src="img/nature-1.jpg" alt="Tabiat" loading="lazy"&gt;
+        &lt;/picture&gt;
+        &lt;div class="gallery-overlay"&gt;
+            &lt;span&gt;Tabiat manzarasi&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Yana 5 ta rasm --&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.15);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay span {
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>object-fit</strong> - rasmlarni konteynerga moslash (cover, contain)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>loading="lazy"</strong> - rasmni kerak bo'lgandagina yuklash</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>&lt;picture&gt;</strong> - turli ekranlar uchun turli rasmlar</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>backdrop-filter</strong> - glassmorphism effektlar</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>aspect-ratio</strong> - rasm nisbatini saqlash</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Hover effektlar</strong> - scale, brightness, overlay</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Formalarga style berish (1-qism) - Nazorat ishi!</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../28/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../30/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#adding-images">Rasmlar qo'shish</a></li>
+                    <li><a href="#hover-effects">Hover effektlar</a></li>
+                    <li><a href="#professional-gallery">Professional galereya</a></li>
+                    <li><a href="#responsive-images">Responsive rasmlar</a></li>
+                    <li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">29/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 46.0%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

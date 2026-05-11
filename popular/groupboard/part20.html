@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="uz" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>MR BOARD · Part 20</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Faqat input maydoni - hech qanday matn yo'q */
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0a84ff;
+            z-index: 2;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        input {
+            width: 100%;
+            padding: 20px 20px 20px 55px;
+            font-size: 18px;
+            font-weight: 500;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid rgba(10,132,255,0.3);
+            border-radius: 60px;
+            color: #f8fafc;
+            font-family: monospace;
+            letter-spacing: 1px;
+            outline: none;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        input:focus {
+            border-color: #0a84ff;
+            box-shadow: 0 0 0 4px rgba(10,132,255,0.2);
+            transform: scale(1.02);
+        }
+
+        /* Silliq kursor animatsiyasi */
+        .typing-cursor {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 28px;
+            background: #0a84ff;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 2;
+        }
+
+        .typing-cursor.blink {
+            animation: smoothBlink 0.8s ease-in-out infinite;
+        }
+
+        @keyframes smoothBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Silliq tugma animatsiyasi */
+        button {
+            position: relative;
+            width: 100%;
+            margin-top: 20px;
+            padding: 18px;
+            background: rgba(10,132,255,0.2);
+            border: 1px solid rgba(10,132,255,0.4);
+            border-radius: 60px;
+            color: rgba(255,255,255,0.5);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        button.active {
+            background: #0a84ff;
+            color: white;
+            border-color: #0a84ff;
+            box-shadow: 0 8px 25px rgba(10,132,255,0.4);
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        button.active:hover {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        /* Silliq kursor harakati (sichqoncha) */
+        .magic-cursor {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            z-index: 1000;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>') no-repeat;
+            background-size: contain;
+            pointer-events: none;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+            animation: smoothCursorMove 5.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes smoothCursorMove {
+            /* Ekranga kirish */
+            0% {
+                left: -10%;
+                top: 80%;
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            /* Input maydoniga silliq kelish */
+            12% {
+                left: 38%;
+                top: 48%;
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            /* Inputga bosish (kichik silkinish) */
+            16% {
+                left: 38%;
+                top: 48%;
+                transform: scale(0.85);
+            }
+            18% {
+                left: 38%;
+                top: 48%;
+                transform: scale(1);
+            }
+            /* Yozish jarayoni - inputda turish */
+            20%, 68% {
+                left: 38%;
+                top: 48%;
+                transform: scale(1);
+            }
+            /* Tugmaga silliq o'tish */
+            72% {
+                left: 38%;
+                top: 68%;
+                transform: scale(1);
+            }
+            /* Tugmani bosish */
+            76% {
+                left: 38%;
+                top: 68%;
+                transform: scale(0.85);
+            }
+            78% {
+                left: 38%;
+                top: 68%;
+                transform: scale(1);
+            }
+            /* Chiqib ketish */
+            100% {
+                left: 80%;
+                top: 90%;
+                opacity: 0;
+                transform: scale(0.6) rotate(5deg);
+            }
+        }
+
+        /* Silliq progress bar */
+        .progress-container {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            text-align: center;
+        }
+        .progress-track {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0a84ff, #34c759);
+            width: 0%;
+            animation: smoothProgressFill 5.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            border-radius: 10px;
+        }
+        @keyframes smoothProgressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Fon effekti */
+        .glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: #0a84ff;
+            filter: blur(150px);
+            opacity: 0.1;
+            border-radius: 50%;
+            animation: smoothGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes smoothGlow {
+            from { transform: scale(1); opacity: 0.05; }
+            to { transform: scale(1.3); opacity: 0.18; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow" style="top: 10%; left: 10%;"></div>
+    <div class="glow" style="bottom: 10%; right: 10%;"></div>
+
+    <div class="container">
+        <div class="input-wrapper">
+            <i data-lucide="globe" size="20" class="input-icon"></i>
+            <input type="text" id="demoInput" placeholder="" autocomplete="off">
+            <div class="typing-cursor" id="typingCursor"></div>
+        </div>
+        <button id="demoBtn"></button>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-track">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="magic-cursor"></div>
+
+    <script>
+        lucide.createIcons();
+        
+        const input = document.getElementById('demoInput');
+        const btn = document.getElementById('demoBtn');
+        const cursor = document.getElementById('typingCursor');
+        
+        const targetText = "mrboard.uz";
+        let currentText = "";
+        let charIndex = 0;
+        let isTypingComplete = false;
+        
+        // Kursor inputga kelganda (1.2 soniyadan keyin)
+        setTimeout(() => {
+            // Kursor miltillashni boshlaydi
+            cursor.classList.add('blink');
+            
+            // 0.3 soniyadan keyin yozish boshlanadi
+            setTimeout(() => {
+                const typingInterval = setInterval(() => {
+                    if (charIndex < targetText.length) {
+                        currentText += targetText[charIndex];
+                        input.value = currentText;
+                        charIndex++;
+                        
+                        // Inputni scroll qilish (agar kerak bo'lsa)
+                        input.scrollLeft = input.scrollWidth;
+                    } else {
+                        clearInterval(typingInterval);
+                        isTypingComplete = true;
+                        
+                        // Yozish tugagach, kursor miltillashni davom ettiradi
+                        setTimeout(() => {
+                            // Tugmani faollashtirish
+                            btn.classList.add('active');
+                            btn.textContent = 'Kirish';
+                            
+                            // Tugmaga ikonka qo'shish
+                            const icon = document.createElement('i');
+                            icon.setAttribute('data-lucide', 'log-in');
+                            icon.setAttribute('size', '18');
+                            btn.insertBefore(icon, btn.firstChild);
+                            lucide.createIcons();
+                            
+                        }, 300);
+                    }
+                }, 130); // har bir harf 130ms da yoziladi - silliq
+            }, 300);
+            
+        }, 1200);
+        
+        // Tugma bosilish effekti (Enter bosilgandek)
+        setTimeout(() => {
+            if (isTypingComplete) {
+                // Tugmani bosish animatsiyasi
+                btn.style.transform = "scale(0.95)";
+                setTimeout(() => {
+                    btn.style.transform = "scale(1)";
+                }, 150);
+                
+                // 0.5 soniyadan keyin keyingi partga o'tish
+                setTimeout(() => {
+                    window.parent.postMessage('next', '*');
+                }, 600);
+            }
+        }, 3800); // Yozish tugagach (3.8 soniyada)
+        
+        // Xavfsizlik: agar biror sabab bilan o'tmasa, 6 soniyadan keyin majburan o'tish
+        setTimeout(() => {
+            window.parent.postMessage('next', '*');
+        }, 6000);
+        
+        console.log("MR BOARD Part 20: Silliq video demo - mrboard.uz yozilmoqda");
+    </script>
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-Dars: Class yoki ID. !important | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "10",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=OymOhpWz0hU",
+            "lessonTitle": "Class yoki ID. !important haqida"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>10-Dars: Class yoki ID. !important</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 7:16
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/OymOhpWz0hU" 
+                            title="CSS | 10. Class yoki ID. !important haqida"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 10. Class yoki ID. !important haqida</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 7:16</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Class yoki ID. "!important" haqida</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 17-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Nazorat ishi belgisi -->
+                <div class="info-box" style="background: linear-gradient(135deg, var(--primary-bg), var(--warning-bg)); border-color: var(--primary);">
+                    <i class="fas fa-clipboard-list"></i>
+                    <strong>Eslatma!</strong>
+                    <p>Bu dars oxirida 1-10 darslar bo'yicha 10 ta "test"dan iborat nazorat ishi mavjud. Test barcha o'tilgan mavzular bo'yicha bo'ladi.</p>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da Class va ID selektorlarining farqi, qachon qaysi birini ishlatish kerakligi, va <code>!important</code> kalit so'zining qanday ishlashi va nima uchun undan qochish kerakligi haqida batafsil ma'lumot olasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Class vs ID - asosiy farqlar</li>
+                        <li><i class="fas fa-check-circle"></i> Qachon Class, qachon ID ishlatish kerak?</li>
+                        <li><i class="fas fa-check-circle"></i> !important nima va u qanday ishlaydi?</li>
+                        <li><i class="fas fa-check-circle"></i> !important dan qachon foydalanish kerak?</li>
+                        <li><i class="fas fa-check-circle"></i> 1-10 darslar bo'yicha nazorat ishi</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>CSS da ID ishlatmang:</strong> ID selektorlar specificity muammolarini keltirib chiqaradi. Stillash uchun har doim class ishlating.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>!important - oxirgi chora:</strong> !important faqat boshqa iloj qolmagan holatlarda ishlatiladi.</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>ID JavaScript uchun:</strong> ID ni faqat JavaScript da element tanlash yoki sahifa ichidagi havolalar uchun ishlating.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: CLASS VS ID ==================== -->
+                <section class="lesson-section" id="class-vs-id">
+                    <h2><i class="fas fa-balance-scale"></i> Class vs ID - asosiy farqlar</h2>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Xususiyat</th>
+                                    <th>Class (.)</th>
+                                    <th>ID (#)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Sintaksis</strong></td>
+                                    <td><code>.classname</code></td>
+                                    <td><code>#idname</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Qayta ishlatish</strong></td>
+                                    <td>Bir sahifada ko'p marta</td>
+                                    <td>Bir sahifada faqat BIR marta</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Specificity</strong></td>
+                                    <td>10 ball</td>
+                                    <td>100 ball (juda yuqori)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CSS da ishlatish</strong></td>
+                                    <td>Tavsiya etiladi ✅</td>
+                                    <td>Tavsiya etilmaydi ❌</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Asosiy ishlatilishi</strong></td>
+                                    <td>Stillash uchun</td>
+                                    <td>JavaScript va anchor havolalar</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: QACHON CLASS, QACHON ID ==================== -->
+                <section class="lesson-section" id="when-to-use">
+                    <h2><i class="fas fa-question-circle"></i> Qachon Class, qachon ID ishlatish kerak?</h2>
+                    
+                    <div class="pros-cons-grid">
+                        <div class="pros-box">
+                            <h4><i class="fas fa-check-circle"></i> Class ishlatiladigan holatlar</h4>
+                            <ul>
+                                <li>CSS da stillash uchun (har doim)</li>
+                                <li>Bir xil ko'rinishdagi ko'p elementlar uchun</li>
+                                <li>Qayta ishlatiladigan komponentlar uchun</li>
+                                <li>Modulli CSS yozish uchun</li>
+                            </ul>
+                        </div>
+                        <div class="cons-box">
+                            <h4><i class="fas fa-times-circle"></i> ID ishlatiladigan holatlar</h4>
+                            <ul>
+                                <li>JavaScript da element tanlash uchun</li>
+                                <li>Sahifa ichidagi havolalar (anchor) uchun</li>
+                                <li>Forma elementlari uchun (label for="")</li>
+                                <li>CSS da - <strong>ILOJI BO'LSA ISHLATMANG!</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: !IMPORTANT NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-important">
+                    <h2><i class="fas fa-exclamation-circle"></i> !important nima?</h2>
+                    
+                    <p><code>!important</code> - bu maxsus CSS kalit so'zi bo'lib, u barcha specificity qoidalarini bekor qiladi va o'z qoidasini eng kuchli qiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">p { color: blue; }
+p { color: red !important; } /* Bu g'alaba qiladi! */</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>!important specificity zanjirini buzadi!</strong> Agar siz !important ishlatsangiz, keyinchalik bu stilni o'zgartirish uchun yana !important ishlatishingiz kerak bo'ladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: !IMPORTANT QACHON ISHLATILADI? ==================== -->
+                <section class="lesson-section" id="when-to-use-important">
+                    <h2><i class="fas fa-check-circle"></i> !important qachon ishlatiladi?</h2>
+                    
+                    <div class="tips-list">
+                        <div class="tip-item">
+                            <div class="tip-icon">1</div>
+                            <div class="tip-content">
+                                <strong>Uchinchi tomon kutubxonalarini bekor qilishda</strong>
+                                <p>Bootstrap, Tailwind kabi kutubxonalarning stillarini o'zgartirish kerak bo'lganda.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">2</div>
+                            <div class="tip-content">
+                                <strong>Foydalanuvchi stillarini bekor qilishda</strong>
+                                <p>Brauzer yoki foydalanuvchi tomonidan o'rnatilgan stillarni o'zgartirishda.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">3</div>
+                            <div class="tip-content">
+                                <strong>Utility klasslar uchun</strong>
+                                <p><code>.hidden { display: none !important; }</code> - bu har doim ishlashi kerak bo'lgan klasslar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAZORAT ISHI (1-10 DARSLAR) ==================== -->
+                <div class="test-block" id="mix-test" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe); border: 2px solid #3b82f6;">
+                    <div class="test-header">
+                        <h3><i class="fas fa-clipboard-list"></i> Nazorat ishi</h3>
+                        <span class="test-badge" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">10 ta test</span>
+                    </div>
+                    
+                    <p style="margin-bottom: 20px; font-size: 0.9rem;">Bu nazorat ishi <strong>1-darsdan 10-darsgacha</strong> o'tilgan barcha mavzularni qamrab oladi. Nazorat ishi 10 ta savoldan iborat bo'lib, CSS asoslari, selektorlar, specificity, inheritance va combinators mavzularini o'z ichiga oladi.</p>
+                    
+                    <!-- Savol 1: 1-dars - CSS nima? -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            CSS ning to'liq nomi nima? (1-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q1" value="a"><label>Computer Style Sheets</label></div>
+                            <div class="option"><input type="radio" name="mix_q1" value="b"><label>Cascading Style Sheets</label></div>
+                            <div class="option"><input type="radio" name="mix_q1" value="c"><label>Creative Style System</label></div>
+                            <div class="option"><input type="radio" name="mix_q1" value="d"><label>Colorful Style Sheets</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 2: 2-dars - CSS versiyalari -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            CSS3 qachondan boshlab faol rivojlana boshlagan? (2-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q2" value="a"><label>1996 yildan</label></div>
+                            <div class="option"><input type="radio" name="mix_q2" value="b"><label>1998 yildan</label></div>
+                            <div class="option"><input type="radio" name="mix_q2" value="c"><label>2011 yildan</label></div>
+                            <div class="option"><input type="radio" name="mix_q2" value="d"><label>2005 yildan</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 3: 3-dars - CSS ulash usullari -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            CSS ni HTML ga ulashning eng tavsiya etilgan usuli qaysi? (3-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q3" value="a"><label>Inline CSS</label></div>
+                            <div class="option"><input type="radio" name="mix_q3" value="b"><label>Internal CSS</label></div>
+                            <div class="option"><input type="radio" name="mix_q3" value="c"><label>External CSS</label></div>
+                            <div class="option"><input type="radio" name="mix_q3" value="d"><label>Barchasi bir xil</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 4: 4-dars - Selektorlar -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Class selektor qaysi belgi bilan boshlanadi? (4-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q4" value="a"><label># (hash)</label></div>
+                            <div class="option"><input type="radio" name="mix_q4" value="b"><label>. (nuqta)</label></div>
+                            <div class="option"><input type="radio" name="mix_q4" value="c"><label>* (yulduzcha)</label></div>
+                            <div class="option"><input type="radio" name="mix_q4" value="d"><label>@ (at)</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 5: 5-dars - Izohlar -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">5</span>
+                            CSS da izoh (comment) qanday yoziladi? (5-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q5" value="a"><label>// Bu izoh</label></div>
+                            <div class="option"><input type="radio" name="mix_q5" value="b"><label>&lt;!-- Bu izoh --&gt;</label></div>
+                            <div class="option"><input type="radio" name="mix_q5" value="c"><label>/* Bu izoh */</label></div>
+                            <div class="option"><input type="radio" name="mix_q5" value="d"><label># Bu izoh</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 6: 6-dars - Specificity -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">6</span>
+                            ID selektor necha specificity ballga ega? (6-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q6" value="a"><label>1 ball</label></div>
+                            <div class="option"><input type="radio" name="mix_q6" value="b"><label>10 ball</label></div>
+                            <div class="option"><input type="radio" name="mix_q6" value="c"><label>100 ball</label></div>
+                            <div class="option"><input type="radio" name="mix_q6" value="d"><label>1000 ball</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 7: 7-dars - Inheritance -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">7</span>
+                            Qaysi xususiyat ota elementdan bola elementga meros bo'lib o'tadi? (7-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q7" value="a"><label>margin</label></div>
+                            <div class="option"><input type="radio" name="mix_q7" value="b"><label>padding</label></div>
+                            <div class="option"><input type="radio" name="mix_q7" value="c"><label>color (matn rangi)</label></div>
+                            <div class="option"><input type="radio" name="mix_q7" value="d"><label>border</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 8: 8-dars - Combinators -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">8</span>
+                            <code>div > p</code> selektori qanday elementlarni tanlaydi? (8-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q8" value="a"><label>div ichidagi barcha p larni</label></div>
+                            <div class="option"><input type="radio" name="mix_q8" value="b"><label>div dan keyin kelgan barcha p larni</label></div>
+                            <div class="option"><input type="radio" name="mix_q8" value="c"><label>div ning bevosita bolasi bo'lgan p larni</label></div>
+                            <div class="option"><input type="radio" name="mix_q8" value="d"><label>div dan oldin kelgan p larni</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 9: 9-dars - Classlar va qo'shma selektorlar -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">9</span>
+                            Bitta elementga bir nechta klass qanday beriladi? (9-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q9" value="a"><label>Vergul bilan: class="btn, primary"</label></div>
+                            <div class="option"><input type="radio" name="mix_q9" value="b"><label>Nuqta bilan: class="btn.primary"</label></div>
+                            <div class="option"><input type="radio" name="mix_q9" value="c"><label>Bo'shliq bilan: class="btn primary"</label></div>
+                            <div class="option"><input type="radio" name="mix_q9" value="d"><label>Defis bilan: class="btn-primary"</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 10: 10-dars - !important -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">10</span>
+                            <code>!important</code> qachon ishlatilishi kerak? (10-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q10" value="a"><label>Har doim, kod kuchli bo'lishi uchun</label></div>
+                            <div class="option"><input type="radio" name="mix_q10" value="b"><label>Faqat juda zarur hollarda (debug uchun)</label></div>
+                            <div class="option"><input type="radio" name="mix_q10" value="c"><label>Inline CSS o'rniga</label></div>
+                            <div class="option"><input type="radio" name="mix_q10" value="d"><label>Hech qachon ishlatilmaydi</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkMixTest" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">Nazorat ishini tekshirish (10 ta savol)</button>
+                    </div>
+                    <div class="test-result" id="mixTestResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Class va ID farqini tushunganingizni tekshiring.</p>
+                        <ol>
+                            <li>CSS da stillash uchun faqat class lardan foydalaning</li>
+                            <li>JavaScript da ishlatish uchun bitta ID yarating</li>
+                            <li><code>.hidden { display: none !important; }</code> utility klassini yarating</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-html">&lt;div class="card"&gt;
+    &lt;h2 class="card-title"&gt;Sarlavha&lt;/h2&gt;
+    &lt;p class="card-text"&gt;Karta ichidagi matn&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="message-box" class="hidden"&gt;Yashirin xabar&lt;/div&gt;
+
+&lt;style&gt;
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.hidden {
+    display: none !important;
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Class</strong> - CSS stillash uchun, qayta ishlatiladi (10 ball specificity)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>ID</strong> - JavaScript uchun, bir marta ishlatiladi (100 ball specificity)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>!important</strong> - barcha specificity ni bekor qiladi, faqat zarur holatlarda ishlating</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>1-10 darslar yakunlandi!</strong> Keyingi darsda: CSS asoslari yordamida loyihani yaxshilash</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../9/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../11/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#class-vs-id">Class vs ID</a></li>
+                        <li><a href="#when-to-use">Qachon qaysi biri?</a></li>
+                        <li><a href="#what-is-important">!important nima?</a></li>
+                        <li><a href="#when-to-use-important">!important qachon?</a></li>
+                        <li><a href="#mix-test">Nazorat ishi (1-10)</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">10/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 15.9%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+    
+    <!-- Nazorat ishi uchun JavaScript (10 ta savol) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mixTestBtn = document.getElementById('checkMixTest');
+            if (mixTestBtn) {
+                mixTestBtn.addEventListener('click', function() {
+                    const mixAnswers = {
+                        'mix_q1': 'b',   // 1-dars: CSS = Cascading Style Sheets
+                        'mix_q2': 'c',   // 2-dars: CSS3 2011 yildan
+                        'mix_q3': 'c',   // 3-dars: External CSS eng tavsiya etilgan
+                        'mix_q4': 'b',   // 4-dars: Class selektor . (nuqta)
+                        'mix_q5': 'c',   // 5-dars: CSS izoh /* */
+                        'mix_q6': 'c',   // 6-dars: ID selektor 100 ball
+                        'mix_q7': 'c',   // 7-dars: color meros bo'lib o'tadi
+                        'mix_q8': 'c',   // 8-dars: > bevosita bola
+                        'mix_q9': 'c',   // 9-dars: bo'shliq bilan class="btn primary"
+                        'mix_q10': 'b'   // 10-dars: !important faqat zarur hollarda
+                    };
+                    
+                    let correct = 0;
+                    let answered = 0;
+                    
+                    for (let i = 1; i <= 10; i++) {
+                        const selected = document.querySelector(`input[name="mix_q${i}"]:checked`);
+                        if (selected) {
+                            answered++;
+                            if (selected.value === mixAnswers[`mix_q${i}`]) {
+                                correct++;
+                            }
+                        }
+                    }
+                    
+                    const resultDiv = document.getElementById('mixTestResult');
+                    
+                    if (answered < 10) {
+                        resultDiv.textContent = `Iltimos, barcha 10 ta savolga javob bering! (${answered} ta javob berilgan)`;
+                        resultDiv.className = 'test-result show failed';
+                        return;
+                    }
+                    
+                    const percentage = Math.round((correct / 10) * 100);
+                    
+                    if (correct >= 9) {
+                        resultDiv.textContent = `Ajoyib! ${correct}/10 (${percentage}%) to'g'ri javob. Siz CSS asoslarini mukammal o'zlashtirgansiz!`;
+                        resultDiv.className = 'test-result show passed';
+                    } else if (correct >= 7) {
+                        resultDiv.textContent = `Yaxshi! ${correct}/10 (${percentage}%) to'g'ri javob. Ba'zi mavzularni takrorlashni tavsiya qilamiz.`;
+                        resultDiv.className = 'test-result show passed';
+                    } else if (correct >= 5) {
+                        resultDiv.textContent = `Qoniqarli. ${correct}/10 (${percentage}%) to'g'ri javob. 1-10 darslarni qayta ko'rib chiqishni tavsiya qilamiz.`;
+                        resultDiv.className = 'test-result show failed';
+                    } else {
+                        resultDiv.textContent = `Siz ${correct}/10 (${percentage}%) to'g'ri javob berdingiz. CSS asoslarini boshidan takrorlashni tavsiya qilamiz.`;
+                        resultDiv.className = 'test-result show failed';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

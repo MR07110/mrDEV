@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-Dars: Specificity (O'ziga xoslik) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "6",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=7k4QXZ0fbc0",
+            "lessonTitle": "Specificity (O'ziga xoslik)"
+        }
+    </script>
+    
+    <!-- Test javoblari (6-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "b"
+        }
+    </script>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>6-Dars: Specificity</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 13:53
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/7k4QXZ0fbc0" 
+                            title="CSS | 6. Specificity (O'ziga xoslik)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 6. Specificity (O'ziga xoslik)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 13:53</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Specificity (O'ziga xoslik)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 13-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da bir elementga bir nechta qoida berilganda, qaysi biri ustunlik qilishini belgilaydigan "Specificity" (o'ziga xoslik) tushunchasini o'rganasiz. Bu CSS ning eng muhim va eng ko'p chalkashtiradigan mavzularidan biri.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Specificity nima va u qanday ishlaydi?</li>
+                        <li><i class="fas fa-check-circle"></i> Specificity ball tizimi (0,0,0,0)</li>
+                        <li><i class="fas fa-check-circle"></i> ID vs Class vs Element - qaysi biri kuchliroq?</li>
+                        <li><i class="fas fa-check-circle"></i> !important nima va qachon ishlatiladi?</li>
+                        <li><i class="fas fa-check-circle"></i> Specificity ni hisoblash qoidalari</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Ball tizimini eslab qoling:</strong> ID = 100 ball, Class = 10 ball, Element = 1 ball. Ballar yig'indisi yuqori bo'lgan qoida g'alaba qiladi.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>!important dan qoching:</strong> !important barcha specificity qoidalarini buzadi. Faqat juda zarur hollarda ishlating.</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Class selektor ishlating:</strong> Specificity muammolarini oldini olish uchun CSS da ID o'rniga class selektordan foydalaning.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: SPECIFICITY NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-specificity">
+                    <h2><i class="fas fa-question-circle"></i> Specificity nima?</h2>
+                    
+                    <p><strong>Specificity (o'ziga xoslik)</strong> - bu brauzerning qaysi CSS qoidasi elementga qo'llanilishini aniqlash usuli. Agar bir elementga bir nechta qoida berilgan bo'lsa, eng yuqori specificity ga ega bo'lgan qoida g'alaba qiladi.</p>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title">
+                            <i class="fas fa-trophy"></i>
+                            <span>Oddiy tushuntirish</span>
+                        </div>
+                        <div class="analogy-content" style="flex-direction: column;">
+                            <p style="text-align: center;">Tasavvur qiling, siz sinfdagi o'quvchilarga murojaat qilyapsiz:</p>
+                            <div style="display: flex; gap: 20px; justify-content: center; margin: 20px 0;">
+                                <div style="text-align: center;">
+                                    <div style="background: #94a3b8; color: white; padding: 10px 20px; border-radius: 8px;">"Hamma o'quvchilar"</div>
+                                    <p>Element selektor (1 ball)</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="background: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px;">"O'g'il bolalar"</div>
+                                    <p>Class selektor (10 ball)</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="background: #1e293b; color: white; padding: 10px 20px; border-radius: 8px;">"Aziz Karimov"</div>
+                                    <p>ID selektor (100 ball)</p>
+                                </div>
+                            </div>
+                            <p style="text-align: center;">Qanchalik aniq (specific) bo'lsa, shunchalik kuchli!</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: SPECIFICITY BALL TIZIMI ==================== -->
+                <section class="lesson-section" id="specificity-points">
+                    <h2><i class="fas fa-calculator"></i> Specificity ball tizimi</h2>
+                    
+                    <p>Specificity 4 xonali raqam sifatida hisoblanadi: <code>(0,0,0,0)</code></p>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Selektor turi</th>
+                                    <th>Ball</th>
+                                    <th>Misol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Inline style</strong></td>
+                                    <td>1,0,0,0 (1000 ball)</td>
+                                    <td><code>&lt;p style="color: red;"&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ID selektor</strong></td>
+                                    <td>0,1,0,0 (100 ball)</td>
+                                    <td><code>#header</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Class, Pseudo-class, Attribut</strong></td>
+                                    <td>0,0,1,0 (10 ball)</td>
+                                    <td><code>.button</code>, <code>:hover</code>, <code>[type="text"]</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Element, Pseudo-element</strong></td>
+                                    <td>0,0,0,1 (1 ball)</td>
+                                    <td><code>p</code>, <code>div</code>, <code>::before</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Universal selektor (*)</strong></td>
+                                    <td>0,0,0,0 (0 ball)</td>
+                                    <td><code>*</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: SPECIFICITY MISOLI ==================== -->
+                <section class="lesson-section" id="specificity-example">
+                    <h2><i class="fas fa-flask"></i> Specificity misoli</h2>
+                    
+                    <p>Quyidagi misolda bir xil elementga uch xil qoida berilgan. Qaysi biri g'alaba qiladi?</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* 1-qoida: Element selektor (1 ball) */
+p {
+    color: green;
+}
+
+/* 2-qoida: Class selektor (10 ball) */
+.text {
+    color: blue;
+}
+
+/* 3-qoida: ID selektor (100 ball) - G'OLIB! */
+#special {
+    color: red;
+}</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">&lt;p class="text" id="special"&gt;Bu matn qizil rangda bo'ladi&lt;/p&gt;</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Natija:</strong> Matn qizil rangda bo'ladi, chunki ID selektor (100 ball) eng yuqori specificity ga ega.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: MURAKKAB SPECIFICITY ==================== -->
+                <section class="lesson-section" id="complex-specificity">
+                    <h2><i class="fas fa-sitemap"></i> Murakkab specificity hisoblash</h2>
+                    
+                    <p>Bir nechta selektor birgalikda ishlatilganda, ballar qo'shiladi:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* div p - 2 ta element = 2 ball */
+div p {
+    color: orange;
+}
+
+/* .content p - 1 class + 1 element = 11 ball */
+.content p {
+    color: purple;
+}
+
+/* #main .text - 1 ID + 1 class = 110 ball - G'OLIB! */
+#main .text {
+    color: navy;
+}</code></pre>
+                    </div>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Selektor</th>
+                                    <th>ID</th>
+                                    <th>Class</th>
+                                    <th>Element</th>
+                                    <th>Jami ball</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>div p</code></td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>2</td>
+                                    <td>0,0,0,2</td>
+                                </tr>
+                                <tr>
+                                    <td><code>.content p</code></td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>0,0,1,1</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#main .text</code></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>0,1,1,0 ⭐</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: !IMPORTANT ==================== -->
+                <section class="lesson-section" id="important">
+                    <h2><i class="fas fa-exclamation-triangle"></i> !important</h2>
+                    
+                    <p><code>!important</code> - bu maxsus kalit so'z bo'lib, u barcha specificity qoidalarini bekor qiladi va o'z qoidasini eng kuchli qiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Oddiy qoida */
+p {
+    color: blue;
+}
+
+/* !important bilan - bu g'alaba qiladi! */
+p {
+    color: red !important;
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>!important dan qoching!</strong> !important specificity zanjirini buzadi va kodni boshqarishni qiyinlashtiradi. Faqat quyidagi hollarda ishlating:
+                        <ul style="margin-top: 10px;">
+                            <li>Uchinchi tomon kutubxonalarini bekor qilishda</li>
+                            <li>Foydalanuvchi stillari (user styles) ni bekor qilishda</li>
+                            <li>Vaqtinchalik test uchun</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3>
+                        <span class="test-badge">6-dars testi</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            ID selektor necha ballga ega?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1a" value="a">
+                                <label for="q1a">1 ball</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1b" value="b">
+                                <label for="q1b">100 ball</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1c" value="c">
+                                <label for="q1c">10 ball</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1d" value="d">
+                                <label for="q1d">1000 ball</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            Qaysi qoida eng yuqori specificity ga ega?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2a" value="a">
+                                <label for="q2a">div p</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2b" value="b">
+                                <label for="q2b">.content p</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2c" value="c">
+                                <label for="q2c">#main .text</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2d" value="d">
+                                <label for="q2d">p.text</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            !important qachon ishlatilishi kerak?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3a" value="a">
+                                <label for="q3a">Juda kam hollarda, zarurat bo'lganda</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3b" value="b">
+                                <label for="q3b">Har doim</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3c" value="c">
+                                <label for="q3c">Hech qachon</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3d" value="d">
+                                <label for="q3d">Faqat ID selektor bilan</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Class selektor necha ballga ega?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4a" value="a">
+                                <label for="q4a">1 ball</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4b" value="b">
+                                <label for="q4b">10 ball</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4c" value="c">
+                                <label for="q4c">100 ball</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4d" value="d">
+                                <label for="q4d">0 ball</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Specificity ni tushunganingizni tekshirish uchun quyidagi misollarni hisoblang.</p>
+                        <ol>
+                            <li><code>#header .nav a</code> - necha ball?</li>
+                            <li><code>div.container > p.text</code> - necha ball?</li>
+                            <li><code>*</code> - necha ball?</li>
+                            <li><code>style="color: red;"</code> - necha ball?</li>
+                            <li>Quyidagi kodda <code>&lt;p class="intro" id="first"&gt;</code> elementi qanday rangda bo'ladi?
+                                <pre><code class="language-css">p { color: green; }
+.intro { color: blue; }
+#first { color: red; }</code></pre>
+                            </li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4> Javoblar:</h4>
+                        <ol>
+                            <li><code>#header .nav a</code> = ID (100) + Class (10) + Element (1) = <strong>111 ball</strong></li>
+                            <li><code>div.container > p.text</code> = 2 ta Element (div, p) + 2 ta Class (container, text) = <strong>22 ball</strong></li>
+                            <li><code>*</code> = Universal selektor = <strong>0 ball</strong></li>
+                            <li><code>style="color: red;"</code> = Inline style = <strong>1000 ball</strong></li>
+                            <li>Matn <strong>qizil</strong> rangda bo'ladi, chunki ID selektor (100 ball) eng yuqori specificity ga ega.</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Specificity</strong> - CSS qoidalarining ustunlik tartibini belgilaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Ball tizimi:</strong> Inline (1000) > ID (100) > Class (10) > Element (1) > Universal (0)</li>
+                        <li><i class="fas fa-check-circle"></i> Ballar qo'shiladi: <code>#main .text</code> = 110 ball</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>!important</strong> barcha qoidalarni bekor qiladi, lekin uni kam ishlating</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Inheritance (Meros olish)</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../5/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../7/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#what-is-specificity">Specificity nima?</a></li>
+                        <li><a href="#specificity-points">Ball tizimi</a></li>
+                        <li><a href="#specificity-example">Specificity misoli</a></li>
+                        <li><a href="#complex-specificity">Murakkab specificity</a></li>
+                        <li><a href="#important">!important</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">6/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 9.5%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

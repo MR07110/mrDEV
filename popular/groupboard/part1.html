@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR BOARD - Part 1 (Intro)</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --brand: #007aff;
+            --bg-board: #ffffff;
+            --text-main: #0f172a;
+            --border: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0; padding: 0; height: 100vh; display: flex;
+            align-items: center; justify-content: center;
+            background: #cbd5e1; font-family: -apple-system, sans-serif;
+            overflow: hidden;
+        }
+
+        .video-frame {
+            width: 95vw; max-width: 1400px; height: 90vh; max-height: 850px;
+            background: var(--bg-board); border-radius: 28px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+            border: 8px solid #ffffff; outline: 1px solid var(--border);
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+        }
+
+        .progress-bar {
+            position: absolute; bottom: 0; left: 0; height: 8px;
+            background: var(--brand); width: 0%;
+            animation: progressFill 2.5s linear forwards;
+        }
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 10%; }
+        }
+
+        .badge {
+            background: rgba(0, 122, 255, 0.15); color: var(--brand);
+            padding: 8px 20px; border-radius: 99px; font-weight: 800; font-size: 14px;
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px;
+            opacity: 0; transform: translateY(20px);
+            animation: fastPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards;
+        }
+
+        .logo-icon {
+            color: var(--brand); opacity: 0; transform: scale(0.5);
+            animation: fastPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s forwards;
+        }
+        
+        .title {
+            font-size: 80px; font-weight: 900; letter-spacing: -3px; margin: 16px 0 0;
+            color: var(--text-main); opacity: 0; transform: scale(0.8);
+            animation: fastPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
+        }
+
+        .magic-cursor {
+            position: absolute; width: 40px; height: 40px; z-index: 999;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>') no-repeat;
+            pointer-events: none; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+            animation: cursorSwoosh 2.5s ease-out forwards;
+        }
+
+        .scene-container {
+            display: flex; flex-direction: column; align-items: center;
+            animation: exitScene 0.4s ease-in 2.1s forwards;
+        }
+
+        @keyframes fastPopIn {
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes cursorSwoosh {
+            0% { top: 110%; left: -10%; transform: scale(2); opacity: 0; }
+            30% { top: 60%; left: 60%; transform: scale(1); opacity: 1; }
+            80% { top: 50%; left: 70%; transform: scale(1); opacity: 1; }
+            100% { top: 120%; left: 120%; opacity: 0; }
+        }
+
+        @keyframes exitScene {
+            to { opacity: 0; transform: scale(1.1); filter: blur(10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-frame">
+        <div class="progress-bar"></div>
+        <div class="magic-cursor"></div>
+
+        <div class="scene-container">
+            <div class="badge">Part 01</div>
+            <i data-lucide="layers" size="100" class="logo-icon"></i>
+            <h1 class="title">MR <span style="color: var(--brand)">BOARD</span></h1>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Animatsiya tugagach (2.5 soniya) parentga 'next' xabarini yuboramiz
+        // BU index.html dagi window.addEventListener('message') orqali keyingi partga o'tadi
+        setTimeout(() => {
+            window.parent.postMessage('next', '*');
+        }, 2500);
+    </script>
+
+</body>
+</html>

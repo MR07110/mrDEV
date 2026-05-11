@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11-Dars: CSS asoslari yordamida loyihani yaxshilash | CSS Kurs</title>
+    
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../style.css">
+    
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "11",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=3CymgP8fUUY&list=PLpDyZ4xZcDg_gyII__1jtnE2FEgqpfJU8&index=11",
+            "lessonTitle": "CSS asoslari yordamida loyihani yaxshilash"
+        }
+    </script>
+    
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "c",
+            "q2": "b",
+            "q3": "d",
+            "q4": "a"
+        }
+    </script>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<body>
+    
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn"><i class="fas fa-chevron-left"></i><span>Darslar ro'yxati</span></a>
+                <div class="course-title-header"><img src="../../icons/css3.svg" alt="CSS"><h1>11-Dars: CSS asoslari - loyiha</h1></div>
+                <div class="progress-info"><i class="far fa-clock"></i> 12:57</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="lesson-grid">
+            <div class="lesson-content">
+                
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/3CymgP8fUUY" title="CSS | 11. CSS asoslari yordamida loyihani yaxshilash" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 11. CSS asoslari yordamida loyihani yaxshilash</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 12:57</span>
+                    </div>
+                </div>
+                
+                <div class="lesson-header">
+                    <h1>CSS asoslari yordamida loyihani yaxshilash</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 18-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> Amaliy dars</span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>1-10 darslarda o'rgangan barcha bilimlaringizni amaliyotda qo'llaysiz. Haqiqiy loyiha ustida ishlab, selektorlar, specificity, inheritance, kombinatorlar va class lardan qanday foydalanishni ko'rasiz.</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> CSS faylini to'g'ri tashkil qilish</li>
+                        <li><i class="fas fa-check-circle"></i> Global va komponent stillarini ajratish</li>
+                        <li><i class="fas fa-check-circle"></i> Class va kombinatorlardan samarali foydalanish</li>
+                        <li><i class="fas fa-check-circle"></i> Loyiha strukturasini yaxshilash</li>
+                        <li><i class="fas fa-check-circle"></i> CSS kodini toza va boshqariladigan qilish</li>
+                    </ul>
+                </div>
+                
+                <div class="advice-box">
+                    <div class="advice-header"><i class="fas fa-lightbulb"></i><h4>Bu dars uchun maslahatlar</h4></div>
+                    <div class="advice-content">
+                        <div class="advice-item"><i class="fas fa-brain"></i><span><strong>Amaliyot muhim:</strong> Bu darsda yozilgan kodni o'zingiz ham qaytadan yozib chiqing. Ko'rish bilan cheklanmang.</span><span class="badge must-know">amaliyot shart</span></div>
+                        <div class="advice-item"><i class="fas fa-bookmark"></i><span><strong>CSS tartibi:</strong> CSS faylingizni mantiqiy bo'limlarga ajrating: Reset, Global, Header, Main, Footer, Components.</span><span class="badge good-to-know">muhim</span></div>
+                        <div class="advice-item"><i class="fas fa-code"></i><span><strong>Class nomlash:</strong> BEM yoki shunga o'xshash metodologiyadan foydalanishni odat qiling. Loyihangiz kattalashganda juda asqatadi.</span><span class="badge tip">tavsiya</span></div>
+                    </div>
+                </div>
+                
+                <!-- 1-bo'lim: Loyihani tahlil qilish -->
+                <section class="lesson-section" id="analyze-project">
+                    <h2><i class="fas fa-search"></i> Mavjud loyihani tahlil qilish</h2>
+                    <p>Dars davomida biz oldindan tayyorlangan HTML strukturaga ega bo'lgan "Natour" loyihasini CSS yordamida jonlantiramiz. Birinchi navbatda HTML struktura va mavjud klasslarni tahlil qilamiz.</p>
+                    <div class="code-block"><div class="code-header"><span class="code-lang">HTML strukturasi (qisqartirilgan)</span><button class="copy-btn"><i class="far fa-copy"></i></button></div><pre><code class="language-css">&lt;header class="header"&gt;
+    &lt;div class="header__logo-box"&gt;...&lt;/div&gt;
+    &lt;div class="header__text-box"&gt;
+        &lt;h1 class="heading-primary"&gt;...&lt;/h1&gt;
+        &lt;a href="#" class="btn btn--white btn--animated"&gt;...&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;section class="section-about"&gt;...&lt;/section&gt;
+    &lt;section class="section-features"&gt;...&lt;/section&gt;
+    &lt;section class="section-tours"&gt;...&lt;/section&gt;
+    &lt;section class="section-stories"&gt;...&lt;/section&gt;
+    &lt;section class="section-book"&gt;...&lt;/section&gt;
+&lt;/main&gt;</code></pre></div>
+                    <p>Bu yerda BEM metodologiyasiga o'xshash klass nomlash ishlatilgan: <code>.header__logo-box</code> (Element), <code>.btn--white</code> (Modifier). Bu CSS yozishni ancha tartibli qiladi.</p>
+                </section>
+                
+                <!-- 2-bo'lim: Asosiy reset va global stillar -->
+                <section class="lesson-section" id="reset-global">
+                    <h2><i class="fas fa-globe"></i> Reset va global stillar</h2>
+                    <p>Har qanday loyiha universal reset va global stillardan boshlanadi. Bu barcha brauzerlarda bir xil ko'rinishni ta'minlaydi.</p>
+                    <div class="code-block"><div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i></button></div><pre><code class="language-css">/* Reset */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
+body {
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #777;
+    padding: 3rem;
+}</code></pre></div>
+                    <div class="tip-box"><i class="fas fa-lightbulb"></i><strong>62.5% hiylasi:</strong> <code>font-size: 62.5%</code> qilish orqali <code>1rem = 10px</code> bo'ladi. Bu rem birligida ishlashni juda osonlashtiradi (masalan, 1.6rem = 16px).</div>
+                </section>
+                
+                <!-- 3-bo'lim: Header komponentini stillash -->
+                <section class="lesson-section" id="header-component">
+                    <h2><i class="fas fa-heading"></i> Header komponentini stillash</h2>
+                    <p>Header qismi uchun orqa fon rasmi, clip-path bilan kesilgan shakl, logotip va sarlavha stillarini yozamiz.</p>
+                    <div class="code-block"><div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i></button></div><pre><code class="language-css">.header {
+    height: 95vh;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(126, 213, 111, 0.8),
+        rgba(40, 180, 133, 0.8)),
+    url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    position: relative;
+}
+
+.header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+}
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}</code></pre></div>
+                </section>
+                
+                <!-- 4-bo'lim: Tugma va animatsiyalar -->
+                <section class="lesson-section" id="buttons-animations">
+                    <h2><i class="fas fa-mouse"></i> Tugmalar va animatsiyalar</h2>
+                    <p>Qayta ishlatiladigan tugma komponentini yaratamiz va unga oddiy animatsiya qo'shamiz.</p>
+                    <div class="code-block"><div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i></button></div><pre><code class="language-css">.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: 1.6rem;
+}
+
+.btn--white {
+    background-color: #fff;
+    color: #777;
+}
+
+.btn--animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}</code></pre></div>
+                </section>
+                
+                <!-- Test -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3><span class="test-badge">11-dars testi</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>rem birligini oson hisoblash uchun html ga qanday font-size beriladi?</div><div class="options">
+                        <div class="option"><input type="radio" name="q1" value="a"><label>50%</label></div><div class="option"><input type="radio" name="q1" value="b"><label>100%</label></div><div class="option"><input type="radio" name="q1" value="c"><label>62.5%</label></div><div class="option"><input type="radio" name="q1" value="d"><label>10px</label></div>
+                    </div></div>
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>clip-path xususiyati nima uchun ishlatiladi?</div><div class="options">
+                        <div class="option"><input type="radio" name="q2" value="a"><label>Rasmni aylantirish uchun</label></div><div class="option"><input type="radio" name="q2" value="b"><label>Element shaklini kesish uchun</label></div><div class="option"><input type="radio" name="q2" value="c"><label>Matnni yashirish uchun</label></div><div class="option"><input type="radio" name="q2" value="d"><label>Rangni o'zgartirish uchun</label></div>
+                    </div></div>
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span>BEM metodologiyasida Element qanday belgilanadi?</div><div class="options">
+                        <div class="option"><input type="radio" name="q3" value="a"><label>.block-element</label></div><div class="option"><input type="radio" name="q3" value="b"><label>.block__element</label></div><div class="option"><input type="radio" name="q3" value="c"><label>.block--element</label></div><div class="option"><input type="radio" name="q3" value="d"><label>.block_element</label></div>
+                    </div></div>
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>linear-gradient() ichida rgba ishlatishdan maqsad nima?</div><div class="options">
+                        <div class="option"><input type="radio" name="q4" value="a"><label>Shaffoflik bilan rang berish</label></div><div class="option"><input type="radio" name="q4" value="b"><label>Tezroq yuklanish</label></div><div class="option"><input type="radio" name="q4" value="c"><label>Ko'proq rang ishlatish</label></div><div class="option"><input type="radio" name="q4" value="d"><label>Faqat bitta rang berish</label></div>
+                    </div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- Amaliy mashq -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> O'zingizning loyihangizda CSS asoslarini qo'llang.</p>
+                        <ol>
+                            <li>HTML faylingizga <code>reset</code> va global stillar qo'shing</li>
+                            <li><code>rem</code> birligini qulay hisoblash uchun <code>html { font-size: 62.5%; }</code> dan foydalaning</li>
+                            <li>Header qismiga orqa fon rasmi va gradient overlay qo'shing</li>
+                            <li>Tugma komponenti yarating va unga hover animatsiyasi qo'shing</li>
+                            <li>BEM yoki shunga o'xshash klass nomlashdan foydalaning</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4> Namunaviy yechim:</h4>
+                        <pre><code class="language-css">/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 62.5%; }
+body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; }
+
+/* Header */
+.header {
+    height: 90vh;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tugma */
+.btn {
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    font-size: 1.6rem;
+    text-decoration: none;
+    border-radius: 5rem;
+    transition: all 0.3s;
+}
+.btn-primary { background: #3b82f6; color: white; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- Xulosa -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> CSS faylingizni <strong>mantiqiy bo'limlarga</strong> ajrating (Reset, Global, Components)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>rem birligi</strong> uchun <code>html { font-size: 62.5%; }</code> hiylasidan foydalaning</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>clip-path</strong> yordamida elementlarga qiziqarli shakllar bering</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>BEM metodologiyasi</strong> klass nomlashda tartib saqlashga yordam beradi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Box model. Margin, Padding, Border</li>
+                    </ul>
+                </div>
+                
+                <!-- Izohlar -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form">
+                        <div class="comment-avatar"><i class="fas fa-user"></i></div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div>
+                        </div>
+                    </div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- Navigatsiya -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../10/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../12/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#analyze-project">Loyihani tahlil qilish</a></li><li><a href="#reset-global">Reset va global stillar</a></li><li><a href="#header-component">Header komponenti</a></li><li><a href="#buttons-animations">Tugmalar va animatsiyalar</a></li><li><a href="#test">Test</a></li><li><a href="#practice">Amaliy mashq</a></li><li><a href="#summary">Xulosa</a></li><li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li><li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">11/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 17.5%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

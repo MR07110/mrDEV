@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>54-Dars: CSS Advanced yordamida loyihani yaxshilash | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "54",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=3SxxV_WRJIY",
+            "lessonTitle": "CSS Advanced yordamida loyihani yaxshilash"
+        }
+    </script>
+    
+    <!-- Test javoblari (54-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>54-Dars: CSS Advanced yordamida loyihani yaxshilash</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 7:13
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/3SxxV_WRJIY" 
+                            title="CSS | 54. CSS Advanced yordamida loyihani yaxshilash"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 54. CSS Advanced yordamida loyihani yaxshilash</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 7:13</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>CSS Advanced yordamida loyihani yaxshilash</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 2-mart, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Amaliy loyiha</span>
+                        <span><i class="fas fa-signal"></i> Yuqori daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>Bu darsda 49-53 darslarda o'rgangan <strong>2D/3D transforms, transitions va animations</strong> mavzularini amaliyotda qo'llab, <strong>Natour</strong> loyihasiga professional darajadagi animatsiyalar va interaktiv elementlar qo'shamiz. Bu bilimlar zamonaviy web dizaynning ajralmas qismidir.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni qilamiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Tugmalarga hover animatsiyalar qo'shish</li>
+                        <li><i class="fas fa-check-circle"></i> Kartalarga 3D flip effektlari berish</li>
+                        <li><i class="fas fa-check-circle"></i> Navigatsiya menyusiga transition qo'shish</li>
+                        <li><i class="fas fa-check-circle"></i> Header elementlariga entrance animatsiyalar yaratish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>transform</code> va <code>transition</code> ni to'g'ri kombinatsiyalash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>will-change</code> orqali performans optimizatsiyasi</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: TUGMALARGA ANIMATSIYA ==================== -->
+                <section class="lesson-section" id="button-animations">
+                    <h2><i class="fas fa-hand-pointer"></i> Tugmalarga animatsiyalar qo'shish</h2>
+                    
+                    <p>CTA (Call-to-Action) tugmalariga <code>transition</code> va <code>transform</code> yordamida professional hover effektlar qo'shamiz. Bu foydalanuvchi tajribasini sezilarli darajada yaxshilaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Asosiy tugma */
+.btn:link, .btn:visited {
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    border-radius: 10rem;
+    transition: all 0.2s ease-out;  /* Barcha xususiyatlar silliq o'zgaradi */
+    position: relative;
+    font-size: 1.6rem;
+    will-change: transform, box-shadow;  /* Performans optimizatsiyasi */
+}
+
+.btn:hover {
+    transform: translateY(-3px);  /* Yuqoriga ko'tarilish */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);  /* Soya qo'shiladi */
+}
+
+.btn:active {
+    transform: translateY(-1px);  /* Bosilganda biroz pasayish */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+/* Oq tugma */
+.btn--white {
+    background-color: #fff;
+    color: #777;
+}
+
+.btn--white::after {
+    background-color: #fff;
+}
+
+/* Yashil tugma */
+.btn--green {
+    background-color: #55c57a;
+    color: #fff;
+}
+
+/* Animatsiyali tugma - entrance effect */
+.btn--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;  /* Animatsiya boshlanishidan oldin birinchi kadr stillari */
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> <code>will-change</code> xususiyati brauzerga qaysi xususiyatlar o'zgarishini oldindan aytib, animatsiyani silliqroq qiladi. Faqat haqiqatan ham animatsiya bo'ladigan elementlarga qo'llang.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: KARTALARGA 3D FLIP ==================== -->
+                <section class="lesson-section" id="card-flip">
+                    <h2><i class="fas fa-rotate-y"></i> Kartalarga 3D Flip effekti</h2>
+                    
+                    <p>Tour kartalariga 3D aylanish (flip) effekti qo'shamiz. Bu orqali kartaning old tomonida rasm va sarlavha, orqa tomonida narx va "Book now" tugmasi ko'rinadi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Karta konteyneri - perspective beriladi */
+.card {
+    perspective: 150rem;  /* 3D chuqurlik effekti - qancha kichik bo'lsa, shuncha kuchli */
+    -moz-perspective: 150rem;
+    position: relative;
+    height: 52rem;
+}
+
+/* Kartaning ikkala tomoni */
+.card__side {
+    height: 52rem;
+    transition: all 0.8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;  /* Orqa tomon ko'rinmasligi uchun */
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    will-change: transform;  /* Performans uchun */
+}
+
+/* Old tomon */
+.card__side--front {
+    background-color: #fff;
+}
+
+/* Orqa tomon - oldindan 180 gradusga aylantirilgan */
+.card__side--back {
+    transform: rotateY(180deg);
+}
+
+/* Hover bo'lganda */
+.card:hover .card__side--front {
+    transform: rotateY(-180deg);  /* Old tomon -180 gradusga aylanadi */
+}
+
+.card:hover .card__side--back {
+    transform: rotateY(0);  /* Orqa tomon normal holatga keladi */
+}
+
+/* Orqa tomon ranglari */
+.card__side--back-1 {
+    background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
+}
+.card__side--back-2 {
+    background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+}
+.card__side--back-3 {
+    background-image: linear-gradient(to right bottom, #2998ff, #5643fa);
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Muhim:</strong> <code>backface-visibility: hidden</code> ni unutmang! Busiz karta aylanganda orqa tomon teskari ko'rinib qoladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: HEADER ANIMATSIYALARI ==================== -->
+                <section class="lesson-section" id="header-animations">
+                    <h2><i class="fas fa-magic"></i> Header elementlariga entrance animatsiyalar</h2>
+                    
+                    <p>Sahifa yuklanganda sarlavha va tugmalar chiroyli animatsiya bilan paydo bo'ladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Sarlavha asosiy qismi - chapdan kirib keladi */
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    80% {
+        transform: translateX(1rem);  /* Kichik qaytish effekti */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Sarlavha ikkinchi qismi - o'ngdan kirib keladi */
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    80% {
+        transform: translateX(-1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.heading-primary--main {
+    animation: moveInLeft 1s ease-out;
+    animation-fill-mode: backwards;  /* Animatsiya boshlanishidan oldin birinchi kadr stillari */
+}
+
+.heading-primary--sub {
+    animation: moveInRight 1s ease-out;
+    animation-fill-mode: backwards;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: NAVIGATSIYA HOVER EFFEKTLARI ==================== -->
+                <section class="lesson-section" id="navigation-hover">
+                    <h2><i class="fas fa-bars"></i> Navigatsiya hover effektlari</h2>
+                    
+                    <p>Navigatsiya linklariga hover bo'lganda chiroyli underline animatsiyasi qo'shamiz.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">.navigation__link:link, .navigation__link:visited {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: 300;
+    padding: 1rem 2rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #fff 50%);
+    background-size: 220%;
+    transition: all 0.4s;
+}
+.navigation__link:hover, .navigation__link:active {
+    background-position: 100%;
+    color: #55c57a;
+    transform: translateX(1rem);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> 54-dars testi</h3><span class="test-badge">4 ta savol</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>3D flip effekti uchun ota elementga qaysi xususiyat beriladi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>transform-style</label></div><div class="option"><input type="radio" name="q1" value="b"><label>perspective</label></div><div class="option"><input type="radio" name="q1" value="c"><label>backface-visibility</label></div><div class="option"><input type="radio" name="q1" value="d"><label>will-change</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>Karta orqa tomoni ko'rinmasligi uchun qaysi xususiyat kerak?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>visibility: hidden</label></div><div class="option"><input type="radio" name="q2" value="b"><label>display: none</label></div><div class="option"><input type="radio" name="q2" value="c"><label>backface-visibility: hidden</label></div><div class="option"><input type="radio" name="q2" value="d"><label>transform: hidden</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span><code>animation-fill-mode: backwards</code> nima qiladi?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>Animatsiya boshlanishidan oldin birinchi kadr stillarini qo'llaydi</label></div><div class="option"><input type="radio" name="q3" value="b"><label>Animatsiya tugagach oxirgi holatda qoladi</label></div><div class="option"><input type="radio" name="q3" value="c"><label>Animatsiya teskari yo'nalishda ishlaydi</label></div><div class="option"><input type="radio" name="q3" value="d"><label>Animatsiyani cheksiz takrorlaydi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span><code>will-change</code> xususiyati nima uchun kerak?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>Element rangini o'zgartirish</label></div><div class="option"><input type="radio" name="q4" value="b"><label>Animatsiyani to'xtatish</label></div><div class="option"><input type="radio" name="q4" value="c"><label>Elementni yashirish</label></div><div class="option"><input type="radio" name="q4" value="d"><label>Performans optimizatsiyasi - brauzerga oldindan xabar berish</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> O'z loyihangizga professional animatsiyalar qo'shing.</p>
+                        <ol><li>Tugmalarga hover bo'lganda <code>translateY(-3px)</code> va <code>box-shadow</code> qo'shing</li><li>Kartalarga 3D flip effekti yarating</li><li>Sarlavhalarga entrance animatsiyalar qo'shing</li><li>Barcha animatsiyalarga <code>will-change</code> qo'shing</li></ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-css">.btn { transition: all 0.2s; will-change: transform, box-shadow; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+
+.card { perspective: 150rem; }
+.card__side { transition: all 0.8s ease; backface-visibility: hidden; will-change: transform; }
+.card__side--back { transform: rotateY(180deg); }
+.card:hover .card__side--front { transform: rotateY(-180deg); }
+.card:hover .card__side--back { transform: rotateY(0); }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.hero-title { animation: fadeIn 0.8s ease-out forwards; }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>perspective</strong> - 3D effektlar uchun ota elementga beriladi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>backface-visibility: hidden</strong> - 3D flip da orqa tomonni yashirish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>animation-fill-mode: backwards</strong> - sahifa yuklanganda elementlar sakrab qolmasligi uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>will-change</strong> - performans optimizatsiyasi (faqat kerakli elementlarga!)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>transition + transform</strong> - hover effektlar uchun eng yaxshi kombinatsiya</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Flexbox: asoslari va terminlari - Nazorat ishi!</li>
+                    </ul>
+                </div>
+                
+                <!-- IZOHLAR, NAVIGATSIYA, SIDEBAR, FOOTER - STANDART -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../53/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../55/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#button-animations">Tugmalar animatsiyasi</a></li>
+                    <li><a href="#card-flip">Kartalarga 3D Flip</a></li>
+                    <li><a href="#header-animations">Header animatsiyalari</a></li>
+                    <li><a href="#navigation-hover">Navigatsiya hover</a></li>
+                    <li><a href="#test">Test</a></li><li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li><li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">54/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 85.7%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

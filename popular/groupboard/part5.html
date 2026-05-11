@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="uz" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR BOARD - Part 5 (Lazer Asbobiga o'tish)</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* =========================================================
+           [1] ORIGINAL ENTERPRISE O'ZGARUVCHILARI
+           ========================================================= */
+        :root {
+            --bg-base: #ffffff;
+            --bg-canvas: #f8fafc;
+            --bg-glass: rgba(255,255,255,0.7);
+            --bg-panel: rgba(255,255,255,0.9);
+            --bg-hover: rgba(0,0,0,0.03);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-subtle: rgba(255,255,255,0.4);
+            --border-strong: rgba(0,0,0,0.08);
+            --brand-primary: #007aff;
+            --brand-alpha: rgba(0,122,255,0.1);
+            --state-danger: #ff3b30;
+            --state-success: #34c759;
+            --state-warning: #ffcc00;
+            
+            --shadow-float: 0 24px 48px -12px rgba(0,0,0,0.08), 0 12px 24px -8px rgba(0,0,0,0.04);
+            --shadow-glass: inset 0 1px 1px rgba(255,255,255,0.9), inset 0 0 0 1px rgba(255,255,255,0.5);
+            --shadow-inner: inset 0 2px 4px rgba(0,0,0,0.03);
+            
+            --dur: 3s; /* 3 Soniyalik tezkor qism */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+            background: #cbd5e1; height: 100vh; display: flex;
+            align-items: center; justify-content: center; overflow: hidden;
+            color: var(--text-main); user-select: none; -webkit-user-select: none;
+        }
+
+        /* 1:1 REKLAMA RAMKASI */
+        .video-frame {
+            width: 95vw; max-width: 1400px; height: 90vh; max-height: 850px;
+            background: var(--bg-base); border-radius: 28px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+            border: 8px solid #ffffff; position: relative; overflow: hidden;
+        }
+
+        /* PROGRESS BAR (40% dan 50% gacha) */
+        .progress-bar {
+            position: absolute; bottom: 0; left: 0; height: 8px;
+            background: var(--brand-primary); width: 40%;
+            animation: progressFill var(--dur) linear forwards; z-index: 1000;
+        }
+        @keyframes progressFill { from { width: 40%; } to { width: 50%; } }
+
+        /* =========================================================
+           [2] STATIK UI (BARQAROR)
+           ========================================================= */
+        .header-overlay { position: absolute; top: 24px; left: 24px; right: 24px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .room-status { display: flex; gap: 12px; }
+        .status-pill {
+            background: var(--bg-glass); backdrop-filter: blur(40px); border: 1px solid var(--border-subtle); border-radius: 99px;
+            padding: 10px 24px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-float), var(--shadow-glass);
+        }
+
+        /* Minimap */
+        .minimap-container {
+            position: absolute; bottom: 120px; right: 24px; width: 240px; height: 160px;
+            background: var(--bg-panel); backdrop-filter: blur(40px) saturate(200%); border: 1px solid var(--border-subtle); border-radius: 20px;
+            box-shadow: var(--shadow-float), var(--shadow-glass); z-index: 150; display: flex; flex-direction: column; overflow: hidden;
+        }
+        .minimap-header { height: 36px; background: rgba(0,0,0,0.02); border-bottom: 1px solid var(--border-strong); display: flex; align-items: center; padding: 0 12px; font-size: 11px; font-weight: 700; color: var(--text-muted); gap: 8px; }
+        .minimap-close { color: var(--text-muted); margin-left: auto; }
+        .minimap-content { flex: 1; background: var(--bg-canvas); opacity: 0.6; position: relative; }
+        #minimap-view { position: absolute; border: 2px solid var(--brand-primary); background: var(--brand-alpha); border-radius: 6px; box-shadow: 0 0 0 9999px rgba(0,0,0,0.3); width: 120px; height: 80px; top: 20px; left: 40px; }
+
+        /* Dock */
+        .dock-container { position: absolute; bottom: 32px; left: 0; right: 0; display: flex; justify-content: center; z-index: 100; }
+        .dock { background: var(--bg-glass); backdrop-filter: blur(50px); border: 1px solid var(--border-subtle); border-radius: 32px; padding: 12px; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-float), var(--shadow-glass); }
+        .dock-sep { width: 2px; height: 32px; background: var(--border-strong); margin: 0 8px; border-radius: 2px; }
+        .action-btn { width: 56px; height: 56px; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); position: relative; transition: 0.2s; }
+        
+        /* Faol element dizayni */
+        .action-btn.is-active { background: var(--brand-primary); color: #fff; box-shadow: 0 8px 20px var(--brand-alpha); transform: scale(1.05); }
+        /* Lazer faol bo'lgandagi maxsus qizil dizayn */
+        .action-btn.laser-active { background: var(--state-danger) !important; color: #fff !important; box-shadow: 0 8px 20px rgba(255,59,48,0.2) !important; transform: scale(1.05); }
+
+        .color-indicator { width: 32px; height: 32px; border-radius: 50%; border: 3px solid var(--bg-panel); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .audio-wave { display: flex; align-items: center; gap: 4px; height: 24px; background: var(--bg-base); padding: 0 16px; height: 56px; border-radius: 20px; border: 1px inset var(--border-strong); box-shadow: var(--shadow-inner); }
+        .viz-bar { width: 4px; min-height: 4px; background: var(--text-muted); border-radius: 4px; }
+
+        /* =========================================================
+           [3] CHIZISH QATLAMI VA ANIMATSIYALAR
+           ========================================================= */
+        .draw-layer {
+            position: absolute; width: 1200px; height: 700px;
+            left: 50%; top: 50%; transform: translate(-50%, -50%);
+            z-index: 10; pointer-events: none;
+        }
+
+        /* 4-qismda chizilgan eski chiziq (Statik bo'lib turadi) */
+        .static-path {
+            fill: none; stroke: var(--brand-primary); stroke-width: 6;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        /* Yangi Lazer chizig'i (Qizil, yonadi va o'chadi) */
+        .laser-path {
+            fill: none; stroke: var(--state-danger); stroke-width: 8;
+            stroke-linecap: round; stroke-linejoin: round;
+            filter: drop-shadow(0 0 12px rgba(255,59,48,0.8)); /* Neon effekt */
+            stroke-dasharray: 1500; stroke-dashoffset: 1500;
+            /* 1.2s kutadi, 1s da chizadi, keyin 0.5s da xira bo'lib yo'qoladi */
+            animation: drawLaser 1s cubic-bezier(0.25, 1, 0.5, 1) 1.2s forwards,
+                       fadeLaser 0.5s ease-in-out 2.4s forwards;
+        }
+
+        .mini-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .mini-path { stroke-width: 14; }
+
+        @keyframes drawLaser { to { stroke-dashoffset: 0; } }
+        @keyframes fadeLaser { to { opacity: 0; } }
+
+        /* SICHQONCHA ANIMATSIYASI (XY bo'ylab) */
+        .magic-cursor {
+            position: absolute; width: 40px; height: 40px; z-index: 999;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>') no-repeat;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+            animation: moveCursor5 var(--dur) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes moveCursor5 {
+            0% { top: 28%; left: 88%; transform: scale(1); } /* 4-qismda to'xtagan joy */
+            /* Dock panelidagi Lazerga uchadi */
+            20% { top: 88%; left: 45%; transform: scale(1); }
+            24% { transform: scale(0.7); } /* Bosdi! */
+            28% { transform: scale(1); }
+            /* Doskaga kelib lazerni chizishni boshlaydi (1.2s - 2.2s) */
+            40% { top: 50%; left: 20%; transform: scale(1); } 
+            43% { transform: scale(0.8); } /* Ekranga qalamni bosdi */
+            73% { top: 30%; left: 75%; transform: scale(0.8); } /* Chizib bo'ldi */
+            76% { transform: scale(1); } /* Qo'yib yubordi */
+            100% { top: 40%; left: 80%; transform: scale(1); } /* Ozgina chetga chiqadi */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-frame">
+        <div class="progress-bar"></div>
+
+        <div class="header-overlay">
+            <div class="room-status">
+                <div class="status-pill"><i data-lucide="hash"></i> <span>MR-2364</span></div>
+                <div class="status-pill"><i data-lucide="search"></i> <span>100%</span></div>
+            </div>
+            <div class="status-pill role-status">
+                <i data-lucide="crown" style="color: var(--state-warning)"></i> Host
+            </div>
+        </div>
+
+        <div class="draw-layer">
+            <svg width="1200" height="700" viewBox="0 0 1200 700">
+                <path class="static-path" d="M 200 500 C 400 100, 800 650, 1100 200" />
+                <path class="laser-path" d="M 200 350 Q 500 150, 850 200" />
+            </svg>
+        </div>
+        
+        <div class="magic-cursor"></div>
+
+        <div class="minimap-container">
+            <div class="minimap-header">
+                <i data-lucide="map" size="14"></i><span>Kuzatuv doskasi</span>
+                <i data-lucide="x" size="14" class="minimap-close"></i>
+            </div>
+            <div class="minimap-content">
+                <div id="minimap-view"></div>
+                <svg class="mini-svg" viewBox="0 0 1200 700" preserveAspectRatio="none">
+                    <path class="static-path mini-path" d="M 200 500 C 400 100, 800 650, 1100 200" />
+                    <path class="laser-path mini-path" d="M 200 350 Q 500 150, 850 200" />
+                </svg>
+            </div>
+        </div>
+
+        <div class="dock-container">
+            <div class="dock">
+                <div class="action-btn"><i data-lucide="settings-2"></i></div>
+                <div class="action-btn"><div class="color-indicator" style="background: #007aff;"></div></div>
+                <div class="dock-sep"></div>
+                
+                <div class="action-btn is-active" id="btn-pencil"><i data-lucide="pencil"></i></div>
+                <div class="action-btn" id="btn-laser"><i data-lucide="wand-2" style="color: var(--state-danger);"></i></div>
+                
+                <div class="action-btn"><i data-lucide="shapes"></i></div>
+                <div class="action-btn"><i data-lucide="eraser"></i></div>
+                <div class="action-btn"><i data-lucide="hand"></i></div>
+                <div class="action-btn"><i data-lucide="type"></i></div>
+                <div class="action-btn"><i data-lucide="undo-2"></i></div>
+                <div class="dock-sep"></div>
+                
+                <div class="audio-wave">
+                    <i data-lucide="activity"></i>
+                    <div class="viz-container">
+                        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="action-btn" style="color: var(--state-danger); background: rgba(255,59,48,0.08); border: 1px solid rgba(255,59,48,0.2);">
+                    <i data-lucide="mic-off"></i>
+                </div>
+                
+                <div class="action-btn"><i data-lucide="message-square"></i></div>
+                <div class="action-btn"><i data-lucide="users"></i></div>
+                <div class="dock-sep"></div>
+                <div class="action-btn"><i data-lucide="maximize"></i></div>
+                <div class="action-btn"><i data-lucide="log-out" style="color: var(--state-danger);"></i></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Kursor Dock paneliga kelib chertgan vaqti (Taqriban 720ms - 24%)
+        // Qalam o'chib, Lazer qizil bo'lib yonadi.
+        setTimeout(() => {
+            const pencilBtn = document.getElementById('btn-pencil');
+            const laserBtn = document.getElementById('btn-laser');
+            
+            pencilBtn.classList.remove('is-active');
+            // Lazerni o'ziga xos qizil fonda yonishi uchun maxsus klass
+            laserBtn.classList.add('laser-active');
+            // Ikonkani ham oq rangga o'tkazamiz
+            laserBtn.querySelector('svg').style.color = '#fff';
+        }, 720);
+
+        // 3 Soniyadan keyin avtomatik 6-qismga (Matn yoki Shakllar kiritishga) o'tadi
+        setTimeout(() => {
+            window.location.href = 'part6.html';
+        }, 3000); 
+    </script>
+
+</body>
+</html>

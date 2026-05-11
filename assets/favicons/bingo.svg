@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bingoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8ab4f8"/>
+      <stop offset="100%" style="stop-color:#4285f4"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="46" fill="url(#bingoGrad)"/>
+  <!-- 3x3 kataklar -->
+  <rect x="18" y="18" width="20" height="20" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="40" y="18" width="20" height="20" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <rect x="62" y="18" width="20" height="20" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="18" y="40" width="20" height="20" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <rect x="40" y="40" width="20" height="20" rx="3" fill="rgba(255,255,255,0.7)"/>
+  <rect x="62" y="40" width="20" height="20" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <rect x="18" y="62" width="20" height="20" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="40" y="62" width="20" height="20" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <rect x="62" y="62" width="20" height="20" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <!-- X belgisi markazda -->
+  <line x1="45" y1="45" x2="55" y2="55" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="55" y1="45" x2="45" y2="55" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+</svg>

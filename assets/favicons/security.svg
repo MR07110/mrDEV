@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="secGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8ab4f8"/>
+      <stop offset="100%" style="stop-color:#4285f4"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Orqa fon doira -->
+  <circle cx="50" cy="50" r="46" fill="url(#secGrad)"/>
+  
+  <!-- Glass qalqon - qalin kontur, ichi xira oq -->
+  <path d="M50 14L24 26V52C24 70 36 78 50 84C64 78 76 70 76 52V26L50 14Z" 
+        fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="6" stroke-linejoin="round" opacity="0.95"/>
+</svg>

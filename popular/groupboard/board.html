@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="uz" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0f172a" id="theme-color">
+    <title>MR BOARD</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="shortcut icon" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+<body>
+
+    <div id="toast-wrapper" class="toast-wrapper"></div>
+    <button class="zen-exit-btn" id="btn-exit-zen"><i data-lucide="maximize-2"></i></button>
+
+    <!-- ==================== LOGIN/REGISTER PANEL ==================== -->
+    <div id="auth-gateway">
+        <div class="auth-gateway-container">
+            <div class="auth-info">
+                <div class="auth-info-content">
+                    <div class="auth-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <h2>MR <span>BOARD</span></h2>
+                    </div>
+                    <h1>Jamoaviy ishlashning<br>yangi davri</h1>
+                    <p>Real-time whiteboard. Ovozli muloqot. Cheksiz doska. Barchasi bir joyda.</p>
+                    <div class="auth-stats">
+                        <div class="stat"><span class="stat-number">0ms</span><span class="stat-label">Kechikish</span></div>
+                        <div class="stat"><span class="stat-number">∞</span><span class="stat-label">Cheksiz doska</span></div>
+                        <div class="stat"><span class="stat-number">🎤</span><span class="stat-label">Audio chat</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auth-form-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Kirish</button>
+                    <button class="auth-tab" data-tab="register">Ro'yxatdan o'tish</button>
+                </div>
+                
+                <div class="auth-panel active" id="login-panel">
+                    <div class="auth-form">
+                        <div class="form-group">
+                            <label><i data-lucide="mail"></i> Email</label>
+                            <input type="email" id="login-email" class="form-input" placeholder="email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label><i data-lucide="lock"></i> Parol</label>
+                            <input type="password" id="login-password" class="form-input" placeholder="••••••••">
+                        </div>
+                        <div class="error-message" id="login-error"></div>
+                        <button class="btn-primary" id="btn-login">
+                            <i data-lucide="log-in"></i>
+                            <span>Kirish</span>
+                        </button>
+                        <div class="form-info">
+                            <i data-lucide="info"></i>
+                            <span>Hisobingiz bo'lmasa, ro'yxatdan o'ting</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="auth-panel" id="register-panel">
+                    <div class="auth-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i data-lucide="user"></i> Ism</label>
+                                <input type="text" id="reg-firstname" class="form-input" placeholder="Ismingiz">
+                            </div>
+                            <div class="form-group">
+                                <label><i data-lucide="user"></i> Familiya</label>
+                                <input type="text" id="reg-lastname" class="form-input" placeholder="Familiyangiz">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><i data-lucide="at-sign"></i> Username</label>
+                            <input type="text" id="reg-username" class="form-input" placeholder="username">
+                        </div>
+                        <div class="form-group">
+                            <label><i data-lucide="mail"></i> Email</label>
+                            <input type="email" id="reg-email" class="form-input" placeholder="email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label><i data-lucide="lock"></i> Parol</label>
+                            <input type="password" id="reg-password" class="form-input" placeholder="••••••••">
+                        </div>
+                        <div class="form-group">
+                            <label><i data-lucide="lock"></i> Parolni tasdiqlang</label>
+                            <input type="password" id="reg-confirm" class="form-input" placeholder="••••••••">
+                        </div>
+                        <div class="error-message" id="register-error"></div>
+                        <div class="success-message" id="register-success"></div>
+                        <button class="btn-primary" id="btn-register">
+                            <i data-lucide="user-plus"></i>
+                            <span>Ro'yxatdan o'tish</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== XONA YARATISH MODAL ==================== -->
+    <div class="modal-box" id="modal-create-room" style="max-width: 400px;">
+        <h3 style="text-align: center; font-size: 20px; margin-bottom: 20px;">✨ Yangi xona yaratish</h3>
+        <div class="form-group">
+            <label><i data-lucide="tag"></i> Xona nomi</label>
+            <input type="text" id="new-room-name" class="form-input" placeholder="Masalan: Matematika 7-sinf">
+        </div>
+        <div class="form-group">
+            <label><i data-lucide="globe"></i> Xona turi</label>
+            <div style="display: flex; gap: 12px; margin-top: 8px;">
+                <button class="room-type-selector active" data-type="public" style="flex: 1; padding: 12px; border-radius: 16px; background: var(--brand-alpha); border: 1px solid var(--brand-primary); cursor: pointer;">🌍 Public</button>
+                <button class="room-type-selector" data-type="private" style="flex: 1; padding: 12px; border-radius: 16px; background: var(--bg-base); border: 1px solid var(--border-strong); cursor: pointer;">🔒 Private</button>
+            </div>
+        </div>
+        <div class="form-group" id="new-room-password-group" style="display: none;">
+            <label><i data-lucide="key"></i> Xona paroli (ixtiyoriy)</label>
+            <input type="password" id="new-room-password" class="form-input" placeholder="Parol qo'yish">
+            <small style="font-size: 11px; color: var(--text-muted);">Private xonalar uchun tavsiya etiladi</small>
+        </div>
+        <div class="modal-actions" style="margin-top: 24px;">
+            <button class="btn btn-ghost" id="btn-cancel-create-room">Bekor</button>
+            <button class="btn btn-primary" id="btn-confirm-create-room">Yaratish</button>
+        </div>
+    </div>
+
+    <!-- ==================== XONAGA KIRISH MODAL ==================== -->
+    <div class="modal-box" id="modal-join-room" style="max-width: 360px;">
+        <h3 style="text-align: center; font-size: 20px; margin-bottom: 20px;">🔐 Xonaga kirish</h3>
+        <div id="join-room-info" style="margin-bottom: 16px; text-align: center;">
+            <p id="join-room-name" style="font-weight: 700;"></p>
+            <p id="join-room-code" style="font-size: 12px; color: var(--text-muted);"></p>
+        </div>
+        <div class="form-group" id="join-room-password-group">
+            <label><i data-lucide="key"></i> Xona paroli</label>
+            <input type="password" id="join-room-password" class="form-input" placeholder="Parolni kiriting">
+        </div>
+        <div class="error-message" id="join-room-error" style="display: none;"></div>
+        <div class="modal-actions" style="margin-top: 24px;">
+            <button class="btn btn-ghost" id="btn-cancel-join-room">Bekor</button>
+            <button class="btn btn-primary" id="btn-confirm-join-room">Kirish</button>
+        </div>
+    </div>
+
+    <!-- ==================== JSON IMPORT MODAL ==================== -->
+    <div class="modal-box" id="modal-json-import" style="max-width: 400px;">
+        <h3 style="text-align: center; font-size: 20px; margin-bottom: 20px;">📁 JSON orqali xonaga kirish</h3>
+        <div class="form-group">
+            <label><i data-lucide="file-json"></i> JSON fayl tanlang</label>
+            <input type="file" id="json-import-file" accept=".json" class="form-input" style="padding: 12px;">
+        </div>
+        <div class="form-info" style="margin: 16px 0;">
+            <i data-lucide="info"></i>
+            <span>Fayl ichida xona kodi bo'lishi kerak. Xona faol bo'lsa, avtomatik ulanadi.</span>
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-ghost" id="btn-cancel-json-import">Bekor</button>
+            <button class="btn btn-primary" id="btn-confirm-json-import">Import qilish</button>
+        </div>
+    </div>
+
+    <!-- ==================== WHITEBOARD APP ==================== -->
+    <div id="app-container" class="grid-pattern" style="display: none;">
+        <div class="user-info-bar">
+            <div class="user-info-left">
+                <div class="user-avatar" id="user-avatar"></div>
+                <div class="user-details">
+                    <span class="user-name" id="user-name-display"></span>
+                    <span class="user-role" id="user-role-display"></span>
+                </div>
+            </div>
+            <div class="user-info-right">
+                <button class="btn-logout" id="btn-logout">
+                    <i data-lucide="log-out"></i>
+                    <span>Chiqish</span>
+                </button>
+            </div>
+        </div>
+        
+        <canvas id="layer-base" class="engine-layer"></canvas>
+        <canvas id="layer-live" class="engine-layer"></canvas>
+        <canvas id="layer-laser" class="engine-layer"></canvas>
+
+        <div class="minimap-widget" id="minimap-widget">
+            <div class="minimap-header" id="minimap-header">
+                <i data-lucide="map" size="12"></i>
+                <span>Kuzatuv</span>
+                <button class="minimap-close-btn" id="btn-close-minimap"><i data-lucide="x" size="12"></i></button>
+            </div>
+            <div class="minimap-body">
+                <canvas id="minimap-cvs"></canvas>
+                <div id="minimap-view"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ui-overlay" style="display: none;">
+        <div class="top-bar">
+            <div class="status-pill"><i data-lucide="hash"></i><span id="ui-room-code">---</span></div>
+            <div class="status-pill"><i data-lucide="zoom-in"></i><span id="ui-zoom-level">100%</span></div>
+            <div class="status-pill" id="ui-user-role"><i data-lucide="eye"></i> Kuzatuvchi</div>
+        </div>
+
+        <div class="bottom-dock">
+            <div class="dock-content">
+                <button class="action-btn" id="btn-open-settings"><i data-lucide="settings"></i></button>
+                <button class="action-btn" id="btn-open-colors"><div class="color-indicator" id="ui-current-color" style="background: #007aff;"></div></button>
+                <div class="dock-sep"></div>
+                <button class="action-btn is-active" data-tool="draw"><i data-lucide="pencil"></i></button>
+                <button class="action-btn" data-tool="laser"><i data-lucide="wand-2"></i></button>
+                <button class="action-btn" id="btn-toggle-shapes"><i data-lucide="shapes"></i></button>
+                <button class="action-btn" data-tool="erase"><i data-lucide="eraser"></i></button>
+                <button class="action-btn" data-tool="pan"><i data-lucide="hand"></i></button>
+                <button class="action-btn" data-tool="text"><i data-lucide="type"></i></button>
+                <button class="action-btn" id="btn-action-undo"><i data-lucide="undo-2"></i></button>
+                <div class="dock-sep"></div>
+                
+                <div class="audio-module">
+                    <i data-lucide="activity" size="14"></i>
+                    <div class="viz-container" id="eq-container">
+                        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                    </div>
+                </div>
+                
+                <button class="action-btn mic-off" id="btn-action-mic"><i data-lucide="mic-off"></i></button>
+                <button class="action-btn" id="btn-open-chat"><i data-lucide="message-square"></i><div class="badge-counter" id="badge-chat-count" style="display: none;">0</div></button>
+                <button class="action-btn" id="btn-open-users"><i data-lucide="users"></i><div class="badge-counter" id="badge-users-count">0</div></button>
+                <div class="dock-sep"></div>
+                <button class="action-btn" id="btn-action-fullscreen"><i data-lucide="maximize"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="backdrop" id="drawer-backdrop"></div>
+
+    <!-- Settings Drawer -->
+    <div class="drawer" id="drawer-settings">
+        <div class="drawer-header">
+            <div class="drawer-title"><i data-lucide="settings"></i> Sozlamalar</div>
+            <button class="btn-close" data-close><i data-lucide="x"></i></button>
+        </div>
+        <div class="drawer-content">
+            <div class="section-label" style="font-size:12px; font-weight:800; margin-bottom:12px;">Asbob qalinligi</div>
+            <div class="slider-group">
+                <i data-lucide="pen-tool"></i>
+                <input type="range" id="inp-tool-size" min="1" max="50" value="4">
+                <span id="val-tool-size" style="font-weight:700;">4px</span>
+            </div>
+            
+            <div class="section-label" style="font-size:12px; font-weight:800; margin-bottom:12px;">Ko'rinish</div>
+            <div class="settings-grid">
+                <button class="setting-card" id="act-toggle-minimap"><i data-lucide="map"></i>Minimap</button>
+                <button class="setting-card" id="act-center"><i data-lucide="target"></i>Markaz</button>
+            </div>
+
+            <div class="section-label" style="font-size:12px; font-weight:800; margin-bottom:12px;">Asosiy amallar</div>
+            <div class="settings-grid">
+                <button class="setting-card" id="act-undo"><i data-lucide="undo-2"></i>Bekor</button>
+                <button class="setting-card" id="act-image"><i data-lucide="image"></i>Rasm</button>
+                <button class="setting-card" id="act-export"><i data-lucide="download"></i>PNG</button>
+                <button class="setting-card" id="act-save-json"><i data-lucide="save"></i>Saqlash</button>
+                <button class="setting-card" id="act-load-json"><i data-lucide="folder-open"></i>Yuklash</button>
+            </div>
+            
+            <div id="panel-host-controls" style="display: none;">
+                <div class="section-label" style="font-size:12px; font-weight:800; margin:16px 0 12px; color: var(--state-danger);">O'qituvchi Paneli</div>
+                <div class="settings-grid" style="grid-template-columns: 1fr;">
+                    <button class="setting-card danger" id="act-clear-board"><i data-lucide="trash-2"></i>Doskani tozalash</button>
+                    <button class="setting-card danger" id="act-disable-laser"><i data-lucide="wand-2"></i>Lazer o'chirish</button>
+                </div>
+                
+                <div class="section-label" style="font-size:12px; font-weight:800; margin:16px 0 12px;">Xona linklari</div>
+                <div class="link-box" id="teacher-link-box" style="display: none;">
+                    <span id="teacher-link-text" style="font-size:10px;"></span>
+                    <button class="copy-btn" data-copy="teacher">Nusxa</button>
+                </div>
+                <div class="link-box" id="student-link-box" style="display: none;">
+                    <span id="student-link-text" style="font-size:10px;"></span>
+                    <button class="copy-btn" data-copy="student">Nusxa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Colors Drawer -->
+    <div class="drawer" id="drawer-colors">
+        <div class="drawer-header">
+            <div class="drawer-title"><i data-lucide="palette"></i> Ranglar</div>
+            <button class="btn-close" data-close><i data-lucide="x"></i></button>
+        </div>
+        <div class="drawer-content">
+            <div class="color-wheel-wrapper"><canvas id="cvs-color-picker" width="260" height="260"></canvas></div>
+            <div class="slider-group"><i data-lucide="sun"></i><input type="range" id="inp-color-bright" min="0" max="100" value="100"></div>
+            <div class="palette-grid" id="ui-quick-palette"></div>
+        </div>
+    </div>
+
+    <!-- Users Drawer -->
+    <div class="drawer right" id="drawer-users">
+        <div class="drawer-header">
+            <div class="drawer-title"><i data-lucide="users"></i> Qatnashchilar</div>
+            <button class="btn-close" data-close><i数据-lucide="x"></i></button>
+        </div>
+        <div class="drawer-content">
+            <div class="user-list" id="ui-participants-list"></div>
+        </div>
+    </div>
+
+    <!-- Chat Drawer -->
+    <div class="drawer right" id="drawer-chat">
+        <div class="drawer-header">
+            <div class="drawer-title"><i data-lucide="message-square"></i> Chat</div>
+            <button class="btn-close" data-close><i data-lucide="x"></i></button>
+        </div>
+        <div class="chat-messages" id="ui-chat-messages"></div>
+        <div class="chat-composer">
+            <input type="text" id="inp-chat-text" class="chat-input" placeholder="Xabar yozing..." maxlength="250">
+            <button class="chat-submit" id="btn-submit-chat"><i data-lucide="send"></i></button>
+        </div>
+    </div>
+
+    <!-- Shapes Drawer -->
+    <div class="drawer" id="drawer-shapes">
+        <div class="drawer-header">
+            <div class="drawer-title"><i data-lucide="shapes"></i> Shakllar</div>
+            <button class="btn-close" data-close><i data-lucide="x"></i></button>
+        </div>
+        <div class="drawer-content">
+            <div class="settings-grid">
+                <button class="setting-card" data-tool="rect"><i data-lucide="square"></i>To'rtburchak</button>
+                <button class="setting-card" data-tool="circle"><i data-lucide="circle"></i>Aylana</button>
+                <button class="setting-card" data-tool="line"><i data-lucide="minus"></i>Chiziq</button>
+                <button class="setting-card" data-tool="arrow"><i data-lucide="arrow-up-right"></i>O'q</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text Modal -->
+    <div class="modal-box" id="modal-text-input">
+        <h3 style="text-align: center; font-size: 20px;">Matn kiritish</h3>
+        <textarea id="inp-text-area" placeholder="Matnni yozing..." maxlength="300"></textarea>
+        <div class="modal-actions">
+            <button class="btn btn-ghost" id="btn-cancel-text">Bekor</button>
+            <button class="btn btn-primary" id="btn-add-text">Qo'shish</button>
+        </div>
+    </div>
+
+    <input type="file" id="sys-file-img" accept="image/*" style="display: none;">
+    <input type="file" id="sys-file-json" accept=".json" style="display: none;">
+
+    <!-- External JavaScript Files -->
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/main.js"></script>
+    
+    <script>
+        // URL dan xona ID sini olish
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomIdFromUrl = urlParams.get('room');
+        
+        if (roomIdFromUrl) {
+            localStorage.setItem('pendingRoomId', roomIdFromUrl);
+        }
+    </script>
+    
+    <!-- ✅ AI MODAL - XATOLIKSIZ UNIVERSAL -->
+    <script src="js/ai-modal.js"></script>
+</body>
+</html>

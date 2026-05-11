@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24-Dars: Z-index va Overflow | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "24",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=AL9Iuzust7I",
+            "lessonTitle": "Z-index va Overflow"
+        }
+    </script>
+    
+    <!-- Test javoblari (24-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>24-Dars: Z-index va Overflow</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 15:12
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/AL9Iuzust7I" 
+                            title="CSS | 24. Z-index va Overflow"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 24. Z-index va Overflow</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 15:12</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Z-index va Overflow</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 31-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Positioning</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da elementlarning ustma-ust tushish tartibini boshqaruvchi <code>z-index</code> xususiyati va konteynerdan chiqib ketgan kontentni boshqaruvchi <code>overflow</code> xususiyatini batafsil o'rganasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>z-index</code> - elementlarning qatlam tartibi</li>
+                        <li><i class="fas fa-check-circle"></i> z-index qachon ishlaydi va qachon ishlamaydi?</li>
+                        <li><i class="fas fa-check-circle"></i> <code>overflow</code> - kontentni boshqarish</li>
+                        <li><i class="fas fa-check-circle"></i> overflow qiymatlari: visible, hidden, scroll, auto</li>
+                        <li><i class="fas fa-check-circle"></i> overflow-x va overflow-y</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>z-index faqat positioned elementlarda:</strong> <code>z-index</code> faqat <code>position</code> qiymati <strong>static bo'lmagan</strong> elementlarda ishlaydi.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Stacking context:</strong> <code>z-index</code> qiymati ota elementning stacking context ichida ishlaydi. Bola element ota elementdan tashqariga chiqa olmaydi.</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>overflow: hidden:</strong> Float elementlarni tozalash va konteynerdan chiqib ketgan kontentni yashirish uchun ishlatiladi.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: Z-INDEX NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-z-index">
+                    <h2><i class="fas fa-layer-group"></i> Z-index nima?</h2>
+                    
+                    <p><strong><code>z-index</code></strong> xususiyati elementlarning ustma-ust tushish tartibini (qatlamlanishini) boshqaradi. Qiymat qancha katta bo'lsa, element shuncha yuqorida (oldinda) bo'ladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* z-index ishlashi uchun position kerak */
+.box-1 {
+    position: relative;
+    z-index: 1;          /* Pastki qatlam */
+}
+
+.box-2 {
+    position: relative;
+    z-index: 10;         /* Yuqori qatlam - oldinda */
+}
+
+.box-3 {
+    position: relative;
+    z-index: 5;          /* O'rta qatlam */
+}
+
+/* Manfiy qiymat ham mumkin */
+.box-back {
+    position: relative;
+    z-index: -1;         /* Eng pastda */
+}</code></pre>
+                    </div>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title">
+                            <i class="fas fa-stack"></i>
+                            <span>Z-index tushunchasi</span>
+                        </div>
+                        <div class="analogy-content" style="flex-direction: column;">
+                            <div style="background: #3b82f6; color: white; padding: 20px; border-radius: 8px; width: 200px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                                z-index: 10 (Eng yuqori)
+                            </div>
+                            <div style="background: #10b981; color: white; padding: 20px; border-radius: 8px; width: 180px; margin-top: -20px; margin-left: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                                z-index: 5 (O'rta)
+                            </div>
+                            <div style="background: #f59e0b; color: white; padding: 20px; border-radius: 8px; width: 160px; margin-top: -20px; margin-left: 40px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                                z-index: 1 (Eng past)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> <code>z-index</code> faqat <code>position</code> qiymati <strong>static bo'lmagan</strong> (relative, absolute, fixed, sticky) elementlarda ishlaydi. <code>position: static</code> bo'lsa, z-index ishlamaydi!
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: STACKING CONTEXT ==================== -->
+                <section class="lesson-section" id="stacking-context">
+                    <h2><i class="fas fa-cubes"></i> Stacking Context</h2>
+                    
+                    <p><strong>Stacking context</strong> - bu elementlarning z-o'qi bo'yicha joylashuv konteksti. Har bir stacking context o'zining ichki z-index tartibiga ega va boshqa stacking context lar bilan taqqoslanmaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Stacking context yaratuvchi xususiyatlar */
+.stacking-context {
+    position: relative;
+    z-index: 1;              /* Stacking context yaratadi */
+    
+    /* YOKI */
+    position: absolute;
+    /* YOKI */
+    opacity: 0.99;           /* 1 dan kichik opacity */
+    /* YOKI */
+    transform: scale(1);     /* Har qanday transform */
+    /* YOKI */
+    display: flex;           /* z-index bilan birga */
+}
+
+/* Bola element ota stacking context ichida */
+.parent {
+    position: relative;
+    z-index: 1;
+}
+
+.child {
+    position: absolute;
+    z-index: 999;            /* Faqat parent ichida 999 */
+    /* Boshqa parent elementlardan o'tib ketolmaydi! */
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Stacking context nima uchun muhim?</strong> Bola elementning z-index qiymati qancha katta bo'lmasin, u ota elementining stacking context idan tashqariga chiqa olmaydi. Bu murakkab layoutlarda tushunmovchiliklarga sabab bo'lishi mumkin.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: OVERFLOW ==================== -->
+                <section class="lesson-section" id="overflow">
+                    <h2><i class="fas fa-expand"></i> Overflow xususiyati</h2>
+                    
+                    <p><strong><code>overflow</code></strong> xususiyati elementning kontenti konteynerdan chiqib ketganda nima bo'lishini boshqaradi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* overflow qiymatlari */
+.overflow-visible {
+    overflow: visible;       /* Default - kontent chiqib ketadi */
+}
+
+.overflow-hidden {
+    overflow: hidden;        /* Chiqib ketgan kontent yashiriladi */
+}
+
+.overflow-scroll {
+    overflow: scroll;        /* Har doim scroll bar ko'rinadi */
+}
+
+.overflow-auto {
+    overflow: auto;          /* Kerak bo'lganda scroll bar */
+}
+
+/* Gorizontal va vertikal alohida */
+.overflow-separate {
+    overflow-x: hidden;      /* Gorizontal scroll yashiriladi */
+    overflow-y: auto;        /* Vertikal scroll avtomatik */
+}</code></pre>
+                    </div>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Qiymat</th>
+                                    <th>Tavsif</th>
+                                    <th>Qachon ishlatiladi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>visible</code></td>
+                                    <td>Kontent konteynerdan chiqib ketadi (default)</td>
+                                    <td>Odatda o'zgartirilmaydi</td>
+                                </tr>
+                                <tr>
+                                    <td><code>hidden</code></td>
+                                    <td>Chiqib ketgan kontent yashiriladi</td>
+                                    <td>Float tozalash, rasm kesish, animatsiyalar</td>
+                                </tr>
+                                <tr>
+                                    <td><code>scroll</code></td>
+                                    <td>Har doim scroll bar ko'rsatadi</td>
+                                    <td>Doimiy scroll bar kerak bo'lganda</td>
+                                </tr>
+                                <tr>
+                                    <td><code>auto</code></td>
+                                    <td>Kerak bo'lgandagina scroll bar</td>
+                                    <td>Dinamik kontent uchun (eng ko'p ishlatiladi)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>overflow: hidden fokuslari:</strong> Float elementlarni tozalash, margin collapsing ni oldini olish, rasm hover effektlari (zoom), va konteyner chegarasini saqlash uchun ishlatiladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: AMALIY MISOL ==================== -->
+                <section class="lesson-section" id="practical-example">
+                    <h2><i class="fas fa-laptop"></i> Amaliy misol</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Modal overlay - yuqori z-index */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1001;           /* Overlay dan yuqorida */
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+/* Dropdown menyu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 8px;
+}
+
+/* Scrollable konteyner */
+.scrollable-container {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Rasm zoom effekti */
+.image-card {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-card img {
+    transition: transform 0.3s;
+}
+
+.image-card:hover img {
+    transform: scale(1.1);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 24-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            <code>z-index</code> qaysi holatda ishlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>Barcha elementlarda</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>position static bo'lmagan elementlarda</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>Faqat block elementlarda</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>Faqat inline elementlarda</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            <code>overflow: hidden</code> nima qiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>Kontentni o'chiradi</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>Kontentni kichiklashtiradi</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>Chiqib ketgan kontentni yashiradi</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>Scroll bar qo'shadi</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            Qaysi xususiyat stacking context yaratmaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>position: static</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>position: relative + z-index</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>opacity: 0.5</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>transform: scale(1)</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Kerak bo'lgandagina scroll bar ko'rsatish uchun qaysi qiymat ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>overflow: visible</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>overflow: hidden</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>overflow: scroll</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>overflow: auto</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Z-index va Overflow xususiyatlaridan foydalanib sahifa elementlarini yarating.</p>
+                        <ol>
+                            <li><strong>Modal oyna:</strong> <code>z-index: 1000</code> overlay va <code>z-index: 1001</code> modal kontent yarating</li>
+                            <li><strong>Dropdown menyu:</strong> <code>position: absolute</code> va <code>z-index: 100</code> bilan dropdown yarating</li>
+                            <li><strong>Scrollable konteyner:</strong> <code>max-height: 300px; overflow-y: auto;</code> bering</li>
+                            <li><strong>Rasm zoom:</strong> <code>overflow: hidden</code> va hover da <code>transform: scale(1.1)</code> qo'shing</li>
+                            <li><strong>Sticky header:</strong> <code>position: sticky; z-index: 50;</code> bering</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-html">&lt;!-- Sticky header --&gt;
+&lt;header class="sticky-header"&gt;
+    &lt;nav&gt;Navigatsiya&lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;!-- Dropdown --&gt;
+&lt;div class="dropdown"&gt;
+    &lt;button&gt;Menyu&lt;/button&gt;
+    &lt;div class="dropdown-menu"&gt;
+        &lt;a href="#"&gt;Link 1&lt;/a&gt;
+        &lt;a href="#"&gt;Link 2&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Rasm zoom --&gt;
+&lt;div class="image-card"&gt;
+    &lt;img src="image.jpg" alt="Rasm"&gt;
+&lt;/div&gt;
+
+&lt;!-- Scrollable konteyner --&gt;
+&lt;div class="scrollable-container"&gt;
+    &lt;p&gt;Uzun kontent...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    min-width: 150px;
+}
+
+.image-card {
+    width: 300px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-card img {
+    width: 100%;
+    transition: transform 0.3s;
+}
+
+.image-card:hover img {
+    transform: scale(1.1);
+}
+
+.scrollable-container {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>z-index</strong> - elementlarning qatlam tartibini boshqaradi, faqat positioned elementlarda ishlaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Stacking context</strong> - elementlarning z-o'qi bo'yicha joylashuv konteksti</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>overflow</strong> - konteynerdan chiqib ketgan kontentni boshqaradi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>overflow qiymatlari:</strong> visible, hidden, scroll, auto</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>overflow: hidden</strong> - float tozalash, rasm zoom effektlari uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Positioning yordamida loyihani yaxshilash (Nazorat ishi!)</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../23/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../25/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#what-is-z-index">Z-index nima?</a></li>
+                        <li><a href="#stacking-context">Stacking Context</a></li>
+                        <li><a href="#overflow">Overflow</a></li>
+                        <li><a href="#practical-example">Amaliy misol</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">24/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 38.1%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

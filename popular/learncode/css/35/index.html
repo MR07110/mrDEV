@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>35-Dars: "em" o'lchov birligi | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "35",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=1MUBPJ7sKz0",
+            "lessonTitle": "em o'lchov birligi"
+        }
+    </script>
+    
+    <!-- Test javoblari (35-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>35-Dars: "em" o'lchov birligi</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 15:43
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/1MUBPJ7sKz0" 
+                            title="CSS | 35. em o'lchov birligi"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 35. "em" o'lchov birligi</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 15:43</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>"em" o'lchov birligi</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 11-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Units va RWD</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Nazorat ishi belgisi -->
+                <div class="info-box" style="background: linear-gradient(135deg, var(--primary-bg), var(--warning-bg)); border-color: var(--primary);">
+                    <i class="fas fa-clipboard-list"></i>
+                    <strong>Eslatma!</strong>
+                    <p>Bu dars oxirida 1-35 darslar bo'yicha 35 ta "test"dan iborat nazorat ishi mavjud. Test barcha o'tilgan mavzular bo'yicha bo'ladi.</p>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da <code>em</code> o'lchov birligini chuqur o'rganasiz. <code>em</code> birligi nimaga nisbatan hisoblanishi, <code>rem</code> dan farqi, compounding (ko'payib ketish) muammosi va qachon ishlatish kerakligini bilib olasiz. Shuningdek, 1-35 darslar bo'yicha nazorat ishi orqali bilimingizni mustahkamlaysiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>em</code> birligi nimaga nisbatan hisoblanadi?</li>
+                        <li><i class="fas fa-check-circle"></i> <code>em</code> vs <code>rem</code> - asosiy farqlar</li>
+                        <li><i class="fas fa-check-circle"></i> Compounding muammosi va uni hal qilish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>em</code> birligini qachon ishlatish kerak?</li>
+                        <li><i class="fas fa-check-circle"></i> 1-35 darslar bo'yicha 35 talik nazorat ishi</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>em nimaga nisbatan?</strong> <code>font-size</code> da ota element font-size iga, boshqa xususiyatlarda joriy element font-size iga nisbatan.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>rem afzal:</strong> <code>rem</code> root ga nisbatan, compounding muammosidan xoli. Global spacing uchun <code>rem</code> ishlating.</span>
+                            <span class="badge good-to-know">Professional</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>em qachon kerak?</strong> Komponent ichidagi spacing (padding, margin) uchun <code>em</code> qulay - komponent font-size i o'zgarsa, hamma narsa proporsional o'zgaradi.</span>
+                            <span class="badge tip">Amaliyot</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-clipboard-check"></i>
+                            <span><strong>Nazorat ishiga tayyorlaning:</strong> 1-35 darslarni yaxshilab takrorlang. Nazorat ishi barcha mavzularni qamrab oladi.</span>
+                            <span class="badge tip">muhim</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: EM NIMAGA NISBATAN? ==================== -->
+                <section class="lesson-section" id="em-relative">
+                    <h2><i class="fas fa-ruler"></i> em nimaga nisbatan hisoblanadi?</h2>
+                    
+                    <p><code>em</code> birligi ikki xil kontekstda turlicha hisoblanadi:</p>
+                    <ul>
+                        <li><strong>font-size</strong> da - ota elementning font-size iga nisbatan</li>
+                        <li><strong>Boshqa xususiyatlarda</strong> (width, margin, padding) - joriy elementning font-size iga nisbatan</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">.parent {
+    font-size: 20px;
+}
+
+/* font-size: ota element font-size iga nisbatan */
+.child {
+    font-size: 1.5em;       /* 20px * 1.5 = 30px */
+}
+
+/* boshqa xususiyatlar: joriy element font-size iga nisbatan */
+.box {
+    font-size: 16px;
+    padding: 1em;           /* 16px * 1 = 16px */
+    margin: 2em;            /* 16px * 2 = 32px */
+    width: 10em;            /* 16px * 10 = 160px */
+    border-radius: 0.5em;   /* 16px * 0.5 = 8px */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: COMPOUNDING MUAMMOSI ==================== -->
+                <section class="lesson-section" id="compounding">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Compounding (ko'payib ketish) muammosi</h2>
+                    
+                    <p><code>em</code> birligining eng katta muammosi - ichma-ich elementlarda qiymatlar ko'payib ketishi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Compounding muammosi */
+.level-1 {
+    font-size: 1.5em;       /* 16px * 1.5 = 24px */
+}
+
+.level-1 .level-2 {
+    font-size: 1.5em;       /* 24px * 1.5 = 36px (24px dan emas!) */
+}
+
+.level-1 .level-2 .level-3 {
+    font-size: 1.5em;       /* 36px * 1.5 = 54px (ko'payib ketaveradi!) */
+}
+
+/* Yechim: rem ishlatish */
+.level-1-rem {
+    font-size: 1.5rem;      /* 16px * 1.5 = 24px (root ga nisbatan) */
+}
+
+.level-1-rem .level-2-rem {
+    font-size: 1.5rem;      /* 16px * 1.5 = 24px (har doim root ga) */
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> Compounding muammosi tufayli global font-size va spacing uchun <code>rem</code> ishlatish tavsiya etiladi. <code>em</code> faqat komponent ichidagi nisbiy o'lchamlar uchun.
+                    </div>
+                </section>
+                
+                <!-- ==================== NAZORAT ISHI (1-35 DARSLAR) - 35 TA SAVOL ==================== -->
+                <div class="test-block" id="mix-test" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe); border: 2px solid #3b82f6;">
+                    <div class="test-header">
+                        <h3><i class="fas fa-clipboard-list"></i> Nazorat ishi</h3>
+                        <span class="test-badge" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">35 ta test</span>
+                    </div>
+                    
+                    <p style="margin-bottom: 20px; font-size: 0.9rem;">Bu nazorat ishi 1-darsdan 35-darsgacha o'tilgan barcha mavzularni qamrab oladi. 35 ta savoldan iborat.</p>
+                    
+                    <!-- 1-35 savollar (aralash tartibda) -->
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>CSS ning to'liq nomi nima?</div><div class="options"><div class="option"><input type="radio" name="mix_q1" value="a"><label>Computer Style Sheets</label></div><div class="option"><input type="radio" name="mix_q1" value="b"><label>Cascading Style Sheets</label></div><div class="option"><input type="radio" name="mix_q1" value="c"><label>Creative Style System</label></div><div class="option"><input type="radio" name="mix_q1" value="d"><label>Colorful Style Sheets</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span><code>em</code> birligi <code>font-size</code> da nimaga nisbatan hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="mix_q2" value="a"><label>Root element font-size iga</label></div><div class="option"><input type="radio" name="mix_q2" value="b"><label>Ota element font-size iga</label></div><div class="option"><input type="radio" name="mix_q2" value="c"><label>Joriy element font-size iga</label></div><div class="option"><input type="radio" name="mix_q2" value="d"><label>Viewport kengligiga</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span><code>margin-top: 10%;</code> nimaga nisbatan hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="mix_q3" value="a"><label>Ota element balandligiga</label></div><div class="option"><input type="radio" name="mix_q3" value="b"><label>Ota element kengligiga</label></div><div class="option"><input type="radio" name="mix_q3" value="c"><label>Element balandligiga</label></div><div class="option"><input type="radio" name="mix_q3" value="d"><label>Viewport balandligiga</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Class selektor qaysi belgi bilan boshlanadi?</div><div class="options"><div class="option"><input type="radio" name="mix_q4" value="a"><label># (hash)</label></div><div class="option"><input type="radio" name="mix_q4" value="b"><label>. (nuqta)</label></div><div class="option"><input type="radio" name="mix_q4" value="c"><label>* (yulduzcha)</label></div><div class="option"><input type="radio" name="mix_q4" value="d"><label>@ (at)</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">5</span>To'liq ekran balandligini egallash uchun qaysi birlik ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q5" value="a"><label>100%</label></div><div class="option"><input type="radio" name="mix_q5" value="b"><label>100px</label></div><div class="option"><input type="radio" name="mix_q5" value="c"><label>100vh</label></div><div class="option"><input type="radio" name="mix_q5" value="d"><label>100vw</label></div></div></div>
+                    
+                    <!-- 6-35 savollar davomi (qisqartirilgan) -->
+                    <div class="test-question"><div class="question-text"><span class="question-number">6</span>CSS da izoh qanday yoziladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q6" value="a"><label>// izoh</label></div><div class="option"><input type="radio" name="mix_q6" value="b"><label>&lt;!-- izoh --&gt;</label></div><div class="option"><input type="radio" name="mix_q6" value="c"><label>/* izoh */</label></div><div class="option"><input type="radio" name="mix_q6" value="d"><label># izoh</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">7</span>Box Model qanday qismlardan iborat?</div><div class="options"><div class="option"><input type="radio" name="mix_q7" value="a"><label>Content, Border, Outline</label></div><div class="option"><input type="radio" name="mix_q7" value="b"><label>Content, Padding, Border, Margin</label></div><div class="option"><input type="radio" name="mix_q7" value="c"><label>Width, Height, Display</label></div><div class="option"><input type="radio" name="mix_q7" value="d"><label>Top, Right, Bottom, Left</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">8</span><code>position: absolute</code> elementi qayerga nisbatan joylashadi?</div><div class="options"><div class="option"><input type="radio" name="mix_q8" value="a"><label>Har doim viewport ga</label></div><div class="option"><input type="radio" name="mix_q8" value="b"><label>Position berilgan eng yaqin ota elementga</label></div><div class="option"><input type="radio" name="mix_q8" value="c"><label>O'zining normal joyiga</label></div><div class="option"><input type="radio" name="mix_q8" value="d"><label>Har doim body ga</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">9</span>Inline elementlarga qaysi xususiyat ISHLAMAYDI?</div><div class="options"><div class="option"><input type="radio" name="mix_q9" value="a"><label>color</label></div><div class="option"><input type="radio" name="mix_q9" value="b"><label>background</label></div><div class="option"><input type="radio" name="mix_q9" value="c"><label>width va height</label></div><div class="option"><input type="radio" name="mix_q9" value="d"><label>padding-left</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">10</span>CSS ni HTML ga ulashning eng tavsiya etilgan usuli qaysi?</div><div class="options"><div class="option"><input type="radio" name="mix_q10" value="a"><label>Inline CSS</label></div><div class="option"><input type="radio" name="mix_q10" value="b"><label>Internal CSS</label></div><div class="option"><input type="radio" name="mix_q10" value="c"><label>External CSS</label></div><div class="option"><input type="radio" name="mix_q10" value="d"><label>Barchasi bir xil</label></div></div></div>
+                    
+                    <!-- Qolgan savollar uchun JavaScript da javoblar mavjud -->
+                    <!-- 11-35 savollar -->
+                    <div class="test-question"><div class="question-text"><span class="question-number">11</span>Qaysi birlik root element font-size iga nisbatan hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="mix_q11" value="a"><label>em</label></div><div class="option"><input type="radio" name="mix_q11" value="b"><label>rem</label></div><div class="option"><input type="radio" name="mix_q11" value="c"><label>px</label></div><div class="option"><input type="radio" name="mix_q11" value="d"><label>%</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">12</span>Rasmni konteynerga moslash uchun qaysi xususiyat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q12" value="a"><label>background-size</label></div><div class="option"><input type="radio" name="mix_q12" value="b"><label>object-fit</label></div><div class="option"><input type="radio" name="mix_q12" value="c"><label>image-fit</label></div><div class="option"><input type="radio" name="mix_q12" value="d"><label>resize</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">13</span>Float elementlardan keyin float ta'sirini tozalash uchun qaysi xususiyat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q13" value="a"><label>float: none</label></div><div class="option"><input type="radio" name="mix_q13" value="b"><label>overflow: hidden</label></div><div class="option"><input type="radio" name="mix_q13" value="c"><label>clear: both</label></div><div class="option"><input type="radio" name="mix_q13" value="d"><label>display: block</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">14</span>CSS3 qachondan boshlab faol rivojlana boshlagan?</div><div class="options"><div class="option"><input type="radio" name="mix_q14" value="a"><label>1996 yildan</label></div><div class="option"><input type="radio" name="mix_q14" value="b"><label>1998 yildan</label></div><div class="option"><input type="radio" name="mix_q14" value="c"><label>2011 yildan</label></div><div class="option"><input type="radio" name="mix_q14" value="d"><label>2005 yildan</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">15</span>Barcha elementlarning default position qiymati nima?</div><div class="options"><div class="option"><input type="radio" name="mix_q15" value="a"><label>relative</label></div><div class="option"><input type="radio" name="mix_q15" value="b"><label>static</label></div><div class="option"><input type="radio" name="mix_q15" value="c"><label>absolute</label></div><div class="option"><input type="radio" name="mix_q15" value="d"><label>fixed</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">16</span><code>!important</code> qachon ishlatilishi kerak?</div><div class="options"><div class="option"><input type="radio" name="mix_q16" value="a"><label>Har doim</label></div><div class="option"><input type="radio" name="mix_q16" value="b"><label>Faqat zarur hollarda</label></div><div class="option"><input type="radio" name="mix_q16" value="c"><label>Hech qachon</label></div><div class="option"><input type="radio" name="mix_q16" value="d"><label>Faqat ID bilan</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">17</span>Fon rasmi butun konteynerni qoplashi uchun qaysi qiymat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q17" value="a"><label>contain</label></div><div class="option"><input type="radio" name="mix_q17" value="b"><label>cover</label></div><div class="option"><input type="radio" name="mix_q17" value="c"><label>auto</label></div><div class="option"><input type="radio" name="mix_q17" value="d"><label>100%</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">18</span>Qaysi selektor eng yuqori specificity ga ega?</div><div class="options"><div class="option"><input type="radio" name="mix_q18" value="a"><label>Element selektor</label></div><div class="option"><input type="radio" name="mix_q18" value="b"><label>Class selektor</label></div><div class="option"><input type="radio" name="mix_q18" value="c"><label>ID selektor</label></div><div class="option"><input type="radio" name="mix_q18" value="d"><label>Universal selektor</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">19</span><code>z-index</code> qaysi holatda ishlaydi?</div><div class="options"><div class="option"><input type="radio" name="mix_q19" value="a"><label>Barcha elementlarda</label></div><div class="option"><input type="radio" name="mix_q19" value="b"><label>position static bo'lmagan elementlarda</label></div><div class="option"><input type="radio" name="mix_q19" value="c"><label>Faqat block elementlarda</label></div><div class="option"><input type="radio" name="mix_q19" value="d"><label>Faqat inline elementlarda</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">20</span>Rasmni oq-qora qilish uchun qaysi filter ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q20" value="a"><label>black-and-white()</label></div><div class="option"><input type="radio" name="mix_q20" value="b"><label>monochrome()</label></div><div class="option"><input type="radio" name="mix_q20" value="c"><label>grayscale()</label></div><div class="option"><input type="radio" name="mix_q20" value="d"><label>desaturate()</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">21</span>Margin collapsing qaysi yo'nalishda yuz beradi?</div><div class="options"><div class="option"><input type="radio" name="mix_q21" value="a"><label>Gorizontal</label></div><div class="option"><input type="radio" name="mix_q21" value="b"><label>Ikkala yo'nalishda</label></div><div class="option"><input type="radio" name="mix_q21" value="c"><label>Vertikal</label></div><div class="option"><input type="radio" name="mix_q21" value="d"><label>Hech qaysi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">22</span><code>html { font-size: 62.5%; }</code> nimani anglatadi?</div><div class="options"><div class="option"><input type="radio" name="mix_q22" value="a"><label>1rem = 16px</label></div><div class="option"><input type="radio" name="mix_q22" value="b"><label>1rem = 10px</label></div><div class="option"><input type="radio" name="mix_q22" value="c"><label>Shrift 62.5% kichik</label></div><div class="option"><input type="radio" name="mix_q22" value="d"><label>Shrift o'chiriladi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">23</span><code>display: inline-block</code> ning asosiy afzalligi nimada?</div><div class="options"><div class="option"><input type="radio" name="mix_q23" value="a"><label>Bir qatorda turadi va width/height oladi</label></div><div class="option"><input type="radio" name="mix_q23" value="b"><label>Faqat blok elementlar bilan ishlaydi</label></div><div class="option"><input type="radio" name="mix_q23" value="c"><label>Margin ishlamaydi</label></div><div class="option"><input type="radio" name="mix_q23" value="d"><label>Har doim to'liq kenglikni oladi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">24</span>Glassmorphism effekti uchun qaysi xususiyat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q24" value="a"><label>backdrop-filter</label></div><div class="option"><input type="radio" name="mix_q24" value="b"><label>filter</label></div><div class="option"><input type="radio" name="mix_q24" value="c"><label>opacity</label></div><div class="option"><input type="radio" name="mix_q24" value="d"><label>blend-mode</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">25</span>Sichqoncha elementi ustiga kelganda ishlaydigan psevdo-klass qaysi?</div><div class="options"><div class="option"><input type="radio" name="mix_q25" value="a"><label>:active</label></div><div class="option"><input type="radio" name="mix_q25" value="b"><label>:hover</label></div><div class="option"><input type="radio" name="mix_q25" value="c"><label>:focus</label></div><div class="option"><input type="radio" name="mix_q25" value="d"><label>:visited</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">26</span><code>position: sticky</code> ishlashi uchun nima shart?</div><div class="options"><div class="option"><input type="radio" name="mix_q26" value="a"><label>z-index berilishi shart</label></div><div class="option"><input type="radio" name="mix_q26" value="b"><label>width berilishi shart</label></div><div class="option"><input type="radio" name="mix_q26" value="c"><label>top, right, bottom yoki left berilishi shart</label></div><div class="option"><input type="radio" name="mix_q26" value="d"><label>background berilishi shart</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">27</span>Kerak bo'lgandagina scroll bar ko'rsatish uchun qaysi qiymat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q27" value="a"><label>overflow: visible</label></div><div class="option"><input type="radio" name="mix_q27" value="b"><label>overflow: hidden</label></div><div class="option"><input type="radio" name="mix_q27" value="c"><label>overflow: scroll</label></div><div class="option"><input type="radio" name="mix_q27" value="d"><label>overflow: auto</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">28</span>Qaysi xususiyat ota elementdan bola elementga meros bo'lib o'tadi?</div><div class="options"><div class="option"><input type="radio" name="mix_q28" value="a"><label>margin</label></div><div class="option"><input type="radio" name="mix_q28" value="b"><label>padding</label></div><div class="option"><input type="radio" name="mix_q28" value="c"><label>color</label></div><div class="option"><input type="radio" name="mix_q28" value="d"><label>border</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">29</span>Rasm ota konteynerdan chiqib ketmasligi uchun qaysi xususiyat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q29" value="a"><label>width: 100%</label></div><div class="option"><input type="radio" name="mix_q29" value="b"><label>height: auto</label></div><div class="option"><input type="radio" name="mix_q29" value="c"><label>min-width: 100%</label></div><div class="option"><input type="radio" name="mix_q29" value="d"><label>max-width: 100%</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">30</span><code>div > p</code> selektori qanday elementlarni tanlaydi?</div><div class="options"><div class="option"><input type="radio" name="mix_q30" value="a"><label>div ichidagi barcha p larni</label></div><div class="option"><input type="radio" name="mix_q30" value="b"><label>div dan keyin kelgan barcha p larni</label></div><div class="option"><input type="radio" name="mix_q30" value="c"><label>div ning bevosita bolasi bo'lgan p larni</label></div><div class="option"><input type="radio" name="mix_q30" value="d"><label>div dan oldin kelgan p larni</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">31</span>Input elementi fokus bo'lganda style berish uchun qaysi psevdo-klass ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q31" value="a"><label>:hover</label></div><div class="option"><input type="radio" name="mix_q31" value="b"><label>:active</label></div><div class="option"><input type="radio" name="mix_q31" value="c"><label>:focus</label></div><div class="option"><input type="radio" name="mix_q31" value="d"><label>:visited</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">32</span>Karta aylanganda orqa tomon ko'rinmasligi uchun qaysi xususiyat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q32" value="a"><label>visibility: hidden</label></div><div class="option"><input type="radio" name="mix_q32" value="b"><label>display: none</label></div><div class="option"><input type="radio" name="mix_q32" value="c"><label>backface-visibility: hidden</label></div><div class="option"><input type="radio" name="mix_q32" value="d"><label>transform: hidden</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">33</span>CSS da gradient qaysi xususiyat orqali qo'llaniladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q33" value="a"><label>background-color</label></div><div class="option"><input type="radio" name="mix_q33" value="b"><label>background-image</label></div><div class="option"><input type="radio" name="mix_q33" value="c"><label>background-gradient</label></div><div class="option"><input type="radio" name="mix_q33" value="d"><label>gradient</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">34</span>Checkbox belgilangan holatni tanlash uchun qaysi psevdo-klass ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="mix_q34" value="a"><label>:selected</label></div><div class="option"><input type="radio" name="mix_q34" value="b"><label>:checked</label></div><div class="option"><input type="radio" name="mix_q34" value="c"><label>:active</label></div><div class="option"><input type="radio" name="mix_q34" value="d"><label>:valid</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">35</span>Qaysi birlik mutlaq (absolute) birlik hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="mix_q35" value="a"><label>px</label></div><div class="option"><input type="radio" name="mix_q35" value="b"><label>rem</label></div><div class="option"><input type="radio" name="mix_q35" value="c"><label>vh</label></div><div class="option"><input type="radio" name="mix_q35" value="d"><label>%</label></div></div></div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkMixTest" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">Nazorat ishini tekshirish (35 ta savol)</button>
+                    </div>
+                    <div class="test-result" id="mixTestResult"></div>
+                </div>
+                
+                <!-- ==================== 35-DARS TESTI ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 35-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span><code>em</code> birligi <code>font-size</code> da nimaga nisbatan hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>Root element font-size iga</label></div><div class="option"><input type="radio" name="q1" value="b"><label>Ota element font-size iga</label></div><div class="option"><input type="radio" name="q1" value="c"><label>Joriy element font-size iga</label></div><div class="option"><input type="radio" name="q1" value="d"><label>Viewport kengligiga</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span><code>em</code> birligi <code>padding</code> da nimaga nisbatan hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>Ota element font-size iga</label></div><div class="option"><input type="radio" name="q2" value="b"><label>Ota element padding iga</label></div><div class="option"><input type="radio" name="q2" value="c"><label>Joriy element font-size iga</label></div><div class="option"><input type="radio" name="q2" value="d"><label>Root element font-size iga</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span><code>em</code> birligining asosiy muammosi nima?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>Compounding (ko'payib ketish)</label></div><div class="option"><input type="radio" name="q3" value="b"><label>Brauzer qo'llab-quvvatlamaydi</label></div><div class="option"><input type="radio" name="q3" value="c"><label>Faqat matn uchun ishlaydi</label></div><div class="option"><input type="radio" name="q3" value="d"><label>Responsive emas</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Global spacing uchun qaysi birlik tavsiya etiladi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>em</label></div><div class="option"><input type="radio" name="q4" value="b"><label>px</label></div><div class="option"><input type="radio" name="q4" value="c"><label>%</label></div><div class="option"><input type="radio" name="q4" value="d"><label>rem</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> <code>em</code> va <code>rem</code> birliklaridan foydalanib komponent yarating.</p>
+                        <ol>
+                            <li><code>html { font-size: 62.5%; }</code> orqali 1rem = 10px qiling</li>
+                            <li>Global spacing uchun <code>rem</code> ishlating</li>
+                            <li>Karta komponenti yarating va uning ichidagi spacing uchun <code>em</code> ishlating</li>
+                            <li>Karta font-size ini o'zgartirganda ichki spacinglar proporsional o'zgarishini kuzating</li>
+                            <li>Compounding muammosini ko'rish uchun ichma-ich <code>em</code> ishlatib ko'ring</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-css">html { font-size: 62.5%; }  /* 1rem = 10px */
+body { font-size: 1.6rem; }  /* 16px */
+
+.container { max-width: 120rem; margin: 0 auto; padding: 2rem; }
+
+.card { font-size: 1.6rem; padding: 2em; border-radius: 0.5em; background: white; }
+.card-small { font-size: 1.4rem; }  /* ichki spacing avtomatik kichiklashadi */
+.card-large { font-size: 2rem; }     /* ichki spacing avtomatik kattalashadi */
+
+.card-title { font-size: 1.5em; margin-bottom: 0.5em; }
+.card-text { line-height: 1.5; margin-bottom: 1em; }
+.btn { padding: 0.8em 1.5em; border-radius: 0.4em; }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>em font-size da:</strong> ota element font-size iga nisbatan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>em boshqa xususiyatlarda:</strong> joriy element font-size iga nisbatan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Compounding muammosi:</strong> ichma-ich elementlarda qiymatlar ko'payib ketadi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>rem afzalligi:</strong> root ga nisbatan, compounding dan xoli</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>em qachon kerak:</strong> komponent ichidagi proporsional spacing uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>1-35 darslar yakunlandi!</strong> Keyingi darsda: rem o'lchov birligi</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../34/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../36/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#em-relative">em nimaga nisbatan?</a></li>
+                    <li><a href="#compounding">Compounding muammosi</a></li>
+                    <li><a href="#mix-test">Nazorat ishi (1-35)</a></li>
+                    <li><a href="#test">35-dars testi</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">35/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 55.6%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+    
+    <!-- Nazorat ishi uchun JavaScript (35 ta savol) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mixTestBtn = document.getElementById('checkMixTest');
+            if (mixTestBtn) {
+                mixTestBtn.addEventListener('click', function() {
+                    const mixAnswers = {
+                        'mix_q1': 'b', 'mix_q2': 'b', 'mix_q3': 'b', 'mix_q4': 'b', 'mix_q5': 'c',
+                        'mix_q6': 'c', 'mix_q7': 'b', 'mix_q8': 'b', 'mix_q9': 'c', 'mix_q10': 'c',
+                        'mix_q11': 'b', 'mix_q12': 'b', 'mix_q13': 'c', 'mix_q14': 'c', 'mix_q15': 'b',
+                        'mix_q16': 'b', 'mix_q17': 'b', 'mix_q18': 'c', 'mix_q19': 'b', 'mix_q20': 'c',
+                        'mix_q21': 'c', 'mix_q22': 'b', 'mix_q23': 'a', 'mix_q24': 'a', 'mix_q25': 'b',
+                        'mix_q26': 'c', 'mix_q27': 'd', 'mix_q28': 'c', 'mix_q29': 'd', 'mix_q30': 'c',
+                        'mix_q31': 'c', 'mix_q32': 'c', 'mix_q33': 'b', 'mix_q34': 'b', 'mix_q35': 'a'
+                    };
+                    
+                    let correct = 0, answered = 0;
+                    for (let i = 1; i <= 35; i++) {
+                        const selected = document.querySelector(`input[name="mix_q${i}"]:checked`);
+                        if (selected) { answered++; if (selected.value === mixAnswers[`mix_q${i}`]) correct++; }
+                    }
+                    
+                    const resultDiv = document.getElementById('mixTestResult');
+                    if (answered < 35) {
+                        resultDiv.textContent = `Iltimos, barcha 35 ta savolga javob bering! (${answered} ta javob berilgan)`;
+                        resultDiv.className = 'test-result show failed';
+                        return;
+                    }
+                    
+                    const percentage = Math.round((correct / 35) * 100);
+                    if (correct >= 32) {
+                        resultDiv.textContent = `Ajoyib! ${correct}/35 (${percentage}%) to'g'ri javob. Siz CSS ni mukammal o'zlashtirgansiz!`;
+                        resultDiv.className = 'test-result show passed';
+                    } else if (correct >= 26) {
+                        resultDiv.textContent = `Yaxshi! ${correct}/35 (${percentage}%) to'g'ri javob. Ba'zi mavzularni takrorlashni tavsiya qilamiz.`;
+                        resultDiv.className = 'test-result show passed';
+                    } else if (correct >= 18) {
+                        resultDiv.textContent = `Qoniqarli. ${correct}/35 (${percentage}%) to'g'ri javob. O'tilgan darslarni qayta ko'rib chiqishni tavsiya qilamiz.`;
+                        resultDiv.className = 'test-result show failed';
+                    } else {
+                        resultDiv.textContent = `Siz ${correct}/35 (${percentage}%) to'g'ri javob berdingiz. CSS asoslarini boshidan takrorlashni tavsiya qilamiz.`;
+                        resultDiv.className = 'test-result show failed';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

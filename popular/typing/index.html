@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Typing - MRDEV</title>
+<meta name="description" content="Professional klaviatura yozish trenajyori">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Google+Sans:wght@400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="../../favicons/typing.svg" type="image/svg+xml">
+</head>
+<body>
+
+<header class="type-header">
+  <div class="type-header-left">
+    <button class="type-back-btn" onclick="window.history.back()" aria-label="Orqaga">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <div class="type-logo">
+      <div class="type-logo-box">mt</div>
+      mr<span class="type-logo-accent">type</span>
+    </div>
+  </div>
+  <nav class="type-header-nav">
+    <button class="type-nav-btn" id="statsBtn">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Statistika
+    </button>
+    <button class="type-nav-btn" id="settingsBtn">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      Sozlamalar
+    </button>
+    <span class="type-user-name" id="userName">User</span>
+  </nav>
+</header>
+
+<main class="type-main">
+  <div class="type-mode-tabs" id="modeTabs">
+    <button class="type-mode-tab active" data-mode="time">Vaqt</button>
+    <button class="type-mode-tab" data-mode="words">So'zlar</button>
+    <button class="type-mode-tab" data-mode="quote">Iqtibos</button>
+    <button class="type-mode-tab" data-mode="dev">Dev</button>
+    <button class="type-mode-tab" data-mode="custom">Maxsus</button>
+  </div>
+
+  <div class="type-sub-options" id="subOptions"></div>
+
+  <div class="type-stats-bar" id="statsBar">
+    <div class="type-stat">
+      <div class="type-stat-value wpm" id="liveWpm">0</div>
+      <div class="type-stat-label">WPM</div>
+    </div>
+    <div class="type-stat">
+      <div class="type-stat-value acc" id="liveAcc">100%</div>
+      <div class="type-stat-label">Aniqlik</div>
+    </div>
+    <div class="type-stat">
+      <div class="type-stat-value time" id="liveTimer">--</div>
+      <div class="type-stat-label" id="timerLabel">Vaqt</div>
+    </div>
+    <div class="type-stat">
+      <div class="type-stat-value words" id="liveWords">0/0</div>
+      <div class="type-stat-label">So'zlar</div>
+    </div>
+  </div>
+
+  <div class="type-typing-wrapper">
+    <div class="type-typing-area blurred" id="typingArea">
+      <div class="type-caret blink" id="caret"></div>
+      <input type="text" id="hiddenInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Yozish maydoni">
+      <div class="type-words-container" id="wordsContainer"></div>
+    </div>
+    <div class="type-shortcuts" id="shortcutsHint">
+      <span class="type-kbd">Tab</span> qayta boshlash &nbsp;
+      <span class="type-kbd">Ctrl+R</span> yangi so'zlar &nbsp;
+      <span class="type-kbd">Esc</span> yopish
+    </div>
+  </div>
+
+  <div class="type-keyboard-section" id="keyboardSection">
+    <div class="type-keyboard" id="keyboard">
+      <div class="type-key-row">
+        <div class="type-key wide" data-key="tab">Tab</div>
+        <div class="type-key" data-key="q">q</div><div class="type-key" data-key="w">w</div>
+        <div class="type-key" data-key="e">e</div><div class="type-key" data-key="r">r</div>
+        <div class="type-key" data-key="t">t</div><div class="type-key" data-key="y">y</div>
+        <div class="type-key" data-key="u">u</div><div class="type-key" data-key="i">i</div>
+        <div class="type-key" data-key="o">o</div><div class="type-key" data-key="p">p</div>
+        <div class="type-key wide" data-key="backspace">⌫</div>
+      </div>
+      <div class="type-key-row">
+        <div class="type-key wider" data-key="caps">Caps</div>
+        <div class="type-key" data-key="a">a</div><div class="type-key" data-key="s">s</div>
+        <div class="type-key" data-key="d">d</div><div class="type-key" data-key="f">f</div>
+        <div class="type-key" data-key="g">g</div><div class="type-key" data-key="h">h</div>
+        <div class="type-key" data-key="j">j</div><div class="type-key" data-key="k">k</div>
+        <div class="type-key" data-key="l">l</div><div class="type-key" data-key=";">;</div>
+        <div class="type-key wider" data-key="enter">Enter</div>
+      </div>
+      <div class="type-key-row">
+        <div class="type-key widest" data-key="shift">Shift</div>
+        <div class="type-key" data-key="z">z</div><div class="type-key" data-key="x">x</div>
+        <div class="type-key" data-key="c">c</div><div class="type-key" data-key="v">v</div>
+        <div class="type-key" data-key="b">b</div><div class="type-key" data-key="n">n</div>
+        <div class="type-key" data-key="m">m</div><div class="type-key" data-key=",">,</div>
+        <div class="type-key" data-key=".">.</div><div class="type-key" data-key="/">/</div>
+        <div class="type-key widest" data-key="shift-r">Shift</div>
+      </div>
+      <div class="type-key-row">
+        <div class="type-key wider" data-key="ctrl">Ctrl</div>
+        <div class="type-key wide" data-key="alt">Alt</div>
+        <div class="type-key space" data-key=" ">space</div>
+        <div class="type-key wide" data-key="alt-r">Alt</div>
+        <div class="type-key wider" data-key="ctrl-r">Ctrl</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="type-sound-selector" id="soundSelector">
+  <button class="type-sound-btn" id="soundBtn">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+    <span id="soundName">Blue Switch</span>
+  </button>
+</div>
+
+<div class="type-rank-badge" id="rankBadge">
+  <div class="type-rank-title">Daraja</div>
+  <div class="type-rank-name" id="rankName">Boshlang'ich</div>
+  <div class="type-rank-stars" id="rankStars">★</div>
+  <div class="type-rank-next" id="rankNext">Keyingi: 20 WPM</div>
+</div>
+
+<div class="type-toast-container" id="toastContainer"></div>
+
+<!-- Settings Overlay -->
+<div class="type-overlay" id="settingsOverlay">
+  <div class="type-overlay-panel">
+    <div class="type-overlay-header">
+      <div class="type-overlay-title">Sozlamalar</div>
+      <button class="type-overlay-close" id="settingsClose">✕</button>
+    </div>
+    <div class="type-settings-section">
+      <div class="type-settings-label">Til</div>
+      <div class="type-settings-grid" id="langOptions">
+        <button class="type-settings-btn active" data-lang="en">English</button>
+        <button class="type-settings-btn" data-lang="uz">O'zbek</button>
+        <button class="type-settings-btn" data-lang="ru">Rus</button>
+      </div>
+    </div>
+    <div class="type-settings-section">
+      <div class="type-settings-label">Shrift o'lchami</div>
+      <div class="type-settings-grid" id="fontSizeOptions">
+        <button class="type-settings-btn" data-fs="1rem" data-lh="1.3rem">Kichik</button>
+        <button class="type-settings-btn active" data-fs="1.5rem" data-lh="2rem">O'rta</button>
+        <button class="type-settings-btn" data-fs="2rem" data-lh="2.5rem">Katta</button>
+      </div>
+    </div>
+    <div class="type-settings-section">
+      <div class="type-toggle-row">
+        <div class="type-toggle-label">Virtual klaviatura</div>
+        <label class="type-switch">
+          <input type="checkbox" id="showKeyboard" checked>
+          <span class="type-slider"></span>
+        </label>
+      </div>
+      <div class="type-toggle-row">
+        <div class="type-toggle-label">Xato tovushi</div>
+        <label class="type-switch">
+          <input type="checkbox" id="soundEnabled" checked>
+          <span class="type-slider"></span>
+        </label>
+      </div>
+      <div class="type-toggle-row">
+        <div class="type-toggle-label">Zen mode</div>
+        <label class="type-switch">
+          <input type="checkbox" id="zenMode">
+          <span class="type-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Result Overlay -->
+<div class="type-overlay" id="resultOverlay">
+  <div class="type-result-modal">
+    <div class="type-result-wpm-value" id="resultWpm">0</div>
+    <div class="type-result-wpm-label">so'z / daqiqa</div>
+    <div class="type-result-grid" id="resultStats"></div>
+    <div class="type-result-actions">
+      <button class="type-result-btn" id="shareResultBtn">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Ulashish
+      </button>
+      <button class="type-result-btn" id="newWordsBtn">Yangi so'zlar</button>
+      <button class="type-result-btn primary" id="restartResultBtn">Qayta</button>
+    </div>
+  </div>
+</div>
+
+<canvas class="type-share-canvas" id="shareCanvas" width="800" height="600"></canvas>
+
+<script src="../../script.js"></script>
+<script src="words.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26-Dars: Background | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "26",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=9xtKs3eqSuM",
+            "lessonTitle": "Background"
+        }
+    </script>
+    
+    <!-- Test javoblari (26-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>26-Dars: Background</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 11:23
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/9xtKs3eqSuM" 
+                            title="CSS | 26. Background"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 26. Background</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 11:23</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Background - Fon xususiyatlari</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 2-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Background va Rasmlar</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da <code>background</code> xususiyati va uning barcha qismlarini chuqur o'rganasiz. Bu bilimlar professional web dizayn yaratishda asosiy o'rin tutadi. Background orqali elementlarga rang, rasm, gradient berish va ularni boshqarishni o'rganasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>background-color</code> - fon rangi berish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>background-image</code> - fon rasmi qo'shish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>background-repeat</code> - rasm takrorlanishini boshqarish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>background-size</code> - rasm o'lchamini belgilash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>background-position</code> - rasm joylashuvini belgilash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>background-attachment</code> - scroll effekti</li>
+                        <li><i class="fas fa-check-circle"></i> <code>background</code> shorthand - barchasini bitta qatorda</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Shorthand tartibi:</strong> <code>background: color image repeat attachment position/size;</code> - bu tartibni yodlang. Noto'g'ri tartibda yozilsa, brauzer tushunmasligi mumkin.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Performance:</strong> Ko'p background-image ishlatish sayt tezligiga ta'sir qiladi. Iloji boricha SVG yoki CSS gradientlardan foydalaning.</span>
+                            <span class="badge good-to-know">Optimizatsiya</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>cover vs contain:</strong> <code>cover</code> butun konteynerni qoplaydi (kesilishi mumkin), <code>contain</code> rasm to'liq ko'rinadi (bo'sh joy qolishi mumkin).</span>
+                            <span class="badge tip">Muhim farq</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span><strong>Mobile-first:</strong> Katta background rasmlar mobil qurilmalarda sekin yuklanadi. Media queries orqali kichikroq rasmlar yuklang.</span>
+                            <span class="badge tip">Senior yondashuv</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: BACKGROUND-COLOR ==================== -->
+                <section class="lesson-section" id="background-color">
+                    <h2><i class="fas fa-fill-drip"></i> background-color - Fon rangi</h2>
+                    
+                    <p><strong><code>background-color</code></strong> xususiyati elementning fon rangini belgilaydi. Ranglar hex, rgb, rgba, hsl, hsla yoki nomi bilan berilishi mumkin.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* background-color qiymatlari */
+.bg-hex {
+    background-color: #3b82f6;     /* Hex format - eng ko'p ishlatiladi */
+}
+
+.bg-rgb {
+    background-color: rgb(59, 130, 246);  /* RGB format */
+}
+
+.bg-rgba {
+    background-color: rgba(59, 130, 246, 0.5);  /* Shaffof fon - 50% opacity */
+}
+
+.bg-hsl {
+    background-color: hsl(217, 91%, 60%);  /* Hue, Saturation, Lightness */
+}
+
+.bg-named {
+    background-color: blue;         /* Nom bilan (tavsiya etilmaydi) */
+}
+
+.bg-transparent {
+    background-color: transparent;  /* Shaffof (default) */
+}
+
+/* Amaliy misol */
+.hero {
+    background-color: #1e293b;
+    /* Qolgan stillar... */
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Senior biladi:</strong> <code>rgba()</code> va <code>hsla()</code> dagi "a" alpha (shaffoflik) kanali. 0 - butunlay shaffof, 1 - butunlay shaffof emas. <code>opacity</code> dan farqi - faqat fon rangi shaffof bo'ladi, kontent emas!
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: BACKGROUND-IMAGE ==================== -->
+                <section class="lesson-section" id="background-image">
+                    <h2><i class="fas fa-image"></i> background-image - Fon rasmi</h2>
+                    
+                    <p><strong><code>background-image</code></strong> xususiyati elementga fon rasmi qo'shish uchun ishlatiladi. <code>url()</code> funksiyasi orqali rasm manzili ko'rsatiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Bitta fon rasmi */
+.hero {
+    background-image: url('../img/hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Bir nechta fon rasmi (qatlamlar) */
+.multiple-bg {
+    background-image: 
+        url('../img/overlay.png'),
+        url('../img/hero.jpg');
+    /* overlay.png yuqorida, hero.jpg pastda ko'rinadi */
+}
+
+/* Gradient fon rasmi o'rnida */
+.gradient-bg {
+    background-image: linear-gradient(to right, #3b82f6, #10b981);
+}
+
+/* Rasm va gradient birgalikda */
+.hero-overlay {
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('../img/hero.jpg');
+    background-size: cover;
+    background-position: center;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior texnikasi - Overlay:</strong> Rasm ustiga shaffof qatlam qo'shish uchun <code>linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))</code> ni rasm bilan birga ishlating. Bu matn o'qilishini yaxshilaydi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: BACKGROUND-REPEAT ==================== -->
+                <section class="lesson-section" id="background-repeat">
+                    <h2><i class="fas fa-chess-board"></i> background-repeat - Takrorlanish</h2>
+                    
+                    <p><strong><code>background-repeat</code></strong> xususiyati fon rasmining takrorlanishini boshqaradi. Default holatda fon rasmi gorizontal va vertikal takrorlanadi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* background-repeat qiymatlari */
+.repeat-default {
+    background-repeat: repeat;      /* Ikkala yo'nalishda (default) */
+}
+
+.repeat-x {
+    background-repeat: repeat-x;    /* Faqat gorizontal */
+}
+
+.repeat-y {
+    background-repeat: repeat-y;    /* Faqat vertikal */
+}
+
+.no-repeat {
+    background-repeat: no-repeat;   /* Takrorlanmasin */
+}
+
+.space {
+    background-repeat: space;       /* Teng oraliq bilan takrorlash */
+}
+
+.round {
+    background-repeat: round;       /* Rasm o'lchamini moslab takrorlash */
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> <code>background-size: cover</code> yoki <code>contain</code> ishlatilganda <code>background-repeat</code> ko'pincha <code>no-repeat</code> bo'ladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: BACKGROUND-SIZE ==================== -->
+                <section class="lesson-section" id="background-size">
+                    <h2><i class="fas fa-expand-alt"></i> background-size - O'lcham</h2>
+                    
+                    <p><strong><code>background-size</code></strong> xususiyati fon rasmining o'lchamini belgilaydi. Eng ko'p ishlatiladigan qiymatlar <code>cover</code> va <code>contain</code>.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* background-size qiymatlari */
+.bg-cover {
+    background-size: cover;     /* Butun konteynerni qoplaydi (kesilishi mumkin) */
+}
+
+.bg-contain {
+    background-size: contain;   /* Rasm to'liq ko'rinadi (bo'sh joy qolishi mumkin) */
+}
+
+.bg-auto {
+    background-size: auto;      /* Asl o'lchami (default) */
+}
+
+.bg-custom {
+    background-size: 300px 200px;  /* Kenglik 300px, Balandlik 200px */
+}
+
+.bg-percent {
+    background-size: 100% 100%;    /* Konteyner o'lchamida cho'ziladi */
+}
+
+.bg-cover-specific {
+    background-size: 100% auto;    /* Kenglik 100%, balandlik avtomatik */
+}</code></pre>
+                    </div>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Qiymat</th><th>Tavsif</th><th>Qachon ishlatiladi</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>cover</code></td><td>Konteynerni to'liq qoplaydi, nisbat saqlanadi</td><td>Hero section, banner</td></tr>
+                                <tr><td><code>contain</code></td><td>Rasm to'liq ko'rinadi, nisbat saqlanadi</td><td>Logotip, ikonka</td></tr>
+                                <tr><td><code>auto</code></td><td>Asl o'lcham</td><td>Kichik pattern rasmlar</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: BACKGROUND-POSITION ==================== -->
+                <section class="lesson-section" id="background-position">
+                    <h2><i class="fas fa-crosshairs"></i> background-position - Joylashuv</h2>
+                    
+                    <p><strong><code>background-position</code></strong> xususiyati fon rasmining joylashuvini belgilaydi. Kalit so'zlar, foiz yoki aniq o'lchamlar bilan berilishi mumkin.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* background-position qiymatlari */
+.bg-center {
+    background-position: center;        /* Markaz */
+}
+
+.bg-top {
+    background-position: top;           /* Yuqori markaz */
+}
+
+.bg-top-right {
+    background-position: top right;     /* Yuqori o'ng */
+}
+
+.bg-custom {
+    background-position: 20% 80%;       /* Chapdan 20%, Yuqoridan 80% */
+}
+
+.bg-pixel {
+    background-position: 50px 100px;    /* Chapdan 50px, Yuqoridan 100px */
+}
+
+.bg-bottom-left {
+    background-position: bottom left;   /* Pastki chap */
+}
+
+/* Eng ko'p ishlatiladigan kombinatsiya */
+.hero {
+    background-image: url('../img/hero.jpg');
+    background-size: cover;
+    background-position: center;        /* Rasm markazda */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 6-BO'LIM: BACKGROUND-ATTACHMENT ==================== -->
+                <section class="lesson-section" id="background-attachment">
+                    <h2><i class="fas fa-scroll"></i> background-attachment - Scroll effekti</h2>
+                    
+                    <p><strong><code>background-attachment</code></strong> xususiyati fon rasmining scroll bo'lganda qanday harakatlanishini belgilaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* background-attachment qiymatlari */
+.bg-scroll {
+    background-attachment: scroll;  /* Sahifa bilan birga scroll (default) */
+}
+
+.bg-fixed {
+    background-attachment: fixed;   /* Rasm joyida qoladi - parallax effekti */
+}
+
+.bg-local {
+    background-attachment: local;   /* Element kontenti bilan scroll */
+}
+
+/* Parallax effekti uchun */
+.parallax {
+    background-image: url('../img/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;   /* Rasm joyida qoladi */
+    height: 100vh;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior ogohlantirish:</strong> <code>background-attachment: fixed</code> mobil qurilmalarda muammo tug'dirishi mumkin (performance va render). Mobil uchun <code>scroll</code> ga o'zgartirishni unutmang.
+                    </div>
+                </section>
+                
+                <!-- ==================== 7-BO'LIM: BACKGROUND SHORTHAND ==================== -->
+                <section class="lesson-section" id="background-shorthand">
+                    <h2><i class="fas fa-compress"></i> Background Shorthand</h2>
+                    
+                    <p><strong><code>background</code></strong> shorthand xususiyati barcha fon xususiyatlarini bitta qatorda yozish imkonini beradi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Background shorthand sintaksisi */
+/*
+    background: 
+        [background-color] 
+        [background-image] 
+        [background-repeat] 
+        [background-attachment] 
+        [background-position] / [background-size];
+*/
+
+/* Oddiy misol */
+.bg-shorthand {
+    background: #3b82f6 url('../img/pattern.png') repeat-x fixed center / cover;
+}
+
+/* Hero section uchun professional shorthand */
+.hero {
+    background: 
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url('../img/hero.jpg') 
+        no-repeat 
+        center / cover;
+    height: 100vh;
+}
+
+/* Alohida xususiyatlar bilan solishtirish */
+.hero-long {
+    background-image: url('../img/hero.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* Shorthand bilan bir xil natija, lekin 4 qator kod */
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Shorthand da / belgisi:</strong> <code>background-size</code> ni <code>background-position</code> bilan birga ishlatganda <code>/</code> belgisi ajratib turadi. Masalan: <code>center / cover</code>.
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 26-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">1</span>Fon rasmi butun konteynerni qoplashi uchun qaysi qiymat ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>contain</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>cover</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>auto</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>100%</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">2</span>Parallax effekti uchun qaysi xususiyat ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>background-scroll</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>background-position: fixed</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>background-attachment: fixed</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>background-size: cover</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">3</span>Rasm ustiga shaffof qatlam qo'shish uchun nima ishlatiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>opacity: 0.5</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>filter: brightness(0.5)</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>background-opacity: 0.5</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text"><span class="question-number">4</span>Background shorthand da <code>background-size</code> qanday ajratiladi?</div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>Vergul (,) bilan</label></div>
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="b"><label>Nuqta (.) bilan</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>Bo'shliq bilan</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>Slash (/) bilan</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Background xususiyatlaridan professional darajada foydalanib hero section yarating.</p>
+                        <ol>
+                            <li>Hero section uchun fon rasmi qo'shing (<code>background-image</code>)</li>
+                            <li>Rasm ustiga shaffof gradient overlay qo'shing</li>
+                            <li><code>background-size: cover</code> va <code>background-position: center</code> bering</li>
+                            <li>Parallax effekti uchun <code>background-attachment: fixed</code> qo'shing</li>
+                            <li>Barchasini <code>background</code> shorthand da yozing</li>
+                            <li>Mobil qurilmalar uchun <code>background-attachment: scroll</code> ga o'zgartiring</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-css">/* Hero section - Professional yondashuv */
+.hero {
+    /* Shorthand - barchasi bir qatorda */
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../img/hero.jpg') 
+        no-repeat 
+        fixed 
+        center / cover;
+    
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+/* Mobil qurilmalar uchun */
+@media (max-width: 768px) {
+    .hero {
+        /* Mobil da fixed muammo tug'diradi */
+        background-attachment: scroll;
+        
+        /* Yoki butunlay yangi shorthand */
+        background: 
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url('../img/hero-mobile.jpg') 
+            no-repeat 
+            scroll 
+            center / cover;
+    }
+}
+
+/* Pattern background uchun */
+.pattern-section {
+    background: #f8fafc url('../img/pattern.png') repeat;
+}
+
+/* Ikki xil fon rasmi (qatlamlar) */
+.double-bg {
+    background: 
+        url('../img/overlay.png') repeat-x top,
+        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>background-color</strong> - <code>rgba()</code> shaffof fon uchun, <code>opacity</code> dan afzal</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>background-image</strong> - <code>url()</code> va <code>linear-gradient()</code> birgalikda ishlatish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>background-size</strong> - <code>cover</code> (hero), <code>contain</code> (logotip)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>background-attachment: fixed</strong> - parallax effekti, lekin mobil da ehtiyot bo'ling</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>background shorthand</strong> - <code>/</code> bilan <code>position/size</code> ajratiladi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Performance</strong> - katta rasmlarni optimizatsiya qiling, SVG gradientlardan foydalaning</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Styling images</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../25/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../27/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#background-color">background-color</a></li>
+                    <li><a href="#background-image">background-image</a></li>
+                    <li><a href="#background-repeat">background-repeat</a></li>
+                    <li><a href="#background-size">background-size</a></li>
+                    <li><a href="#background-position">background-position</a></li>
+                    <li><a href="#background-attachment">background-attachment</a></li>
+                    <li><a href="#background-shorthand">Shorthand</a></li>
+                    <li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">26/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 41.3%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

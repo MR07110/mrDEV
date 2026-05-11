@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49-Dars: 2D transforms | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "49",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=XZ2mOhJygJY",
+            "lessonTitle": "2D transforms"
+        }
+    </script>
+    
+    <!-- Test javoblari (49-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>49-Dars: 2D transforms</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 15:27
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/XZ2mOhJygJY" 
+                            title="CSS | 49. 2D transforms"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 49. 2D transforms</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 15:27</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>2D transforms</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 25-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Transforms va Animations</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da <code>transform</code> xususiyati yordamida elementlarni 2D fazoda harakatlantirish, aylantirish, kattalashtirish va qiyalashtirishni o'rganasiz. Bu zamonaviy web dizayn va animatsiyalar uchun asosiy vosita hisoblanadi.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>translate()</code> - elementni siljitish (X, Y)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>scale()</code> - elementni kattalashtirish/kichiklashtirish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>rotate()</code> - elementni aylantirish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>skew()</code> - elementni qiyalashtirish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>transform-origin</code> - transform markazini belgilash</li>
+                        <li><i class="fas fa-check-circle"></i> Bir nechta transformni birgalikda ishlatish</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Transform tartibi muhim:</strong> <code>translate() rotate()</code> va <code>rotate() translate()</code> - natija har xil!</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Performance:</strong> <code>transform</code> va <code>opacity</code> GPU da ishlaydi, <code>top/left</code> ga qaraganda ancha tez.</span>
+                            <span class="badge good-to-know">Optimizatsiya</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>transform-origin:</strong> Aylantirish markazini o'zgartirish. Default: <code>center</code> (50% 50%).</span>
+                            <span class="badge tip">Professional</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-mouse"></i>
+                            <span><strong>Hover effektlar:</strong> <code>transform</code> + <code>transition</code> - silliq animatsiyalar uchun eng yaxshi kombinatsiya.</span>
+                            <span class="badge tip">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: TRANSLATE ==================== -->
+                <section class="lesson-section" id="translate">
+                    <h2><i class="fas fa-arrows-alt"></i> translate() - Siljitish</h2>
+                    
+                    <p><code>translate()</code> funksiyasi elementni X va Y o'qlari bo'ylab siljitadi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* translate() qiymatlari */
+.translate-xy {
+    transform: translate(50px, 30px);    /* X: 50px o'ngga, Y: 30px pastga */
+}
+
+.translate-x {
+    transform: translateX(100px);        /* Faqat X o'qi bo'ylab */
+}
+
+.translate-y {
+    transform: translateY(-50px);        /* Faqat Y o'qi bo'ylab (yuqoriga) */
+}
+
+/* Foizda - elementning o'z o'lchamiga nisbatan */
+.translate-percent {
+    transform: translate(-50%, -50%);    /* Markazga tekislash uchun */
+}
+
+/* Markazga tekislash klassik texnikasi */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: SCALE ==================== -->
+                <section class="lesson-section" id="scale">
+                    <h2><i class="fas fa-expand-alt"></i> scale() - Kattalashtirish</h2>
+                    
+                    <p><code>scale()</code> funksiyasi element o'lchamini o'zgartiradi. 1 - normal, >1 - kattalashtirish, <1 - kichiklashtirish.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* scale() qiymatlari */
+.scale-both {
+    transform: scale(1.5);          /* 150% kattalashtirish */
+}
+
+.scale-small {
+    transform: scale(0.8);          /* 80% kichiklashtirish */
+}
+
+.scale-xy {
+    transform: scale(1.2, 0.8);     /* X: 120%, Y: 80% */
+}
+
+.scale-x {
+    transform: scaleX(1.5);         /* Faqat X o'qi bo'ylab */
+}
+
+.scale-y {
+    transform: scaleY(0.5);         /* Faqat Y o'qi bo'ylab */
+}
+
+/* Hover effekt */
+.btn:hover {
+    transform: scale(1.05);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: ROTATE ==================== -->
+                <section class="lesson-section" id="rotate">
+                    <h2><i class="fas fa-rotate-right"></i> rotate() - Aylantirish</h2>
+                    
+                    <p><code>rotate()</code> funksiyasi elementni soat strelkasi bo'yicha aylantiradi. Birlik: <code>deg</code>, <code>rad</code>, <code>turn</code>.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* rotate() qiymatlari */
+.rotate-45 {
+    transform: rotate(45deg);       /* 45 gradus soat strelkasi bo'yicha */
+}
+
+.rotate-negative {
+    transform: rotate(-30deg);      /* Soat strelkasiga teskari */
+}
+
+.rotate-turn {
+    transform: rotate(0.5turn);     /* Yarim aylanish (180deg) */
+}
+
+.rotate-rad {
+    transform: rotate(3.14rad);     /* Radianlarda (~180deg) */
+}
+
+/* Hover da aylantirish */
+.icon:hover {
+    transform: rotate(360deg);
+    transition: transform 0.5s;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: SKEW ==================== -->
+                <section class="lesson-section" id="skew">
+                    <h2><i class="fas fa-slash"></i> skew() - Qiyalashtirish</h2>
+                    
+                    <p><code>skew()</code> funksiyasi elementni X va Y o'qlari bo'ylab qiyalashtiradi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* skew() qiymatlari */
+.skew-both {
+    transform: skew(10deg, 5deg);   /* X: 10deg, Y: 5deg */
+}
+
+.skew-x {
+    transform: skewX(15deg);        /* Faqat X o'qi bo'ylab */
+}
+
+.skew-y {
+    transform: skewY(-10deg);       /* Faqat Y o'qi bo'ylab */
+}
+
+/* Creative effektlar */
+.skew-box {
+    transform: skewY(-5deg);
+    background: #3b82f6;
+    padding: 20px;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: TRANSFORM-ORIGIN ==================== -->
+                <section class="lesson-section" id="transform-origin">
+                    <h2><i class="fas fa-crosshairs"></i> transform-origin</h2>
+                    
+                    <p><code>transform-origin</code> xususiyati transform markazini belgilaydi. Default: <code>center</code> (50% 50%).</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* transform-origin qiymatlari */
+.origin-center {
+    transform-origin: center;       /* Default */
+    transform: rotate(45deg);
+}
+
+.origin-top-left {
+    transform-origin: top left;
+    transform: rotate(45deg);       /* Yuqori chap burchakdan aylanadi */
+}
+
+.origin-bottom {
+    transform-origin: bottom;
+    transform: scale(1.5);          /* Pastki qismidan kattalashadi */
+}
+
+.origin-custom {
+    transform-origin: 20% 80%;      /* Aniq koordinatalar */
+    transform: rotate(30deg);
+}
+
+/* Piksellarda */
+.origin-px {
+    transform-origin: 50px 100px;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 6-BO'LIM: BIR NECHTA TRANSFORM ==================== -->
+                <section class="lesson-section" id="multiple-transforms">
+                    <h2><i class="fas fa-layer-group"></i> Bir nechta transform</h2>
+                    
+                    <p>Bir nechta transform funksiyasini bo'shliq bilan ajratib yozish mumkin. <strong>Tartib muhim!</strong></p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Bir nechta transform - tartib muhim! */
+.multiple-1 {
+    transform: translateX(100px) rotate(45deg);
+    /* Avval siljitiladi, keyin aylantiriladi */
+}
+
+.multiple-2 {
+    transform: rotate(45deg) translateX(100px);
+    /* Avval aylantiriladi, keyin aylangan o'q bo'ylab siljitiladi */
+    /* NATIJA HAR XIL! */
+}
+
+/* Amaliy kombinatsiyalar */
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.btn:active {
+    transform: translateY(2px) scale(0.98);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> 49-dars testi</h3><span class="test-badge">4 ta savol</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>Elementni markazga tekislash uchun qaysi kombinatsiya ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>margin: auto</label></div><div class="option"><input type="radio" name="q1" value="b"><label>top: 50%; left: 50%; transform: translate(-50%, -50%);</label></div><div class="option"><input type="radio" name="q1" value="c"><label>text-align: center;</label></div><div class="option"><input type="radio" name="q1" value="d"><label>position: center;</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span><code>scale(1.5)</code> elementni qanday o'zgartiradi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>1.5px ga kattalashtiradi</label></div><div class="option"><input type="radio" name="q2" value="b"><label>1.5% ga kattalashtiradi</label></div><div class="option"><input type="radio" name="q2" value="c"><label>150% ga kattalashtiradi</label></div><div class="option"><input type="radio" name="q2" value="d"><label>1.5 marta siljitadi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span><code>transform: rotate(45deg) translateX(100px);</code> qanday ishlaydi?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>Avval aylantiriladi, keyin aylangan o'q bo'ylab siljitiladi</label></div><div class="option"><input type="radio" name="q3" value="b"><label>Avval siljitiladi, keyin aylantiriladi</label></div><div class="option"><input type="radio" name="q3" value="c"><label>Ikkalasi bir vaqtda</label></div><div class="option"><input type="radio" name="q3" value="d"><label>Tartibi farq qilmaydi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span><code>transform-origin</code> nima uchun ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>Element rangini o'zgartirish</label></div><div class="option"><input type="radio" name="q4" value="b"><label>Element o'lchamini o'zgartirish</label></div><div class="option"><input type="radio" name="q4" value="c"><label>Element joylashuvini o'zgartirish</label></div><div class="option"><input type="radio" name="q4" value="d"><label>Transform markazini belgilash</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> 2D transformlardan foydalanib interaktiv elementlar yarating.</p>
+                        <ol><li>Tugma hover bo'lganda <code>translateY(-3px)</code> va <code>scale(1.05)</code></li><li>Karta hover bo'lganda <code>scale(1.02)</code> va soya qo'shing</li><li>Ikonka hover bo'lganda <code>rotate(360deg)</code> aylantiring</li><li><code>transform-origin</code> ni o'zgartirib ko'ring</li></ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-css">.btn { transition: all 0.3s; }
+.btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+.btn:active { transform: translateY(2px) scale(0.98); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+
+.card { transition: all 0.3s; }
+.card:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+.icon { transition: transform 0.5s; }
+.icon:hover { transform: rotate(360deg); }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>translate():</strong> elementni siljitish, markazga tekislash uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>scale():</strong> kattalashtirish/kichiklashtirish (1 = normal)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>rotate():</strong> aylantirish (deg, rad, turn)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>skew():</strong> qiyalashtirish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>transform-origin:</strong> transform markazi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Bir nechta transform:</strong> tartib muhim! o'ngdan chapga emas, chapdan o'ngga</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> 3D transforms - Nazorat ishi!</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../48/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../50/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#translate">translate()</a></li>
+                    <li><a href="#scale">scale()</a></li>
+                    <li><a href="#rotate">rotate()</a></li>
+                    <li><a href="#skew">skew()</a></li>
+                    <li><a href="#transform-origin">transform-origin</a></li>
+                    <li><a href="#multiple-transforms">Bir nechta transform</a></li>
+                    <li><a href="#test">Test</a></li><li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li><li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">49/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 77.8%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

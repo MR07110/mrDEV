@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>44-Dars: Fonts | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "44",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=_Rhv5VdZTSo",
+            "lessonTitle": "Fonts"
+        }
+    </script>
+    
+    <!-- Test javoblari (44-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>44-Dars: Fonts</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 13:46
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/_Rhv5VdZTSo" 
+                            title="CSS | 44. Fonts"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 44. Fonts</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 13:46</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Fonts (Shriftlar)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 20-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Fontlar va Transforms</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da shriftlar (fonts) bilan ishlashni o'rganasiz. <code>font-family</code>, <code>font-size</code>, <code>font-weight</code>, <code>font-style</code>, <code>line-height</code>, <code>text-transform</code>, <code>letter-spacing</code> va boshqa shrift xususiyatlarini batafsil o'rganamiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>font-family</code> - shrift turini belgilash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>font-size</code> - shrift o'lchami (px, rem, em)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>font-weight</code> - shrift qalinligi (100-900, bold, normal)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>font-style</code> - shrift uslubi (normal, italic, oblique)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>line-height</code> - qator balandligi</li>
+                        <li><i class="fas fa-check-circle"></i> <code>text-transform</code> - matn transformatsiyasi</li>
+                        <li><i class="fas fa-check-circle"></i> <code>letter-spacing</code> - harflar orasidagi masofa</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Fallback fontlar:</strong> Har doim zaxira shriftlarni ko'rsating. Masalan: <code>font-family: "Lato", "Arial", sans-serif;</code></span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>rem font-size:</strong> <code>px</code> o'rniga <code>rem</code> ishlating - foydalanuvchi shrift sozlamalariga moslashadi.</span>
+                            <span class="badge good-to-know">Accessibility</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Unitless line-height:</strong> <code>line-height: 1.5;</code> - foiz yoki px dan afzal, meros bo'lganda muammo tug'dirmaydi.</span>
+                            <span class="badge tip">Best practice</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-text-height"></i>
+                            <span><strong>System fonts:</strong> <code>font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;</code> - tez va ishonchli.</span>
+                            <span class="badge tip">Performance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: FONT-FAMILY ==================== -->
+                <section class="lesson-section" id="font-family">
+                    <h2><i class="fas fa-font"></i> font-family</h2>
+                    
+                    <p><code>font-family</code> xususiyati shrift turini belgilaydi. Bir nechta shrift ko'rsatish mumkin - brauzer birinchisidan boshlab qidiradi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Asosiy shrift oilalari */
+body {
+    /* Fallback: agar Lato bo'lmasa, Arial, u ham bo'lmasa sans-serif */
+    font-family: "Lato", "Arial", sans-serif;
+}
+
+/* Serif shriftlar */
+.serif-text {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Monospace shriftlar (kod uchun) */
+code {
+    font-family: "Fira Code", "Courier New", monospace;
+}
+
+/* System fonts - eng tez yuklanadi */
+.system-font {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Generic oilalar:</strong> <code>serif</code>, <code>sans-serif</code>, <code>monospace</code>, <code>cursive</code>, <code>fantasy</code>. Har doim oxirgi variant sifatida generic oilani ko'rsating.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: FONT-SIZE VA FONT-WEIGHT ==================== -->
+                <section class="lesson-section" id="font-size-weight">
+                    <h2><i class="fas fa-text-height"></i> font-size va font-weight</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* font-size */
+body { font-size: 1.6rem; }      /* 16px */
+h1 { font-size: 4.8rem; }        /* 48px */
+h2 { font-size: 3.6rem; }        /* 36px */
+small { font-size: 1.2rem; }     /* 12px */
+
+/* font-weight - shrift qalinligi */
+.thin { font-weight: 100; }
+.light { font-weight: 300; }
+.normal { font-weight: 400; }    /* normal */
+.medium { font-weight: 500; }
+.bold { font-weight: 700; }      /* bold */
+.black { font-weight: 900; }
+
+/* Kalit so'zlar bilan */
+.normal-weight { font-weight: normal; }    /* 400 */
+.bold-weight { font-weight: bold; }        /* 700 */
+.lighter-weight { font-weight: lighter; }  /* Ota elementdan yengilroq */
+.bolder-weight { font-weight: bolder; }    /* Ota elementdan qalinroq */</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: FONT-STYLE VA TEXT-TRANSFORM ==================== -->
+                <section class="lesson-section" id="font-style-transform">
+                    <h2><i class="fas fa-italic"></i> font-style va text-transform</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* font-style */
+.normal-style { font-style: normal; }
+.italic-style { font-style: italic; }
+.oblique-style { font-style: oblique; }  /* Sun'iy qiyalik */
+
+/* text-transform */
+.uppercase { text-transform: uppercase; }   /* BARCHA HARF KATTA */
+.lowercase { text-transform: lowercase; }   /* barcha harf kichik */
+.capitalize { text-transform: capitalize; } /* Har So'z Bosh Harf */
+.none-transform { text-transform: none; }   /* O'zgarmaydi */</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: LINE-HEIGHT VA LETTER-SPACING ==================== -->
+                <section class="lesson-section" id="line-height-spacing">
+                    <h2><i class="fas fa-arrows-alt-v"></i> line-height va letter-spacing</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* line-height - unitless tavsiya etiladi */
+body { line-height: 1.6; }        /* font-size * 1.6 */
+h1 { line-height: 1.2; }
+.small-line { line-height: 1.2; } /* Tighter */
+.large-line { line-height: 1.8; } /* Looser */
+
+/* letter-spacing - harflar orasidagi masofa */
+.normal-spacing { letter-spacing: normal; }
+.tight-spacing { letter-spacing: -0.5px; }
+.wide-spacing { letter-spacing: 2px; }
+.heading-spacing { letter-spacing: 0.5rem; }  /* Sarlavhalar uchun */
+
+/* word-spacing - so'zlar orasidagi masofa */
+.normal-word { word-spacing: normal; }
+.wide-word { word-spacing: 5px; }</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> <code>line-height</code> uchun unitless qiymat (masalan, 1.5) ishlating. Bu meros bo'lganda kutilmagan natijalarni oldini oladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: FONT SHORTHAND ==================== -->
+                <section class="lesson-section" id="font-shorthand">
+                    <h2><i class="fas fa-compress"></i> Font shorthand</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* font shorthand sintaksisi */
+/* font: font-style font-weight font-size/line-height font-family; */
+
+/* Alohida xususiyatlar */
+.text {
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    font-family: "Lato", sans-serif;
+}
+
+/* Shorthand - bitta qatorda */
+.text-shorthand {
+    font: italic 700 1.6rem/1.5 "Lato", sans-serif;
+}
+
+/* Minimal shorthand */
+.minimal-font {
+    font: 1.6rem "Lato", sans-serif;  /* font-size va font-family majburiy */
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Shorthand tartibi:</strong> <code>font-style</code>, <code>font-weight</code>, <code>font-size</code>/<code>line-height</code>, <code>font-family</code>. <code>font-size</code> va <code>font-family</code> majburiy!
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> 44-dars testi</h3><span class="test-badge">4 ta savol</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span><code>font-family</code> da nima uchun bir nechta shrift ko'rsatiladi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>Barchasi bir vaqtda yuklanadi</label></div><div class="option"><input type="radio" name="q1" value="b"><label>Fallback (zaxira) uchun</label></div><div class="option"><input type="radio" name="q1" value="c"><label>Tezroq yuklanish uchun</label></div><div class="option"><input type="radio" name="q1" value="d"><label>SEO uchun</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>Qaysi <code>line-height</code> qiymati eng tavsiya etiladi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>line-height: 24px;</label></div><div class="option"><input type="radio" name="q2" value="b"><label>line-height: 150%;</label></div><div class="option"><input type="radio" name="q2" value="c"><label>line-height: 1.5;</label></div><div class="option"><input type="radio" name="q2" value="d"><label>line-height: normal;</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span><code>font-weight: 700;</code> nimaga teng?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>bold</label></div><div class="option"><input type="radio" name="q3" value="b"><label>normal</label></div><div class="option"><input type="radio" name="q3" value="c"><label>lighter</label></div><div class="option"><input type="radio" name="q3" value="d"><label>bolder</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Font shorthand da qaysi ikki xususiyat majburiy?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>font-style va font-weight</label></div><div class="option"><input type="radio" name="q4" value="b"><label>font-size va line-height</label></div><div class="option"><input type="radio" name="q4" value="c"><label>font-style va font-family</label></div><div class="option"><input type="radio" name="q4" value="d"><label>font-size va font-family</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Shrift xususiyatlaridan foydalanib typography tizimi yarating.</p>
+                        <ol><li><code>font-family</code> da system fonts yoki Google Fonts ishlating</li><li>Sarlavhalar uchun <code>font-weight</code>, <code>letter-spacing</code> va <code>text-transform</code> bering</li><li>Body uchun <code>line-height: 1.6</code> va <code>font-size: 1.6rem</code> bering</li><li>Font shorthand yordamida sarlavha stillarini yozing</li></ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-css">body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 1.6rem; line-height: 1.6; color: #333; }
+h1 { font: 700 4.8rem/1.2 "Lato", sans-serif; letter-spacing: -0.5px; margin-bottom: 2rem; }
+h2 { font: 600 3.6rem/1.3 "Lato", sans-serif; letter-spacing: -0.3px; margin-bottom: 1.5rem; }
+h3 { font: 600 2.4rem/1.4 "Lato", sans-serif; margin-bottom: 1rem; }
+.uppercase { text-transform: uppercase; letter-spacing: 1px; }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>font-family:</strong> fallback shriftlar ko'rsatish muhim</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>font-size:</strong> <code>rem</code> birligidan foydalaning</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>font-weight:</strong> 100-900 yoki normal/bold</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>line-height:</strong> unitless qiymat (1.5) eng yaxshi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>text-transform:</strong> uppercase, lowercase, capitalize</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>letter-spacing:</strong> sarlavhalar uchun foydali</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Yangi font qo'shish - Nazorat ishi!</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../43/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../45/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#font-family">font-family</a></li>
+                    <li><a href="#font-size-weight">font-size va font-weight</a></li>
+                    <li><a href="#font-style-transform">font-style va text-transform</a></li>
+                    <li><a href="#line-height-spacing">line-height va letter-spacing</a></li>
+                    <li><a href="#font-shorthand">Font shorthand</a></li>
+                    <li><a href="#test">Test</a></li><li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li><li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">44/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 69.8%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

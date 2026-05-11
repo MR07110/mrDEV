@@ -1,0 +1,750 @@
+/* ============================================
+   BOOTSTRAP KURSI - UMUMIY STILLAR
+   Barcha 42 ta dars uchun
+   ============================================ */
+
+:root {
+    /* Bootstrap ranglari - binafsha */
+    --primary: #7952b3;
+    --primary-dark: #563d7c;
+    --primary-light: #8a6dc9;
+    --primary-soft: #cbb6e8;
+    --primary-bg: #f3f0f8;
+    --primary-gradient: linear-gradient(135deg, #7952b3 0%, #563d7c 100%);
+    
+    /* Ikkinchi darajali ranglar */
+    --secondary: #64748b;
+    --secondary-light: #94a3b8;
+    --secondary-bg: #f8fafc;
+    
+    /* Holat ranglari */
+    --success: #10b981;
+    --success-dark: #059669;
+    --success-bg: #d1fae5;
+    --warning: #f59e0b;
+    --warning-bg: #fef3c7;
+    --danger: #ef4444;
+    --danger-bg: #fee2e2;
+    --info: #0ea5e9;
+    --info-bg: #e0f2fe;
+    
+    /* Matn ranglari */
+    --text-dark: #1e293b;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --text-white: #ffffff;
+    
+    /* Fon ranglari */
+    --bg-white: #ffffff;
+    --bg-gray-50: #f8fafc;
+    --bg-gray-100: #f1f5f9;
+    --bg-gray-200: #e2e8f0;
+    
+    /* Chegara */
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+    
+    /* Soyalar */
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+    --shadow-primary: 0 4px 14px 0 rgba(121, 82, 179, 0.15);
+    
+    /* Radius */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+    --radius-full: 9999px;
+    
+    /* O'lchamlar */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    --spacing-3xl: 64px;
+    
+    /* Container */
+    --container-width: 1000px;
+    --header-height: 64px;
+    
+    /* Font */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+}
+
+/* ==================== RESET ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-body);
+    background-color: var(--bg-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+main {
+    flex: 1;
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-md);
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.125rem; }
+
+p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-body);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+code {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    padding: 2px 6px;
+    background: var(--bg-gray-100);
+    border-radius: var(--radius-xs);
+    color: var(--danger);
+}
+
+/* ==================== COURSE HEADER ==================== */
+.course-header {
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border-light);
+    padding: var(--spacing-sm) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--header-height);
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.back-btn:hover {
+    background: var(--bg-gray-100);
+    color: var(--primary);
+}
+
+.course-title-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.course-title-header i {
+    font-size: 1.75rem;
+    color: var(--primary);
+}
+
+.course-title-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.progress-info {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.progress-info span {
+    font-size: 1.25rem;
+}
+
+/* ==================== COURSE INTRO ==================== */
+.course-intro {
+    margin: var(--spacing-xl) 0;
+}
+
+.intro-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--primary-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--primary-soft);
+}
+
+.intro-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--primary-gradient);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    box-shadow: var(--shadow-primary);
+    flex-shrink: 0;
+}
+
+.bootstrap-icon {
+    background: linear-gradient(135deg, #7952b3 0%, #563d7c 100%);
+}
+
+.intro-text h2 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--primary-dark);
+}
+
+.intro-text p {
+    margin: 0;
+    color: var(--text-body);
+}
+
+/* ==================== PROGRESS BAR ==================== */
+.course-progress-bar {
+    margin: var(--spacing-lg) 0;
+}
+
+.progress-track {
+    height: 6px;
+    background: var(--bg-gray-200);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary-gradient);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-base);
+}
+
+/* ==================== LESSONS GRID ==================== */
+.lessons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+}
+
+.lesson-group {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.group-title {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--bg-gray-50);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-light);
+    margin: 0;
+}
+
+.lesson-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-decoration: none;
+    color: var(--text-body);
+    border-bottom: 1px solid var(--border-light);
+    transition: background var(--transition-fast);
+}
+
+.lesson-item:last-child {
+    border-bottom: none;
+}
+
+.lesson-item:hover {
+    background: var(--primary-bg);
+}
+
+.lesson-item.completed {
+    background: var(--success-bg);
+}
+
+.lesson-num {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-gray-100);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    flex-shrink: 0;
+    transition: all var(--transition-fast);
+}
+
+.lesson-item:hover .lesson-num {
+    background: var(--primary);
+    color: white;
+}
+
+.lesson-item.completed .lesson-num {
+    background: var(--success);
+    color: white;
+}
+
+.lesson-name {
+    flex: 1;
+    font-weight: 500;
+}
+
+.lesson-time {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.lesson-check {
+    color: var(--success);
+    font-size: 1.125rem;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.lesson-item.completed .lesson-check {
+    opacity: 1;
+}
+
+/* ==================== COURSE STATS ==================== */
+.course-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: var(--spacing-xl);
+    margin: var(--spacing-xl) 0;
+    background: var(--bg-gray-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.stat-item i {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background: var(--bg-gray-50);
+    border-top: 1px solid var(--border-light);
+    padding: var(--spacing-lg) 0;
+    margin-top: auto;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+/* ==================== DARS SAHIFASI UCHUN QO'SHIMCHA STILLAR ==================== */
+.video-wrapper {
+    margin-bottom: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
+}
+
+.video-placeholder {
+    background: #0f172a;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    gap: var(--spacing-md);
+}
+
+.video-placeholder i {
+    font-size: 4rem;
+    opacity: 0.7;
+}
+
+.video-placeholder p {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.lesson-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.lesson-header h1 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.lesson-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    color: var(--text-muted);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.lesson-meta span {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.lesson-meta i {
+    color: var(--primary);
+}
+
+.code-block {
+    background: #1e1e1e;
+    border-radius: var(--radius-md);
+    margin: var(--spacing-lg) 0;
+    overflow: hidden;
+}
+
+.code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: #2d2d2d;
+    border-bottom: 1px solid #404040;
+}
+
+.code-lang {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.copy-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: transparent;
+    border: 1px solid #404040;
+    border-radius: var(--radius-xs);
+    color: #9ca3af;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.copy-btn:hover {
+    background: #404040;
+    color: white;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: var(--spacing-md);
+    overflow-x: auto;
+}
+
+.code-block code {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #d4d4d4;
+    background: transparent;
+    padding: 0;
+}
+
+.info-box {
+    padding: var(--spacing-lg);
+    background: var(--info-bg);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--info);
+    margin: var(--spacing-lg) 0;
+}
+
+.warning-box {
+    padding: var(--spacing-lg);
+    background: var(--warning-bg);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--warning);
+    margin: var(--spacing-lg) 0;
+}
+
+.success-box {
+    padding: var(--spacing-lg);
+    background: var(--success-bg);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--success);
+    margin: var(--spacing-lg) 0;
+}
+
+.tip-box {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--primary-bg);
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.tip-box i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.tip-box p {
+    margin: 0;
+}
+
+.lesson-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--border-light);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.btn-lesson {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: var(--bg-gray-100);
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    border: 1px solid var(--border-light);
+    cursor: pointer;
+}
+
+.btn-lesson:hover {
+    background: var(--bg-gray-200);
+    color: var(--text-dark);
+}
+
+.btn-lesson.btn-primary {
+    background: var(--primary-gradient);
+    border: none;
+    color: white;
+    box-shadow: var(--shadow-primary);
+}
+
+.btn-lesson.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(121, 82, 179, 0.2);
+}
+
+.btn-lesson.btn-success {
+    background: var(--success);
+    border: none;
+    color: white;
+}
+
+.btn-lesson.btn-success:hover {
+    background: var(--success-dark);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .header-inner {
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+    
+    .back-btn span {
+        display: none;
+    }
+    
+    .course-title-header h1 {
+        font-size: 1.125rem;
+    }
+    
+    .intro-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .lesson-item {
+        flex-wrap: wrap;
+    }
+    
+    .lesson-name {
+        width: 100%;
+        order: 3;
+        margin-left: 52px;
+    }
+    
+    .course-stats {
+        flex-wrap: wrap;
+        gap: var(--spacing-lg);
+    }
+    
+    .stat-item {
+        min-width: 120px;
+    }
+    
+    .lesson-navigation {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .nav-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .btn-lesson {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .course-stats {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .lesson-meta {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-soft);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* ==================== SELECTION ==================== */
+::selection {
+    background: var(--primary);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--primary);
+    color: white;
+}

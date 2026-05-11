@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="boardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8ab4f8"/>
+      <stop offset="100%" style="stop-color:#4285f4"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="80" height="65" rx="12" fill="url(#boardGrad)"/>
+  <rect x="18" y="18" width="64" height="49" rx="6" fill="rgba(255,255,255,0.2)"/>
+  <path d="M30 45 L50 25 L70 45" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <line x1="36" y1="85" x2="64" y2="85" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+</svg>

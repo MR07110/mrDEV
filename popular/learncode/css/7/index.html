@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Dars: Inheritance (Meros olish) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "7",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=Q2hfLLQhjsc&list=PLpDyZ4xZcDg_gyII__1jtnE2FEgqpfJU8&index=7",
+            "lessonTitle": "Inheritance (Meros olish)"
+        }
+    </script>
+    
+    <!-- Test javoblari (7-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "b"
+        }
+    </script>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>7-Dars: Inheritance</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 9:35
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/Q2hfLLQhjsc" 
+                            title="CSS | 7. Inheritance (Meros olish)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 7. Inheritance (Meros olish)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 9:35</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Inheritance (Meros olish)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 14-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da inheritance (meros olish) - ota elementga berilgan ba'zi xususiyatlarning avtomatik ravishda bola elementlarga o'tish xususiyati. Bu kodni qisqartirish va samarali yozish uchun juda muhim.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Inheritance nima va u qanday ishlaydi?</li>
+                        <li><i class="fas fa-check-circle"></i> Qaysi xususiyatlar meros bo'lib o'tadi?</li>
+                        <li><i class="fas fa-check-circle"></i> Qaysi xususiyatlar meros bo'lib o'tmaydi?</li>
+                        <li><i class="fas fa-check-circle"></i> inherit, initial, unset kalit so'zlari</li>
+                        <li><i class="fas fa-check-circle"></i> Inheritance dan samarali foydalanish</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Matn xususiyatlari meros bo'ladi:</strong> color, font-family, font-size, text-align kabi xususiyatlar avtomatik ravishda bolalarga o'tadi.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Quti modeli meros bo'lmaydi:</strong> margin, padding, border, width, height kabi xususiyatlar meros bo'lib o'tmaydi.</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>body ga shrift bering:</strong> Butun sayt bo'ylab bir xil shrift ishlatish uchun body elementiga font-family bering.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: INHERITANCE NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-inheritance">
+                    <h2><i class="fas fa-question-circle"></i> Inheritance nima?</h2>
+                    
+                    <p><strong>Inheritance (meros olish)</strong> - bu ota elementga berilgan ba'zi CSS xususiyatlarining avtomatik ravishda uning bola (ichki) elementlariga o'tish xususiyati.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Ota elementga berilgan rang */
+.parent {
+    color: #2563eb;
+    font-family: 'Segoe UI', sans-serif;
+}</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">&lt;div class="parent"&gt;
+    Bu matn ko'k rangda
+    &lt;p&gt;Bu paragraf ham ko'k rangda (meros oldi)&lt;/p&gt;
+    &lt;span&gt;Bu span ham ko'k rangda (meros oldi)&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Natija:</strong> parent elementiga berilgan <code>color</code> xususiyati barcha ichki elementlarga avtomatik o'tadi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: MEROS BO'LADIGAN XUSUSIYATLAR ==================== -->
+                <section class="lesson-section" id="inherited-properties">
+                    <h2><i class="fas fa-check-circle"></i> Meros bo'ladigan xususiyatlar</h2>
+                    
+                    <p>Asosan matn bilan bog'liq xususiyatlar meros bo'lib o'tadi:</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-palette"></i>
+                            <h4>color</h4>
+                            <p>Matn rangi</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-font"></i>
+                            <h4>font-family</h4>
+                            <p>Shrift turi</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-text-height"></i>
+                            <h4>font-size</h4>
+                            <p>Shrift o'lchami</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-bold"></i>
+                            <h4>font-weight</h4>
+                            <p>Shrift qalinligi</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-align-left"></i>
+                            <h4>text-align</h4>
+                            <p>Matnni tekislash</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-arrow-up"></i>
+                            <h4>line-height</h4>
+                            <p>Qator balandligi</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-i-cursor"></i>
+                            <h4>cursor</h4>
+                            <p>Kursor ko'rinishi</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-eye"></i>
+                            <h4>visibility</h4>
+                            <p>Ko'rinuvchanlik</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: MEROS BO'LMAYDIGAN XUSUSIYATLAR ==================== -->
+                <section class="lesson-section" id="non-inherited-properties">
+                    <h2><i class="fas fa-times-circle"></i> Meros bo'lmaydigan xususiyatlar</h2>
+                    
+                    <p>Quti modeli va joylashuv bilan bog'liq xususiyatlar meros bo'lib o'tmaydi:</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-arrows-alt"></i>
+                            <h4>margin</h4>
+                            <p>Tashqi bo'shliq</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-vector-square"></i>
+                            <h4>padding</h4>
+                            <p>Ichki bo'shliq</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-border-all"></i>
+                            <h4>border</h4>
+                            <p>Chegara</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-arrows-alt-h"></i>
+                            <h4>width</h4>
+                            <p>Kenglik</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-arrows-alt-v"></i>
+                            <h4>height</h4>
+                            <p>Balandlik</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-fill-drip"></i>
+                            <h4>background</h4>
+                            <p>Fon</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-map-pin"></i>
+                            <h4>position</h4>
+                            <p>Joylashuv</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>display</h4>
+                            <p>Ko'rinish turi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Eslatma:</strong> background xususiyati meros bo'lmaydi, lekin ota elementning foni shaffof bo'lsa, bola elementning foni ko'rinib turadi. Bu inheritance emas, shaffoflik xususiyati.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: INHERITANCE NI BOSHQARISH ==================== -->
+                <section class="lesson-section" id="controlling-inheritance">
+                    <h2><i class="fas fa-sliders-h"></i> Inheritance ni boshqarish</h2>
+                    
+                    <p>CSS da inheritance ni boshqarish uchun maxsus kalit so'zlar mavjud:</p>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Kalit so'z</th>
+                                    <th>Vazifasi</th>
+                                    <th>Misol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>inherit</code></td>
+                                    <td>Ota elementdan majburan meros olish</td>
+                                    <td><code>border: inherit;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>initial</code></td>
+                                    <td>Brauzerning standart qiymatiga qaytarish</td>
+                                    <td><code>color: initial;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>unset</code></td>
+                                    <td>Agar meros bo'lsa inherit, aks holda initial</td>
+                                    <td><code>font-size: unset;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>revert</code></td>
+                                    <td>Brauzer standartiga qaytarish (user styles ni hisobga oladi)</td>
+                                    <td><code>display: revert;</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Meros bo'lmaydigan xususiyatni majburan meros qilish */
+.child {
+    border: inherit;  /* Ota elementning borderini oladi */
+}
+
+/* Meros bo'ladigan xususiyatni meros qilmaslik */
+.child {
+    color: initial;  /* Brauzer standart rangiga qaytadi */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: BODY ORQALI GLOBAL STILLASH ==================== -->
+                <section class="lesson-section" id="body-inheritance">
+                    <h2><i class="fas fa-globe"></i> Body orqali global stillash</h2>
+                    
+                    <p>Inheritance dan eng samarali foydalanish usullaridan biri - <code>body</code> elementiga umumiy stillar berish:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Butun sayt bo'ylab bir xil shrift va rang */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+/* Kerakli joyda qayta yozish mumkin */
+.special-text {
+    color: #3b82f6;  /* Faqat shu element uchun */
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Professional maslahat:</strong> Har doim <code>body</code> elementiga asosiy shrift va matn rangini bering. Bu kodni ancha qisqartiradi va sayt bo'ylab bir xillikni ta'minlaydi.
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3>
+                        <span class="test-badge">7-dars testi</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            Qaysi xususiyat meros bo'lib o'tadi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1a" value="a">
+                                <label for="q1a">margin</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1b" value="b">
+                                <label for="q1b">color</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1c" value="c">
+                                <label for="q1c">border</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1d" value="d">
+                                <label for="q1d">padding</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            Qaysi kalit so'z ota elementdan majburan meros olish uchun ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2a" value="a">
+                                <label for="q2a">initial</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2b" value="b">
+                                <label for="q2b">unset</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2c" value="c">
+                                <label for="q2c">inherit</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2d" value="d">
+                                <label for="q2d">revert</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            Butun sayt bo'ylab bir xil shrift ishlatish uchun qaysi elementga font-family beriladi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3a" value="a">
+                                <label for="q3a">body</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3b" value="b">
+                                <label for="q3b">html</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3c" value="c">
+                                <label for="q3c">head</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3d" value="d">
+                                <label for="q3d">* (universal)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Qaysi xususiyat meros bo'lib o'tmaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4a" value="a">
+                                <label for="q4a">font-family</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4b" value="b">
+                                <label for="q4b">margin</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4c" value="c">
+                                <label for="q4c">color</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4d" value="d">
+                                <label for="q4d">text-align</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Inheritance dan foydalanib, quyidagi vazifalarni bajaring.</p>
+                        <ol>
+                            <li><code>body</code> elementiga <code>font-family: 'Segoe UI', sans-serif;</code> va <code>color: #1e293b;</code> bering</li>
+                            <li><code>body</code> ichida <code>div</code> yarating va unga <code>padding: 20px;</code> bering</li>
+                            <li><code>div</code> ichida <code>h1</code>, <code>p</code>, va <code>span</code> elementlarini yarating</li>
+                            <li><code>span</code> elementiga <code>color: #3b82f6;</code> bering (merosni bekor qilish)</li>
+                            <li><code>div</code> elementiga <code>border: 2px solid #e2e8f0;</code> bering va uning ichidagi <code>p</code> elementiga <code>border: inherit;</code> bering</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4> Namunaviy yechim:</h4> 
+                        <pre><code class="language-css">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            color: #1e293b;
+        }
+        
+        div {
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        span {
+            color: #3b82f6;
+        }
+        
+        p {
+            border: inherit;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;h1&gt;Sarlavha (meros rangda)&lt;/h1&gt;
+        &lt;p&gt;Paragraf (border inherit qilgan)&lt;/p&gt;
+        &lt;span&gt;Span (o'ziga xos ko'k rangda)&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Inheritance</strong> - ota element xususiyatlarining bolalarga avtomatik o'tishi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Meros bo'ladigan:</strong> color, font-family, font-size, text-align, line-height, cursor</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Meros bo'lmaydigan:</strong> margin, padding, border, width, height, background</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Kalit so'zlar:</strong> inherit (meros ol), initial (standartga qaytar), unset (avtomatik)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Combinators (Kombinatorlar)</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../6/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../8/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#what-is-inheritance">Inheritance nima?</a></li>
+                        <li><a href="#inherited-properties">Meros bo'ladigan xususiyatlar</a></li>
+                        <li><a href="#non-inherited-properties">Meros bo'lmaydigan xususiyatlar</a></li>
+                        <li><a href="#controlling-inheritance">Inheritance ni boshqarish</a></li>
+                        <li><a href="#body-inheritance">Body orqali stillash</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">7/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 11.1%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14-Dars: Height, Width. Max/Min | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "14",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=1j2jyuzpvGs&list=PLpDyZ4xZcDg_gyII__1jtnE2FEgqpfJU8&index=14",
+            "lessonTitle": "Height, Width. Max/Min height/width"
+        }
+    </script>
+    
+    <!-- Test javoblari (14-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>14-Dars: Height, Width. Max/Min</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 20:39
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/1j2jyuzpvGs" 
+                            title="CSS | 14. Height, Width. Max/Min height/width"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 14. Height, Width. Max/Min height/width</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 20:39</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Height (balandlik), Width (kenglik). Max / Min - height / width</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 21-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Box Model</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da elementlarning kengligi (<code>width</code>) va balandligini (<code>height</code>) qanday boshqarishni, shuningdek, ularning minimal va maksimal chegaralarini (<code>min-width</code>, <code>max-width</code>, <code>min-height</code>, <code>max-height</code>) qanday belgilashni o'rganasiz. Bu responsive dizayn uchun juda muhim.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>width</code> - element kengligini belgilash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>height</code> - element balandligini belgilash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>min-width</code> va <code>max-width</code> - kenglik chegaralari</li>
+                        <li><i class="fas fa-check-circle"></i> <code>min-height</code> va <code>max-height</code> - balandlik chegaralari</li>
+                        <li><i class="fas fa-check-circle"></i> <code>auto</code> qiymati va foizlar bilan ishlash</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>max-width muhim:</strong> Responsive dizayn uchun <code>max-width: 100%</code> juda ko'p ishlatiladi. Bu element ota konteynerdan chiqib ketmasligini ta'minlaydi.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>min-height foydali:</strong> <code>min-height: 100vh</code> yordamida element kamida ekran balandligicha bo'lishini ta'minlash mumkin.</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Foizlar ota elementga nisbatan:</strong> <code>width: 50%</code> ota element kengligining yarmini oladi.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: WIDTH VA HEIGHT ==================== -->
+                <section class="lesson-section" id="width-height">
+                    <h2><i class="fas fa-arrows-alt"></i> Width va Height</h2>
+                    
+                    <p><strong><code>width</code></strong> va <strong><code>height</code></strong> xususiyatlari elementning kontent qismining kengligi va balandligini belgilaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">.box {
+    width: 300px;      /* Kenglik 300 piksel */
+    height: 200px;     /* Balandlik 200 piksel */
+    background: #3b82f6;
+    color: white;
+    padding: 20px;
+}
+
+/* Foizlarda */
+.container {
+    width: 80%;        /* Ota elementning 80% */
+    margin: 0 auto;    /* Markazga tekislash */
+}
+
+/* Auto - avtomatik hisoblash */
+.auto-box {
+    width: auto;       /* Brauzer avtomatik hisoblaydi */
+    height: auto;      /* Kontentga qarab */
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Eslatma:</strong> <code>width</code> va <code>height</code> faqat kontent qismiga ta'sir qiladi. Padding, border va margin qo'shimcha joy egallaydi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: MIN-WIDTH VA MAX-WIDTH ==================== -->
+                <section class="lesson-section" id="min-max-width">
+                    <h2><i class="fas fa-arrows-alt-h"></i> min-width va max-width</h2>
+                    
+                    <p>Element kengligining minimal va maksimal chegaralarini belgilash uchun ishlatiladi. Bu ayniqsa responsive dizaynda juda foydali.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Minimal kenglik - bundan kichik bo'la olmaydi */
+.card {
+    min-width: 250px;
+    width: 100%;
+}
+
+/* Maksimal kenglik - bundan katta bo'la olmaydi */
+.container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Responsive rasm */
+img {
+    max-width: 100%;   /* Ota elementdan katta bo'lmaydi */
+    height: auto;      /* Nisbat saqlanadi */
+}
+
+/* Birgalikda ishlatish */
+.responsive-box {
+    min-width: 300px;
+    max-width: 800px;
+    width: 80%;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Eng ko'p ishlatiladigan pattern:</strong> <code>max-width: 1200px; width: 90%; margin: 0 auto;</code> - bu konteyner katta ekranlarda 1200px, kichik ekranlarda esa 90% kenglikda bo'ladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: MIN-HEIGHT VA MAX-HEIGHT ==================== -->
+                <section class="lesson-section" id="min-max-height">
+                    <h2><i class="fas fa-arrows-alt-v"></i> min-height va max-height</h2>
+                    
+                    <p>Element balandligining minimal va maksimal chegaralarini belgilash uchun ishlatiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* To'liq ekran balandligi */
+.hero {
+    min-height: 100vh;  /* Kamida ekran balandligicha */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Maksimal balandlik - scroll bilan */
+.scrollable-content {
+    max-height: 400px;
+    overflow-y: auto;   /* Kontent ko'p bo'lsa scroll */
+    padding: 20px;
+}
+
+/* Birgalikda */
+.modal-content {
+    min-height: 200px;
+    max-height: 80vh;   /* Ekranning 80% dan oshmaydi */
+    overflow-y: auto;
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> <code>height</code> va <code>max-height</code> birga ishlatilganda, <code>max-height</code> ustunlik qiladi. Agar <code>height: 500px</code> va <code>max-height: 300px</code> bo'lsa, element 300px bo'ladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: O'LCHOV BIRLIKLARI ==================== -->
+                <section class="lesson-section" id="units">
+                    <h2><i class="fas fa-ruler"></i> O'lchov birliklari</h2>
+                    
+                    <p>Width va height uchun turli xil o'lchov birliklaridan foydalanish mumkin:</p>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Birlik</th>
+                                    <th>Tavsif</th>
+                                    <th>Misol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>px</code></td>
+                                    <td>Piksel - qat'iy o'lcham</td>
+                                    <td><code>width: 300px;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>%</code></td>
+                                    <td>Ota elementga nisbatan foiz</td>
+                                    <td><code>width: 50%;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>vw</code></td>
+                                    <td>Viewport kengligining foizi</td>
+                                    <td><code>width: 80vw;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>vh</code></td>
+                                    <td>Viewport balandligining foizi</td>
+                                    <td><code>min-height: 100vh;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>em</code></td>
+                                    <td>Joriy shrift o'lchamiga nisbatan</td>
+                                    <td><code>width: 20em;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>rem</code></td>
+                                    <td>Root shrift o'lchamiga nisbatan</td>
+                                    <td><code>width: 40rem;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>auto</code></td>
+                                    <td>Avtomatik hisoblash</td>
+                                    <td><code>width: auto;</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: AMALIY MISOL ==================== -->
+                <section class="lesson-section" id="practical-example">
+                    <h2><i class="fas fa-laptop"></i> Amaliy misol: Responsive karta</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Responsive karta komponenti */
+.card {
+    min-width: 280px;
+    max-width: 400px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.card-content {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Karta konteyneri */
+.cards-container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3>
+                        <span class="test-badge">14-dars testi</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            Element ekran balandligicha bo'lishi uchun qaysi xususiyat ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1a" value="a">
+                                <label for="q1a">height: 100%;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1b" value="b">
+                                <label for="q1b">min-height: 100vh;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1c" value="c">
+                                <label for="q1c">max-height: 100%;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1d" value="d">
+                                <label for="q1d">height: 100vh;</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            Rasm ota konteynerdan chiqib ketmasligi uchun qaysi xususiyat ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2a" value="a">
+                                <label for="q2a">width: 100%;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2b" value="b">
+                                <label for="q2b">height: auto;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2c" value="c">
+                                <label for="q2c">max-width: 100%;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2d" value="d">
+                                <label for="q2d">min-width: 100%;</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            <code>width: 50%;</code> nimaga nisbatan hisoblanadi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3a" value="a">
+                                <label for="q3a">Ota element kengligiga nisbatan</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3b" value="b">
+                                <label for="q3b">Ekran kengligiga nisbatan</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3c" value="c">
+                                <label for="q3c">Element kontentiga nisbatan</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3d" value="d">
+                                <label for="q3d">Body kengligiga nisbatan</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Element balandligi kontentga qarab avtomatik o'zgarishi uchun qaysi qiymat ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4a" value="a">
+                                <label for="q4a">height: 100%;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4b" value="b">
+                                <label for="q4b">height: inherit;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4c" value="c">
+                                <label for="q4c">height: 0;</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q4" id="q4d" value="d">
+                                <label for="q4d">height: auto;</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Width va height xususiyatlaridan foydalanib responsive karta yarating.</p>
+                        <ol>
+                            <li>Karta uchun <code>.card</code> klassini yarating</li>
+                            <li><code>min-width: 250px</code> va <code>max-width: 350px</code> bering</li>
+                            <li><code>width: 100%</code> bering (ota elementga moslashsin)</li>
+                            <li>Karta ichidagi rasmga <code>max-width: 100%</code> va <code>height: auto</code> bering</li>
+                            <li>Karta kontentiga <code>max-height: 150px</code> va <code>overflow-y: auto</code> bering</li>
+                            <li>Kartalarni <code>display: grid</code> va <code>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))</code> bilan joylashtiring</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-html">&lt;div class="cards-container"&gt;
+    &lt;div class="card"&gt;
+        &lt;img src="image.jpg" alt="Rasm"&gt;
+        &lt;div class="card-content"&gt;
+            &lt;h3&gt;Karta sarlavhasi&lt;/h3&gt;
+            &lt;p&gt;Karta ichidagi matn...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Yana kartalar --&gt;
+&lt;/div&gt;</code></pre>
+                        <pre><code class="language-css">.cards-container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 40px 0;
+}
+
+.card {
+    min-width: 250px;
+    max-width: 350px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.card-content {
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 10px;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>width / height</strong> - elementning kengligi va balandligini belgilaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>min-width / max-width</strong> - kenglik chegaralarini belgilaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>min-height / max-height</strong> - balandlik chegaralarini belgilaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>max-width: 100%</strong> - rasm va videolar uchun juda muhim</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>min-height: 100vh</strong> - to'liq ekran balandligi uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Display xossasi</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../13/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../15/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#width-height">Width va Height</a></li>
+                        <li><a href="#min-max-width">min/max-width</a></li>
+                        <li><a href="#min-max-height">min/max-height</a></li>
+                        <li><a href="#units">O'lchov birliklari</a></li>
+                        <li><a href="#practical-example">Amaliy misol</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">14/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 22.2%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

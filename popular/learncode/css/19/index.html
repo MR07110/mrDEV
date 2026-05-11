@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19-Dars: Loyihani yaxshilash (2-qism) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "19",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=KS3Va_LmS4U",
+            "lessonTitle": "Asosiy xossalar yordamida loyihani yaxshilash (2-qism)"
+        }
+    </script>
+    
+    <!-- Test javoblari (19-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>19-Dars: Loyihani yaxshilash (2-qism)</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 24:55
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/KS3Va_LmS4U" 
+                            title="CSS | 19. Asosiy xossalar yordamida loyihani yaxshilash (2-qism)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 19. Asosiy xossalar yordamida loyihani yaxshilash (2-qism)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 24:55</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Asosiy xossalar yordamida loyihani yaxshilash (2-qism)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 26-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Amaliy loyiha</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>Bu darsda 18-darsda boshlagan <strong>Natour</strong> loyihasini davom ettiramiz. Asosiy kontent qismini (About section) yaratamiz, sarlavhalarga stillar beramiz, "composition" rasmlar blokini yaratamiz va hover effektlar qo'shamiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni qilamiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> About section uchun HTML tuzilmasini yaratish</li>
+                        <li><i class="fas fa-check-circle"></i> Ikkilamchi sarlavhalar (heading-secondary) uchun stillar</li>
+                        <li><i class="fas fa-check-circle"></i> Composition - bir-biriga nisbatan joylashgan rasmlar bloki</li>
+                        <li><i class="fas fa-check-circle"></i> Rasmlarga hover effektlar va scale transform qo'shish</li>
+                        <li><i class="fas fa-check-circle"></i> Utility klasslar yaratish (u-center-text, u-margin-bottom)</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Utility klasslar:</strong> Tez-tez ishlatiladigan stillarni alohida klasslar ko'rinishida yaratish kodni qayta ishlatish imkonini beradi.</span>
+                            <span class="badge must-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>BEM metodologiyasi:</strong> Loyihada BEM (Block Element Modifier) nomlash metodologiyasidan foydalanamiz. Masalan: <code>.composition__photo</code>.</span>
+                            <span class="badge good-to-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>outline va outline-offset:</strong> Rasmlarga chiroyli chegara effekti berish uchun outline xususiyatidan foydalanamiz.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: ABOUT SECTION HTML ==================== -->
+                <section class="lesson-section" id="about-html">
+                    <h2><i class="fas fa-code"></i> About section HTML tuzilmasi</h2>
+                    
+                    <p>Avvalo "About Natour" bo'limi uchun HTML tuzilmasini yaratib olamiz:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-html">&lt;main&gt;
+    &lt;section class="section-about"&gt;
+        &lt;div class="u-center-text u-margin-bottom-big"&gt;
+            &lt;h2 class="heading-secondary"&gt;
+                Exciting tours for adventurous people
+            &lt;/h2&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="row"&gt;
+            &lt;div class="col-1-of-2"&gt;
+                &lt;h3 class="heading-tertiary u-margin-bottom-small"&gt;
+                    You're going to fall in love with nature
+                &lt;/h3&gt;
+                &lt;p class="paragraph"&gt;
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Aperiam, ipsum sapiente aspernatur libero repellat quis 
+                    consequatur ducimus quam nisi exercitationem.
+                &lt;/p&gt;
+                
+                &lt;h3 class="heading-tertiary u-margin-bottom-small"&gt;
+                    Live adventures like you never have before
+                &lt;/h3&gt;
+                &lt;p class="paragraph"&gt;
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Asperiores nulla deserunt voluptatum nam.
+                &lt;/p&gt;
+                
+                &lt;a href="#" class="btn-text"&gt;Learn more &rarr;&lt;/a&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="col-1-of-2"&gt;
+                &lt;div class="composition"&gt;
+                    &lt;img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1"&gt;
+                    &lt;img src="img/nat-2-large.jpg" alt="Photo 2" class="composition__photo composition__photo--p2"&gt;
+                    &lt;img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: GRID LAYOUT ==================== -->
+                <section class="lesson-section" id="grid-layout">
+                    <h2><i class="fas fa-columns"></i> Grid layout (Float yordamida)</h2>
+                    
+                    <p>Float yordamida 2 ustunli grid tizimini yaratamiz:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* ==================== GRID ==================== */
+.row {
+    max-width: 114rem;
+    margin: 0 auto;
+}
+
+.row:not(:last-child) {
+    margin-bottom: 8rem;
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+[class^="col-"] {
+    float: left;
+}
+
+[class^="col-"]:not(:last-child) {
+    margin-right: 6rem;
+}
+
+.col-1-of-2 {
+    width: calc((100% - 6rem) / 2);
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>[class^="col-"] selektori:</strong> Bu "col-" bilan boshlanadigan barcha klasslarni tanlaydi. Bu orqali barcha ustunlarga bir xil asosiy stillarni berish mumkin.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: SARLAVHA STILLARI ==================== -->
+                <section class="lesson-section" id="heading-styles">
+                    <h2><i class="fas fa-font"></i> Sarlavha stillari</h2>
+                    
+                    <p>Ikkilamchi va uchlamchi sarlavhalar uchun stillar:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* ==================== SARLAVHALAR ==================== */
+.heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 0.2rem;
+    transition: all 0.2s;
+}
+
+.heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.heading-tertiary {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph {
+    font-size: 1.6rem;
+}
+
+.paragraph:not(:last-child) {
+    margin-bottom: 3rem;
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>background-clip: text:</strong> Bu xususiyat fon rasmi yoki gradientni faqat matn ichida ko'rsatish imkonini beradi. Matn rangi transparent bo'lishi kerak.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: COMPOSITION RASMLAR BLOKI ==================== -->
+                <section class="lesson-section" id="composition">
+                    <h2><i class="fas fa-images"></i> Composition - rasmlar kompozitsiyasi</h2>
+                    
+                    <p>Bir-biriga nisbatan joylashgan, hover bo'lganda kattalashadigan rasmlar bloki:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* ==================== COMPOSITION ==================== */
+.composition {
+    position: relative;
+}
+
+.composition__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    position: absolute;
+    z-index: 10;
+    transition: all 0.2s;
+    outline-offset: 2rem;
+}
+
+.composition__photo--p1 {
+    left: 0;
+    top: -2rem;
+}
+
+.composition__photo--p2 {
+    right: 0;
+    top: 2rem;
+}
+
+.composition__photo--p3 {
+    left: 20%;
+    top: 10rem;
+}
+
+.composition__photo:hover {
+    outline: 1.5rem solid #55c57a;
+    transform: scale(1.05) translateY(-0.5rem);
+    box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+
+.composition:hover .composition__photo:not(:hover) {
+    transform: scale(0.95);
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> <code>outline</code> border dan farqli o'laroq, elementning o'lchamiga ta'sir qilmaydi. <code>outline-offset</code> outline va element orasidagi masofani belgilaydi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: UTILITY KLASSLAR ==================== -->
+                <section class="lesson-section" id="utility-classes">
+                    <h2><i class="fas fa-toolbox"></i> Utility klasslar</h2>
+                    
+                    <p>Tez-tez ishlatiladigan stillarni alohida utility klasslar ko'rinishida yaratamiz:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* ==================== UTILITY KLASSLAR ==================== */
+.u-center-text {
+    text-align: center !important;
+}
+
+.u-margin-bottom-small {
+    margin-bottom: 1.5rem !important;
+}
+
+.u-margin-bottom-medium {
+    margin-bottom: 4rem !important;
+}
+
+.u-margin-bottom-big {
+    margin-bottom: 8rem !important;
+}
+
+.u-margin-top-big {
+    margin-top: 8rem !important;
+}
+
+.u-margin-top-huge {
+    margin-top: 10rem !important;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Utility klasslarda !important:</strong> Utility klasslar har doim ishlashi kerak bo'lgani uchun <code>!important</code> ishlatiladi. Bu <code>!important</code> ni to'g'ri ishlatish holatlaridan biridir.
+                    </div>
+                </section>
+                
+                <!-- ==================== 6-BO'LIM: BTN-TEXT STILLARI ==================== -->
+                <section class="lesson-section" id="btn-text">
+                    <h2><i class="fas fa-arrow-right"></i> btn-text stillari</h2>
+                    
+                    <p>"Learn more" tugmasi uchun stillar va hover animatsiyasi:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* ==================== BTN-TEXT ==================== */
+.btn-text:link,
+.btn-text:visited {
+    font-size: 1.6rem;
+    color: #55c57a;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid #55c57a;
+    padding: 3px;
+    transition: all 0.2s;
+}
+
+.btn-text:hover {
+    background-color: #55c57a;
+    color: #fff;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.btn-text:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transform: translateY(0);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 19-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            <code>background-clip: text</code> xususiyati nima uchun ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>Matn fonini kesish uchun</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>Fon rangini faqat matn ichida ko'rsatish uchun</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>Matnni fonga aylantirish uchun</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>Matn fonini yashirish uchun</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            <code>[class^="col-"]</code> selektori qanday elementlarni tanlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>"col-" bilan tugaydigan barcha klasslarni</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>Ichida "col-" bo'lgan barcha klasslarni</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>"col-" bilan boshlanadigan barcha klasslarni</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>Faqat "col-" klassini</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            <code>outline</code> va <code>border</code> asosiy farqi nimada?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>Outline element o'lchamiga ta'sir qilmaydi, border ta'sir qiladi</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>Border element o'lchamiga ta'sir qilmaydi, outline ta'sir qiladi</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>Ikkalasi ham bir xil</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>Outline faqat hover bo'lganda ishlaydi</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Utility klasslarda nima uchun <code>!important</code> ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>Kodni tezroq ishlashi uchun</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>Boshqa klasslar bilan ziddiyat bo'lmasligi uchun</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>Brauzerda yaxshiroq ko'rinishi uchun</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>Utility klasslar har doim ishlashi kerak bo'lgani uchun</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Darsda yaratilgan About section ni o'zingiz takrorlab ko'ring.</p>
+                        <ol>
+                            <li>Grid tizimini float yordamida yarating (2 ustunli)</li>
+                            <li>Sarlavha uchun gradient matn yarating (<code>background-clip: text</code>)</li>
+                            <li>3 ta rasmni bir-biriga nisbatan joylashtirib, hover effekti qo'shing</li>
+                            <li>Rasmlarga <code>outline</code> va <code>outline-offset</code> qo'shing</li>
+                            <li>Utility klasslar yarating (<code>u-center-text</code>, <code>u-margin-bottom-big</code>)</li>
+                            <li>"Learn more" tugmasini yarating va hover effekt qo'shing</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <p>To'liq kodni dars davomida yozilgan CSS va HTML dan nusxalashingiz mumkin. Yuqoridagi kod bloklarida barcha kerakli stillar keltirilgan.</p>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Grid layout (Float):</strong> <code>.row</code> va <code>[class^="col-"]</code> selektorlari orqali</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>background-clip: text:</strong> Matnga gradient fon berish uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>outline va outline-offset:</strong> Element o'lchamiga ta'sir qilmaydigan chegara</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Composition hover:</strong> <code>.composition:hover .composition__photo:not(:hover)</code> - hover bo'lmagan rasmlarni kichiklashtirish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Utility klasslar:</strong> Tez-tez ishlatiladigan stillarni qayta ishlatish uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Asosiy xossalar yordamida loyihani yaxshilash (3-qism) - Nazorat ishi!</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../18/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../20/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#about-html">About section HTML</a></li>
+                        <li><a href="#grid-layout">Grid layout</a></li>
+                        <li><a href="#heading-styles">Sarlavha stillari</a></li>
+                        <li><a href="#composition">Composition</a></li>
+                        <li><a href="#utility-classes">Utility klasslar</a></li>
+                        <li><a href="#btn-text">btn-text</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">19/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 30.2%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="uz" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>MR BOARD - Part 8 (Chatga Xabar Yuborish)</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* =========================================================
+           [1] ENTERPRISE O'ZGARUVCHILARI (1:1)
+           ========================================================= */
+        :root {
+            --bg-base: #f8fafc;
+            --bg-canvas: #e2e8f0;
+            --bg-glass: rgba(255,255,255,0.65);
+            --bg-panel: rgba(255,255,255,0.85);
+            --bg-hover: rgba(0,0,0,0.05);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-subtle: rgba(255,255,255,0.4);
+            --border-strong: rgba(0,0,0,0.1);
+            --brand-primary: #007aff;
+            --brand-alpha: rgba(0,122,255,0.15);
+            --state-danger: #ff3b30;
+            --state-warning: #ffcc00;
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+            --shadow-float: 0 24px 48px -12px rgba(0,0,0,0.15), 0 12px 24px -8px rgba(0,0,0,0.1);
+            --shadow-glass: inset 0 1px 1px rgba(255,255,255,0.8), inset 0 0 0 1px rgba(255,255,255,0.4);
+            --shadow-inner: inset 0 2px 4px rgba(0,0,0,0.05);
+            
+            --dur: 3s; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            background: #cbd5e1; height: 100vh; display: flex; align-items: center; justify-content: center;
+            color: var(--text-main); overflow: hidden; user-select: none;
+        }
+        button, input { font-family: inherit; border: none; outline: none; background: none; color: inherit; }
+        button { cursor: pointer; }
+
+        /* VIDEO RAMKA */
+        .video-frame {
+            width: 95vw; max-width: 1400px; height: 90vh; max-height: 850px;
+            background: var(--bg-canvas); border-radius: 28px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+            border: 8px solid #ffffff; position: relative; overflow: hidden;
+        }
+
+        /* PROGRESS BAR (35% -> 40% - 20 qism uchun matematik to'g'ri oraliq) */
+        .progress-bar { position: absolute; bottom: 0; left: 0; height: 8px; background: var(--brand-primary); width: 35%; animation: progressFill var(--dur) linear forwards; z-index: 9999; }
+        @keyframes progressFill { from { width: 35%; } to { width: 40%; } }
+
+        /* =========================================================
+           [2] 1:1 ENTERPRISE ASOSIY UI
+           ========================================================= */
+        #app-container { position: absolute; inset: 0; z-index: 0; background: var(--bg-canvas); }
+        #ui-overlay { position: absolute; inset: 0; z-index: 100; pointer-events: none; }
+        
+        /* TEPADAGI NAV */
+        .nav-top { position: absolute; top: 24px; left: 24px; right: 24px; display: flex; justify-content: space-between; pointer-events: auto; }
+        .nav-group { display: flex; gap: 12px; }
+        .status-pill { background: var(--bg-glass); backdrop-filter: blur(40px); border: 1px solid var(--border-subtle); border-radius: 99px; padding: 10px 24px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-float), var(--shadow-glass); }
+
+        /* PASTDAGI DOCK */
+        .dock-bottom { position: absolute; bottom: 32px; left: 0; right: 0; display: flex; justify-content: center; pointer-events: none; }
+        .dock-glass { background: var(--bg-glass); backdrop-filter: blur(50px); border: 1px solid var(--border-subtle); border-radius: 32px; padding: 12px; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-float), var(--shadow-glass); pointer-events: auto; }
+        .dock-sep { width: 2px; height: 32px; background: var(--border-strong); margin: 0 8px; border-radius: 2px; }
+        .action-btn { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); position: relative; transition: 0.2s; }
+        .action-btn.is-active { background: var(--brand-primary); color: #fff; box-shadow: 0 8px 20px var(--brand-alpha); transform: scale(1.05); }
+        .color-indicator { width: 24px; height: 24px; border-radius: 50%; border: 3px solid var(--bg-panel); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .audio-module { display: flex; align-items: center; gap: 4px; height: 48px; background: var(--bg-base); padding: 0 16px; border-radius: 16px; border: 1px inset var(--border-strong); box-shadow: var(--shadow-inner); }
+        .viz-container { display: flex; gap: 2px; align-items: center; }
+        .viz-bar { width: 3px; min-height: 4px; background: var(--text-muted); border-radius: 3px; }
+
+        /* MINIMAP (7-QISMDA CHAPGA SURILGAN HOLATI SAQLANADI) */
+        .minimap-widget { position: absolute; bottom: 120px; right: 24px; width: 240px; height: 160px; background: var(--bg-panel); backdrop-filter: blur(40px) saturate(200%); border: 1px solid var(--border-subtle); border-radius: 20px; box-shadow: var(--shadow-float), var(--shadow-glass); display: flex; flex-direction: column; overflow: hidden; pointer-events: auto; transform: translateX(-360px); }
+        .minimap-header { height: 36px; background: rgba(0,0,0,0.02); border-bottom: 1px solid var(--border-strong); display: flex; align-items: center; padding: 0 12px; font-size: 11px; font-weight: 700; color: var(--text-muted); gap: 8px; justify-content: space-between;}
+        .minimap-body { flex: 1; background: var(--bg-canvas); opacity: 0.6; position: relative; }
+        #minimap-view { position: absolute; border: 2px solid var(--brand-primary); background: var(--brand-alpha); border-radius: 6px; box-shadow: 0 0 0 9999px rgba(0,0,0,0.3); width: 120px; height: 80px; top: 20px; left: 40px; }
+
+        /* CHAT DRAWER (OCHIQ HOLATDA) */
+        .drawer { position: absolute; top: 24px; bottom: 120px; width: 340px; background: var(--bg-panel); backdrop-filter: blur(40px) saturate(200%); border: 1px solid var(--border-subtle); border-radius: 24px; box-shadow: var(--shadow-float), var(--shadow-glass); z-index: 140; display: flex; flex-direction: column; overflow: hidden; }
+        .drawer.right { right: 24px; transform: translateX(0); opacity: 1; } /* 7-qismdan ochiq qolgan */
+        
+        .drawer-header { padding: 16px 20px; border-bottom: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 15px; }
+        .btn-close { background: none; border: none; color: var(--text-muted); display: flex; }
+        
+        .chat-layout { flex: 1; display: flex; flex-direction: column; background: rgba(0,0,0,0.01); overflow: hidden; }
+        .chat-messages { flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; scroll-behavior: smooth; }
+        .msg-bubble { background: var(--bg-base); padding: 12px 16px; border-radius: 16px 16px 16px 4px; border: 1px solid var(--border-strong); font-size: 13px; color: var(--text-muted); box-shadow: 0 2px 8px rgba(0,0,0,0.02); max-width: 85%; }
+        .msg-bubble.mine { background: var(--brand-primary); color: #fff; border-radius: 16px 16px 4px 16px; align-self: flex-end; border: none; }
+        .msg-info { font-size: 10px; margin-bottom: 4px; opacity: 0.8; font-weight: 700;}
+        
+        /* Yangi xabar kelganda sakrab chiqish (Pop) animatsiyasi */
+        @keyframes popMessage {
+            0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .msg-bubble.new-msg { animation: popMessage 0.4s var(--ease-spring) forwards; }
+
+        .chat-composer { padding: 16px; border-top: 1px solid var(--border-strong); display: flex; gap: 8px; background: var(--bg-base); }
+        .chat-input { flex: 1; background: var(--bg-hover); border: 1px solid var(--border-strong); border-radius: 99px; padding: 10px 16px; font-size: 13px; color: var(--text-main); font-weight: 500;}
+        .chat-submit { width: 38px; height: 38px; border-radius: 50%; background: var(--brand-primary); color: #fff; display: flex; align-items: center; justify-content: center; transition: 0.1s; }
+        
+        /* JS orqali tugmani bosilganda kichiklashishi uchun klass */
+        .chat-submit.clicked { transform: scale(0.85); background: #0056b3; }
+
+        /* =========================================================
+           [3] CHIZISH QATLAMI (O'TMISHDAGI IZLAR)
+           ========================================================= */
+        .draw-layer { position: absolute; width: 1200px; height: 700px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 10; pointer-events: none; }
+        .static-path { fill: none; stroke: var(--brand-primary); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+        .static-shape { fill: var(--brand-alpha); stroke: var(--brand-primary); stroke-width: 4; rx: 16; }
+        .mini-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .mini-shape { stroke-width: 14; rx: 30; }
+
+        /* =========================================================
+           [4] KURSOR HARAKATI (TYPING -> SEND CLICK)
+           ========================================================= */
+        .magic-cursor {
+            position: absolute; top: 0; left: 0; width: 40px; height: 40px; z-index: 999;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>') no-repeat;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+            animation: moveCursor8 var(--dur) var(--ease-smooth) forwards;
+        }
+
+        @keyframes moveCursor8 {
+            /* 0s dan 1.2s gacha input yozilayotganda kursor kutib turadi */
+            0%, 40% { transform: translate(1050px, 680px) scale(1); }
+            
+            /* 1.5s - Send tugmasi ustiga uchib keladi (X=1300, Y=680 taxminan) */
+            50% { transform: translate(1300px, 680px) scale(1); }
+            /* 1.65s - BOSADI! */
+            55% { transform: translate(1300px, 680px) scale(0.8); }
+            58% { transform: translate(1300px, 680px) scale(1); }
+            
+            /* Xabar ketgach, ekran markaziga qarab dam olgani ketadi */
+            100% { transform: translate(1150px, 550px) scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-frame">
+        <div class="progress-bar"></div>
+
+        <div id="app-container" class="grid-pattern">
+            <div class="draw-layer">
+                <svg width="1200" height="700" viewBox="0 0 1200 700">
+                    <path class="static-path" d="M 200 500 C 400 100, 800 650, 1100 200" />
+                    <rect class="static-shape" x="350" y="250" width="400" height="250"></rect>
+                </svg>
+                <div class="magic-cursor"></div>
+            </div>
+            
+            <div class="minimap-widget" id="minimap-widget">
+                <div class="minimap-header">
+                    <div style="display:flex; align-items:center; gap:8px;"><i data-lucide="map" size="14"></i><span>Kuzatuv doskasi</span></div>
+                    <button class="btn-close"><i data-lucide="x" size="14"></i></button>
+                </div>
+                <div class="minimap-body">
+                    <div id="minimap-view"></div>
+                    <svg class="mini-svg" viewBox="0 0 1200 700" preserveAspectRatio="none">
+                        <path class="static-path mini-shape" d="M 200 500 C 400 100, 800 650, 1100 200" />
+                        <rect class="static-shape mini-shape" x="350" y="250" width="400" height="250"></rect>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div id="ui-overlay">
+            <div class="nav-top">
+                <div class="nav-group">
+                    <div class="status-pill"><i data-lucide="hash"></i><span id="ui-room-code">MR-2364</span></div>
+                    <div class="status-pill"><i data-lucide="search"></i><span id="ui-zoom-level">100%</span></div>
+                </div>
+                <div class="status-pill" id="ui-user-role"><i data-lucide="crown" style="color:var(--state-warning)"></i> Host</div>
+            </div>
+            
+            <div class="drawer right" id="drawer-chat">
+                <div class="drawer-header">
+                    <div class="drawer-title" style="display:flex; align-items:center; gap:8px;"><i data-lucide="message-square" style="color:var(--brand-primary)"></i> Umumiy Chat</div>
+                    <button class="btn-close"><i data-lucide="x"></i></button>
+                </div>
+                <div class="chat-layout">
+                    <div class="chat-messages" id="ui-chat-messages">
+                        <div class="msg-bubble">
+                            <div class="msg-info">Azizbek</div>
+                            <div>Dizayn zo'r chiqibdi! To'rtburchakni qanday chizdingiz? 🔥</div>
+                        </div>
+                        </div>
+                    <div class="chat-composer">
+                        <input type="text" id="inp-chat-text" class="chat-input" placeholder="Xabar yozing..." readonly>
+                        <button class="chat-submit" id="btn-submit-chat"><i data-lucide="send" size="18"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dock-bottom">
+                <div class="dock-glass">
+                    <button class="action-btn"><i data-lucide="settings-2"></i></button>
+                    <button class="action-btn"><div class="color-indicator" style="background: #007aff;"></div></button>
+                    <div class="dock-sep"></div>
+                    
+                    <button class="action-btn"><i data-lucide="pencil"></i></button>
+                    <button class="action-btn"><i data-lucide="wand-2" style="color: var(--state-danger)"></i></button>
+                    <button class="action-btn" id="btn-toggle-shapes"><i data-lucide="shapes"></i></button>
+                    <button class="action-btn"><i data-lucide="eraser"></i></button>
+                    <button class="action-btn"><i data-lucide="hand"></i></button>
+                    <button class="action-btn"><i data-lucide="type"></i></button>
+                    <button class="action-btn"><i data-lucide="undo-2"></i></button>
+                    
+                    <div class="dock-sep"></div>
+                    <div class="audio-module">
+                        <i data-lucide="activity"></i>
+                        <div class="viz-container">
+                            <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                        </div>
+                    </div>
+                    <button class="action-btn"><i data-lucide="mic-off" style="color: var(--state-danger)"></i></button>
+                    
+                    <button class="action-btn is-active" id="btn-open-chat"><i data-lucide="message-square"></i></button>
+                    
+                    <button class="action-btn"><i data-lucide="users"></i></button>
+                    <div class="dock-sep"></div>
+                    <button class="action-btn"><i data-lucide="maximize"></i></button>
+                    <button class="action-btn"><i data-lucide="log-out" style="color: var(--state-danger)"></i></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // 1. TYPING ANIMATSIYASI (0.2s dan 1.0s gacha harfma-harf yoziladi)
+        const inputField = document.getElementById('inp-chat-text');
+        const textToType = "Ajoyib! O'rganish oson ekan"; // Yoziladigan matn
+        
+        let typeInterval = [300, 400, 450, 520, 600, 680, 750]; // "Ajoyib!" uchun vaqtlar
+        
+        typeInterval.forEach((time, index) => {
+            setTimeout(() => {
+                inputField.value = textToType.substring(0, index + 1);
+            }, time);
+        });
+
+        // 2. TUGMANI BOSISH VA XABARNI EKRANGA CHIQARISH (1.65 Soniyada)
+        setTimeout(() => {
+            const sendBtn = document.getElementById('btn-submit-chat');
+            const chatMessages = document.getElementById('ui-chat-messages');
+            
+            // Tugmani vizual ravishda ezilishi (Click effekti)
+            sendBtn.classList.add('clicked');
+            
+            setTimeout(() => {
+                sendBtn.classList.remove('clicked');
+                // Inputni tozalaymiz
+                inputField.value = "";
+                
+                // Yangi xabar pufakchasini (bubble) yaratamiz
+                const newMsg = document.createElement('div');
+                newMsg.className = 'msg-bubble mine new-msg'; // new-msg classi pop animatsiyasini beradi
+                newMsg.innerHTML = `
+                    <div class="msg-info">Siz (Host) <i data-lucide="crown" size="14" style="color:var(--state-warning)"></i></div>
+                    <div>Ajoyib!</div>
+                `;
+                
+                // Xabarni chat ro'yxatiga qo'shamiz
+                chatMessages.appendChild(newMsg);
+                lucide.createIcons();
+                
+                // Chatni eng oxiriga skroll qilamiz
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            }, 100); // 100ms dan keyin tugma asliga qaytadi va xabar chiqadi
+
+        }, 1650); // Kursor Send tugmasini aynan 1.65s (55%) da bosadi
+
+        // 3 Soniyadan keyin 9-qismga o'tadi
+        setTimeout(() => {
+            window.location.href = 'part9.html';
+        }, 3000); 
+    </script>
+
+</body>
+</html>

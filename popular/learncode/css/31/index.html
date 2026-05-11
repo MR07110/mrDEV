@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>31-Dars: Formalarga style berish (2-qism) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "31",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=toSPnMu9PVQ",
+            "lessonTitle": "Formalarga style berish (2-qism)"
+        }
+    </script>
+    
+    <!-- Test javoblari (31-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>31-Dars: Formalarga style berish (2-qism)</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 18:20
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/toSPnMu9PVQ" 
+                            title="CSS | 31. Formalarga style berish (2-qism)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 31. Formalarga style berish (2-qism)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 18:20</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Formalarga style berish (2-qism)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 7-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Formalar va Units</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da formalar bilan ishlashni davom ettiramiz. Radio va checkbox elementlariga style berish, ularni custom qilish, input va label elementlarini bog'lash, va forma validatsiyasi stillarini chuqur o'rganasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Radio va checkbox elementlariga style berish</li>
+                        <li><i class="fas fa-check-circle"></i> Custom radio va checkbox yaratish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>:checked</code> psevdo-klassi</li>
+                        <li><i class="fas fa-check-circle"></i> Input va label elementlarini bog'lash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>:disabled</code> va <code>:enabled</code> psevdo-klasslari</li>
+                        <li><i class="fas fa-check-circle"></i> Forma validatsiyasi va xatolik xabarlari</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Custom checkbox texnikasi:</strong> Asl inputni yashirib, <code>::before</code>/<code>::after</code> orqali yangi dizayn yaratish eng to'g'ri yo'l.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Label bilan input bog'lash:</strong> <code>&lt;label for="inputId"&gt;</code> orqali label bosilganda input aktivlashadi.</span>
+                            <span class="badge good-to-know">Accessibility</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>appearance: none</strong> - brauzer default stillarini olib tashlash uchun asosiy vosita.</span>
+                            <span class="badge tip">Professional</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span><strong>accent-color:</strong> Zamonaviy brauzerlarda checkbox/radio rangini bir qatorda o'zgartirish mumkin.</span>
+                            <span class="badge tip">Yangi xususiyat</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: RADIO VA CHECKBOX STILLARI ==================== -->
+                <section class="lesson-section" id="radio-checkbox">
+                    <h2><i class="fas fa-check-square"></i> Radio va Checkbox stillari</h2>
+                    
+                    <p>Radio va checkbox elementlariga style berish uchun avvalo <code>appearance: none</code> orqali brauzer default stillarini olib tashlash kerak.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Radio va checkbox uchun umumiy stillar */
+.form-radio,
+.form-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid #55c57a;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+/* Radio - doira shaklida */
+.form-radio {
+    border-radius: 50%;
+}
+
+/* Checkbox - belgilanganda */
+.form-checkbox:checked {
+    background-color: #55c57a;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+    background-size: 1.5rem;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Radio - belgilanganda */
+.form-radio:checked {
+    background-color: white;
+    border-color: #55c57a;
+    box-shadow: inset 0 0 0 0.5rem #55c57a;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Zamonaviy alternativ:</strong> <code>accent-color: #55c57a;</code> xususiyati orqali checkbox va radio rangini bir qatorda o'zgartirish mumkin. Lekin bu barcha brauzerlarda to'liq qo'llab-quvvatlanmaydi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: CUSTOM RADIO VA CHECKBOX ==================== -->
+                <section class="lesson-section" id="custom-radio-checkbox">
+                    <h2><i class="fas fa-paint-brush"></i> Custom Radio va Checkbox</h2>
+                    
+                    <p>Asl inputni yashirib, label orqali butunlay yangi dizayn yaratish - eng professional yondashuv.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-html">&lt;div class="form-group"&gt;
+    &lt;input type="checkbox" id="terms" class="custom-checkbox-input"&gt;
+    &lt;label for="terms" class="custom-checkbox-label"&gt;
+        &lt;span class="custom-checkbox"&gt;&lt;/span&gt;
+        Shartlarga roziman
+    &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Asl inputni yashirish */
+.custom-checkbox-input {
+    display: none;
+}
+
+/* Label va custom checkbox */
+.custom-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2px solid #55c57a;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.2s;
+}
+
+/* Checkbox belgilanganda */
+.custom-checkbox-input:checked + .custom-checkbox-label .custom-checkbox {
+    background-color: #55c57a;
+}
+
+.custom-checkbox-input:checked + .custom-checkbox-label .custom-checkbox::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.8rem;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: DISABLED VA ENABLED HOLATLAR ==================== -->
+                <section class="lesson-section" id="disabled-enabled">
+                    <h2><i class="fas fa-ban"></i> Disabled va Enabled holatlar</h2>
+                    
+                    <p>Forma elementlarining faol va nofaol holatlarini <code>:disabled</code> va <code>:enabled</code> psevdo-klasslari orqali boshqarish.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Enabled - faol holat */
+.form-input:enabled {
+    background-color: white;
+    border-color: #e2e8f0;
+}
+
+/* Disabled - nofaol holat */
+.form-input:disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    border-color: #d1d5db;
+}
+
+/* Checkbox disabled */
+.form-checkbox:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #9ca3af;
+}
+
+/* Label disabled holatda */
+.form-input:disabled + .form-label {
+    color: #9ca3af;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: FORMA VALIDATSIYASI ==================== -->
+                <section class="lesson-section" id="form-validation">
+                    <h2><i class="fas fa-exclamation-circle"></i> Forma validatsiyasi</h2>
+                    
+                    <p><code>:valid</code> va <code>:invalid</code> psevdo-klasslari orqali input to'g'ri yoki noto'g'ri to'ldirilganini ko'rsatish.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Valid - to'g'ri to'ldirilgan */
+.form-input:valid {
+    border-bottom: 3px solid #55c57a;
+}
+
+/* Invalid - noto'g'ri to'ldirilgan */
+.form-input:invalid {
+    border-bottom: 3px solid #ff7730;
+}
+
+/* Placeholder ko'rinib turganda invalid bo'lmasin */
+.form-input:invalid:not(:placeholder-shown) {
+    border-bottom: 3px solid #ff7730;
+}
+
+/* Xatolik xabari */
+.error-message {
+    color: #ff7730;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.form-input:invalid:not(:placeholder-shown) ~ .error-message {
+    display: block;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 31-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>Checkbox belgilangan holatni tanlash uchun qaysi psevdo-klass ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>:selected</label></div><div class="option"><input type="radio" name="q1" value="b"><label>:checked</label></div><div class="option"><input type="radio" name="q1" value="c"><label>:active</label></div><div class="option"><input type="radio" name="q1" value="d"><label>:valid</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>Input nofaol holatini tanlash uchun qaysi psevdo-klass ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>:inactive</label></div><div class="option"><input type="radio" name="q2" value="b"><label>:off</label></div><div class="option"><input type="radio" name="q2" value="c"><label>:disabled</label></div><div class="option"><input type="radio" name="q2" value="d"><label>:readonly</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span>Brauzer default stillarini olib tashlash uchun qaysi xususiyat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>appearance: none</label></div><div class="option"><input type="radio" name="q3" value="b"><label>outline: none</label></div><div class="option"><input type="radio" name="q3" value="c"><label>display: none</label></div><div class="option"><input type="radio" name="q3" value="d"><label>visibility: hidden</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Input to'g'ri to'ldirilgan holatni tanlash uchun qaysi psevdo-klass ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>:correct</label></div><div class="option"><input type="radio" name="q4" value="b"><label>:success</label></div><div class="option"><input type="radio" name="q4" value="c"><label>:ok</label></div><div class="option"><input type="radio" name="q4" value="d"><label>:valid</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Custom checkbox va radio yarating.</p>
+                        <ol>
+                            <li>3 ta custom checkbox yarating (asl input yashirilgan)</li>
+                            <li>2 ta custom radio yarating</li>
+                            <li>Checkbox va radio belgilanganda yashil fon va oq belgi ko'rinib tursin</li>
+                            <li>Label bosilganda ham input belgilansin</li>
+                            <li><code>:disabled</code> holati uchun alohida style bering</li>
+                            <li><code>:invalid</code> inputlar uchun qizil border va xatolik xabari qo'shing</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-html">&lt;!-- Custom Checkbox --&gt;
+&lt;div class="form-group"&gt;
+    &lt;input type="checkbox" id="agree" class="custom-input"&gt;
+    &lt;label for="agree" class="custom-label"&gt;
+        &lt;span class="custom-checkbox"&gt;&lt;/span&gt;
+        Shartlarga roziman
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;!-- Custom Radio --&gt;
+&lt;div class="form-group"&gt;
+    &lt;input type="radio" name="gender" id="male" class="custom-input"&gt;
+    &lt;label for="male" class="custom-label"&gt;
+        &lt;span class="custom-radio"&gt;&lt;/span&gt;
+        Erkak
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.custom-input { display: none; }
+.custom-label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.custom-checkbox, .custom-radio {
+    width: 24px; height: 24px; border: 2px solid #55c57a;
+    display: inline-block; position: relative; transition: all 0.2s;
+}
+.custom-radio { border-radius: 50%; }
+.custom-checkbox { border-radius: 4px; }
+.custom-input:checked + .custom-label .custom-checkbox { background: #55c57a; }
+.custom-input:checked + .custom-label .custom-checkbox::after {
+    content: "✓"; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); color: white; font-size: 18px;
+}
+.custom-input:checked + .custom-label .custom-radio {
+    background: white; box-shadow: inset 0 0 0 6px #55c57a;
+}
+.custom-input:disabled + .custom-label { opacity: 0.5; cursor: not-allowed; }
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>appearance: none</strong> - brauzer default stillarini olib tashlash</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>:checked</strong> - belgilangan checkbox/radio</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>:disabled / :enabled</strong> - faol/nofaol holatlar</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>:valid / :invalid</strong> - forma validatsiyasi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Custom checkbox/radio</strong> - inputni yashirib, label orqali dizayn</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Formalar yordamida loyihani yaxshilash</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../30/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../32/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#radio-checkbox">Radio va Checkbox</a></li>
+                    <li><a href="#custom-radio-checkbox">Custom Radio/Checkbox</a></li>
+                    <li><a href="#disabled-enabled">Disabled/Enabled</a></li>
+                    <li><a href="#form-validation">Forma validatsiyasi</a></li>
+                    <li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">31/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 49.2%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

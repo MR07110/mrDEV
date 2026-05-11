@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>33-Dars: O'lchov birliklari (Units) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "33",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=uyY6JoILzS4",
+            "lessonTitle": "O'lchov birliklari (Units)"
+        }
+    </script>
+    
+    <!-- Test javoblari (33-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>33-Dars: O'lchov birliklari (Units)</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 9:38
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/uyY6JoILzS4" 
+                            title="CSS | 33. O'lchov birliklari (Units)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 33. O'lchov birliklari (Units)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 9:38</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>O'lchov birliklari (Units)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 9-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Units va RWD</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da ishlatiladigan barcha o'lchov birliklari haqida umumiy tushuncha olasiz. <code>px</code>, <code>%</code>, <code>em</code>, <code>rem</code>, <code>vh</code>, <code>vw</code>, <code>vmin</code>, <code>vmax</code>, <code>ch</code>, <code>ex</code> va boshqa birliklarning farqlari va qachon qaysi birini ishlatish kerakligini o'rganasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Mutlaq (absolute) birliklar: <code>px</code>, <code>cm</code>, <code>mm</code>, <code>in</code>, <code>pt</code>, <code>pc</code></li>
+                        <li><i class="fas fa-check-circle"></i> Nisbiy (relative) birliklar: <code>%</code>, <code>em</code>, <code>rem</code></li>
+                        <li><i class="fas fa-check-circle"></i> Viewport birliklari: <code>vh</code>, <code>vw</code>, <code>vmin</code>, <code>vmax</code></li>
+                        <li><i class="fas fa-check-circle"></i> Maxsus birliklar: <code>ch</code>, <code>ex</code>, <code>fr</code></li>
+                        <li><i class="fas fa-check-circle"></i> Qaysi birlikni qachon ishlatish kerak?</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>rem ustunligi:</strong> <code>rem</code> root elementga nisbatan, <code>em</code> ota elementga nisbatan. Kaskad muammolaridan qochish uchun <code>rem</code> ishlating.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>px faqat chegaralar uchun:</strong> <code>border</code>, <code>box-shadow</code> kabi kichik qiymatlar uchun <code>px</code> mos keladi.</span>
+                            <span class="badge good-to-know">Professional</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>vh/vw - to'liq ekran:</strong> Hero section uchun <code>min-height: 100vh</code> juda qulay.</span>
+                            <span class="badge tip">Amaliyot</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-ruler"></i>
+                            <span><strong>ch - matn uchun:</strong> <code>ch</code> - "0" belgisi kengligi. Matn bloklari kengligini cheklash uchun ideal (<code>max-width: 75ch</code>).</span>
+                            <span class="badge tip">Typography</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: MUTLAQ BIRLIKLAR ==================== -->
+                <section class="lesson-section" id="absolute-units">
+                    <h2><i class="fas fa-ruler"></i> Mutlaq (Absolute) birliklar</h2>
+                    
+                    <p>Mutlaq birliklar ekran o'lchami yoki boshqa elementlarga bog'liq bo'lmagan, qat'iy o'lchamga ega birliklardir.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Mutlaq birliklar */
+.pixel {
+    width: 300px;           /* Piksel - eng ko'p ishlatiladi */
+    font-size: 16px;
+}
+
+.centimeter {
+    width: 5cm;             /* Santimetr (1cm = 37.8px) */
+}
+
+.millimeter {
+    width: 50mm;            /* Millimetr (10mm = 1cm) */
+}
+
+.inch {
+    width: 2in;             /* Dyum (1in = 96px = 2.54cm) */
+}
+
+.point {
+    font-size: 12pt;        /* Punkt (1pt = 1/72 dyum) - chop etish uchun */
+}
+
+.pica {
+    font-size: 1pc;         /* Pika (1pc = 12pt) */
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Senior biladi:</strong> Web dizaynda deyarli faqat <code>px</code> ishlatiladi. <code>cm</code>, <code>mm</code>, <code>in</code> chop etish uchun mo'ljallangan. <code>pt</code> va <code>pc</code> tipografiyada ishlatiladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: NISBIY BIRLIKLAR ==================== -->
+                <section class="lesson-section" id="relative-units">
+                    <h2><i class="fas fa-percent"></i> Nisbiy (Relative) birliklar</h2>
+                    
+                    <p>Nisbiy birliklar boshqa elementlar yoki kontekstga nisbatan hisoblanadi. Responsive dizayn uchun juda muhim.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Foiz - ota elementga nisbatan */
+.child {
+    width: 50%;             /* Ota element kengligining 50% */
+    height: 100%;           /* Ota element balandligining 100% */
+}
+
+/* em - joriy elementning font-size iga nisbatan */
+.em-example {
+    font-size: 20px;
+    padding: 1em;           /* 20px */
+    margin: 2em;            /* 40px */
+}
+
+/* em - ota element font-size iga nisbatan (meros bo'lganda) */
+.parent {
+    font-size: 16px;
+}
+.parent .child {
+    font-size: 1.5em;       /* 16px * 1.5 = 24px */
+    padding: 1em;           /* 24px (joriy font-size) */
+}
+
+/* rem - root (html) element font-size iga nisbatan */
+html {
+    font-size: 16px;        /* 1rem = 16px */
+}
+.rem-example {
+    font-size: 1.5rem;      /* 24px */
+    padding: 2rem;          /* 32px */
+    margin: 1rem;           /* 16px */
+}</code></pre>
+                    </div>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Birlik</th><th>Nisbatan</th><th>Qachon ishlatiladi</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>%</code></td><td>Ota element o'lchamiga</td><td>Layout, width, height</td></tr>
+                                <tr><td><code>em</code></td><td>Joriy element font-size iga</td><td>Komponent ichidagi spacing</td></tr>
+                                <tr><td><code>rem</code></td><td>Root (html) font-size iga</td><td>Global spacing, font-size</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>em compounding muammosi:</strong> <code>em</code> ichma-ich elementlarda ko'payib ketadi. <code>rem</code> esa har doim root ga nisbatan, shuning uchun <code>rem</code> afzalroq.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: VIEWPORT BIRLIKLARI ==================== -->
+                <section class="lesson-section" id="viewport-units">
+                    <h2><i class="fas fa-mobile-alt"></i> Viewport birliklari</h2>
+                    
+                    <p>Viewport birliklari brauzer oynasi (viewport) o'lchamlariga nisbatan hisoblanadi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* vh - viewport height (balandlik) */
+.hero {
+    min-height: 100vh;      /* Viewport balandligining 100% */
+    /* Ekran to'liq balandligini egallaydi */
+}
+
+.half-screen {
+    height: 50vh;           /* Yarim ekran balandligi */
+}
+
+/* vw - viewport width (kenglik) */
+.full-width {
+    width: 100vw;           /* Viewport kengligining 100% */
+}
+
+.half-width {
+    width: 50vw;            /* Yarim ekran kengligi */
+}
+
+/* vmin - viewport ning kichik tomoniga nisbatan */
+.square {
+    width: 50vmin;
+    height: 50vmin;         /* Har doim kvadrat bo'ladi */
+}
+
+/* vmax - viewport ning katta tomoniga nisbatan */
+.landscape {
+    width: 80vmax;          /* Landshaft rejimda kengroq */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: MAXSUS BIRLIKLAR ==================== -->
+                <section class="lesson-section" id="special-units">
+                    <h2><i class="fas fa-text-width"></i> Maxsus birliklar</h2>
+                    
+                    <p>CSS da tipografiya va grid uchun maxsus birliklar mavjud.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* ch - "0" belgisi kengligi */
+.article {
+    max-width: 75ch;        /* 75 ta belgi kengligi - optimal o'qish */
+    margin: 0 auto;
+}
+
+/* ex - "x" harfi balandligi */
+.line-height-ex {
+    line-height: 2ex;       /* "x" harfi balandligidan 2x */
+}
+
+/* fr - fraction (Grid uchun) */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;  /* Bo'sh joyni nisbatda taqsimlaydi */
+}
+
+/* cqw, cqh - container query units (yangi) */
+@container (min-width: 500px) {
+    .card {
+        font-size: 5cqw;    /* Konteyner kengligiga nisbatan */
+    }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 33-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>Qaysi birlik root (html) element font-size iga nisbatan hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>em</label></div><div class="option"><input type="radio" name="q1" value="b"><label>rem</label></div><div class="option"><input type="radio" name="q1" value="c"><label>px</label></div><div class="option"><input type="radio" name="q1" value="d"><label>%</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>To'liq ekran balandligini egallash uchun qaysi birlik ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>100%</label></div><div class="option"><input type="radio" name="q2" value="b"><label>100px</label></div><div class="option"><input type="radio" name="q2" value="c"><label>100vh</label></div><div class="option"><input type="radio" name="q2" value="d"><label>100vw</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span>Qaysi birlik mutlaq (absolute) birlik hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>px</label></div><div class="option"><input type="radio" name="q3" value="b"><label>rem</label></div><div class="option"><input type="radio" name="q3" value="c"><label>vh</label></div><div class="option"><input type="radio" name="q3" value="d"><label>%</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Matn bloki kengligini optimal o'qish uchun cheklashda qaysi birlik ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>px</label></div><div class="option"><input type="radio" name="q4" value="b"><label>em</label></div><div class="option"><input type="radio" name="q4" value="c"><label>vw</label></div><div class="option"><input type="radio" name="q4" value="d"><label>ch</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Turli o'lchov birliklaridan foydalanib responsive sahifa yarating.</p>
+                        <ol>
+                            <li><code>html { font-size: 62.5%; }</code> orqali 1rem = 10px qiling</li>
+                            <li>Sarlavhalar uchun <code>rem</code> birligidan foydalaning</li>
+                            <li>Hero section uchun <code>min-height: 100vh</code> bering</li>
+                            <li>Konteyner kengligi uchun <code>%</code> va <code>max-width</code> ishlating</li>
+                            <li>Matn bloki uchun <code>max-width: 75ch</code> bering</li>
+                            <li>Kichik spacinglar uchun <code>px</code> ishlating</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-css">html { font-size: 62.5%; }  /* 1rem = 10px */
+
+body { font-family: 'Inter', sans-serif; font-size: 1.6rem; line-height: 1.6; }
+
+.hero { min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #667eea, #764ba2); }
+
+.container { width: 90%; max-width: 120rem; margin: 0 auto; padding: 2rem; }
+
+h1 { font-size: 4.8rem; margin-bottom: 2rem; }
+h2 { font-size: 3.6rem; margin-bottom: 1.5rem; }
+p { max-width: 75ch; margin-bottom: 2rem; }
+
+.card { padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.card-title { font-size: 2.4rem; margin-bottom: 1rem; }
+.btn { padding: 1.2rem 2.4rem; border-radius: 4px; border: 1px solid #ddd; }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Mutlaq birliklar:</strong> <code>px</code> (eng ko'p), <code>cm</code>, <code>mm</code>, <code>in</code>, <code>pt</code>, <code>pc</code></li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Nisbiy birliklar:</strong> <code>%</code> (ota element), <code>em</code> (joriy font), <code>rem</code> (root font)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Viewport birliklari:</strong> <code>vh</code>, <code>vw</code>, <code>vmin</code>, <code>vmax</code></li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Maxsus birliklar:</strong> <code>ch</code> (matn kengligi), <code>fr</code> (grid), <code>cqw</code> (container)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>rem > em:</strong> <code>rem</code> compounding muammosidan xoli</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Foiz (%) o'lchov birligi</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../32/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../34/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#absolute-units">Mutlaq birliklar</a></li>
+                    <li><a href="#relative-units">Nisbiy birliklar</a></li>
+                    <li><a href="#viewport-units">Viewport birliklari</a></li>
+                    <li><a href="#special-units">Maxsus birliklar</a></li>
+                    <li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">33/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 52.4%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

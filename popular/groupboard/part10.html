@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uz" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>MR BOARD - Part 10 (O'chirish jarayoni)</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* =========================================================
+           [1] ENTERPRISE O'ZGARUVCHILARI (1:1)
+           ========================================================= */
+        :root {
+            --bg-base: #f8fafc;
+            --bg-canvas: #e2e8f0;
+            --bg-glass: rgba(255,255,255,0.65);
+            --bg-panel: rgba(255,255,255,0.85);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --brand-primary: #007aff;
+            --brand-alpha: rgba(0,122,255,0.15);
+            --state-danger: #ff3b30;
+            --state-warning: #ffcc00;
+            --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+            --shadow-float: 0 24px 48px -12px rgba(0,0,0,0.15);
+            
+            --dur: 3s; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, sans-serif; background: #cbd5e1; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+        .video-frame {
+            width: 95vw; max-width: 1400px; height: 90vh; max-height: 850px;
+            background: var(--bg-canvas); border-radius: 28px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+            border: 8px solid #ffffff; position: relative; overflow: hidden;
+        }
+
+        /* PROGRESS BAR (45% -> 50%) */
+        .progress-bar { position: absolute; bottom: 0; left: 0; height: 8px; background: var(--brand-primary); width: 45%; animation: progressFill var(--dur) linear forwards; z-index: 9999; }
+        @keyframes progressFill { from { width: 45%; } to { width: 50%; } }
+
+        /* =========================================================
+           [2] ASOSIY UI ELEMENTLARI
+           ========================================================= */
+        .status-pill { position: absolute; top: 24px; left: 24px; background: var(--bg-glass); backdrop-filter: blur(40px); border-radius: 99px; padding: 10px 24px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-float); z-index: 100; }
+        
+        .dock-bottom { position: absolute; bottom: 32px; left: 0; right: 0; display: flex; justify-content: center; z-index: 100; }
+        .dock-glass { background: var(--bg-glass); backdrop-filter: blur(50px); border-radius: 32px; padding: 12px; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-float); }
+        .action-btn { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
+        .action-btn.is-active { background: var(--brand-primary); color: #fff; }
+
+        .minimap-widget { position: absolute; bottom: 120px; right: 24px; width: 240px; height: 160px; background: var(--bg-panel); backdrop-filter: blur(40px); border-radius: 20px; box-shadow: var(--shadow-float); overflow: hidden; }
+
+        /* =========================================================
+           [3] CHIZISH VA O'CHIRISH ANIMATSIYASI
+           ========================================================= */
+        .draw-layer { position: absolute; width: 1200px; height: 700px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 10; }
+        
+        .static-path { fill: none; stroke: var(--brand-primary); stroke-width: 6; stroke-linecap: round; }
+        
+        /* O'chiriladigan to'rtburchak */
+        .target-shape {
+            fill: var(--brand-alpha); stroke: var(--brand-primary); stroke-width: 4; rx: 16;
+            /* 1.2s kutadi, kursor kelganda 1s ichida g'oyib bo'ladi */
+            animation: eraseEffect 1s ease-out 1.2s forwards;
+        }
+
+        @keyframes eraseEffect {
+            0% { opacity: 1; filter: blur(0); }
+            50% { opacity: 0.5; filter: blur(5px); transform: scale(1.02); }
+            100% { opacity: 0; filter: blur(15px); transform: scale(1.05); }
+        }
+
+        /* O'chirg'ich doirasi (Kursor ostida paydo bo'ladi) */
+        .eraser-circle {
+            position: absolute; width: 60px; height: 60px;
+            border: 2px solid var(--text-muted); border-radius: 50%;
+            background: rgba(255,255,255,0.3); backdrop-filter: blur(2px);
+            opacity: 0; pointer-events: none;
+            /* Faqat o'chirayotgan vaqtda ko'rinadi */
+            animation: eraserVisible 1s linear 1.2s;
+        }
+        @keyframes eraserVisible {
+            0%, 100% { opacity: 0; }
+            10%, 90% { opacity: 1; }
+        }
+
+        /* =========================================================
+           [4] KURSOR HARAKATI (ZIGZAG O'CHIRISH)
+           ========================================================= */
+        .magic-cursor {
+            position: absolute; top: 0; left: 0; width: 40px; height: 40px; z-index: 999;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>') no-repeat;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+            animation: moveCursor10 var(--dur) linear forwards;
+        }
+
+        @keyframes moveCursor10 {
+            0% { transform: translate(650px, 350px); } /* 9-qism oxiri */
+            
+            /* To'rtburchak ustiga keladi (350, 250 hududi) */
+            20% { transform: translate(350px, 250px); }
+            
+            /* Zigzag o'chirish harakati (1.2s dan 2.2s gacha) */
+            30% { transform: translate(750px, 280px); }
+            40% { transform: translate(350px, 350px); }
+            50% { transform: translate(750px, 420px); }
+            60% { transform: translate(350px, 500px); }
+            70% { transform: translate(750px, 500px); }
+            
+            /* Ish tugadi, chetga suriladi */
+            100% { transform: translate(900px, 400px); }
+        }
+
+        /* O'chirg'ich doirasini kursor bilan sinxronlash */
+        .eraser-circle {
+            animation: moveEraserCircle var(--dur) linear forwards, eraserVisible 1s linear 1.2s;
+        }
+        @keyframes moveEraserCircle {
+            0% { left: 650px; top: 350px; }
+            20% { left: 350px; top: 250px; }
+            30% { left: 750px; top: 280px; }
+            40% { left: 350px; top: 350px; }
+            50% { left: 750px; top: 420px; }
+            60% { left: 350px; top: 500px; }
+            70% { left: 750px; top: 500px; }
+            100% { left: 900px; top: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-frame">
+        <div class="progress-bar"></div>
+
+        <div class="status-pill"><i data-lucide="hash"></i> <span>MR-2364</span></div>
+
+        <div id="app-container">
+            <div class="draw-layer">
+                <div class="eraser-circle"></div>
+
+                <svg width="1200" height="700" viewBox="0 0 1200 700">
+                    <path class="static-path" d="M 200 500 C 400 100, 800 650, 1100 200" />
+                    <rect class="target-shape" x="350" y="250" width="400" height="250"></rect>
+                </svg>
+                <div class="magic-cursor"></div>
+            </div>
+
+            <div class="minimap-widget"></div>
+
+            <div class="dock-bottom">
+                <div class="dock-glass">
+                    <button class="action-btn"><i data-lucide="pencil"></i></button>
+                    <button class="action-btn"><i data-lucide="wand-2"></i></button>
+                    <button class="action-btn"><i data-lucide="shapes"></i></button>
+                    <button class="action-btn is-active"><i data-lucide="eraser"></i></button>
+                    <button class="action-btn"><i data-lucide="message-square"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        // 3 soniyadan keyin 11-qismga (Matn kiritish qismi) o'tamiz
+        setTimeout(() => {
+            window.location.href = 'part11.html';
+        }, 3000);
+    </script>
+</body>
+</html>

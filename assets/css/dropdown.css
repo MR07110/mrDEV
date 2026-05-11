@@ -1,0 +1,544 @@
+/* ==================== MRDEV DROPDOWN v3.1 ==================== */
+/* Root dropdown = To'liq: profil, ID, tablar, grid, parol xabarlari, chiqish */
+/* Mini Apps dropdown = Katta 3x3 grid, faqat profil (email+nom), hech qanday menu yo'q */
+
+/* ==================== OVERLAY ==================== */
+.mrdev-dropdown-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 150;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s, background 0.2s ease;
+    will-change: opacity;
+}
+
+.mrdev-dropdown-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+body.dark .mrdev-dropdown-overlay.show {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* ==================== ROOT DROPDOWN PANEL ==================== */
+.mrdev-dropdown {
+    position: fixed;
+    top: calc(var(--header-h, 64px) + 8px);
+    right: 16px;
+    width: 330px;
+    max-height: calc(100vh - var(--header-h, 64px) - 32px);
+    background: var(--surface);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-xl);
+    z-index: 160;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top right;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    will-change: transform, opacity;
+}
+
+.mrdev-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* ==================== MINI APPS DROPDOWN ==================== */
+.mrdev-dropdown-mini {
+    position: fixed;
+    top: calc(56px + 8px);
+    right: 12px;
+    width: 340px;
+    max-height: calc(100vh - 56px - 32px);
+    background: var(--surface);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-xl);
+    z-index: 160;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top right;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    will-change: transform, opacity;
+}
+
+.mrdev-dropdown-mini.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* ==================== ROOT: PROFILE SECTION ==================== */
+.dropdown-profile {
+    padding: 18px 16px 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.dropdown-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 500;
+    color: white;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.dropdown-profile:hover .dropdown-avatar {
+    transform: scale(1.05);
+}
+
+.dropdown-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dropdown-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+    word-break: break-word;
+    line-height: 1.3;
+}
+
+.dropdown-email {
+    font-size: 12px;
+    color: var(--text-3);
+    word-break: break-word;
+    margin-bottom: 2px;
+}
+
+.dropdown-mrdev-id {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* ==================== MINI: COMPACT PROFILE ==================== */
+.dropdown-profile-mini {
+    padding: 14px 14px 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.dropdown-profile-mini .dropdown-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.dropdown-profile-mini .dropdown-name {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.dropdown-profile-mini .dropdown-email {
+    font-size: 11px;
+    margin: 2px 0 0 0;
+    color: var(--text-3);
+}
+
+/* ==================== ROOT: TABS ==================== */
+.dropdown-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.dropdown-tab {
+    flex: 1;
+    padding: 7px 10px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-3);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: center;
+    white-space: nowrap;
+    font-family: var(--font-sans, 'Google Sans', 'Roboto', sans-serif);
+}
+
+.dropdown-tab:hover {
+    background: var(--hover-strong);
+    color: var(--text);
+}
+
+.dropdown-tab.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-color: transparent;
+}
+
+/* ==================== ROOT: APPS GRID (3 ustunli, kichik) ==================== */
+.dropdown-apps {
+    flex: 1;
+    overflow: hidden;
+}
+
+.dropdown-apps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 8px;
+    max-height: 240px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.1) transparent;
+}
+
+body.dark .dropdown-apps-grid {
+    scrollbar-color: rgba(255,255,255,0.08) transparent;
+}
+
+.dropdown-apps-grid::-webkit-scrollbar {
+    width: 4px;
+}
+.dropdown-apps-grid::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+body.dark .dropdown-apps-grid::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.08);
+}
+
+/* ==================== MINI: APPS GRID (Katta 3x3) ==================== */
+.dropdown-apps-grid-mini {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 12px;
+    max-height: calc(3 * 108px + 24px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.1) transparent;
+}
+
+body.dark .dropdown-apps-grid-mini {
+    scrollbar-color: rgba(255,255,255,0.08) transparent;
+}
+
+.dropdown-apps-grid-mini::-webkit-scrollbar {
+    width: 4px;
+}
+.dropdown-apps-grid-mini::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+body.dark .dropdown-apps-grid-mini::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.08);
+}
+
+/* ==================== GRID ITEM: ROOT (kichik) ==================== */
+.dropdown-app-grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 11px 6px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-2);
+    transition: all 0.15s ease;
+    cursor: pointer;
+    min-height: 82px;
+}
+
+.dropdown-app-grid-item:hover {
+    background: var(--hover-strong);
+    transform: translateY(-2px);
+}
+
+.dropdown-app-icon-grid {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s;
+}
+
+.dropdown-app-grid-item:hover .dropdown-app-icon-grid {
+    transform: scale(1.1);
+    border-color: var(--accent-light);
+}
+
+.dropdown-icon-img-grid {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.dropdown-app-grid-name {
+    font-size: 10px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-3);
+    line-height: 1.3;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ==================== GRID ITEM: MINI (katta) ==================== */
+.dropdown-app-grid-item-mini {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 8px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text-2);
+    transition: all 0.15s ease;
+    cursor: pointer;
+    min-height: 100px;
+}
+
+.dropdown-app-grid-item-mini:hover {
+    background: var(--hover-strong);
+    transform: translateY(-2px);
+}
+
+.dropdown-app-icon-grid-mini {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s;
+}
+
+.dropdown-app-grid-item-mini:hover .dropdown-app-icon-grid-mini {
+    transform: scale(1.1);
+    border-color: var(--accent-light);
+}
+
+.dropdown-icon-img-grid-mini {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+.dropdown-app-grid-name-mini {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-3);
+    line-height: 1.3;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ==================== ROOT: MENU ITEMS (FAQAT ROOT'DA) ==================== */
+.dropdown-menu-items {
+    border-top: 1px solid var(--border);
+    padding: 6px 0;
+    flex-shrink: 0;
+}
+
+.dropdown-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--font-sans, 'Google Sans', 'Roboto', sans-serif);
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-menu-item:hover {
+    background: var(--hover-strong);
+    color: var(--text);
+}
+
+.dropdown-menu-item svg {
+    flex-shrink: 0;
+    color: var(--text-3);
+    width: 18px;
+    height: 18px;
+}
+
+.dropdown-menu-item.danger {
+    color: var(--red);
+}
+
+.dropdown-menu-item.danger:hover {
+    background: var(--red-dim);
+}
+
+/* Notification badge */
+.dropdown-notif-badge {
+    background: var(--red);
+    color: white;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: auto;
+    display: none;
+}
+
+.dropdown-notif-badge.show {
+    display: inline-block;
+}
+
+/* ==================== TRIGGER BUTTON (Root) ==================== */
+.mrdev-user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px 4px 4px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: var(--shadow-xs);
+}
+
+.mrdev-user-trigger:hover {
+    background: var(--hover-strong);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-sm);
+}
+
+.trigger-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.trigger-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trigger-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ==================== TRIGGER BUTTON (Mini) ==================== */
+.mrdev-user-trigger-mini {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px 3px 3px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: var(--shadow-xs);
+}
+
+.mrdev-user-trigger-mini:hover {
+    background: var(--hover-strong);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-sm);
+}
+
+.mrdev-user-trigger-mini .trigger-avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+}
+
+.mrdev-user-trigger-mini .trigger-name {
+    font-size: 12px;
+    max-width: 60px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 420px) {
+    .mrdev-dropdown {
+        width: calc(100vw - 20px);
+        right: 10px;
+    }
+    
+    .mrdev-dropdown-mini {
+        width: calc(100vw - 20px);
+        right: 10px;
+    }
+}

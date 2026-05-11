@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>41-Dars: Breakpoints | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "41",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=GrXdH78-QrM",
+            "lessonTitle": "Breakpoints"
+        }
+    </script>
+    
+    <!-- Test javoblari (41-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>41-Dars: Breakpoints</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 11:50
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/GrXdH78-QrM" 
+                            title="CSS | 41. Breakpoints"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 41. Breakpoints</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 11:50</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Breakpoints</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 17-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> RWD va Fontlar</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>Responsive dizaynda <strong>breakpoints</strong> (uzilish nuqtalari) nima, ularni qanday tanlash kerak va qurilma o'lchamlariga emas, kontentga qarab breakpoint belgilash muhimligini o'rganasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Breakpoint nima va nima uchun kerak?</li>
+                        <li><i class="fas fa-check-circle"></i> Qurilma breakpointlari vs Kontent breakpointlari</li>
+                        <li><i class="fas fa-check-circle"></i> Standart breakpoint qiymatlari</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile-first yondashuvda breakpointlar</li>
+                        <li><i class="fas fa-check-circle"></i> CSS custom properties bilan breakpointlar</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Kontent uchun breakpoint:</strong> Qurilma o'lchamiga emas, dizayningiz buziladigan nuqtaga qarab breakpoint qo'shing.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Standart breakpointlar:</strong> 600px (planshet), 900px (desktop), 1200px (katta desktop) - boshlang'ich nuqta.</span>
+                            <span class="badge good-to-know">Professional</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>em/rem breakpointlarda:</strong> Media query da <code>em</code> ishlating - foydalanuvchi shrift o'lchamini o'zgartirganda moslashadi.</span>
+                            <span class="badge tip">Best practice</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <span><strong>CSS custom properties:</strong> Breakpointlarni o'zgaruvchilarda saqlang - kodni toza va oson boshqariladigan qiladi.</span>
+                            <span class="badge tip">Zamonaviy</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: BREAKPOINT NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-breakpoint">
+                    <h2><i class="fas fa-cut"></i> Breakpoint nima?</h2>
+                    
+                    <p><strong>Breakpoint</strong> - bu media query da ishlatiladigan, dizayn o'zgaradigan ekran o'lchami nuqtasi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Breakpoint - ekran o'lchami 600px bo'lganda */
+@media (min-width: 600px) {
+    /* 600px va undan katta ekranlar uchun stillar */
+    .container {
+        width: 90%;
+    }
+}
+
+/* Breakpoint - ekran o'lchami 900px bo'lganda */
+@media (min-width: 900px) {
+    /* 900px va undan katta ekranlar uchun stillar */
+    .container {
+        width: 80%;
+        max-width: 1200px;
+    }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: STANDART BREAKPOINTLAR ==================== -->
+                <section class="lesson-section" id="standard-breakpoints">
+                    <h2><i class="fas fa-table"></i> Standart breakpointlar</h2>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Qurilma</th><th>Breakpoint (px)</th><th>Breakpoint (em)</th></tr></thead>
+                            <tbody>
+                                <tr><td>Mobil (kichik)</td><td>480px</td><td>30em</td></tr>
+                                <tr><td>Mobil (katta)</td><td>600px</td><td>37.5em</td></tr>
+                                <tr><td>Planshet (portrait)</td><td>768px</td><td>48em</td></tr>
+                                <tr><td>Planshet (landscape)</td><td>900px</td><td>56.25em</td></tr>
+                                <tr><td>Desktop</td><td>1024px</td><td>64em</td></tr>
+                                <tr><td>Katta desktop</td><td>1200px</td><td>75em</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS Custom Properties bilan</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">:root {
+    --bp-mobile: 37.5em;      /* 600px */
+    --bp-tablet: 56.25em;     /* 900px */
+    --bp-desktop: 75em;       /* 1200px */
+}
+
+/* Mobile-first yondashuv */
+@media (min-width: var(--bp-mobile)) {
+    /* Planshet stillari */
+}
+
+@media (min-width: var(--bp-tablet)) {
+    /* Desktop stillari */
+}
+
+@media (min-width: var(--bp-desktop)) {
+    /* Katta desktop stillari */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: KONTENT UCHUN BREAKPOINT ==================== -->
+                <section class="lesson-section" id="content-breakpoints">
+                    <h2><i class="fas fa-align-left"></i> Kontent uchun breakpoint</h2>
+                    
+                    <p>Qurilma o'lchamiga emas, kontentingiz buziladigan nuqtada breakpoint qo'shing.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Noto'g'ri - qurilma uchun */
+@media (min-width: 768px) { }  /* iPad uchun */
+@media (min-width: 1024px) { } /* iPad Pro uchun */
+
+/* To'g'ri - kontent uchun */
+@media (min-width: 540px) {
+    /* Bu yerda 3 ta karta bir qatorga sig'may qolgan */
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 800px) {
+    /* Bu yerda 2 ta karta uchun joy ko'p bo'lib qolgan */
+    .card-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: MOBILE-FIRST BREAKPOINTLAR ==================== -->
+                <section class="lesson-section" id="mobile-first-breakpoints">
+                    <h2><i class="fas fa-mobile-alt"></i> Mobile-first breakpointlar</h2>
+                    
+                    <p>Mobile-first yondashuvda default stillar mobil uchun, breakpointlar esa <code>min-width</code> bilan.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Mobile-first - default mobil */
+.container { width: 100%; padding: 1.5rem; }
+h1 { font-size: 2.8rem; }
+.grid { display: block; }
+
+/* 600px - katta mobil / kichik planshet */
+@media (min-width: 37.5em) {
+    .container { width: 90%; padding: 2rem; }
+    h1 { font-size: 3.6rem; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+
+/* 900px - planshet / desktop */
+@media (min-width: 56.25em) {
+    .container { width: 85%; padding: 3rem; }
+    h1 { font-size: 4.8rem; }
+    .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* 1200px - katta desktop */
+@media (min-width: 75em) {
+    .container { max-width: 120rem; }
+    .grid { grid-template-columns: repeat(4, 1fr); }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: BREAKPOINT TANLASH ==================== -->
+                <section class="lesson-section" id="choosing-breakpoints">
+                    <h2><i class="fas fa-check-circle"></i> Breakpoint tanlash qoidalari</h2>
+                    
+                    <div class="tips-list">
+                        <div class="tip-item"><div class="tip-icon">1</div><div class="tip-content"><strong>Kontentingizni kuzating</strong><p>Ekran o'lchamini kichiklashtirib boring, dizayn buziladigan nuqtada breakpoint qo'shing.</p></div></div>
+                        <div class="tip-item"><div class="tip-icon">2</div><div class="tip-content"><strong>Kamida 2-3 ta breakpoint</strong><p>Mobil, planshet, desktop - asosiy uchlik.</p></div></div>
+                        <div class="tip-item"><div class="tip-icon">3</div><div class="tip-content"><strong>em birligidan foydalaning</strong><p>Media query da <code>em</code> ishlating, <code>px</code> emas.</p></div></div>
+                        <div class="tip-item"><div class="tip-icon">4</div><div class="tip-content"><strong>CSS o'zgaruvchilarida saqlang</strong><p>Breakpointlarni <code>:root</code> da saqlab, qayta ishlating.</p></div></div>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> 41-dars testi</h3><span class="test-badge">4 ta savol</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>Breakpoint nima?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>CSS faylning oxiri</label></div><div class="option"><input type="radio" name="q1" value="b"><label>Dizayn o'zgaradigan ekran o'lchami nuqtasi</label></div><div class="option"><input type="radio" name="q1" value="c"><label>HTML tegi</label></div><div class="option"><input type="radio" name="q1" value="d"><label>JavaScript funksiyasi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>Breakpoint tanlashda nima muhim?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>Qurilma o'lchamlari</label></div><div class="option"><input type="radio" name="q2" value="b"><label>Brauzer versiyasi</label></div><div class="option"><input type="radio" name="q2" value="c"><label>Kontentning buzilish nuqtasi</label></div><div class="option"><input type="radio" name="q2" value="d"><label>JavaScript frameworki</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span>Media query da nima uchun <code>em</code> ishlatish tavsiya etiladi?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>Zoom qilganda to'g'ri ishlaydi</label></div><div class="option"><input type="radio" name="q3" value="b"><label>Tezroq ishlaydi</label></div><div class="option"><input type="radio" name="q3" value="c"><label>Kod qisqaroq</label></div><div class="option"><input type="radio" name="q3" value="d"><label>Barcha brauzerlar qo'llaydi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Mobile-first yondashuvda qaysi media query ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>@media (max-width: ...)</label></div><div class="option"><input type="radio" name="q4" value="b"><label>@media (width: ...)</label></div><div class="option"><input type="radio" name="q4" value="c"><label>@media (screen)</label></div><div class="option"><input type="radio" name="q4" value="d"><label>@media (min-width: ...)</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Kontentga asoslangan breakpointlar yarating.</p>
+                        <ol><li>CSS custom properties da 3 ta breakpoint saqlang</li><li>Mobile-first yondashuvda media querylar yozing</li><li>Breakpointlarni kontent buziladigan nuqtalarda qo'shing</li></ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-css">:root { --bp-md: 37.5em; --bp-lg: 56.25em; --bp-xl: 75em; }
+.container { width: 100%; padding: 1.5rem; }
+.grid { display: block; }
+
+@media (min-width: 37.5em) {
+    .container { width: 90%; padding: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+
+@media (min-width: 56.25em) {
+    .container { width: 85%; padding: 3rem; }
+    .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 75em) {
+    .container { max-width: 120rem; }
+    .grid { grid-template-columns: repeat(4, 1fr); }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Breakpoint</strong> - dizayn o'zgaradigan ekran o'lchami</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Kontent uchun</strong> - qurilma emas, kontent buziladigan nuqta</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Standart qiymatlar:</strong> 600px, 900px, 1200px</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>em birligi</strong> - media query da px dan afzal</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>CSS custom properties</strong> - breakpointlarni saqlash uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> RWD yordamida loyihani yaxshilash (1-qism)</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../40/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../42/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#what-is-breakpoint">Breakpoint nima?</a></li>
+                    <li><a href="#standard-breakpoints">Standart breakpointlar</a></li>
+                    <li><a href="#content-breakpoints">Kontent uchun breakpoint</a></li>
+                    <li><a href="#mobile-first-breakpoints">Mobile-first breakpointlar</a></li>
+                    <li><a href="#choosing-breakpoints">Breakpoint tanlash</a></li>
+                    <li><a href="#test">Test</a></li><li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li><li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">41/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 65.1%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

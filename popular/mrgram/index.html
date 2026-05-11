@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>MR GRAM - PREMIUM EDITION</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="svg-icons/messenger.svg">
+    <link rel="apple-touch-icon" href="svg-icons/messenger.svg">
+</head>
+<body>
+
+<div id="splash">
+    <div class="mg-logo">
+        <img src="svg-icons/messenger.svg" alt="MR GRAM" width="100" height="100">
+    </div>
+</div>
+
+<div id="authPage">
+    <div class="modal-card">
+        <div class="profile-avatar" onclick="document.getElementById('authAvatarInput').click()" style="width: 100px; height: 100px; margin: 0 auto 20px;">
+            <img id="authAvatarPreview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233a3a3c'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" style="width: 100%; height: 100%; border-radius: 100px; object-fit: cover;">
+            <div class="avatar-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        </div>
+        <input type="file" id="authAvatarInput" accept="image/*" style="display: none;">
+        <h1 style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px;">
+            <img src="svg-icons/messenger.svg" alt="MR GRAM" width="28" height="28" style="filter: none !important;">
+            <span>MR GRAM</span>
+        </h1>
+        <div id="regBox"><input type="text" id="regName" placeholder="Ismingiz"></div>
+        <input type="text" id="regUser" placeholder="Username">
+        <input type="password" id="regPass" placeholder="Parol">
+        <button class="btn" id="authBtn">DAVOM ETISH</button>
+        <p id="switchBtn" style="color:var(--accent); margin-top:20px; font-size:14px; cursor:pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10L21 3M10 21H3v-6M3 21l7-7"/></svg>
+            <span>Kirish rejimi</span>
+        </p>
+    </div>
+</div>
+
+<!-- Sidebar (Menu) -->
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-avatar" id="sidebarAvatar">
+            <img id="sidebarAvatarImg" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+        </div>
+        <div class="sidebar-info">
+            <div id="sidebarName" style="font-weight: 600;">---</div>
+            <div id="sidebarUsername" style="font-size: 12px; opacity: 0.6;">@---</div>
+        </div>
+    </div>
+    <div class="sidebar-menu">
+        <div class="sidebar-item" id="sidebarGroups">
+            <img src="svg-icons/users.svg" alt="Guruhlar" class="icon" width="20" height="20">
+            <span>Guruhlar</span>
+        </div>
+        <div class="sidebar-item" id="sidebarChannels">
+            <img src="svg-icons/bullhorn.svg" alt="Kanallar" class="icon" width="20" height="20">
+            <span>Kanallar</span>
+        </div>
+        <div class="sidebar-item" id="sidebarSettings">
+            <img src="svg-icons/gear.svg" alt="Sozlamalar" class="icon" width="20" height="20">
+            <span>Sozlamalar</span>
+        </div>
+        <div class="sidebar-item" id="sidebarLogout">
+            <img src="svg-icons/logout.svg" alt="Chiqish" class="icon" width="20" height="20">
+            <span>Chiqish</span>
+        </div>
+    </div>
+</div>
+
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+<!-- Main App -->
+<div class="app-shell" id="mainApp">
+    <div class="header">
+        <div class="header-left">
+            <button id="menuBtn" class="menu-btn">
+                <img src="svg-icons/menu.svg" alt="Menu" class="icon" width="24" height="24">
+            </button>
+            <div class="logo-text">MR GRAM</div>
+        </div>
+        <div class="header-right">
+            <button id="searchBtn" class="search-btn">
+                <img src="svg-icons/search.svg" alt="Qidirish" class="icon" width="24" height="24">
+            </button>
+        </div>
+    </div>
+    
+    <!-- Tablar -->
+    <div class="tabs">
+        <div id="indicator" class="tab-indicator"></div>
+        <div class="tab active" id="tabChats">
+            <img src="svg-icons/chat.svg" alt="Chatlar" class="icon" width="14" height="14">
+            <span>Chatlar</span>
+        </div>
+        <div class="tab" id="tabGroups">
+            <img src="svg-icons/users.svg" alt="Guruhlar" class="icon" width="14" height="14">
+            <span>Guruhlar</span>
+        </div>
+        <div class="tab" id="tabChannels">
+            <img src="svg-icons/bullhorn.svg" alt="Kanallar" class="icon" width="14" height="14">
+            <span>Kanallar</span>
+        </div>
+    </div>
+    
+    <div id="listArea"></div>
+    <div id="groupsList" class="list-area" style="display: none;"></div>
+    <div id="channelsList" class="list-area" style="display: none;"></div>
+    
+    <!-- FAB Menu -->
+    <div class="fab-container">
+        <div id="fabMenu" class="fab-menu">
+            <div class="fab-menu-item" id="newChannelBtn">
+                <span>Yangi kanal</span>
+                <div class="fab-icon-sub">
+                    <img src="svg-icons/bullhorn.svg" alt="Kanal" width="18" height="18">
+                </div>
+            </div>
+            <div class="fab-menu-item" id="newGroupBtn">
+                <span>Yangi guruh</span>
+                <div class="fab-icon-sub">
+                    <img src="svg-icons/users.svg" alt="Guruh" width="18" height="18">
+                </div>
+            </div>
+            <div class="fab-menu-item" id="newChatBtn">
+                <span>Yangi chat</span>
+                <div class="fab-icon-sub">
+                    <img src="svg-icons/chat.svg" alt="Chat" width="18" height="18">
+                </div>
+            </div>
+        </div>
+        <button id="mainFab" class="fab-btn">
+            <img src="svg-icons/pen.svg" alt="Yaratish" width="24" height="24">
+        </button>
+    </div>
+</div>
+
+<!-- Search Page -->
+<div id="searchPage" class="search-page" style="display: none;">
+    <div class="search-header">
+        <button id="searchCloseBtn" class="search-back-btn">
+            <img src="svg-icons/chevron-left.svg" alt="Orqaga" width="24" height="24">
+        </button>
+        <div class="search-input-container">
+            <img src="svg-icons/search.svg" alt="Qidirish" width="18" height="18" style="opacity:0.6">
+            <input type="text" id="searchInput" placeholder="Qidirish..." autocomplete="off">
+        </div>
+    </div>
+    <div id="searchResults" class="search-results">
+        <div class="search-hint">
+            <img src="svg-icons/search.svg" alt="Qidirish" width="24" height="24" style="opacity:0.6">
+            <span>Foydalanuvchi qidirish</span>
+        </div>
+    </div>
+</div>
+
+<!-- Add Contact Modal -->
+<div id="addContactModal" class="modal">
+    <div class="modal-card" style="max-width: 300px;">
+        <h3>Yangi kontakt qo'shish</h3>
+        <input type="text" id="searchUsername" placeholder="Username" autocomplete="off">
+        <div id="searchResult" style="margin: 10px 0; display: none;">
+            <div class="search-user-card">
+                <div class="search-user-info"></div>
+                <button id="addContactFromSearch" class="btn-small">Qo'shish</button>
+            </div>
+        </div>
+        <button id="closeModalBtn" class="btn" style="background:#6c757d; margin-top:10px;">Bekor qilish</button>
+    </div>
+</div>
+
+<!-- Guruh Yaratish Modal -->
+<div id="createGroupModal" class="modal">
+    <div class="modal-card" style="max-width: 300px;">
+        <h3>Yangi guruh yaratish</h3>
+        <input type="text" id="groupName" placeholder="Guruh nomi">
+        <input type="text" id="groupDescription" placeholder="Tavsif (ixtiyoriy)">
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button id="confirmCreateGroupBtn" class="btn" style="flex:1;">Yaratish</button>
+            <button id="cancelCreateGroupBtn" class="btn" style="background:#6c757d; flex:1;">Bekor qilish</button>
+        </div>
+    </div>
+</div>
+
+<!-- Kanal Yaratish Modal -->
+<div id="createChannelModal" class="modal">
+    <div class="modal-card" style="max-width: 300px;">
+        <h3>Yangi kanal yaratish</h3>
+        <input type="text" id="channelName" placeholder="Kanal nomi">
+        <input type="text" id="channelDescription" placeholder="Tavsif (ixtiyoriy)">
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button id="confirmCreateChannelBtn" class="btn" style="flex:1;">Yaratish</button>
+            <button id="cancelCreateChannelBtn" class="btn" style="background:#6c757d; flex:1;">Bekor qilish</button>
+        </div>
+    </div>
+</div>
+
+<!-- Chat View -->
+<div id="chatView">
+    <div class="header" style="border-bottom:1px solid var(--border); padding-top:55px; display: flex; align-items: center; justify-content: space-between;">
+        <div id="closeChatBtn" style="display: flex; align-items: center; gap: 4px; cursor:pointer;">
+            <img src="svg-icons/chevron-left.svg" alt="Orqaga" width="24" height="24">
+        </div>
+        <div style="display: flex; align-items: center;">
+            <img id="chatAvatarImg" style="width:36px; height:36px; border-radius:50%; object-fit:cover; margin-right:8px; display:none;">
+            <b id="chatTitle" style="font-size:17px; font-weight:600;">---</b>
+        </div>
+        <div style="display: flex; gap: 12px;">
+            <button id="audioCallBtn" class="call-header-btn" style="background:none; border:none; display:none; cursor:pointer;">
+                <img src="svg-icons/phone.svg" alt="Audio" width="24" height="24">
+            </button>
+            <button id="videoCallBtn" class="call-header-btn" style="background:none; border:none; display:none; cursor:pointer;">
+                <img src="svg-icons/video.svg" alt="Video" width="24" height="24">
+            </button>
+            <button id="groupInfoBtn" class="call-header-btn" style="background:none; border:none; display:none; cursor:pointer;">
+                <img src="svg-icons/info.svg" alt="Info" width="24" height="24">
+            </button>
+        </div>
+    </div>
+    <div id="chatMsgs"></div>
+    <div class="input-bar">
+        <button id="fileUploadBtn" class="file-upload-btn">
+            <img src="svg-icons/clip.svg" alt="Fayl" width="20" height="20">
+        </button>
+        <div class="msg-field">
+            <input type="text" id="msgInput" placeholder="Xabar yozing...">
+        </div>
+        <div class="right-buttons">
+            <button id="voiceBtn" class="voice-btn">
+                <img src="svg-icons/mic.svg" alt="Ovoz" width="18" height="18">
+            </button>
+            <button id="sendBtn" class="send-btn-circle" style="display:none;">
+                <img src="svg-icons/send.svg" alt="Yuborish" width="32" height="32" style="filter: none !important;">
+            </button>
+            <div id="recordingStatus" style="display: none; align-items: center; gap: 8px; background:#1c1c1e; border-radius:32px; padding:6px 16px;">
+                <div class="recording-waveform" id="recordingWaveform"></div>
+                <span id="recordingTimer" class="recording-timer">0:00</span>
+            </div>
+        </div>
+    </div>
+    <div id="imagePreviewPanel" class="image-preview"><img id="previewImg"><span id="previewFileName" style="flex:1; font-size:12px;"></span><div id="cancelImagePreview" class="cancel-preview">Bekor qilish</div></div>
+    <div id="voicePreviewPanel" class="voice-preview"><audio id="voicePreviewAudio" controls style="flex:1; height:40px;"></audio><div id="cancelVoicePreview" class="cancel-preview">Bekor qilish</div></div>
+    <div id="videoPreviewPanel" class="video-preview"><video id="videoPreview" controls style="width:80px; height:80px; border-radius:12px;"></video><span style="flex:1; font-size:12px;">Video tanlandi</span><div id="cancelVideoPreview" class="cancel-preview">Bekor qilish</div></div>
+</div>
+
+<!-- Group Info Modal -->
+<div id="groupInfoModal" class="modal">
+    <div class="modal-card" style="max-width: 320px;">
+        <div class="group-info-header">
+            <div class="group-info-avatar" id="groupInfoAvatar">
+                <img src="svg-icons/users.svg" alt="Guruh" width="40" height="40">
+            </div>
+            <div class="group-info-name" id="groupInfoName"></div>
+            <div class="group-info-desc" id="groupInfoDesc"></div>
+        </div>
+        <div class="group-info-stats">
+            <div>
+                <img src="svg-icons/users.svg" alt="A'zolar" width="14" height="14">
+                <span id="groupInfoMemberCount">0</span> a'zo
+            </div>
+            <div>
+                <img src="svg-icons/chat.svg" alt="Xabarlar" width="14" height="14">
+                <span id="groupInfoMessageCount">0</span> xabar
+            </div>
+        </div>
+        <div class="group-info-actions">
+            <button id="groupInfoLeaveBtn" class="btn" style="background:#ff3b30;">Guruhdan chiqish</button>
+            <button id="groupInfoCloseBtn" class="btn" style="background:#6c757d; margin-top:10px;">Yopish</button>
+        </div>
+    </div>
+</div>
+
+<!-- Call UI (TO'G'RILANGAN - 6 ta tugma) -->
+<div id="callContainer" style="display:none; position:fixed; inset:0; z-index:20000; background:#000; flex-direction:column; align-items:center; justify-content:center;">
+    <div id="callTargetInfo" style="position:absolute; top:80px; left:0; right:0; text-align:center; z-index:10;">
+        <img id="callTargetAvatar" style="width:80px; height:80px; border-radius:50%; margin:0 auto 10px; object-fit:cover; display:none;">
+        <div id="callTargetName" style="font-size:18px; font-weight:600;"></div>
+        <div id="callStatusText" style="font-size:16px; opacity:0.8; margin-top:5px; font-weight:500;"></div>
+    </div>
+    <video id="localVideo" autoplay muted playsinline style="width:120px; position:absolute; bottom:20px; right:20px; border-radius:16px; border:2px solid #0d89fd; object-fit:cover; background:#1c1c1e;"></video>
+    <video id="remoteVideo" autoplay playsinline style="width:100%; height:100%; object-fit:cover;"></video>
+    
+    <!-- 6 ta tugma (camera.svg bir marta) -->
+    <div style="position:absolute; bottom:40px; left:0; right:0; display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+        <!-- 1. Mikrofon -->
+        <button id="toggleMicBtn" style="background:transparent; border:none; cursor:pointer; padding:0; width:50px; height:50px; display:flex; align-items:center; justify-content:center;">
+            <img src="svg-icons/mic.svg" width="32" height="32">
+        </button>
+        <!-- 2. Ovoz (karnay) -->
+        <button id="toggleSpeakerBtn" style="background:transparent; border:none; cursor:pointer; padding:0; width:50px; height:50px; display:flex; align-items:center; justify-content:center;">
+            <img src="svg-icons/volume-up.svg" width="32" height="32">
+        </button>
+        <!-- 3. Video yoqish/o'chirish -->
+        <button id="toggleVideoBtn" style="background:transparent; border:none; cursor:pointer; padding:0; width:50px; height:50px; display:flex; align-items:center; justify-content:center;">
+            <img src="svg-icons/camera.svg" width="32" height="32">
+        </button>
+        <!-- 4. Kamerani almashtirish -->
+        <button id="switchCameraBtn" style="background:transparent; border:none; cursor:pointer; padding:0; width:50px; height:50px; display:flex; align-items:center; justify-content:center;">
+            <img src="svg-icons/switch-camera.svg" width="32" height="32">
+        </button>
+        <!-- 5. Screenshot -->
+        <button id="screenshotBtn" style="background:transparent; border:none; cursor:pointer; padding:0; width:50px; height:50px; display:flex; align-items:center; justify-content:center;">
+            <img src="svg-icons/camera.svg" width="32" height="32">
+        </button>
+        <!-- 6. Qo'ng'iroqni tugatish -->
+        <button id="endCallBtn" style="background:transparent; border:none; cursor:pointer; padding:0; width:70px; height:70px; display:flex; align-items:center; justify-content:center;">
+            <img src="svg-icons/end-call.svg" width="48" height="48">
+        </button>
+    </div>
+</div>
+
+<div id="incomingCallDiv" style="display:none; position:fixed; bottom:100px; left:20px; right:20px; background:#1c1c1e; border-radius:32px; padding:16px; z-index:20001; text-align:center; border:1px solid var(--accent);">
+    <div style="font-size:18px; margin-bottom:12px;">Kiruvchi qo'ng'iroq...</div>
+    <div id="incomingCallName" style="font-size:16px; font-weight:500; margin-bottom:8px;"></div>
+    <div style="display:flex; gap:30px; justify-content:center;">
+        <button id="acceptCallBtn" style="background:transparent; border:none; cursor:pointer; padding:0; width:70px; height:70px; display:flex; align-items:center; justify-content:center;">
+            <img src="svg-icons/accept-call.svg" width="56" height="56">
+        </button>
+        <button id="rejectCallBtn" style="background:transparent; border:none; cursor:pointer; padding:0; width:70px; height:70px; display:flex; align-items:center; justify-content:center;">
+            <img src="svg-icons/end-call.svg" width="56" height="56">
+        </button>
+    </div>
+</div>
+
+<div id="settingsView">
+    <div class="modal-card">
+        <div class="profile-avatar" onclick="document.getElementById('profileAvatarInput').click()">
+            <img id="profileAvatarImg" style="width: 100%; height: 100%; border-radius: 100px; object-fit: cover;">
+            <div class="avatar-overlay">
+                <img src="svg-icons/camera.svg" alt="Rasm yuklash" width="24" height="24">
+            </div>
+        </div>
+        <input type="file" id="profileAvatarInput" accept="image/*" style="display: none;">
+        <h2 style="text-align: center; margin: 0 0 20px 0;">Profil</h2>
+        <input type="text" id="newName" placeholder="Yangi ism">
+        <button id="updateProfileBtn" class="btn" style="margin-bottom:10px">Saqlash</button>
+        <button id="logoutBtn" class="btn" style="background:#ff3b30">Chiqish</button>
+        <p id="closeSettingsBtn" style="margin-top:20px; color:var(--sub); cursor:pointer; text-align: center;">Yopish</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
+<script type="module" src="app.js"></script>
+
+<script>
+    (function unlockAudio() {
+        let unlocked = false;
+        const unlock = () => {
+            if (unlocked) return;
+            const audio = new Audio();
+            audio.play().then(() => {
+                unlocked = true;
+                document.removeEventListener('click', unlock);
+                document.removeEventListener('touchstart', unlock);
+                const sounds = [
+                    "sounds/abonent-stop.mp3",
+                    "sounds/band.mp3",
+                    "sounds/call-in.mp3",
+                    "sounds/call-out.mp3",
+                    "sounds/red-btn.mp3",
+                    "sounds/tarmoqda_emas.mp3"
+                ];
+                sounds.forEach(url => { const a = new Audio(); a.src = url; a.load(); });
+                console.log("Audio unlocked");
+            }).catch(e => console.log("Audio unlock pending..."));
+        };
+        document.addEventListener('click', unlock);
+        document.addEventListener('touchstart', unlock);
+    })();
+</script>
+</body>
+</html>

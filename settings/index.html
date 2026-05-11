@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Sozlamalar | MRDEV</title>
+
+    <!-- FLASH FIX -->
+    <script src="../assets/js/core/theme-flash-fix.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+<body class="settings-page">
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="settings-header-bar">
+        <div class="settings-header-left">
+            <a href="../" class="settings-back-btn" title="Bosh sahifaga qaytish">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"/>
+                    <polyline points="12 19 5 12 12 5"/>
+                </svg>
+                <span>Bosh sahifa</span>
+            </a>
+        </div>
+        <div class="settings-header-center">
+            <span class="settings-logo">
+                <span class="logo-mr">MR</span><span class="logo-dev">DEV</span>
+                <span class="settings-label">Sozlamalar</span>
+            </span>
+        </div>
+        <div class="settings-header-right">
+            <!-- User trigger -->
+            <button class="header-user-trigger" id="settingsUserTrigger">
+                <div class="header-user-avatar" id="settingsAvatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M20 21a8 8 0 1 0-16 0"/>
+                    </svg>
+                </div>
+                <div class="header-user-info">
+                    <span class="header-user-name" id="settingsUserName">Mehmon</span>
+                    <span class="header-user-role">Foydalanuvchi</span>
+                </div>
+            </button>
+            
+            <!-- Theme -->
+            <button id="theme-btn-settings" class="theme-btn-settings" onclick="toggleTheme()" aria-label="Rejimni almashtirish">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="settings-container">
+        <div class="settings-hero">
+            <h1 class="settings-title">Sozlamalar</h1>
+            <p class="settings-subtitle">Hisobingiz, xavfsizlik, ko'rinish va ma'lumotlaringizni boshqaring</p>
+        </div>
+
+        <div class="settings-layout">
+            <!-- ========== NAVIGATION ========== -->
+            <nav class="settings-nav" id="settingsNav">
+                <!-- Profil -->
+                <button class="settings-nav-item active" data-tab="profile">
+                    <span class="settings-nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="8" r="4"/>
+                            <path d="M20 21a8 8 0 1 0-16 0"/>
+                        </svg>
+                    </span>
+                    <span class="settings-nav-text">
+                        <span class="settings-nav-label">Profil</span>
+                        <span class="settings-nav-desc">Shaxsiy ma'lumotlar</span>
+                    </span>
+                </button>
+                
+                <!-- Hisoblar -->
+                <button class="settings-nav-item" data-tab="accounts">
+                    <span class="settings-nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </span>
+                    <span class="settings-nav-text">
+                        <span class="settings-nav-label">Hisoblar</span>
+                        <span class="settings-nav-desc">Ko'p hisob bilan ishlash</span>
+                    </span>
+                </button>
+                
+                <!-- Xavfsizlik -->
+                <button class="settings-nav-item" data-tab="security">
+                    <span class="settings-nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            <circle cx="12" cy="16" r="1"/>
+                        </svg>
+                    </span>
+                    <span class="settings-nav-text">
+                        <span class="settings-nav-label">Xavfsizlik</span>
+                        <span class="settings-nav-desc">Parol va sessiyalar</span>
+                    </span>
+                </button>
+                
+                <!-- Ko'rinish -->
+                <button class="settings-nav-item" data-tab="appearance">
+                    <span class="settings-nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    </span>
+                    <span class="settings-nav-text">
+                        <span class="settings-nav-label">Ko'rinish</span>
+                        <span class="settings-nav-desc">Mavzu va ranglar</span>
+                    </span>
+                </button>
+                
+                <!-- Xabarlar -->
+                <button class="settings-nav-item" data-tab="notifications">
+                    <span class="settings-nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                    </span>
+                    <span class="settings-nav-text">
+                        <span class="settings-nav-label">Xabarlar</span>
+                        <span class="settings-nav-desc">Parol xabarlari tarixi</span>
+                    </span>
+                </button>
+                
+                <!-- Ma'lumotlar -->
+                <button class="settings-nav-item" data-tab="data">
+                    <span class="settings-nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                        </svg>
+                    </span>
+                    <span class="settings-nav-text">
+                        <span class="settings-nav-label">Ma'lumotlar</span>
+                        <span class="settings-nav-desc">Xotira va sinxronizatsiya</span>
+                    </span>
+                </button>
+            </nav>
+
+            <!-- ========== CONTENT ========== -->
+            <div class="settings-content">
+                
+                <!-- ==================== PROFIL ==================== -->
+                <div class="settings-section active" id="section-profile">
+                    <h2 class="settings-section-title">Profil</h2>
+                    <p class="settings-section-desc">Shaxsiy ma'lumotlaringizni ko'rish va tahrirlash</p>
+                    
+                    <!-- Avatar qismi -->
+                    <div class="profile-avatar-section">
+                        <div class="profile-avatar-preview" id="profileAvatarPreview">
+                            <span id="profileAvatarText">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                    <circle cx="12" cy="8" r="4"/>
+                                    <path d="M20 21a8 8 0 1 0-16 0"/>
+                                </svg>
+                            </span>
+                            <img id="profileAvatarImg" src="" alt="" style="display:none;">
+                            <input type="file" id="profileAvatarInput" accept="image/*" style="display:none;">
+                            <div class="profile-avatar-overlay">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                    <circle cx="12" cy="13" r="4"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <button id="profileAvatarRemove" class="avatar-remove-btn" title="Rasmni olib tashlash" style="display:none;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
+                        <div class="profile-avatar-info">
+                            <h4 id="profileDisplayName">Foydalanuvchi</h4>
+                            <p id="profileEmail">email@example.com</p>
+                            <p id="profileMrdevId" class="profile-mrdev-id">#------</p>
+                            <p id="profileProviderBadge" class="profile-meta-text">Hisob turi</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Forma -->
+                    <div class="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="profileFirstName">Ism</label>
+                                <input type="text" id="profileFirstName" class="form-input" placeholder="Ismingiz">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="profileLastName">Familya</label>
+                                <input type="text" id="profileLastName" class="form-input" placeholder="Familyangiz">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="profileEmailInput">Email</label>
+                            <input type="email" id="profileEmailInput" class="form-input" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="profileMrdevIdInput">MRDEV ID</label>
+                            <input type="text" id="profileMrdevIdInput" class="form-input" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="profileBioInput">Bio</label>
+                            <textarea id="profileBioInput" class="form-input" rows="3" placeholder="O'zingiz haqingizda..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="profilePhoneInput">Telefon</label>
+                            <input type="tel" id="profilePhoneInput" class="form-input" placeholder="+998901234567">
+                        </div>
+                        
+                        <!-- Email tasdiqlash -->
+                        <div class="profile-email-verify">
+                            <span id="emailVerifyStatus" class="verify-status"></span>
+                            <button id="verifyEmailBtn" class="verify-email-btn" style="display:none;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                                Emailni tasdiqlash
+                            </button>
+                        </div>
+                        
+                        <div class="profile-meta-row">
+                            <div class="profile-meta-item">
+                                <span class="meta-label">Ro'yxatdan o'tgan</span>
+                                <span class="meta-value" id="profileCreatedAt">-</span>
+                            </div>
+                            <div class="profile-meta-item">
+                                <span class="meta-label">Oxirgi kirish</span>
+                                <span class="meta-value" id="profileLastLogin">-</span>
+                            </div>
+                        </div>
+                        
+                        <button class="save-btn" id="profileSaveBtn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                                <polyline points="17 21 17 13 7 13 7 21"/>
+                                <polyline points="7 3 7 8 15 8"/>
+                            </svg>
+                            Profilni yangilash
+                        </button>
+                        <span class="save-status" id="profileSaveStatus"></span>
+                    </div>
+                </div>
+
+                <!-- ==================== HISOBLAR ==================== -->
+<!-- ==================== HISOBLAR ==================== -->
+<div class="settings-section" id="section-accounts">
+    <h2 class="settings-section-title">Hisoblar</h2>
+    <p class="settings-section-desc">
+        Bir nechta hisob qo'shing va ular o'rtasida tez o'ting. 
+        Maksimal <strong id="maxAccountsText">3</strong> ta hisob.
+    </p>
+    
+    <!-- Bo'sh holat -->
+    <div id="accountsEmpty" class="account-empty-state">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M20 21a8 8 0 1 0-16 0"/>
+        </svg>
+        <h3>Hisoblar mavjud emas</h3>
+        <p>Yangi hisob qo'shing yoki tizimga kiring</p>
+        <button class="add-account-btn-full" id="addAccountBtnEmpty">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Hisob qo'shish
+        </button>
+    </div>
+    
+    <!-- Ro'yxat -->
+    <div id="accountsList" class="account-list-full"></div>
+    
+    <!-- Footer -->
+    <div id="accountsFooter" class="accounts-footer">
+        <button class="add-account-btn-full" id="addAccountBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Yana hisob qo'shish
+        </button>
+        <p class="account-limit-info" id="accountLimitInfo">0 / 3 ta hisob</p>
+    </div>
+</div>
+                    
+                    <!-- Footer -->
+                    <div id="accountsFooter" class="accounts-footer" style="display:none;">
+                        <button class="add-account-btn-full" id="addAccountBtn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Yana hisob qo'shish
+                        </button>
+                        <p class="account-limit-info" id="accountLimitInfo">0 / 3 ta hisob</p>
+                    </div>
+                </div>
+
+                <!-- ==================== XAVFSIZLIK ==================== -->
+                <div class="settings-section" id="section-security">
+                    <h2 class="settings-section-title">Xavfsizlik</h2>
+                    <p class="settings-section-desc">Parolingizni boshqaring va faol sessiyalarni nazorat qiling</p>
+                    
+                    <!-- Parol almashtirish -->
+                    <div class="security-card">
+                        <div class="security-card-left">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                <circle cx="12" cy="16" r="1"/>
+                            </svg>
+                            <div>
+                                <h4>Parolni almashtirish</h4>
+                                <p>Emailingizga parol almashtirish havolasi yuboriladi</p>
+                            </div>
+                        </div>
+                        <button class="security-btn" id="changePasswordBtn">Almashtirish</button>
+                    </div>
+                    
+                    <!-- Sessiyalar -->
+                    <div class="security-card">
+                        <div class="security-card-left">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                            <div>
+                                <h4>Faol sessiyalar</h4>
+                                <p id="activeSessionsText">Yuklanmoqda...</p>
+                            </div>
+                        </div>
+                        <button class="security-btn danger" id="signOutAllBtn">Barchasidan chiqish</button>
+                    </div>
+                    
+                    <!-- 2FA -->
+                    <div class="security-card">
+                        <div class="security-card-left">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="4"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                            <div>
+                                <h4>2-Faktorli autentifikatsiya</h4>
+                                <p>Qo'shimcha xavfsizlik qatlami</p>
+                            </div>
+                        </div>
+                        <button class="security-btn" id="setup2FABtn">Sozlash</button>
+                    </div>
+                </div>
+
+                <!-- ==================== KO'RINISH ==================== -->
+                <div class="settings-section" id="section-appearance">
+                    <h2 class="settings-section-title">Ko'rinish</h2>
+                    <p class="settings-section-desc">Platforma ko'rinishini o'z xohishingizga moslang</p>
+                    
+                    <div class="appearance-card">
+                        <div class="appearance-card-header">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="5"/>
+                                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                            </svg>
+                            <div>
+                                <h4>Mavzu</h4>
+                                <p>Yorug' yoki qorong'i rejim</p>
+                            </div>
+                        </div>
+                        <div class="theme-toggle-container">
+                            <div class="theme-option" id="themeLight" data-theme="light">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="5"/>
+                                    <line x1="12" y1="1" x2="12" y2="3"/>
+                                    <line x1="12" y1="21" x2="12" y2="23"/>
+                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                                    <line x1="1" y1="12" x2="3" y2="12"/>
+                                    <line x1="21" y1="12" x2="23" y2="12"/>
+                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                                </svg>
+                                <span>Yorug'</span>
+                            </div>
+                            <div class="theme-option" id="themeDark" data-theme="dark">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                                </svg>
+                                <span>Qorong'i</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== XABARLAR ==================== -->
+                <div class="settings-section" id="section-notifications">
+                    <h2 class="settings-section-title">Parol xabarlari</h2>
+                    <p class="settings-section-desc">MRDEV ID orqali kirish parollari tarixi</p>
+                    
+                    <!-- Yuklanmoqda -->
+                    <div id="notificationsLoading" class="notif-loading">
+                        <div class="loading-spinner"></div>
+                        <p>Yuklanmoqda...</p>
+                    </div>
+                    
+                    <!-- Bo'sh -->
+                    <div id="notificationsEmpty" class="notif-empty" style="display:none;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                        <h3>Xabarlar yo'q</h3>
+                        <p>Hali hech qanday parol xabari kelmagan</p>
+                    </div>
+                    
+                    <!-- Auth yo'q -->
+                    <div id="notificationsNoAuth" class="notif-no-auth" style="display:none;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="8" r="4"/>
+                            <path d="M20 21a8 8 0 1 0-16 0"/>
+                        </svg>
+                        <h3>Hisobga kirmagansiz</h3>
+                        <p>Parol xabarlarini ko'rish uchun tizimga kiring</p>
+                    </div>
+                    
+                    <!-- Xatolik -->
+                    <div id="notificationsError" class="notif-error" style="display:none;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <p>Xabarlarni yuklashda xatolik yuz berdi</p>
+                        <button id="notificationsRetryBtn" class="retry-btn">Qayta urinish</button>
+                    </div>
+                    
+                    <!-- Xabarlar ro'yxati -->
+                    <div id="notificationsList" class="notif-list" style="display:none;"></div>
+                </div>
+
+                <!-- ==================== MA'LUMOTLAR ==================== -->
+                <div class="settings-section" id="section-data">
+                    <h2 class="settings-section-title">Ma'lumotlarni boshqarish</h2>
+                    <p class="settings-section-desc">Xotira holati, bulut sinxronizatsiyasi va ma'lumotlarni eksport qilish</p>
+                    
+                    <!-- Xotira -->
+                    <div class="data-card">
+                        <h4>Xotira holati</h4>
+                        <div class="storage-info">
+                            <div class="storage-bar-container">
+                                <div class="storage-bar" id="storageBar" style="width: 0%;"></div>
+                            </div>
+                            <div class="storage-details">
+                                <span id="storageUsed">0 KB</span>
+                                <span>/</span>
+                                <span id="storageTotal">5 MB</span>
+                                <span class="storage-percent" id="storagePercent">0%</span>
+                            </div>
+                            <div class="storage-items" id="storageDetails"></div>
+                        </div>
+                        <p class="storage-note">LocalStorage orqali saqlanadigan ma'lumotlar</p>
+                    </div>
+                    
+                    <!-- Bulut -->
+                    <div class="data-card">
+                        <h4>Bulut sinxronizatsiyasi</h4>
+                        <div class="sync-status">
+                            <div class="sync-indicator" id="syncIndicator">
+                                <span class="sync-dot" id="syncDot"></span>
+                                <span id="syncStatusText">Tekshirilmoqda...</span>
+                            </div>
+                            <span class="sync-time" id="syncTime">-</span>
+                        </div>
+                        <button class="sync-btn" id="syncNowBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 4 23 10 17 10"/>
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                            </svg>
+                            Hozir sinxronlash
+                        </button>
+                    </div>
+                    
+                    <!-- Tozalash -->
+                    <div class="data-card danger-card">
+                        <h4>Lokal ma'lumotlarni tozalash</h4>
+                        <p>Bu amal barcha qurilmada saqlangan ma'lumotlarni o'chiradi (sozlamalar, tarix). Bulutdagi ma'lumotlar saqlanib qoladi.</p>
+                        <button class="danger-btn" id="clearLocalDataBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"/>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                            </svg>
+                            Tozalash
+                        </button>
+                    </div>
+                    
+                    <!-- Eksport -->
+                    <div class="data-card">
+                        <h4>Ma'lumotlarni eksport qilish</h4>
+                        <p>Barcha lokal ma'lumotlaringizni JSON formatida yuklab oling</p>
+                        <button class="export-btn" id="exportDataBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Eksport qilish
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast container -->
+    <div id="toastContainer"></div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="./script.js"></script>
+</body>
+</html>

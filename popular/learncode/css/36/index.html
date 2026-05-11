@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36-Dars: rem o'lchov birligi | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "36",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=lZVj3LTNm-A",
+            "lessonTitle": "rem o'lchov birligi"
+        }
+    </script>
+    
+    <!-- Test javoblari (36-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>36-Dars: rem o'lchov birligi</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 13:31
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/lZVj3LTNm-A" 
+                            title="CSS | 36. rem o'lchov birligi"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 36. rem o'lchov birligi</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 13:31</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>rem o'lchov birligi</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 12-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Units va RWD</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da eng ko'p ishlatiladigan nisbiy birlik - <code>rem</code> (root em) haqida chuqur bilim olasiz. <code>rem</code> birligi <code>em</code> dan farqi, compounding muammosidan xoliligi va responsive dizayn yaratishdagi ahamiyatini o'rganasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>rem</code> birligi nimaga nisbatan hisoblanadi?</li>
+                        <li><i class="fas fa-check-circle"></i> <code>rem</code> vs <code>em</code> - asosiy farqlar</li>
+                        <li><i class="fas fa-check-circle"></i> Nima uchun <code>rem</code> <code>em</code> dan afzal?</li>
+                        <li><i class="fas fa-check-circle"></i> <code>62.5%</code> trick - 1rem = 10px qilish</li>
+                        <li><i class="fas fa-check-circle"></i> Responsive typography <code>rem</code> bilan</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>rem = root em:</strong> Har doim <code>&lt;html&gt;</code> elementining font-size iga nisbatan hisoblanadi. Hech qachon o'zgarmaydi!</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>62.5% trick:</strong> <code>html { font-size: 62.5%; }</code> → 1rem = 10px. Hisoblash juda osonlashadi.</span>
+                            <span class="badge good-to-know">Professional</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Global spacing uchun rem:</strong> <code>margin</code>, <code>padding</code>, <code>width</code> kabi xususiyatlar uchun <code>rem</code> ishlating.</span>
+                            <span class="badge tip">Best practice</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span><strong>Media queries bilan:</strong> Kichik ekranlarda <code>html { font-size: 50%; }</code> qilib, barcha o'lchamlarni bir vaqtda kichiklashtirish mumkin.</span>
+                            <span class="badge tip">Responsive trick</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: REM NIMAGA NISBATAN? ==================== -->
+                <section class="lesson-section" id="rem-relative">
+                    <h2><i class="fas fa-ruler"></i> rem nimaga nisbatan hisoblanadi?</h2>
+                    
+                    <p><code>rem</code> (root em) birligi har doim <strong>root element</strong> (<code>&lt;html&gt;</code>) ning <code>font-size</code> iga nisbatan hisoblanadi. Bu <code>em</code> dan asosiy farqi!</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Root element - barcha rem lar shunga nisbatan */
+html {
+    font-size: 16px;        /* 1rem = 16px (brauzer default) */
+}
+
+/* rem har doim root ga nisbatan - ota element font-size i ta'sir qilmaydi! */
+.parent {
+    font-size: 20px;        /* Bu rem ga ta'sir qilmaydi! */
+}
+
+.child {
+    font-size: 1.5rem;      /* 16px * 1.5 = 24px (root dan) */
+    padding: 2rem;          /* 16px * 2 = 32px */
+    margin: 1rem;           /* 16px * 1 = 16px */
+    width: 20rem;           /* 16px * 20 = 320px */
+}
+
+/* em bilan solishtirish */
+.child-em {
+    font-size: 1.5em;       /* 20px * 1.5 = 30px (ota elementdan!) */
+}</code></pre>
+                    </div>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Xususiyat</th><th>em</th><th>rem</th></tr></thead>
+                            <tbody>
+                                <tr><td>Nisbatan</td><td>Ota element font-size (yoki joriy)</td><td>Root (html) font-size</td></tr>
+                                <tr><td>Compounding</td><td>Muammo bor</td><td>Muammo yo'q</td></tr>
+                                <tr><td>Oldindan bilish</td><td>Qiyin</td><td>Oson</td></tr>
+                                <tr><td>Tavsiya</td><td>Komponent ichida</td><td>Global spacing, font-size</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: 62.5% TRICK ==================== -->
+                <section class="lesson-section" id="percent-trick">
+                    <h2><i class="fas fa-percent"></i> 62.5% trick - 1rem = 10px</h2>
+                    
+                    <p>Brauzer default <code>font-size</code> 16px. <code>62.5%</code> bersak, 16px * 0.625 = 10px bo'ladi. Bu hisoblashni juda osonlashtiradi!</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* 62.5% trick - 1rem = 10px */
+html {
+    font-size: 62.5%;       /* 16px * 0.625 = 10px */
+}
+
+/* Endi hisoblash juda oson! */
+body {
+    font-size: 1.6rem;      /* 10px * 1.6 = 16px */
+}
+
+h1 {
+    font-size: 4.8rem;      /* 10px * 4.8 = 48px */
+    margin-bottom: 2rem;    /* 10px * 2 = 20px */
+}
+
+.container {
+    max-width: 120rem;      /* 10px * 120 = 1200px */
+    padding: 2rem;          /* 10px * 2 = 20px */
+}
+
+.card {
+    padding: 2.5rem;        /* 25px */
+    border-radius: 0.8rem;  /* 8px */
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> <code>62.5%</code> trick orqali <code>rem</code> bilan ishlash <code>px</code> bilan ishlashdek oson bo'ladi, lekin responsive afzalliklari saqlanib qoladi!
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: RESPONSIVE TYPOGRAPHY ==================== -->
+                <section class="lesson-section" id="responsive-typography">
+                    <h2><i class="fas fa-mobile-alt"></i> Responsive typography rem bilan</h2>
+                    
+                    <p><code>rem</code> birligining eng katta afzalligi - media queries orqali butun sayt shriftini bir vaqtda o'zgartirish imkoniyati.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Desktop (default) */
+html {
+    font-size: 62.5%;       /* 1rem = 10px */
+}
+
+/* Planshet */
+@media (max-width: 900px) {
+    html {
+        font-size: 56.25%;  /* 1rem = 9px (16px * 0.5625 = 9px) */
+    }
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+    html {
+        font-size: 50%;     /* 1rem = 8px (16px * 0.5 = 8px) */
+    }
+}
+
+/* Barcha rem o'lchamlari avtomatik o'zgaradi! */
+body {
+    font-size: 1.6rem;      /* Desktop: 16px, Planshet: 14.4px, Mobil: 12.8px */
+}
+
+h1 {
+    font-size: 4.8rem;      /* Desktop: 48px, Planshet: 43.2px, Mobil: 38.4px */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: REM VS EM - QACHON QAYSI BIRI? ==================== -->
+                <section class="lesson-section" id="rem-vs-em">
+                    <h2><i class="fas fa-balance-scale"></i> rem vs em - Qachon qaysi biri?</h2>
+                    
+                    <div class="pros-cons-grid">
+                        <div class="pros-box">
+                            <h4><i class="fas fa-check-circle"></i> rem ishlatiladigan holatlar</h4>
+                            <ul>
+                                <li>Global font-size</li>
+                                <li>Margin va padding</li>
+                                <li>Width va height</li>
+                                <li>Media queries</li>
+                                <li>Kontekstdan qat'iy nazar bir xil o'lcham kerak bo'lganda</li>
+                            </ul>
+                        </div>
+                        <div class="cons-box">
+                            <h4><i class="fas fa-check-circle"></i> em ishlatiladigan holatlar</h4>
+                            <ul>
+                                <li>Komponent ichidagi spacing (padding, margin)</li>
+                                <li>Element o'lchami uning font-size iga bog'liq bo'lganda</li>
+                                <li>Media queries da (rem tavsiya etiladi)</li>
+                                <li>Ikonkalar o'lchami matnga mos bo'lishi kerak bo'lganda</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Global spacing - rem */
+.container {
+    max-width: 120rem;
+    padding: 2rem;
+    margin: 4rem auto;
+}
+
+/* Komponent - em (font-size ga bog'liq) */
+.btn {
+    font-size: 1.6rem;
+    padding: 0.8em 1.5em;   /* font-size ga proporsional */
+    border-radius: 0.4em;
+}
+
+.btn-small {
+    font-size: 1.4rem;      /* padding avtomatik kichiklashadi! */
+}
+
+.btn-large {
+    font-size: 2rem;        /* padding avtomatik kattalashadi! */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 36-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span><code>rem</code> birligi nimaga nisbatan hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>Ota element font-size iga</label></div><div class="option"><input type="radio" name="q1" value="b"><label>Root (html) element font-size iga</label></div><div class="option"><input type="radio" name="q1" value="c"><label>Joriy element font-size iga</label></div><div class="option"><input type="radio" name="q1" value="d"><label>Viewport kengligiga</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span><code>html { font-size: 62.5%; }</code> natijasida 1rem necha px bo'ladi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>16px</label></div><div class="option"><input type="radio" name="q2" value="b"><label>62.5px</label></div><div class="option"><input type="radio" name="q2" value="c"><label>10px</label></div><div class="option"><input type="radio" name="q2" value="d"><label>6.25px</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span><code>rem</code> ning <code>em</code> dan asosiy afzalligi nimada?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>Compounding muammosidan xoli</label></div><div class="option"><input type="radio" name="q3" value="b"><label>Tezroq ishlaydi</label></div><div class="option"><input type="radio" name="q3" value="c"><label>Ko'proq brauzer qo'llaydi</label></div><div class="option"><input type="radio" name="q3" value="d"><label>Faqat matn uchun ishlaydi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Global spacing (margin, padding) uchun qaysi birlik tavsiya etiladi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>px</label></div><div class="option"><input type="radio" name="q4" value="b"><label>em</label></div><div class="option"><input type="radio" name="q4" value="c"><label>%</label></div><div class="option"><input type="radio" name="q4" value="d"><label>rem</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> <code>rem</code> birligidan foydalanib to'liq responsive sahifa yarating.</p>
+                        <ol>
+                            <li><code>html { font-size: 62.5%; }</code> orqali 1rem = 10px qiling</li>
+                            <li>Barcha o'lchamlarni <code>rem</code> da bering (font-size, margin, padding, width)</li>
+                            <li>Media queries orqali mobil va planshet uchun <code>html { font-size }</code> ni o'zgartiring</li>
+                            <li>Karta komponenti ichidagi spacing uchun <code>em</code> ishlating</li>
+                            <li>Katta va kichik karta variantlarini yarating (font-size o'zgartirish orqali)</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-css">html { font-size: 62.5%; }  /* 1rem = 10px */
+@media (max-width: 900px) { html { font-size: 56.25%; } }  /* 1rem = 9px */
+@media (max-width: 600px) { html { font-size: 50%; } }     /* 1rem = 8px */
+
+body { font-family: 'Inter', sans-serif; font-size: 1.6rem; line-height: 1.6; }
+.container { max-width: 120rem; margin: 0 auto; padding: 2rem; }
+h1 { font-size: 4.8rem; margin-bottom: 2rem; }
+h2 { font-size: 3.6rem; margin-bottom: 1.5rem; }
+
+.card { font-size: 1.6rem; padding: 2em; border-radius: 0.5em; background: white; box-shadow: 0 0.2em 0.5em rgba(0,0,0,0.1); }
+.card-small { font-size: 1.4rem; }  /* padding avtomatik 2em = 28px bo'ladi */
+.card-large { font-size: 2rem; }    /* padding avtomatik 2em = 40px bo'ladi */
+.card-title { font-size: 1.5em; margin-bottom: 0.5em; }
+.btn { display: inline-block; padding: 0.8em 1.5em; border-radius: 0.4em; text-decoration: none; }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>rem = root em:</strong> har doim <code>&lt;html&gt;</code> font-size iga nisbatan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>62.5% trick:</strong> 1rem = 10px, hisoblash oson</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Compounding yo'q:</strong> <code>rem</code> <code>em</code> dan afzal</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Global spacing:</strong> <code>margin</code>, <code>padding</code>, <code>width</code> uchun <code>rem</code></li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Komponent spacing:</strong> <code>em</code> - font-size ga proporsional</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Responsive typography:</strong> media queries da <code>html { font-size }</code> o'zgartirish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Viewport o'lchov birligi</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../35/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../37/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#rem-relative">rem nimaga nisbatan?</a></li>
+                    <li><a href="#percent-trick">62.5% trick</a></li>
+                    <li><a href="#responsive-typography">Responsive typography</a></li>
+                    <li><a href="#rem-vs-em">rem vs em</a></li>
+                    <li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">36/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 57.1%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

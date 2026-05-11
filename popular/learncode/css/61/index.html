@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>61-Dars: CSS Grid | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "61",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=tc_W8ZGiVv4",
+            "lessonTitle": "CSS Grid"
+        }
+    </script>
+    
+    <!-- Test javoblari (61-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>61-Dars: CSS Grid</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 9:56
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/tc_W8ZGiVv4" 
+                            title="CSS | 61. CSS Grid"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 61. CSS Grid</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 9:56</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>CSS Grid</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 9-mart, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Grid</span>
+                        <span><i class="fas fa-signal"></i> Yuqori daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p><strong>CSS Grid</strong> - bu ikki o'lchovli layout tizimi bo'lib, bir vaqtning o'zida qator va ustunlar bilan ishlash imkonini beradi. Flexbox bir o'lchovli (qator yoki ustun), Grid esa ikki o'lchovli (qator va ustun) layoutlar uchun mo'ljallangan. Bu darsda Grid asoslarini o'rganamiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>display: grid</code> - Grid konteyner yaratish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>grid-template-columns</code> - ustunlar soni va kengligi</li>
+                        <li><i class="fas fa-check-circle"></i> <code>grid-template-rows</code> - qatorlar soni va balandligi</li>
+                        <li><i class="fas fa-check-circle"></i> <code>gap</code> - qator va ustunlar orasidagi masofa</li>
+                        <li><i class="fas fa-check-circle"></i> <code>fr</code> birligi - fraction (bo'sh joyni nisbatda taqsimlash)</li>
+                        <li><i class="fas fa-check-circle"></i> <code>repeat()</code> funksiyasi</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Grid vs Flexbox:</strong> Grid - ikki o'lchovli (qator va ustun), Flexbox - bir o'lchovli. Sahifa layouti uchun Grid, komponentlar uchun Flexbox.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>fr birligi:</strong> <code>1fr</code> - qolgan bo'sh joyni nisbatda taqsimlaydi. Flexbox dagi <code>flex-grow</code> ga o'xshaydi.</span>
+                            <span class="badge good-to-know">Professional</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>repeat() funksiyasi:</strong> <code>repeat(3, 1fr)</code> - 3 ta teng ustun. Kodni qisqartiradi.</span>
+                            <span class="badge tip">Amaliyot</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span><strong>Responsive Grid:</strong> <code>repeat(auto-fit, minmax(250px, 1fr))</code> - ekran o'lchamiga qarab ustunlar soni avtomatik o'zgaradi.</span>
+                            <span class="badge tip">Zamonaviy</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: GRID KONTEYNER ==================== -->
+                <section class="lesson-section" id="grid-container">
+                    <h2><i class="fas fa-th"></i> Grid Konteyner va Asosiy Xususiyatlar</h2>
+                    
+                    <p><code>display: grid</code> xususiyati elementni Grid konteynerga aylantiradi. Barcha bevosita bola elementlar Grid item bo'ladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Grid konteyner */
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;  /* 3 ta ustun */
+    grid-template-rows: 100px 1fr 100px;    /* 3 ta qator */
+    gap: 20px;                              /* Qator va ustunlar orasidagi masofa */
+    height: 100vh;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: FR BIRLIGI VA REPEAT ==================== -->
+                <section class="lesson-section" id="fr-repeat">
+                    <h2><i class="fas fa-ruler"></i> fr birligi va repeat() funksiyasi</h2>
+                    
+                    <p><code>fr</code> (fraction) - bo'sh joyni nisbatda taqsimlaydi. <code>repeat()</code> - takrorlanuvchi ustun/qatorlar uchun.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* fr birligi - bo'sh joyni nisbatda taqsimlash */
+.grid-fr {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;  /* 1:2:1 nisbatda */
+}
+
+/* repeat() funksiyasi */
+.grid-repeat {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 4 ta teng ustun */
+    grid-template-rows: repeat(3, 150px);  /* 3 ta qator, har biri 150px */
+}
+
+/* Responsive grid */
+.grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Ekranga qarab ustunlar soni avtomatik o'zgaradi */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: GRID VS FLEXBOX ==================== -->
+                <section class="lesson-section" id="grid-vs-flexbox">
+                    <h2><i class="fas fa-balance-scale"></i> Grid vs Flexbox</h2>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Xususiyat</th><th>Flexbox</th><th>Grid</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>O'lchov</strong></td><td>Bir o'lchovli (qator yoki ustun)</td><td>Ikki o'lchovli (qator va ustun)</td></tr>
+                                <tr><td><strong>Asosiy ishlatilishi</strong></td><td>Komponentlar, navigatsiya</td><td>Sahifa layouti, murakkab gridlar</td></tr>
+                                <tr><td><strong>Qatorlarni boshqarish</strong></td><td><code>flex-wrap</code> orqali</td><td><code>grid-template-rows</code> aniq boshqariladi</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> 61-dars testi</h3><span class="test-badge">4 ta savol</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>Grid konteyner yaratish uchun qaysi xususiyat ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>display: flex</label></div><div class="option"><input type="radio" name="q1" value="b"><label>display: grid</label></div><div class="option"><input type="radio" name="q1" value="c"><label>display: block</label></div><div class="option"><input type="radio" name="q1" value="d"><label>position: grid</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span><code>fr</code> birligi nima uchun ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>Piksel o'lchami</label></div><div class="option"><input type="radio" name="q2" value="b"><label>Foiz o'lchami</label></div><div class="option"><input type="radio" name="q2" value="c"><label>Bo'sh joyni nisbatda taqsimlash</label></div><div class="option"><input type="radio" name="q2" value="d"><label>Qat'iy o'lcham</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span>4 ta teng ustun yaratish uchun qaysi kod to'g'ri?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>grid-template-columns: repeat(4, 1fr);</label></div><div class="option"><input type="radio" name="q3" value="b"><label>grid-template-columns: 1fr 1fr 1fr 1fr;</label></div><div class="option"><input type="radio" name="q3" value="c"><label>grid-template-columns: 4fr;</label></div><div class="option"><input type="radio" name="q3" value="d"><label>a va b to'g'ri</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Sahifa layouti uchun qaysi biri tavsiya etiladi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>Float</label></div><div class="option"><input type="radio" name="q4" value="b"><label>Flexbox</label></div><div class="option"><input type="radio" name="q4" value="c"><label>Position</label></div><div class="option"><input type="radio" name="q4" value="d"><label>Grid</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> CSS Grid yordamida sahifa layouti yarating.</p>
+                        <ol><li>Header, sidebar, main, footer dan iborat layout</li><li><code>grid-template-columns: 250px 1fr;</code></li><li><code>grid-template-rows: auto 1fr auto;</code></li><li><code>gap: 20px;</code> va <code>min-height: 100vh;</code></li></ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-css">.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    min-height: 100vh;
+}
+.header { grid-column: 1 / -1; }
+.footer { grid-column: 1 / -1; }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>display: grid</strong> - Grid konteyner yaratish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>grid-template-columns/rows</strong> - ustun va qatorlarni belgilash</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>fr birligi</strong> - bo'sh joyni nisbatda taqsimlash</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>repeat()</strong> - takrorlanuvchi ustun/qatorlar</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Grid vs Flexbox</strong> - Grid 2D, Flexbox 1D</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Best practices</li>
+                    </ul>
+                </div>
+                
+                <!-- IZOHLAR, NAVIGATSIYA, SIDEBAR, FOOTER - STANDART -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../60/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../62/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#grid-container">Grid konteyner</a></li><li><a href="#fr-repeat">fr va repeat()</a></li>
+                    <li><a href="#grid-vs-flexbox">Grid vs Flexbox</a></li><li><a href="#test">Test</a></li><li><a href="#practice">Amaliy mashq</a></li><li><a href="#summary">Xulosa</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">61/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 96.8%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

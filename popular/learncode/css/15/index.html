@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15-Dars: Display xossasi | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "15",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=M-0OR6E51pM",
+            "lessonTitle": "Display xossasi"
+        }
+    </script>
+    
+    <!-- Test javoblari (15-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>15-Dars: Display xossasi</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 15:23
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/M-0OR6E51pM" 
+                            title="CSS | 15. Display xossasi"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 15. Display xossasi</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 15:23</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Display xossasi</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 22-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Box Model</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Nazorat ishi belgisi -->
+                <div class="info-box" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe); border-color: #3b82f6;">
+                    <i class="fas fa-clipboard-check" style="color: #3b82f6;"></i>
+                    <strong>Eslatma!</strong>
+                    <p>Bu dars oxirida 1-15 darslar bo'yicha 15 ta "test"dan iborat nazorat ishi mavjud. Test barcha o'tilgan mavzular bo'yicha bo'ladi.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>display</code> xossasi nima va nima uchun kerak?</li>
+                        <li><i class="fas fa-check-circle"></i> <code>block</code> - blok elementlar</li>
+                        <li><i class="fas fa-check-circle"></i> <code>inline</code> - satr ichidagi elementlar</li>
+                        <li><i class="fas fa-check-circle"></i> <code>inline-block</code> - gibrid elementlar</li>
+                        <li><i class="fas fa-check-circle"></i> <code>none</code> - elementni yashirish</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Block vs Inline:</strong> Block elementlar to'liq kenglikni egallaydi va yangi qatordan boshlanadi. Inline elementlar esa faqat kontenticha joy egallaydi.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>inline-block:</strong> Inline kabi bir qatorda turadi, lekin block kabi width, height, margin, padding larni to'liq qabul qiladi.</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>display: none:</strong> Elementni butunlay yashiradi va joyni bo'shatadi. <code>visibility: hidden</code> dan farqi - joy saqlanib qoladi.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: DISPLAY NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-display">
+                    <h2><i class="fas fa-desktop"></i> Display xossasi nima?</h2>
+                    
+                    <p><strong><code>display</code></strong> xossasi elementning sahifada qanday ko'rinishini va boshqa elementlar bilan qanday munosabatda bo'lishini belgilaydi. Bu CSS dagi eng muhim xususiyatlardan biri hisoblanadi.</p>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title">
+                            <i class="fas fa-cubes"></i>
+                            <span>Display qiymatlari farqi</span>
+                        </div>
+                        <div class="analogy-content">
+                            <div class="analogy-item">
+                                <div style="background: #dbeafe; padding: 10px 20px; border-radius: 8px; border: 2px solid #3b82f6;">
+                                    <strong>Block</strong>
+                                </div>
+                                <div class="analogy-text">Yangi qator,<br>to'liq kenglik</div>
+                            </div>
+                            <div class="analogy-item">
+                                <div style="background: #dcfce7; padding: 10px 20px; border-radius: 8px; border: 2px solid #10b981;">
+                                    <strong>Inline</strong>
+                                </div>
+                                <div class="analogy-text">Bir qatorda,<br>kontenticha kenglik</div>
+                            </div>
+                            <div class="analogy-item">
+                                <div style="background: #fef3c7; padding: 10px 20px; border-radius: 8px; border: 2px solid #f59e0b;">
+                                    <strong>Inline-Block</strong>
+                                </div>
+                                <div class="analogy-text">Bir qatorda,<br>lekin o'lcham berish mumkin</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: BLOCK ELEMENTLAR ==================== -->
+                <section class="lesson-section" id="block">
+                    <h2><i class="fas fa-square"></i> Block elementlar</h2>
+                    
+                    <p><strong>Block elementlar</strong> quyidagi xususiyatlarga ega:</p>
+                    <ul>
+                        <li>Har doim yangi qatordan boshlanadi</li>
+                        <li>Mavjud bo'lgan to'liq kenglikni egallaydi (default: <code>width: 100%</code>)</li>
+                        <li>Width, height, margin, padding larni to'liq qabul qiladi</li>
+                        <li>Block elementlar ichida boshqa block yoki inline elementlar bo'lishi mumkin</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Default block elementlar */
+div, p, h1-h6, ul, ol, li, header, footer, section, article {
+    display: block;
+}
+
+/* Block elementga misol */
+.block-example {
+    display: block;
+    width: 300px;
+    height: 100px;
+    margin: 20px;
+    padding: 15px;
+    background: #3b82f6;
+    color: white;
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Block elementlarga misollar:</strong> <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;-&lt;h6&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: INLINE ELEMENTLAR ==================== -->
+                <section class="lesson-section" id="inline">
+                    <h2><i class="fas fa-text"></i> Inline elementlar</h2>
+                    
+                    <p><strong>Inline elementlar</strong> quyidagi xususiyatlarga ega:</p>
+                    <ul>
+                        <li>Yangi qatordan boshlanmaydi, bir qatorda ketma-ket joylashadi</li>
+                        <li>Faqat kontenti egallagan joyni oladi</li>
+                        <li><strong>Width va height ishlamaydi!</strong></li>
+                        <li>Margin va padding faqat gorizontal (chap/o'ng) ishlaydi, vertikal (yuqori/past) ishlamaydi</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Default inline elementlar */
+span, a, strong, em, i, b, u, small {
+    display: inline;
+}
+
+/* Inline elementga misol */
+.inline-example {
+    display: inline;
+    /* width: 200px; ISHLAMAYDI! */
+    /* height: 100px; ISHLAMAYDI! */
+    margin: 0 10px;      /* Faqat gorizontal ishlaydi */
+    padding: 5px 15px;   /* Gorizontal ishlaydi, vertikal ko'rinadi lekin joy egallamaydi */
+    background: #10b981;
+    color: white;
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> Inline elementlarga <code>width</code> va <code>height</code> berib bo'lmaydi! Vertikal <code>margin</code> va <code>padding</code> ko'rinadi lekin atrofdagi elementlarga ta'sir qilmaydi (joy egallamaydi).
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Inline elementlarga misollar:</strong> <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;b&gt;</code>, <code>&lt;u&gt;</code>, <code>&lt;small&gt;</code>, <code>&lt;img&gt;</code> (maxsus holat)
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: INLINE-BLOCK ==================== -->
+                <section class="lesson-section" id="inline-block">
+                    <h2><i class="fas fa-square"></i><i class="fas fa-text"></i> Inline-Block - gibrid element</h2>
+                    
+                    <p><strong><code>display: inline-block</code></strong> - bu block va inline elementlarning eng yaxshi xususiyatlarini birlashtiradi:</p>
+                    
+                    <div class="pros-cons-grid">
+                        <div class="pros-box">
+                            <h4><i class="fas fa-check-circle"></i> Inline-Block afzalliklari</h4>
+                            <ul>
+                                <li>Inline kabi - bir qatorda turadi</li>
+                                <li>Block kabi - width, height, margin, padding larni to'liq qabul qiladi</li>
+                                <li>Vertikal margin va padding to'liq ishlaydi</li>
+                                <li>Navigatsiya menyulari, kartalar uchun ideal</li>
+                            </ul>
+                        </div>
+                        <div class="cons-box">
+                            <h4><i class="fas fa-times-circle"></i> Kamchiliklari</h4>
+                            <ul>
+                                <li>Elementlar orasida kichik bo'shliq qoladi (HTML dagi probel tufayli)</li>
+                                <li>Bu bo'shliqni yo'qotish uchun ota elementga <code>font-size: 0</code> berish kerak</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Inline-block - navigatsiya uchun ideal */
+.nav {
+    font-size: 0; /* Bo'shliqni yo'qotish uchun */
+}
+
+.nav-item {
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    margin: 10px;
+    padding: 15px 20px;
+    background: #3b82f6;
+    color: white;
+    font-size: 16px; /* Qayta tiklash */
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Kartalar uchun inline-block */
+.card {
+    display: inline-block;
+    width: 280px;
+    margin: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    vertical-align: top; /* Kartalarni tepadan tekislash */
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Bo'shliq muammosini hal qilish:</strong> Inline-block elementlar orasidagi bo'shliq HTML dagi probel yoki yangi qator tufayli paydo bo'ladi. Yechim: ota elementga <code>font-size: 0</code> berib, bola elementlarga kerakli <code>font-size</code> ni qayta tiklash.
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: DISPLAY: NONE ==================== -->
+                <section class="lesson-section" id="display-none">
+                    <h2><i class="fas fa-eye-slash"></i> Display: none</h2>
+                    
+                    <p><strong><code>display: none</code></strong> - elementni sahifadan butunlay yashiradi. Element nafaqat ko'rinmaydi, balki sahifada joy ham egallamaydi.</p>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Xususiyat</th>
+                                    <th><code>display: none</code></th>
+                                    <th><code>visibility: hidden</code></th>
+                                    <th><code>opacity: 0</code></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ko'rinishi</strong></td>
+                                    <td>Yo'q</td>
+                                    <td>Yo'q</td>
+                                    <td>Yo'q</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Joy egallashi</strong></td>
+                                    <td>Yo'q</td>
+                                    <td>Ha</td>
+                                    <td>Ha</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Event lar ishlashi</strong></td>
+                                    <td>Yo'q</td>
+                                    <td>Yo'q</td>
+                                    <td>Ha</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Animatsiya qilish</strong></td>
+                                    <td>Qiyin</td>
+                                    <td>Oson</td>
+                                    <td>Oson</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Elementni yashirish */
+.hidden {
+    display: none;
+}
+
+/* Responsive dizaynda ishlatish */
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 6-BO'LIM: BOSHQA DISPLAY QIYMATLARI ==================== -->
+                <section class="lesson-section" id="other-display">
+                    <h2><i class="fas fa-grid-2"></i> Boshqa display qiymatlari (qisqacha)</h2>
+                    
+                    <p>CSS da yana ko'plab display qiymatlari mavjud. Ularni keyingi darslarda batafsil o'rganamiz:</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-columns"></i>
+                            <h4>flex</h4>
+                            <p>Flexbox layout tizimi. 55-60 darslarda</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-th"></i>
+                            <h4>grid</h4>
+                            <p>Grid layout tizimi. 61-darsda</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-table"></i>
+                            <h4>table</h4>
+                            <p>Jadval ko'rinishidagi layout</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-list"></i>
+                            <h4>list-item</h4>
+                            <p>Ro'yxat elementi (<code>&lt;li&gt;</code> kabi)</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAZORAT ISHI (1-15 DARSLAR) ==================== -->
+                <div class="test-block" id="mix-test" style="background: linear-gradient(135deg, #eff6ff, #e0f2fe); border: 2px solid #3b82f6;">
+                    <div class="test-header">
+                        <h3><i class="fas fa-clipboard-list"></i> Nazorat ishi</h3>
+                        <span class="test-badge" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">15 ta test</span>
+                    </div>
+                    
+                    <p style="margin-bottom: 20px; font-size: 0.9rem;">Bu nazorat ishi <strong>1-darsdan 15-darsgacha</strong> o'tilgan barcha mavzularni qamrab oladi. Nazorat ishi 15 ta savoldan iborat bo'lib, CSS asoslari, selektorlar, specificity, inheritance, combinators va Box Model mavzularini o'z ichiga oladi.</p>
+                    
+                    <!-- Savol 1: 1-dars - CSS nima? -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            CSS ning to'liq nomi nima? (1-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q1" value="a"><label>Computer Style Sheets</label></div>
+                            <div class="option"><input type="radio" name="mix_q1" value="b"><label>Cascading Style Sheets</label></div>
+                            <div class="option"><input type="radio" name="mix_q1" value="c"><label>Creative Style System</label></div>
+                            <div class="option"><input type="radio" name="mix_q1" value="d"><label>Colorful Style Sheets</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 2: 2-dars - CSS versiyalari -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            CSS3 qachondan boshlab faol rivojlana boshlagan? (2-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q2" value="a"><label>1996 yildan</label></div>
+                            <div class="option"><input type="radio" name="mix_q2" value="b"><label>1998 yildan</label></div>
+                            <div class="option"><input type="radio" name="mix_q2" value="c"><label>2011 yildan</label></div>
+                            <div class="option"><input type="radio" name="mix_q2" value="d"><label>2005 yildan</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 3: 3-dars - CSS ulash usullari -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            CSS ni HTML ga ulashning eng tavsiya etilgan usuli qaysi? (3-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q3" value="a"><label>Inline CSS</label></div>
+                            <div class="option"><input type="radio" name="mix_q3" value="b"><label>Internal CSS</label></div>
+                            <div class="option"><input type="radio" name="mix_q3" value="c"><label>External CSS</label></div>
+                            <div class="option"><input type="radio" name="mix_q3" value="d"><label>Barchasi bir xil</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 4: 4-dars - Selektorlar -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Class selektor qaysi belgi bilan boshlanadi? (4-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q4" value="a"><label># (hash)</label></div>
+                            <div class="option"><input type="radio" name="mix_q4" value="b"><label>. (nuqta)</label></div>
+                            <div class="option"><input type="radio" name="mix_q4" value="c"><label>* (yulduzcha)</label></div>
+                            <div class="option"><input type="radio" name="mix_q4" value="d"><label>@ (at)</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 5: 5-dars - Izohlar -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">5</span>
+                            CSS da izoh (comment) qanday yoziladi? (5-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q5" value="a"><label>// Bu izoh</label></div>
+                            <div class="option"><input type="radio" name="mix_q5" value="b"><label>&lt;!-- Bu izoh --&gt;</label></div>
+                            <div class="option"><input type="radio" name="mix_q5" value="c"><label>/* Bu izoh */</label></div>
+                            <div class="option"><input type="radio" name="mix_q5" value="d"><label># Bu izoh</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 6: 6-dars - Specificity -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">6</span>
+                            Qaysi selektor eng yuqori specificity (o'ziga xoslik) ga ega? (6-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q6" value="a"><label>Element selektor (p)</label></div>
+                            <div class="option"><input type="radio" name="mix_q6" value="b"><label>Class selektor (.class)</label></div>
+                            <div class="option"><input type="radio" name="mix_q6" value="c"><label>ID selektor (#id)</label></div>
+                            <div class="option"><input type="radio" name="mix_q6" value="d"><label>Universal selektor (*)</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 7: 7-dars - Inheritance -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">7</span>
+                            Qaysi xususiyat ota elementdan bola elementga meros bo'lib o'tadi? (7-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q7" value="a"><label>margin</label></div>
+                            <div class="option"><input type="radio" name="mix_q7" value="b"><label>padding</label></div>
+                            <div class="option"><input type="radio" name="mix_q7" value="c"><label>color (matn rangi)</label></div>
+                            <div class="option"><input type="radio" name="mix_q7" value="d"><label>border</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 8: 8-dars - Combinators -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">8</span>
+                            <code>div > p</code> selektori qanday elementlarni tanlaydi? (8-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q8" value="a"><label>div ichidagi barcha p larni</label></div>
+                            <div class="option"><input type="radio" name="mix_q8" value="b"><label>div dan keyin kelgan barcha p larni</label></div>
+                            <div class="option"><input type="radio" name="mix_q8" value="c"><label>div ning bevosita bolasi bo'lgan p larni</label></div>
+                            <div class="option"><input type="radio" name="mix_q8" value="d"><label>div dan oldin kelgan p larni</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 9: 9-dars - Classlar va qo'shma selektorlar -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">9</span>
+                            <code>.btn.primary</code> selektori qanday elementlarni tanlaydi? (9-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q9" value="a"><label>btn YOKI primary klassli elementlarni</label></div>
+                            <div class="option"><input type="radio" name="mix_q9" value="b"><label>btn klassli element ichidagi primary klasslilarni</label></div>
+                            <div class="option"><input type="radio" name="mix_q9" value="c"><label>HAM btn HAM primary klassiga ega elementlarni</label></div>
+                            <div class="option"><input type="radio" name="mix_q9" value="d"><label>primary klassli element ichidagi btn larni</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 10: 10-dars - !important -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">10</span>
+                            <code>!important</code> qachon ishlatilishi kerak? (10-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q10" value="a"><label>Har doim, kod kuchli bo'lishi uchun</label></div>
+                            <div class="option"><input type="radio" name="mix_q10" value="b"><label>Faqat juda zarur hollarda (debug uchun)</label></div>
+                            <div class="option"><input type="radio" name="mix_q10" value="c"><label>Inline CSS o'rniga</label></div>
+                            <div class="option"><input type="radio" name="mix_q10" value="d"><label>Hech qachon ishlatilmaydi</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 11: 11-12 darslar - Box Model -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">11</span>
+                            Box Model qanday qismlardan iborat? (11-12 darslar)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q11" value="a"><label>Content, Border, Outline, Shadow</label></div>
+                            <div class="option"><input type="radio" name="mix_q11" value="b"><label>Content, Padding, Border, Margin</label></div>
+                            <div class="option"><input type="radio" name="mix_q11" value="c"><label>Width, Height, Display, Position</label></div>
+                            <div class="option"><input type="radio" name="mix_q11" value="d"><label>Top, Right, Bottom, Left</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 12: 13-dars - Margin collapsing -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">12</span>
+                            Margin collapsing qaysi yo'nalishda yuz beradi? (13-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q12" value="a"><label>Gorizontal (chap/o'ng)</label></div>
+                            <div class="option"><input type="radio" name="mix_q12" value="b"><label>Ikkala yo'nalishda ham</label></div>
+                            <div class="option"><input type="radio" name="mix_q12" value="c"><label>Vertikal (yuqori/past)</label></div>
+                            <div class="option"><input type="radio" name="mix_q12" value="d"><label>Hech qaysi yo'nalishda</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 13: 13-dars - Shorthands -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">13</span>
+                            <code>margin: 10px 20px 30px;</code> - chap tomon margin qiymati qaysi? (13-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q13" value="a"><label>10px</label></div>
+                            <div class="option"><input type="radio" name="mix_q13" value="b"><label>30px</label></div>
+                            <div class="option"><input type="radio" name="mix_q13" value="c"><label>20px (o'ng bilan bir xil)</label></div>
+                            <div class="option"><input type="radio" name="mix_q13" value="d"><label>0</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 14: 14-dars - Width/Height -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">14</span>
+                            Rasm ota konteynerdan chiqib ketmasligi uchun qaysi xususiyat ishlatiladi? (14-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q14" value="a"><label>width: 100%;</label></div>
+                            <div class="option"><input type="radio" name="mix_q14" value="b"><label>height: auto;</label></div>
+                            <div class="option"><input type="radio" name="mix_q14" value="c"><label>min-width: 100%;</label></div>
+                            <div class="option"><input type="radio" name="mix_q14" value="d"><label>max-width: 100%;</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Savol 15: 15-dars - Display -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">15</span>
+                            Inline elementlarga qaysi xususiyat ISHLAMAYDI? (15-dars)
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="mix_q15" value="a"><label>color</label></div>
+                            <div class="option"><input type="radio" name="mix_q15" value="b"><label>background</label></div>
+                            <div class="option"><input type="radio" name="mix_q15" value="c"><label>width va height</label></div>
+                            <div class="option"><input type="radio" name="mix_q15" value="d"><label>padding-left</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkMixTest" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="mixTestResult"></div>
+                </div>
+                
+                <!-- ==================== 15-DARS TESTI ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 15-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            Block elementlarning xususiyati qaysi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>Bir qatorda turadi, width/height olmaydi</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>Yangi qatordan boshlanadi, to'liq kenglikni egallaydi</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>Bir qatorda turadi, width/height oladi</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>Faqat matn uchun ishlatiladi</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            Inline elementlarga qaysi xususiyat ISHLAMAYDI?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>color</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>padding-left</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>width va height</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>margin-right</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            <code>display: inline-block</code> ning asosiy afzalligi nimada?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>Bir qatorda turadi va width/height oladi</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>Faqat blok elementlar bilan ishlaydi</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>Margin ishlamaydi</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>Har doim to'liq kenglikni oladi</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Elementni sahifadan butunlay olib tashlash (joy egallamaydi) uchun qaysi xususiyat ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>visibility: hidden</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>opacity: 0</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>position: absolute</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>display: none</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Display xususiyatlaridan foydalanib navigatsiya menyusi va kartalar yarating.</p>
+                        <ol>
+                            <li><strong>Navigatsiya menyusi:</strong> 4 ta linkdan iborat gorizontal menyu yarating</li>
+                            <li>Linklarni <code>display: inline-block</code> qiling</li>
+                            <li>Har bir linkka <code>width: 120px</code>, <code>height: 50px</code>, <code>margin: 10px</code> bering</li>
+                            <li>Fon rangi, matn rangi va <code>border-radius</code> qo'shing</li>
+                            <li><strong>Kartalar:</strong> 3 ta karta yarating va <code>display: inline-block</code> qiling</li>
+                            <li>Kartalar orasidagi bo'shliqni yo'qotish uchun ota elementga <code>font-size: 0</code> bering</li>
+                            <li>Kartalarga kerakli <code>font-size</code> ni qayta tiklang</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-html">&lt;nav class="navbar"&gt;
+    &lt;a href="#" class="nav-link"&gt;Asosiy&lt;/a&gt;
+    &lt;a href="#" class="nav-link"&gt;Biz haqimizda&lt;/a&gt;
+    &lt;a href="#" class="nav-link"&gt;Xizmatlar&lt;/a&gt;
+    &lt;a href="#" class="nav-link"&gt;Aloqa&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;div class="cards-container"&gt;
+    &lt;div class="card"&gt;
+        &lt;h3&gt;Karta 1&lt;/h3&gt;
+        &lt;p&gt;Karta ichidagi matn...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card"&gt;
+        &lt;h3&gt;Karta 2&lt;/h3&gt;
+        &lt;p&gt;Karta ichidagi matn...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card"&gt;
+        &lt;h3&gt;Karta 3&lt;/h3&gt;
+        &lt;p&gt;Karta ichidagi matn...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <pre><code class="language-css">/* Navigatsiya */
+.nav-link {
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    margin: 10px;
+    background: #3b82f6;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+/* Kartalar konteyneri */
+.cards-container {
+    font-size: 0; /* Bo'shliqni yo'qotish */
+    margin-top: 40px;
+}
+
+/* Kartalar */
+.card {
+    display: inline-block;
+    width: 280px;
+    margin: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 16px; /* Qayta tiklash */
+    vertical-align: top;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #1e293b;
+}
+
+.card p {
+    color: #64748b;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>display: block</strong> - yangi qator, to'liq kenglik, width/height ishlaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>display: inline</strong> - bir qatorda, width/height ISHLAMAYDI</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>display: inline-block</strong> - bir qatorda, lekin width/height ISHLAYDI</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>display: none</strong> - elementni yashiradi, joy egallamaydi</li>
+                        <li><i class="fas fa-check-circle"></i> Inline-block elementlar orasidagi bo'shliqni <code>font-size: 0</code> bilan yo'qotish mumkin</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Text align, Vertical align va Float</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../14/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../16/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#what-is-display">Display nima?</a></li>
+                        <li><a href="#block">Block elementlar</a></li>
+                        <li><a href="#inline">Inline elementlar</a></li>
+                        <li><a href="#inline-block">Inline-Block</a></li>
+                        <li><a href="#display-none">Display: none</a></li>
+                        <li><a href="#other-display">Boshqa qiymatlar</a></li>
+                        <li><a href="#mix-test">Nazorat ishi</a></li>
+                        <li><a href="#test">15-dars testi</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">15/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 23.8%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+    
+    <!-- Nazorat ishi uchun JavaScript (15 ta savol) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mixTestBtn = document.getElementById('checkMixTest');
+            if (mixTestBtn) {
+                mixTestBtn.addEventListener('click', function() {
+                    const mixAnswers = {
+                        'mix_q1': 'b',   // 1-dars: CSS = Cascading Style Sheets
+                        'mix_q2': 'c',   // 2-dars: CSS3 2011 yildan
+                        'mix_q3': 'c',   // 3-dars: External CSS eng tavsiya etilgan
+                        'mix_q4': 'b',   // 4-dars: Class selektor . (nuqta)
+                        'mix_q5': 'c',   // 5-dars: CSS izoh /* */
+                        'mix_q6': 'c',   // 6-dars: ID selektor eng yuqori specificity
+                        'mix_q7': 'c',   // 7-dars: color meros bo'lib o'tadi
+                        'mix_q8': 'c',   // 8-dars: > bevosita bola
+                        'mix_q9': 'c',   // 9-dars: .btn.primary ikkala klass
+                        'mix_q10': 'b',  // 10-dars: !important faqat zarur hollarda
+                        'mix_q11': 'b',  // 11-dars: Box Model = Content, Padding, Border, Margin
+                        'mix_q12': 'c',  // 13-dars: Margin collapsing vertikal
+                        'mix_q13': 'c',  // 13-dars: margin: 10px 20px 30px; chap = 20px
+                        'mix_q14': 'd',  // 14-dars: max-width: 100% rasm uchun
+                        'mix_q15': 'c'   // 15-dars: inline da width/height ishlamaydi
+                    };
+                    
+                    let correct = 0;
+                    let answered = 0;
+                    
+                    for (let i = 1; i <= 15; i++) {
+                        const selected = document.querySelector(`input[name="mix_q${i}"]:checked`);
+                        if (selected) {
+                            answered++;
+                            if (selected.value === mixAnswers[`mix_q${i}`]) {
+                                correct++;
+                            }
+                        }
+                    }
+                    
+                    const resultDiv = document.getElementById('mixTestResult');
+                    
+                    if (answered < 15) {
+                        resultDiv.textContent = `Iltimos, barcha 15 ta savolga javob bering! (${answered} ta javob berilgan)`;
+                        resultDiv.className = 'test-result show failed';
+                        return;
+                    }
+                    
+                    const percentage = Math.round((correct / 15) * 100);
+                    
+                    if (correct >= 13) {
+                        resultDiv.textContent = `Ajoyib! ${correct}/15 (${percentage}%) to'g'ri javob. Siz CSS asoslari va Box Model mavzularini mukammal o'zlashtirgansiz!`;
+                        resultDiv.className = 'test-result show passed';
+                    } else if (correct >= 10) {
+                        resultDiv.textContent = `Yaxshi! ${correct}/15 (${percentage}%) to'g'ri javob. Ba'zi mavzularni takrorlashni tavsiya qilamiz.`;
+                        resultDiv.className = 'test-result show passed';
+                    } else if (correct >= 7) {
+                        resultDiv.textContent = `Qoniqarli. ${correct}/15 (${percentage}%) to'g'ri javob. 1-15 darslarni qayta ko'rib chiqishni tavsiya qilamiz.`;
+                        resultDiv.className = 'test-result show failed';
+                    } else {
+                        resultDiv.textContent = `Siz ${correct}/15 (${percentage}%) to'g'ri javob berdingiz. CSS asoslarini boshidan takrorlashni tavsiya qilamiz.`;
+                        resultDiv.className = 'test-result show failed';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

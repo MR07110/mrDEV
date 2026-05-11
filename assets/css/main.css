@@ -1,0 +1,287 @@
+/* ==================== CONTAINER ==================== */
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+}
+
+/* ==================== HERO ==================== */
+.hero-section {
+    text-align: center;
+    margin-bottom: 44px;
+}
+
+.page-title {
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: var(--text-3);
+    font-weight: 400;
+}
+
+/* ==================== MOBIL SEARCH ==================== */
+.search-section {
+    margin-bottom: 36px;
+    display: none;
+    animation: heroFade 0.6s var(--ease-out) both;
+}
+
+@keyframes heroFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 4px 16px;
+    max-width: 100%;
+    box-shadow: var(--shadow-xs);
+    transition: all 0.2s var(--ease-out);
+}
+
+.search-box:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-dim);
+}
+
+.search-icon {
+    color: var(--text-3);
+    flex-shrink: 0;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 14px;
+    font-family: var(--font-sans);
+    outline: none;
+}
+
+.search-input::placeholder { color: var(--text-3); }
+
+.clear-search {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    border: none;
+    background: var(--hover-strong);
+    color: var(--text-3);
+    font-size: 14px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search:hover {
+    background: var(--border-strong);
+    color: var(--text);
+}
+
+/* ==================== TABS ==================== */
+.tabs {
+    display: flex;
+    margin-bottom: 40px;
+    justify-content: center;
+    gap: 4px;
+}
+
+.tab {
+    padding: 8px 20px;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    color: var(--text-3);
+    cursor: pointer;
+    transition: all 0.2s var(--ease-out);
+}
+
+.tab:hover {
+    color: var(--text-2);
+    background: var(--hover-strong);
+}
+
+.tab.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-color: var(--accent-light);
+}
+
+/* ==================== SECTION LABEL ==================== */
+.section-label {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-2);
+    margin-bottom: 16px;
+}
+
+/* ==================== APP GRID ==================== */
+.apps-grid {
+    animation: gridFade 0.3s var(--ease-out) both;
+}
+
+@keyframes gridFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-2);
+    padding: 18px 8px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    transition: all 0.2s var(--ease-out);
+    cursor: pointer;
+}
+
+.app-item:hover {
+    background: var(--surface);
+    border-color: var(--border);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+    color: var(--text);
+}
+
+.app-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: all 0.2s var(--ease-out);
+}
+
+.app-item:hover .app-icon {
+    box-shadow: var(--shadow-xs);
+    transform: scale(1.06);
+    border-color: var(--accent-light);
+}
+
+.app-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.app-name {
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-3);
+    line-height: 1.3;
+}
+
+.app-item:hover .app-name { color: var(--text-2); }
+
+/* ==================== EMPTY STATE ==================== */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text-3);
+    font-size: 14px;
+}
+
+/* ==================== MOBIL SEARCH (SILLIQ OCHILADI/YOPILADI) ==================== */
+.search-section {
+    margin-bottom: 36px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.2, 0, 0, 1),
+                opacity 0.3s cubic-bezier(0.2, 0, 0, 1),
+                margin-bottom 0.4s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.search-section.show {
+    max-height: 80px;
+    opacity: 1;
+    margin-bottom: 36px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 4px 16px;
+    max-width: 100%;
+    box-shadow: var(--shadow-xs);
+    transition: all 0.2s var(--ease-out);
+}
+
+.search-box:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-dim);
+}
+
+.search-icon {
+    color: var(--text-3);
+    flex-shrink: 0;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 14px;
+    font-family: var(--font-sans);
+    outline: none;
+}
+
+.search-input::placeholder { color: var(--text-3); }
+
+.clear-search {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    border: none;
+    background: var(--hover-strong);
+    color: var(--text-3);
+    font-size: 14px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search:hover {
+    background: var(--border-strong);
+    color: var(--text);
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uz" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>MR BOARD · PART 16 · ENTERPRISE</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ========== ENTERPRISE ULTIMATE CSS O'ZGARUVCHILARI (1:1) ========== */
+        :root {
+            --bg-base: #f8fafc;
+            --bg-canvas: #e2e8f0;
+            --bg-glass: rgba(255,255,255,0.65);
+            --bg-panel: rgba(255,255,255,0.85);
+            --bg-hover: rgba(0,0,0,0.05);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-subtle: rgba(255,255,255,0.4);
+            --border-strong: rgba(0,0,0,0.1);
+            --brand-primary: #007aff;
+            --state-danger: #ff3b30;
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+            --shadow-float: 0 24px 48px -12px rgba(0,0,0,0.15);
+            --dur: 4s;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: -apple-system, sans-serif;
+            background: var(--bg-canvas);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-container {
+            width: 96vw; height: 92vh;
+            background: var(--bg-canvas);
+            border-radius: 32px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.2);
+            border: 6px solid #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-pattern { 
+            background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px); 
+            background-size: 30px 30px; 
+        }
+
+        /* SETTINGS DRAWER (1:1) */
+        .drawer {
+            position: absolute;
+            top: 0; bottom: 0; left: 0;
+            width: 400px;
+            background: var(--bg-panel);
+            backdrop-filter: blur(40px);
+            border-right: 1px solid var(--border-subtle);
+            z-index: 200;
+            transform: translateX(-100%);
+            transition: transform 0.6s var(--ease-spring);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-float);
+        }
+        .drawer.is-open { transform: translateX(0); }
+
+        .drawer-header { padding: 32px; border-bottom: 1px solid var(--border-strong); display: flex; justify-content: space-between; align-items: center; }
+        .drawer-content { padding: 32px; }
+
+        .section-label { font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; letter-spacing: 1px; }
+
+        .card-btn {
+            background: var(--bg-base);
+            border: 1.5px solid var(--border-strong);
+            border-radius: 20px;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            transition: 0.3s var(--ease-spring);
+        }
+        .card-btn.danger { color: var(--state-danger); border-color: rgba(255,59,48,0.2); }
+
+        /* MAGIC CURSOR ANIMATION */
+        .magic-cursor {
+            position: absolute;
+            top: 0; left: 0; width: 40px; height: 40px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>') no-repeat;
+            z-index: 1000; pointer-events: none;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+            animation: moveCursor16 var(--dur) var(--ease-smooth) forwards;
+        }
+
+        @keyframes moveCursor16 {
+            0% { transform: translate(1000px, 100px); }
+            15% { transform: translate(750px, 785px); } /* Undo tugmasi */
+            20% { transform: translate(750px, 785px) scale(0.8); } /* CLICK Undo */
+            25% { transform: translate(750px, 785px) scale(1); }
+            40% { transform: translate(75px, 785px); } /* Settings tugmasi */
+            45% { transform: translate(75px, 785px) scale(0.8); } /* CLICK Settings */
+            65% { transform: translate(200px, 450px); } /* Clear Board tugmasi ustiga */
+            70% { transform: translate(200px, 450px) scale(0.8); } /* CLICK Clear */
+            85% { transform: translate(200px, 450px) scale(1); }
+            100% { transform: translate(500px, 1000px); }
+        }
+
+        /* DOCK */
+        .dock-bottom {
+            position: absolute; bottom: 32px; left: 0; right: 0;
+            display: flex; justify-content: center; z-index: 100;
+        }
+        .dock-glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(50px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 32px;
+            padding: 12px;
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: var(--shadow-float);
+        }
+
+        .progress { position: absolute; bottom: 0; left: 0; height: 6px; background: var(--brand-primary); width: 75%; animation: fill var(--dur) linear forwards; }
+        @keyframes fill { from { width: 75%; } to { width: 80%; } }
+    </style>
+</head>
+<body data-theme="light">
+
+    <div class="video-container grid-pattern">
+        <div class="progress"></div>
+
+        <div class="drawer" id="drawer-settings">
+            <div class="drawer-header">
+                <h2 style="font-weight: 800; font-size: 24px;">Sozlamalar</h2>
+                <i data-lucide="x"></i>
+            </div>
+            <div class="drawer-content">
+                <div class="section-label" style="color: var(--state-danger);">Host Xavfsizlik Paneli</div>
+                <div class="card-btn danger" id="clear-btn">
+                    <i data-lucide="trash-2" size="24"></i>
+                    Barcha chiziqlarni o'chirish
+                </div>
+            </div>
+        </div>
+
+        <div id="target-rect" style="position: absolute; top: 55%; left: 50%; width: 400px; height: 200px; border: 4px solid #34c759; background: rgba(52, 199, 89, 0.15); border-radius: 12px; transform: translate(-50%, -50%); transition: 0.4s;"></div>
+        
+        <div id="target-text" style="position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); font-size: 42px; font-weight: 800; color: var(--brand-primary); transition: 0.4s;">
+            MR BOARD Enterprise
+        </div>
+
+        <div class="magic-cursor"></div>
+
+        <div class="dock-bottom">
+            <div class="dock-glass">
+                <div id="dock-settings" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:#64748b; transition: 0.3s;"><i data-lucide="settings-2"></i></div>
+                <div style="width:32px;height:32px;border-radius:50%;background:#34c759;border:3px solid #fff;margin: 0 10px;"></div>
+                <div style="width:1px;height:32px;background:rgba(0,0,0,0.1);margin:0 8px;"></div>
+                <div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:#64748b;"><i data-lucide="pencil"></i></div>
+                <div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:#64748b;"><i data-lucide="wand-2"></i></div>
+                <div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:#64748b;"><i data-lucide="shapes"></i></div>
+                <div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:#64748b;"><i data-lucide="eraser"></i></div>
+                <div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:#64748b;"><i data-lucide="hand"></i></div>
+                <div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:#64748b;"><i data-lucide="type"></i></div>
+                <div id="dock-undo" style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:#64748b; transition: 0.3s;"><i data-lucide="undo-2"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const rect = document.getElementById('target-rect');
+        const text = document.getElementById('target-text');
+        const undo = document.getElementById('dock-undo');
+        const settings = document.getElementById('dock-settings');
+        const drawer = document.getElementById('drawer-settings');
+        const clearBtn = document.getElementById('clear-btn');
+
+        // 1. Undo bosilishi (Shakl o'chadi)
+        setTimeout(() => {
+            undo.style.background = "var(--bg-hover)";
+            rect.style.opacity = "0";
+            rect.style.transform = "translate(-50%, -50%) scale(0.9)";
+        }, 800);
+
+        // 2. Settings ochilishi
+        setTimeout(() => {
+            settings.classList.add('is-active');
+            drawer.classList.add('is-open');
+        }, 1800);
+
+        // 3. Clear Board (Hammasi o'chadi)
+        setTimeout(() => {
+            clearBtn.style.transform = "scale(0.95)";
+            clearBtn.style.background = "rgba(255, 59, 48, 0.1)";
+            text.style.opacity = "0";
+            text.style.transform = "translate(-50%, -50%) scale(0.5)";
+        }, 2800);
+
+        setTimeout(() => {
+            window.location.href = 'part17.html';
+        }, 3800);
+    </script>
+</body>
+</html>

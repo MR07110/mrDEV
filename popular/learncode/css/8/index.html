@@ -1,0 +1,567 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Dars: Combinators (Kombinatorlar) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "8",
+            "totalLessons": 63,
+            "youtubeWatchUrl":"https://www.youtube.com/watch?v=p_IuBg43k6k&t=15s" ,
+            "lessonTitle": "Combinators (Kombinatorlar)"
+        }
+    </script>
+    
+    <!-- Test javoblari (8-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "d",
+            "q3": "c",
+            "q4": "a"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>8-Dars: Combinators</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 22:08
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/p_IuBg43k6k" 
+                            title="CSS | 8. Combinators (Kombinatorlar)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 8. Combinators (Kombinatorlar)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 22:08</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Combinators (Kombinatorlar)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 15-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS kombinatorlari elementlar orasidagi bog'liqlik asosida tanlash imkonini beradi. Bu darsda 4 ta asosiy kombinatorni: Descendant (bo'shliq), Child (>), Adjacent Sibling (+) va General Sibling (~) ni o'rganasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Descendant combinator (bo'shliq) - avlodlar</li>
+                        <li><i class="fas fa-check-circle"></i> Child combinator (>) - bevosita farzandlar</li>
+                        <li><i class="fas fa-check-circle"></i> Adjacent sibling combinator (+) - keyingi qo'shni</li>
+                        <li><i class="fas fa-check-circle"></i> General sibling combinator (~) - barcha qo'shnilar</li>
+                        <li><i class="fas fa-check-circle"></i> Kombinatorlarni birgalikda ishlatish</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Belgilarni eslab qoling:</strong> Bo'shliq (avlod), > (farzand), + (birinchi qo'shni), ~ (barcha qo'shnilar).</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Child (>) ko'proq ishlatiladi:</strong> Bevosita farzandlarni tanlash uchun > kombinatori juda foydali.</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Qo'shnilar DOM da bir xil darajada:</strong> + va ~ bir xil ota elementga ega bo'lgan elementlar uchun ishlaydi.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: DESCENDANT COMBINATOR ==================== -->
+                <section class="lesson-section" id="descendant-combinator">
+                    <h2><i class="fas fa-space-shuttle"></i> Descendant Combinator (Bo'shliq)</h2>
+                    
+                    <p><strong>Descendant combinator</strong> - ikkita selektor orasidagi bo'shliq. Ota element ichidagi barcha mos keladigan elementlarni (qanchalik chuqur bo'lishidan qat'i nazar) tanlaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code>/* div ichidagi barcha p elementlari */
+div p {
+    color: #2563eb;
+}
+
+/* .container ichidagi barcha a elementlari */
+.container a {
+    text-decoration: none;
+}</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code>&lt;div&gt;
+    &lt;p&gt;Birinchi daraja - tanlanadi&lt;/p&gt;
+    &lt;section&gt;
+        &lt;p&gt;Ikkinchi daraja - tanlanadi&lt;/p&gt;
+        &lt;div&gt;
+            &lt;p&gt;Uchinchi daraja - tanlanadi&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Qachon ishlatiladi?</strong> Ota element ichidagi barcha ma'lum turdagi elementlarni tanlash kerak bo'lganda, masalan, menyu ichidagi barcha havolalar.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: CHILD COMBINATOR ==================== -->
+                <section class="lesson-section" id="child-combinator">
+                    <h2><i class="fas fa-greater-than"></i> Child Combinator (>)</h2>
+                    
+                    <p><strong>Child combinator (>)</strong> - faqat bevosita birinchi darajali farzand elementlarni tanlaydi. Chuqurroqdagi nevaralar tanlanmaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code>/* div ning faqat bevosita farzand p lari */
+div > p {
+    font-weight: bold;
+    color: #dc2626;
+}
+
+/* .menu ning bevosita farzand li lari */
+.menu > li {
+    display: inline-block;
+}</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code>&lt;div&gt;
+    &lt;p&gt;Birinchi daraja - tanlanadi ✅&lt;/p&gt;
+    &lt;section&gt;
+        &lt;p&gt;Ikkinchi daraja - tanlanmaydi ❌&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Descendant vs Child:</strong> <code>div p</code> barcha p larni tanlaydi, <code>div > p</code> faqat birinchi darajali p larni tanlaydi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: ADJACENT SIBLING COMBINATOR ==================== -->
+                <section class="lesson-section" id="adjacent-sibling">
+                    <h2><i class="fas fa-plus"></i> Adjacent Sibling Combinator (+)</h2>
+                    
+                    <p><strong>Adjacent sibling combinator (+)</strong> - berilgan elementdan darhol keyin keladigan birinchi qo'shni elementni tanlaydi. Ikkala element bir xil ota elementga ega bo'lishi kerak.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code>/* h1 dan keyin darhol keladigan p */
+h1 + p {
+    margin-top: 0;
+    font-style: italic;
+}
+
+/* .error dan keyin darhol keladigan .message */
+.error + .message {
+    border-left-color: #dc2626;
+}</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code>&lt;h1&gt;Sarlavha&lt;/h1&gt;
+&lt;p&gt;Birinchi paragraf - tanlanadi ✅&lt;/p&gt;
+&lt;p&gt;Ikkinchi paragraf - tanlanmaydi ❌&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: GENERAL SIBLING COMBINATOR ==================== -->
+                <section class="lesson-section" id="general-sibling">
+                    <h2><i class="fas fa-tilde"></i> General Sibling Combinator (~)</h2>
+                    
+                    <p><strong>General sibling combinator (~)</strong> - berilgan elementdan keyin keladigan barcha qo'shni elementlarni tanlaydi. Ikkala element bir xil ota elementga ega bo'lishi kerak.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code>/* h1 dan keyin keladigan barcha p lar */
+h1 ~ p {
+    color: #64748b;
+}
+
+/* .active dan keyin keladigan barcha .item lar */
+.active ~ .item {
+    opacity: 0.7;
+}</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code>&lt;h1&gt;Sarlavha&lt;/h1&gt;
+&lt;p&gt;Birinchi paragraf - tanlanadi ✅&lt;/p&gt;
+&lt;div&gt;Ajratuvchi&lt;/div&gt;
+&lt;p&gt;Ikkinchi paragraf - tanlanadi ✅&lt;/p&gt;</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: KOMBINATORLAR JADVALI ==================== -->
+                <section class="lesson-section" id="combinators-table">
+                    <h2><i class="fas fa-table"></i> Kombinatorlar xulosasi</h2>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Kombinator</th>
+                                    <th>Belgi</th>
+                                    <th>Misol</th>
+                                    <th>Nimani tanlaydi?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Descendant</strong></td>
+                                    <td>bo'shliq</td>
+                                    <td><code>div p</code></td>
+                                    <td>div ichidagi barcha p lar (har qanday chuqurlikda)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Child</strong></td>
+                                    <td><code>&gt;</code></td>
+                                    <td><code>div > p</code></td>
+                                    <td>div ning faqat bevosita farzand p lari</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Adjacent Sibling</strong></td>
+                                    <td><code>+</code></td>
+                                    <td><code>h1 + p</code></td>
+                                    <td>h1 dan darhol keyin keladigan birinchi p</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>General Sibling</strong></td>
+                                    <td><code>~</code></td>
+                                    <td><code>h1 ~ p</code></td>
+                                    <td>h1 dan keyin keladigan barcha p lar</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3>
+                        <span class="test-badge">8-dars testi</span>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            <code>div p</code> qanday elementlarni tanlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>div ning faqat bevosita farzand p lari</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>div ichidagi barcha p lar (har qanday chuqurlikda)</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>div dan oldingi p lar</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>div dan keyingi birinchi p</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            <code>ul > li</code> qanday elementlarni tanlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>ul ichidagi barcha li lar</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>ul dan keyingi li lar</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>ul dan oldingi li lar</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>ul ning faqat bevosita farzand li lari</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            <code>h2 + p</code> qanday elementni tanlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>h2 ichidagi p</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>h2 dan keyingi barcha p lar</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>h2 dan darhol keyin keladigan birinchi p</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>h2 dan oldingi p</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            <code>h2 ~ p</code> qanday elementlarni tanlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>h2 dan keyingi barcha p lar</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>h2 dan oldingi barcha p lar</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>h2 ichidagi p lar</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>h2 dan darhol keyingi p</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Kombinatorlardan foydalanib quyidagi vazifalarni bajaring.</p>
+                        <ol>
+                            <li><code>nav</code> ichidagi barcha <code>a</code> elementlarini yashil rangda qiling (Descendant)</li>
+                            <li><code>nav</code> ning faqat bevosita farzand <code>a</code> larini qalin qiling (Child)</li>
+                            <li><code>h1</code> dan keyin darhol keladigan <code>p</code> ni kursiv qiling (Adjacent Sibling)</li>
+                            <li><code>h2</code> dan keyin keladigan barcha <code>p</code> larni kulrang rangda qiling (General Sibling)</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4> Namunaviy yechim:</h4>
+                        <pre><code>/* 1. Descendant - barcha avlodlar */
+nav a {
+    color: #10b981;
+}
+
+/* 2. Child - faqat bevosita farzandlar */
+nav > a {
+    font-weight: bold;
+}
+
+/* 3. Adjacent Sibling - birinchi qo'shni */
+h1 + p {
+    font-style: italic;
+}
+
+/* 4. General Sibling - barcha qo'shnilar */
+h2 ~ p {
+    color: #64748b;
+}</code></pre>
+                        <pre><code>&lt;nav&gt;
+    &lt;a href="#"&gt;Bosh sahifa&lt;/a&gt;
+    &lt;a href="#"&gt;Biz haqimizda&lt;/a&gt;
+    &lt;div&gt;
+        &lt;a href="#"&gt;Ichki havola&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;h1&gt;Sarlavha&lt;/h1&gt;
+&lt;p&gt;Birinchi paragraf - kursiv bo'ladi&lt;/p&gt;
+&lt;p&gt;Ikkinchi paragraf - oddiy&lt;/p&gt;
+
+&lt;h2&gt;Ikkinchi sarlavha&lt;/h2&gt;
+&lt;p&gt;Paragraf 1 - kulrang&lt;/p&gt;
+&lt;p&gt;Paragraf 2 - kulrang&lt;/p&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Descendant (bo'shliq):</strong> ota ichidagi barcha elementlar</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Child (>):</strong> faqat bevosita farzandlar</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Adjacent Sibling (+):</strong> darhol keyingi birinchi qo'shni</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>General Sibling (~):</strong> keyingi barcha qo'shnilar</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> "Class"lar va qo'shma selektorlar</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar"><i class="fas fa-user"></i></div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i><span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../7/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../9/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i><span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#descendant-combinator">Descendant (bo'shliq)</a></li>
+                        <li><a href="#child-combinator">Child (>)</a></li>
+                        <li><a href="#adjacent-sibling">Adjacent Sibling (+)</a></li>
+                        <li><a href="#general-sibling">General Sibling (~)</a></li>
+                        <li><a href="#combinators-table">Kombinatorlar jadvali</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label"><span>CSS kursi</span><span id="progressFraction">8/63</span></div>
+                        <div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 12.7%"></div></div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

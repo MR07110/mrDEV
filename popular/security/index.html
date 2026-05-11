@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Security - MRDEV</title>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <!-- Leaflet Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../../favicons/security.svg" type="image/svg+xml">
+</head>
+<body>
+
+    <!-- MRDEV Header -->
+<header>
+    <div class="header-left">
+        <a href="../../popular/" class="header-btn" aria-label="Orqaga" style="display: flex; align-items: center; text-decoration: none;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+        </a>
+
+        <a href="../../popular/security" class="logo" style="text-decoration: none;">
+            <span class="logo-mr">MR</span><span class="logo-dev">SECURITY</span>
+        </a>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;">
+        <span class="sec-conn-status" id="conn-dot-header"></span>
+        <span class="sec-conn-label" id="conn-label-header">Offline</span>
+        <button id="theme-btn" class="header-btn theme-btn" onclick="toggleTheme()" aria-label="Rejimni almashtirish"></button>
+    </div>
+</header>
+
+    <!-- ===== MAIN SCREEN ===== -->
+    <div id="screen-main" class="sec-screen active">
+        <div class="sec-center-wrap">
+            <div class="sec-main-card">
+                <div class="sec-brand">
+                    <div class="sec-brand-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h1 class="sec-brand-name">SecureMR</h1>
+                    <p class="sec-brand-sub">Masofaviy kuzatuv tizimi</p>
+                </div>
+
+                <div class="sec-mode-list">
+                    <button class="sec-mode-btn" onclick="openAdmin()">
+                        <div class="sec-mode-icon cyan">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div class="sec-mode-text">
+                            <span class="sec-mode-label">ADMIN</span>
+                            <span class="sec-mode-desc">Admin sifatida kirish</span>
+                        </div>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="sec-arrow">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
+
+                    <button class="sec-mode-btn" onclick="openDevice()">
+                        <div class="sec-mode-icon green">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <rect x="5" y="2" width="14" height="20" rx="2"/>
+                                <circle cx="12" cy="17" r="1"/>
+                            </svg>
+                        </div>
+                        <div class="sec-mode-text">
+                            <span class="sec-mode-label">Qurilma rejimi</span>
+                            <span class="sec-mode-desc">Kamera va sensor uzatuvchi</span>
+                        </div>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="sec-arrow">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <p class="sec-main-footer">SecureMR · Shifrlangan kanal · Directed MR</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ADMIN PANEL ===== -->
+    <div id="screen-admin" class="sec-screen">
+        <div class="sec-admin-wrap">
+
+            <!-- Status bar -->
+            <div class="sec-status-bar">
+                <div class="sec-status-left">
+                    <span class="sec-live-badge">
+                        <span class="sec-live-dot"></span>
+                        JONLI
+                    </span>
+                    <span id="target-name" class="sec-target-name">Qurilma tanlanmagan</span>
+                </div>
+                <div class="sec-status-right">
+                    <span id="battery-display" class="sec-battery-text">Batareya: --</span>
+                    <span id="conn-status" class="sec-status-pill offline">Ulanmagan</span>
+                    <button class="sec-change-pass-btn" onclick="openPassModal()">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        Parol
+                    </button>
+                    <button id="chat-btn" class="sec-chat-btn hidden" onclick="openChatModal()">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        Chat
+                    </button>
+                </div>
+            </div>
+
+            <!-- Device Detail Card -->
+            <div class="sec-card" id="device-detail-card" style="display: none;">
+                <div class="sec-card-head">
+                    <span class="sec-card-label">QURILMA MA'LUMOTLARI</span>
+                    <button class="sec-clear-btn" onclick="closeDeviceDetail()">Yopish</button>
+                </div>
+                <div class="sec-device-detail">
+                    <div class="sec-detail-row">
+                        <span class="sec-detail-label">Qurilma nomi:</span>
+                        <span id="detail-name" class="sec-detail-value">--</span>
+                    </div>
+                    <div class="sec-detail-row">
+                        <span class="sec-detail-label">Qurilma ID:</span>
+                        <span id="detail-id" class="sec-detail-value mono">--</span>
+                    </div>
+                    <div class="sec-detail-row">
+                        <span class="sec-detail-label">Holat:</span>
+                        <span id="detail-status" class="sec-detail-value">--</span>
+                    </div>
+                    <div class="sec-detail-row">
+                        <span class="sec-detail-label">Batareya:</span>
+                        <span id="detail-battery" class="sec-detail-value">--</span>
+                    </div>
+                    <div class="sec-detail-row">
+                        <span class="sec-detail-label">Oxirgi ko'rinish:</span>
+                        <span id="detail-lastseen" class="sec-detail-value">--</span>
+                    </div>
+                    <div class="sec-detail-row">
+                        <span class="sec-detail-label">Oxirgi joylashuv:</span>
+                        <span id="detail-location" class="sec-detail-value mono">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div class="sec-card">
+                <div class="sec-card-head">
+                    <span class="sec-card-label">JOYLASHUV</span>
+                    <span id="gps-text" class="sec-gps-text">Signal kutilmoqda...</span>
+                </div>
+                <div id="map" class="sec-map-box"></div>
+            </div>
+
+            <!-- Commands -->
+            <div class="sec-card">
+                <div class="sec-card-head">
+                    <span class="sec-card-label">BUYRUQLAR</span>
+                </div>
+                <div class="sec-cmd-grid">
+                    <button class="sec-cmd-btn danger" onclick="triggerAlarm()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                        Sirena yoqish
+                    </button>
+                    <button class="sec-cmd-btn muted" onclick="stopAlarmRemote()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="8" y1="12" x2="16" y2="12"/>
+                        </svg>
+                        Sirenani to'xtatish
+                    </button>
+                </div>
+            </div>
+
+            <!-- Logs -->
+            <div class="sec-card">
+                <div class="sec-card-head">
+                    <span class="sec-card-label">TIZIM HODISALARI</span>
+                    <button class="sec-clear-btn" onclick="clearLogs()">Tozalash</button>
+                </div>
+                <div id="log-box" class="sec-log-box">
+                    <div class="sec-empty-msg">Hodisalar oqimi tayyor</div>
+                </div>
+            </div>
+
+            <!-- Device Tabs -->
+            <div class="sec-device-tabs">
+                <button class="sec-tab-btn active" onclick="switchDeviceTab('online')">ONLINE QURILMALAR</button>
+                <button class="sec-tab-btn" onclick="switchDeviceTab('saved')">SAQLANGAN QURILMALAR</button>
+                <button class="sec-tab-btn" onclick="switchDeviceTab('all')">BARCHA QURILMALAR</button>
+            </div>
+
+            <!-- Online Devices -->
+            <div id="online-devices-panel" class="sec-device-panel active">
+                <div class="sec-card">
+                    <div class="sec-card-head">
+                        <span class="sec-card-label">ONLINE QURILMALAR</span>
+                        <span id="online-count" class="sec-device-count-label">0 ta online</span>
+                    </div>
+                    <div id="online-device-list" class="sec-device-grid">
+                        <div class="sec-empty-msg">Online qurilmalar topilmadi</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saved Devices -->
+            <div id="saved-devices-panel" class="sec-device-panel">
+                <div class="sec-card">
+                    <div class="sec-card-head">
+                        <span class="sec-card-label">SAQLANGAN QURILMALAR</span>
+                        <span id="saved-count" class="sec-device-count-label">0 ta saqlangan</span>
+                    </div>
+                    <div id="saved-device-list" class="sec-device-grid">
+                        <div class="sec-empty-msg">Saqlangan qurilmalar yo'q</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Devices -->
+            <div id="all-devices-panel" class="sec-device-panel">
+                <div class="sec-card">
+                    <div class="sec-card-head">
+                        <span class="sec-card-label">BARCHA QURILMALAR</span>
+                        <span id="all-count" class="sec-device-count-label">0 ta jami</span>
+                    </div>
+                    <div id="all-device-list" class="sec-device-grid">
+                        <div class="sec-empty-msg">Qurilmalar topilmadi</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== DEVICE MODE ===== -->
+    <div id="screen-device" class="sec-screen">
+        <div class="sec-center-wrap">
+            <div class="sec-device-card" id="device-card">
+
+                <!-- Alarm indicator -->
+                <div id="alarm-indicator" class="sec-alarm-indicator hidden">
+                    <div class="sec-alarm-inner">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="sec-device-icon-wrap" id="device-icon-wrap">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <rect x="5" y="2" width="14" height="20" rx="2"/>
+                        <circle cx="12" cy="17" r="1"/>
+                        <circle cx="12" cy="10" r="2"/>
+                    </svg>
+                </div>
+
+                <h2 id="device-title" class="sec-device-title">Ishga tushmoqda...</h2>
+                <p id="device-sub" class="sec-device-sub">Xavfsiz kanal o'rnatilmoqda</p>
+
+                <div class="sec-info-table">
+                    <div class="sec-info-row">
+                        <span class="sec-info-key">Holat</span>
+                        <span id="u-status" class="sec-info-val">--</span>
+                    </div>
+                    <div class="sec-info-row">
+                        <span class="sec-info-key">Qurilma ID</span>
+                        <span id="u-id" class="sec-info-val mono">--</span>
+                    </div>
+                    <div class="sec-info-row">
+                        <span class="sec-info-key">Koordinatalar</span>
+                        <span id="u-gps" class="sec-info-val">Aniqlanmoqda...</span>
+                    </div>
+                    <div class="sec-info-row">
+                        <span class="sec-info-key">Batareya</span>
+                        <span id="u-battery" class="sec-info-val">--</span>
+                    </div>
+                    <div class="sec-info-row">
+                        <span class="sec-info-key">Server</span>
+                        <span id="u-server" class="sec-info-val">Ulanmoqda...</span>
+                    </div>
+                </div>
+
+                <div class="sec-notice-box">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    Oynani yopmaslik kerak · Fon rejimi talab qilinadi
+                </div>
+
+                <!-- Chat float button -->
+                <button id="device-chat-btn" class="sec-float-chat-btn" onclick="openDeviceChatModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ADMIN CHAT MODAL ===== -->
+    <div id="chat-modal" class="sec-modal-overlay" onclick="handleOverlayClick(event, 'chat-modal')">
+        <div class="sec-modal-box">
+            <div class="sec-modal-head">
+                <div class="sec-modal-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span id="chat-modal-title">Chat</span>
+                </div>
+                <button class="sec-modal-close" onclick="closeChatModal()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="admin-chat-messages" class="sec-chat-messages">
+                <div class="sec-chat-welcome">Qurilma tanlang va xabar yozing</div>
+            </div>
+            <div class="sec-chat-input-row">
+                <input type="text" id="admin-chat-input" class="sec-chat-input" placeholder="Xabar yozing..." autocomplete="off"
+                    onkeydown="if(event.key==='Enter') sendAdminMessage()">
+                <button class="sec-chat-send" onclick="sendAdminMessage()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== DEVICE CHAT MODAL ===== -->
+    <div id="device-chat-modal" class="sec-modal-overlay" onclick="handleOverlayClick(event, 'device-chat-modal')">
+        <div class="sec-modal-box">
+            <div class="sec-modal-head">
+                <div class="sec-modal-title green">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Admin bilan chat
+                </div>
+                <button class="sec-modal-close" onclick="closeDeviceChatModal()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="device-chat-messages" class="sec-chat-messages">
+                <div class="sec-chat-welcome">Administrator bilan muloqot</div>
+            </div>
+            <div class="sec-chat-input-row">
+                <input type="text" id="device-chat-input" class="sec-chat-input" placeholder="Xabar yozing..." autocomplete="off"
+                    onkeydown="if(event.key==='Enter') sendDeviceMessage()">
+                <button class="sec-chat-send green" onclick="sendDeviceMessage()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ALARM CONFIG MODAL ===== -->
+    <div id="alarm-modal" class="sec-modal-overlay" onclick="handleOverlayClick(event, 'alarm-modal')">
+        <div class="sec-modal-box small">
+            <div class="sec-modal-head">
+                <div class="sec-modal-title red">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    Sirena sozlamalari
+                </div>
+                <button class="sec-modal-close" onclick="closeAlarmModal()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="sec-alarm-form">
+                <div class="sec-form-group">
+                    <label class="sec-form-label">Ovoz turi</label>
+                    <select id="alarm-type" class="sec-form-select">
+                        <option value="siren">Sirena</option>
+                        <option value="beep">Beep</option>
+                        <option value="alarm">Alarm</option>
+                    </select>
+                </div>
+                <div class="sec-form-group">
+                    <label class="sec-form-label">Balandlik: <span id="vol-label">70%</span></label>
+                    <input type="range" id="alarm-vol" min="10" max="100" value="70" step="5"
+                        oninput="document.getElementById('vol-label').textContent = this.value + '%'"
+                        class="sec-form-range">
+                </div>
+                <button class="sec-submit-btn" onclick="confirmAlarm()">Yuborish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PASSWORD CHANGE MODAL ===== -->
+    <div id="pass-modal" class="sec-modal-overlay" onclick="handleOverlayClick(event, 'pass-modal')">
+        <div class="sec-modal-box small">
+            <div class="sec-modal-head">
+                <div class="sec-modal-title cyan">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    Admin paroli
+                </div>
+                <button class="sec-modal-close" onclick="closePassModal()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="sec-pass-form">
+                <div class="sec-form-group">
+                    <label class="sec-form-label">Yangi parol</label>
+                    <input type="password" id="new-pass-input" class="sec-form-input" placeholder="Yangi parol...">
+                </div>
+                <div class="sec-form-group">
+                    <label class="sec-form-label">Parolni tasdiqlang</label>
+                    <input type="password" id="confirm-pass-input" class="sec-form-input" placeholder="Parolni qayta kiriting...">
+                </div>
+                <button class="sec-submit-btn cyan" onclick="changeAdminPassword()">Saqlash</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

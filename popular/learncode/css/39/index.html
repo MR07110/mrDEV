@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>39-Dars: Responsive Web Design (RWD) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "39",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=Zts7IrRfe-c",
+            "lessonTitle": "Responsive Web Design (RWD)"
+        }
+    </script>
+    
+    <!-- Test javoblari (39-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>39-Dars: Responsive Web Design (RWD)</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 12:45
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/Zts7IrRfe-c" 
+                            title="CSS | 39. Responsive Web Design (RWD)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 39. Responsive Web Design (RWD)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 12:45</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Responsive Web Design (RWD)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 15-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> RWD va Fontlar</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>Responsive Web Design (RWD) nima, uning asosiy tamoyillari va nima uchun zamonaviy web dizaynda juda muhim ekanligini o'rganasiz. Mobile-first vs Desktop-first yondashuvlar, viewport meta tegi va responsive dizayn yaratish strategiyalari haqida batafsil ma'lumot olasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Responsive Web Design nima va nima uchun kerak?</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile-first vs Desktop-first yondashuvlar</li>
+                        <li><i class="fas fa-check-circle"></i> Viewport meta tegi va uning ahamiyati</li>
+                        <li><i class="fas fa-check-circle"></i> Fluid layoutlar (foizlar, viewport birliklari)</li>
+                        <li><i class="fas fa-check-circle"></i> Responsive images (srcset, picture elementi)</li>
+                        <li><i class="fas fa-check-circle"></i> Media queries haqida tushuncha</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Mobile-first:</strong> Avval mobil versiyani yozib, keyin katta ekranlarga moslash. Bu eng zamonaviy va tavsiya etilgan yondashuv.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Viewport meta:</strong> <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> - har bir HTML faylida bo'lishi shart!</span>
+                            <span class="badge good-to-know">Majburiy</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Breakpointlar:</strong> Qurilmalar uchun emas, kontent uchun breakpoint tanlang. Dizayn buziladigan nuqtada media query qo'shing.</span>
+                            <span class="badge tip">Professional</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-image"></i>
+                            <span><strong>Responsive images:</strong> <code>srcset</code> va <code>&lt;picture&gt;</code> orqali turli ekranlar uchun turli o'lchamdagi rasmlar yuklang.</span>
+                            <span class="badge tip">Optimizatsiya</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: RWD NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-rwd">
+                    <h2><i class="fas fa-mobile-alt"></i> Responsive Web Design nima?</h2>
+                    
+                    <p><strong>Responsive Web Design (RWD)</strong> - bu veb-saytning turli ekran o'lchamlari va qurilmalarda (mobil, planshet, desktop) to'g'ri va chiroyli ko'rinishini ta'minlovchi dizayn yondashuvi.</p>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title"><i class="fas fa-arrows-alt"></i><span>RWD tushunchasi</span></div>
+                        <div class="analogy-content" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                            <div style="text-align: center;"><i class="fas fa-mobile-alt" style="font-size: 3rem; color: #3b82f6;"></i><br><strong>Mobil</strong><br>< 600px</div>
+                            <div style="text-align: center;"><i class="fas fa-tablet-alt" style="font-size: 3rem; color: #3b82f6;"></i><br><strong>Planshet</strong><br>600px - 900px</div>
+                            <div style="text-align: center;"><i class="fas fa-desktop" style="font-size: 3rem; color: #3b82f6;"></i><br><strong>Desktop</strong><br>> 900px</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Asosiy tamoyillar:</strong> Fluid gridlar (foizlar), Flexible images (max-width: 100%), Media queries (shartli stillar).
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: MOBILE-FIRST VS DESKTOP-FIRST ==================== -->
+                <section class="lesson-section" id="mobile-vs-desktop">
+                    <h2><i class="fas fa-balance-scale"></i> Mobile-first vs Desktop-first</h2>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Xususiyat</th><th>Desktop-first</th><th>Mobile-first</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Yondashuv</strong></td><td>Katta ekrandan kichikka</td><td>Kichik ekrandan kattaga</td></tr>
+                                <tr><td><strong>Media query</strong></td><td><code>@media (max-width: ...)</code></td><td><code>@media (min-width: ...)</code></td></tr>
+                                <tr><td><strong>Default stillar</strong></td><td>Desktop uchun</td><td>Mobil uchun</td></tr>
+                                <tr><td><strong>Kod hajmi (mobil)</strong></td><td>Ko'proq (override)</td><td>Kamroq</td></tr>
+                                <tr><td><strong>Tavsiya</strong></td><td>Eski loyihalar</td><td>Zamonaviy loyihalar ⭐</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">Mobile-first misol</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Mobile-first: default - mobil */
+.container {
+    width: 100%;
+    padding: 1rem;
+}
+
+/* Planshet */
+@media (min-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 2rem;
+    }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+    .container {
+        width: 80%;
+        max-width: 1200px;
+        padding: 3rem;
+    }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: VIEWPORT META ==================== -->
+                <section class="lesson-section" id="viewport-meta">
+                    <h2><i class="fas fa-code"></i> Viewport Meta tegi</h2>
+                    
+                    <p>Mobil qurilmalarda to'g'ri ko'rinish uchun HTML faylning <code>&lt;head&gt;</code> qismiga viewport meta tegi qo'shilishi shart.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">HTML</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-html">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+&lt;!-- Kengaytirilgan versiya --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"&gt;</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> Viewport meta tegisiz mobil qurilmalarda sayt desktop versiyasida ko'rinadi (kichiklashgan holda). Bu foydalanuvchi tajribasini yomonlashtiradi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: RESPONSIVE IMAGES ==================== -->
+                <section class="lesson-section" id="responsive-images">
+                    <h2><i class="fas fa-image"></i> Responsive Images</h2>
+                    
+                    <p>Turli ekran o'lchamlari uchun turli o'lchamdagi rasmlar yuklash orqali sayt tezligini oshirish.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">HTML</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-html">&lt;!-- srcset - brauzer tanlaydi --&gt;
+&lt;img 
+    src="img/small.jpg" 
+    srcset="img/small.jpg 480w, img/medium.jpg 800w, img/large.jpg 1200w"
+    sizes="(max-width: 600px) 480px, (max-width: 900px) 800px, 1200px"
+    alt="Responsive rasm"
+&gt;
+
+&lt;!-- Picture - aniq nazorat --&gt;
+&lt;picture&gt;
+    &lt;source media="(max-width: 600px)" srcset="img/mobile.jpg"&gt;
+    &lt;source media="(max-width: 900px)" srcset="img/tablet.jpg"&gt;
+    &lt;img src="img/desktop.jpg" alt="Responsive rasm"&gt;
+&lt;/picture&gt;</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: NAZORAT ISHI HAQIDA ==================== -->
+                <section class="lesson-section" id="next-lesson">
+                    <h2><i class="fas fa-forward"></i> Keyingi dars haqida</h2>
+                    <div class="info-box" style="background: linear-gradient(135deg, var(--primary-bg), var(--warning-bg));">
+                        <i class="fas fa-clipboard-list"></i>
+                        <strong>Eslatma!</strong>
+                        <p>40-darsda <strong>Media queries</strong> mavzusi va 1-40 darslar bo'yicha <strong>40 ta savollik NAZORAT ISHI</strong> bo'ladi. 5, 10, 15, 20, 25, 30, 35-darslar kabi formatda.</p>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> 39-dars testi</h3><span class="test-badge">4 ta savol</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>Mobile-first yondashuvda default stillar qaysi qurilma uchun yoziladi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>Desktop</label></div><div class="option"><input type="radio" name="q1" value="b"><label>Mobil</label></div><div class="option"><input type="radio" name="q1" value="c"><label>Planshet</label></div><div class="option"><input type="radio" name="q1" value="d"><label>Barcha qurilmalar</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>Viewport meta tegi nimaga kerak?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>Saytni tezroq yuklash uchun</label></div><div class="option"><input type="radio" name="q2" value="b"><label>SEO uchun</label></div><div class="option"><input type="radio" name="q2" value="c"><label>Mobil qurilmalarda to'g'ri masshtablash uchun</label></div><div class="option"><input type="radio" name="q2" value="d"><label>Animatsiyalar uchun</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span>Turli ekranlar uchun turli rasmlar yuklash uchun qaysi atribut ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>srcset</label></div><div class="option"><input type="radio" name="q3" value="b"><label>src</label></div><div class="option"><input type="radio" name="q3" value="c"><label>alt</label></div><div class="option"><input type="radio" name="q3" value="d"><label>data-src</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Mobile-first yondashuvda qaysi media query ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>@media (max-width: ...)</label></div><div class="option"><input type="radio" name="q4" value="b"><label>@media (width: ...)</label></div><div class="option"><input type="radio" name="q4" value="c"><label>@media (screen)</label></div><div class="option"><input type="radio" name="q4" value="d"><label>@media (min-width: ...)</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Mobile-first yondashuvda oddiy responsive sahifa yarating.</p>
+                        <ol><li>Viewport meta tegini qo'shing</li><li>Default (mobil) stillarni yozing</li><li><code>min-width</code> media query orqali planshet va desktop stillarni qo'shing</li><li>Rasmlar uchun <code>srcset</code> yoki <code>picture</code> ishlating</li></ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-css">/* Mobile-first - default mobil */
+.container { width: 100%; padding: 1rem; }
+h1 { font-size: 2.4rem; }
+.grid { display: block; }
+.card { margin-bottom: 2rem; }
+
+/* Planshet */
+@media (min-width: 600px) {
+    .container { width: 90%; padding: 2rem; }
+    h1 { font-size: 3.2rem; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+    .container { width: 80%; max-width: 1200px; padding: 3rem; }
+    h1 { font-size: 4.8rem; }
+    .grid { grid-template-columns: repeat(3, 1fr); }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>RWD</strong> - bitta sayt, barcha qurilmalarda to'g'ri ko'rinish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Mobile-first</strong> - avval mobil, keyin katta ekranlar (⭐ tavsiya)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Desktop-first</strong> - avval desktop, keyin kichik ekranlar</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Viewport meta</strong> - mobil qurilmalar uchun majburiy</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>srcset / picture</strong> - responsive rasmlar uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Media queries - Nazorat ishi!</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../38/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../40/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#what-is-rwd">RWD nima?</a></li><li><a href="#mobile-vs-desktop">Mobile-first vs Desktop-first</a></li>
+                    <li><a href="#viewport-meta">Viewport Meta</a></li><li><a href="#responsive-images">Responsive Images</a></li>
+                    <li><a href="#next-lesson">Keyingi dars</a></li><li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li><li><a href="#summary">Xulosa</a></li><li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">39/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 61.9%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

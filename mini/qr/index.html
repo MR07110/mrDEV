@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QR Code | MRDEV</title>
+
+    <!-- ==================== FLASH FIX: ENG BIRINCHI ==================== -->
+    <script src="../../assets/js/core/theme-flash-fix.js"></script>
+
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicons/qr.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../assets/css/dropdown.css">
+
+    <!-- QR Code Libraries (Must load before script.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+</head>
+<body>
+    <!-- ==================== HEADER ==================== -->
+    <header class="app-header">
+        <div class="header-left-side">
+            <a href="../../" class="back-chevron" title="Orqaga" aria-label="Orqaga">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </a>
+            <div class="breadcrumb">
+                <a href="../../" class="breadcrumb-link">MRDEV</a>
+                <span class="breadcrumb-sep">/</span>
+                <span class="breadcrumb-current">QR Code</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="icon-btn" id="themeToggle" title="Rejim" aria-label="Rejimni almashtirish">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+            </button>
+            <button class="mrdev-user-trigger-mini" id="mrdevUserTriggerMini" aria-label="Foydalanuvchi menyusi">
+                <div class="trigger-avatar" id="triggerAvatarMini">?</div>
+                <span class="trigger-name" id="triggerNameMini">Mehmon</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="qr-main">
+        <!-- Tabs -->
+        <div class="qr-tabs">
+            <button class="qr-tab active" data-tab="generate">Yaratish</button>
+            <button class="qr-tab" data-tab="scan">Skanerlash</button>
+            <button class="qr-tab" data-tab="history">Tarix</button>
+            <button class="qr-tab" data-tab="wifi">WiFi QR</button>
+        </div>
+
+        <!-- GENERATE TAB -->
+        <div id="generateTab" class="tab-content">
+            <div class="card">
+                <h3>QR kod yaratish</h3>
+                <div class="input-group">
+                    <label>URL, matn yoki telefon</label>
+                    <textarea id="qrText" class="qr-input" placeholder="https://mrdev.uz yoki har qanday matn...">https://mrdev.uz</textarea>
+                </div>
+                <div class="qr-preview"><canvas id="qrCanvas"></canvas></div>
+                <div class="btn-row">
+                    <button class="btn-primary" id="generateBtn">Yaratish</button>
+                    <button class="btn-secondary" id="downloadBtn">Yuklab olish</button>
+                    <button class="btn-secondary" id="shareBtn">Ulashish</button>
+                    <button class="btn-secondary" id="fullscreenBtn">Kattalashtirish</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Tezkor shablonlar</h3>
+                <div class="template-grid">
+                    <button class="template-btn" data-template="https://mrdev.uz">MRDEV</button>
+                    <button class="template-btn" data-template="https://t.me/mrdev">Telegram</button>
+                    <button class="template-btn" data-template="https://instagram.com">Instagram</button>
+                    <button class="template-btn" data-template="https://youtube.com">YouTube</button>
+                    <button class="template-btn" data-template="https://github.com">GitHub</button>
+                    <button class="template-btn" data-template="mailto:info@mrdev.uz">Email</button>
+                    <button class="template-btn" data-template="tel:+998901234567">Telefon</button>
+                    <button class="template-btn" data-template="https://maps.google.com">Google Maps</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCAN TAB -->
+        <div id="scanTab" class="tab-content" style="display:none;">
+            <div class="card">
+                <h3>Kamera bilan skanerlash</h3>
+                <div class="camera-controls">
+                    <button class="btn-secondary" id="cameraBackBtn">Orqa kamera</button>
+                    <button class="btn-secondary" id="cameraFrontBtn">Old kamera</button>
+                    <button class="btn-secondary" id="stopCameraBtn">To'xtatish</button>
+                </div>
+                <div class="scan-area" id="scanArea">
+                    <video id="qrVideo" autoplay playsinline muted></video>
+                    <div class="scan-frame"><div class="scan-line"></div></div>
+                </div>
+                <div id="scanResult" class="result-card" style="display:none;">
+                    <div class="result-text" id="scannedText"></div>
+                    <div class="btn-row">
+                        <button class="btn-primary" id="copyScanBtn">Nusxalash</button>
+                        <button class="btn-secondary" id="openScanBtn">Ochish</button>
+                        <button class="btn-secondary" id="saveScanBtn">Saqlash</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Rasmdan QR o'qish</h3>
+                <div class="upload-area" id="uploadArea">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    <p>Rasm tanlash uchun bosing</p><small>PNG, JPG, WEBP</small>
+                </div>
+                <input type="file" id="imageUpload" accept="image/*" style="display:none;">
+                <div id="imageResult" class="result-card" style="display:none;">
+                    <div class="result-text" id="imageScannedText"></div>
+                    <div class="btn-row">
+                        <button class="btn-primary" id="copyImageBtn">Nusxalash</button>
+                        <button class="btn-secondary" id="openImageBtn">Ochish</button>
+                        <button class="btn-secondary" id="saveImageBtn">Saqlash</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTORY TAB -->
+        <div id="historyTab" class="tab-content" style="display:none;">
+            <div class="card">
+                <div class="history-header">
+                    <h3>Skanerlangan QR kodlar</h3>
+                    <button class="btn-danger" id="clearHistoryBtn">Tozalash</button>
+                </div>
+                <div class="history-stats"><span id="historyCount">0 ta</span> · <span id="historyCloud">Local</span></div>
+                <div id="historyList" class="history-list"></div>
+            </div>
+        </div>
+
+        <!-- WIFI TAB -->
+        <div id="wifiTab" class="tab-content" style="display:none;">
+            <div class="card">
+                <h3>WiFi QR kod yaratish</h3>
+                <div class="input-group"><label>WiFi nomi (SSID)</label><input type="text" id="wifiSSID" class="qr-input" placeholder="WiFi nomi..."></div>
+                <div class="input-group"><label>Parol</label><input type="text" id="wifiPassword" class="qr-input" placeholder="WiFi paroli..."></div>
+                <div class="input-group"><label>Xavfsizlik turi</label><select id="wifiEncryption" class="qr-input"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">Parolsiz</option></select></div>
+                <div class="qr-preview"><canvas id="wifiQrCanvas"></canvas></div>
+                <div class="btn-row">
+                    <button class="btn-primary" id="generateWifiBtn">WiFi QR yaratish</button>
+                    <button class="btn-secondary" id="downloadWifiBtn">Yuklab olish</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Fullscreen Modal -->
+    <div class="modal-overlay" id="qrModal">
+        <div class="modal-fullscreen">
+            <button class="modal-close-btn" id="closeModalBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <canvas id="fullscreenCanvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

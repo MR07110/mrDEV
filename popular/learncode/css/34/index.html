@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>34-Dars: Foiz (%) o'lchov birligi | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "34",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=gJdlxBua_F8",
+            "lessonTitle": "Foiz (%) o'lchov birligi"
+        }
+    </script>
+    
+    <!-- Test javoblari (34-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>34-Dars: Foiz (%) o'lchov birligi</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 11:12
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/gJdlxBua_F8" 
+                            title="CSS | 34. Foiz (%) o'lchov birligi"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 34. Foiz (%) o'lchov birligi</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 11:12</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Foiz (%) o'lchov birligi</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 10-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Units va RWD</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da eng ko'p ishlatiladigan nisbiy birlik - <code>%</code> (foiz) haqida chuqur bilim olasiz. Foiz birligi nimaga nisbatan hisoblanishi, turli xususiyatlarda qanday ishlashi va responsive dizayn yaratishdagi ahamiyatini o'rganasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Foiz birligi nimaga nisbatan hisoblanadi?</li>
+                        <li><i class="fas fa-check-circle"></i> <code>width</code> va <code>height</code> da foiz</li>
+                        <li><i class="fas fa-check-circle"></i> <code>margin</code> va <code>padding</code> da foiz</li>
+                        <li><i class="fas fa-check-circle"></i> <code>position</code> (top, right, bottom, left) da foiz</li>
+                        <li><i class="fas fa-check-circle"></i> <code>transform: translate()</code> da foiz</li>
+                        <li><i class="fas fa-check-circle"></i> <code>font-size</code> va <code>line-height</code> da foiz</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Foiz nimaga nisbatan?</strong> Har bir xususiyat uchun turlicha! <code>width</code> ota element kengligiga, <code>height</code> ota element balandligiga nisbatan.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>margin/padding foiz:</strong> Gorizontal VA vertikal margin/padding foizlari ota element <strong>kengligiga</strong> nisbatan hisoblanadi!</span>
+                            <span class="badge good-to-know">Ajablanarli fakt</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>translate(-50%, -50%):</strong> Markazga tekislashda <code>%</code> elementning o'z o'lchamiga nisbatan hisoblanadi.</span>
+                            <span class="badge tip">Professional texnika</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span><strong>Responsive layout:</strong> <code>width: 90%; max-width: 1200px;</code> kombinatsiyasi eng yaxshi amaliyot.</span>
+                            <span class="badge tip">Mobile-first</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: WIDTH VA HEIGHT DA FOIZ ==================== -->
+                <section class="lesson-section" id="width-height-percent">
+                    <h2><i class="fas fa-arrows-alt"></i> Width va Height da foiz</h2>
+                    
+                    <p><code>width</code> va <code>height</code> xususiyatlarida foiz ota element o'lchamlariga nisbatan hisoblanadi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">.parent {
+    width: 800px;
+    height: 500px;
+    background: #f3f4f6;
+}
+
+/* width: ota element kengligiga nisbatan */
+.child-width {
+    width: 50%;             /* 800px * 0.5 = 400px */
+}
+
+/* height: ota element balandligiga nisbatan */
+.child-height {
+    height: 50%;            /* 500px * 0.5 = 250px */
+}
+
+/* Agar ota element balandligi belgilanmagan bo'lsa */
+.parent-auto {
+    width: 800px;
+    /* height belgilanmagan - avtomatik */
+}
+.child-height-fail {
+    height: 50%;            /* ISHLAMAYDI! Ota element balandligi aniq emas */
+}
+
+/* Responsive konteyner */
+.container {
+    width: 90%;             /* Ota element kengligining 90% */
+    max-width: 1200px;      /* 1200px dan katta bo'lmaydi */
+    margin: 0 auto;
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> <code>height: 100%</code> ishlashi uchun ota elementning balandligi aniq belgilangan bo'lishi kerak (px, vh, yoki boshqa foiz). Aks holda ishlamaydi!
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: MARGIN VA PADDING DA FOIZ ==================== -->
+                <section class="lesson-section" id="margin-padding-percent">
+                    <h2><i class="fas fa-square"></i> Margin va Padding da foiz</h2>
+                    
+                    <p><strong>Muhim:</strong> <code>margin</code> va <code>padding</code> da foiz (gorizontal ham, vertikal ham) har doim ota element <strong>kengligiga</strong> nisbatan hisoblanadi!</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">.parent {
+    width: 800px;           /* Kenglik 800px */
+    height: 500px;          /* Balandlik 500px */
+}
+
+.child {
+    /* Barcha margin va padding foizlari ota element KENGLIGIGA nisbatan! */
+    margin-top: 10%;        /* 800px * 0.1 = 80px */
+    margin-bottom: 10%;     /* 800px * 0.1 = 80px */
+    margin-left: 5%;        /* 800px * 0.05 = 40px */
+    margin-right: 5%;       /* 800px * 0.05 = 40px */
+    
+    padding-top: 5%;        /* 800px * 0.05 = 40px */
+    padding-bottom: 5%;     /* 800px * 0.05 = 40px */
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> Bu xususiyat tufayli kvadrat elementlar yaratish oson: <code>width: 50%; padding-bottom: 50%;</code> - element balandligi kengligiga teng bo'ladi!
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: POSITION DA FOIZ ==================== -->
+                <section class="lesson-section" id="position-percent">
+                    <h2><i class="fas fa-map-pin"></i> Position (top, right, bottom, left) da foiz</h2>
+                    
+                    <p><code>position: absolute</code> yoki <code>fixed</code> elementlarida <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> foizlari ota element (yoki viewport) o'lchamlariga nisbatan.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">.parent {
+    position: relative;
+    width: 800px;
+    height: 500px;
+}
+
+.child {
+    position: absolute;
+    top: 20%;               /* 500px * 0.2 = 100px (ota balandligiga) */
+    left: 10%;              /* 800px * 0.1 = 80px (ota kengligiga) */
+    right: 10%;             /* 800px * 0.1 = 80px */
+    bottom: 20%;            /* 500px * 0.2 = 100px */
+}
+
+/* Markazga tekislash - klassik texnika */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* translate da % elementning o'z o'lchamiga nisbatan! */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: TRANSFORM DA FOIZ ==================== -->
+                <section class="lesson-section" id="transform-percent">
+                    <h2><i class="fas fa-rotate"></i> Transform translate() da foiz</h2>
+                    
+                    <p><code>transform: translate()</code> da foiz <strong>elementning o'z o'lchamiga</strong> nisbatan hisoblanadi. Bu markazga tekislash uchun juda qulay!</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">.box {
+    width: 200px;
+    height: 150px;
+}
+
+/* Elementning o'z o'lchamiga nisbatan */
+.box:hover {
+    transform: translateX(50%);     /* 200px * 0.5 = 100px o'ngga */
+    transform: translateY(-100%);   /* 150px * 1 = 150px yuqoriga */
+}
+
+/* Markazga aniq tekislash */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Element o'zining yarim kengligi va balandligiga siljiydi */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: FONT-SIZE VA LINE-HEIGHT DA FOIZ ==================== -->
+                <section class="lesson-section" id="font-percent">
+                    <h2><i class="fas fa-text-height"></i> font-size va line-height da foiz</h2>
+                    
+                    <p><code>font-size</code> da foiz ota elementning <code>font-size</code> iga nisbatan. <code>line-height</code> da foiz joriy elementning <code>font-size</code> iga nisbatan.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">.parent {
+    font-size: 20px;
+}
+
+.child {
+    font-size: 150%;        /* 20px * 1.5 = 30px (ota font-size iga) */
+}
+
+/* line-height: joriy font-size ga nisbatan */
+.text {
+    font-size: 16px;
+    line-height: 150%;      /* 16px * 1.5 = 24px */
+}
+
+/* Unitless line-height (tavsiya etiladi) */
+.text-best {
+    font-size: 16px;
+    line-height: 1.5;       /* Foiz emas, son - meros bo'lganda muammo tug'dirmaydi */
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> <code>line-height</code> uchun foiz emas, <strong>unitless</strong> qiymat ishlating (masalan, <code>1.5</code>). Bu meros bo'lganda kutilmagan natijalarni oldini oladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 34-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span><code>margin-top: 10%;</code> nimaga nisbatan hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>Ota element balandligiga</label></div><div class="option"><input type="radio" name="q1" value="b"><label>Ota element kengligiga</label></div><div class="option"><input type="radio" name="q1" value="c"><label>Element balandligiga</label></div><div class="option"><input type="radio" name="q1" value="d"><label>Viewport balandligiga</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span><code>transform: translateX(50%);</code> nimaga nisbatan hisoblanadi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>Ota element kengligiga</label></div><div class="option"><input type="radio" name="q2" value="b"><label>Viewport kengligiga</label></div><div class="option"><input type="radio" name="q2" value="c"><label>Elementning o'z kengligiga</label></div><div class="option"><input type="radio" name="q2" value="d"><label>Ota element balandligiga</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span>Elementni markazga tekislash uchun qaysi kombinatsiya ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>top: 50%; left: 50%; transform: translate(-50%, -50%);</label></div><div class="option"><input type="radio" name="q3" value="b"><label>margin: auto;</label></div><div class="option"><input type="radio" name="q3" value="c"><label>text-align: center; vertical-align: middle;</label></div><div class="option"><input type="radio" name="q3" value="d"><label>display: flex; align-items: center;</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span><code>height: 100%</code> ishlashi uchun nima shart?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>Ota element width belgilangan bo'lishi kerak</label></div><div class="option"><input type="radio" name="q4" value="b"><label>Element position: absolute bo'lishi kerak</label></div><div class="option"><input type="radio" name="q4" value="c"><label>Element display: block bo'lishi kerak</label></div><div class="option"><input type="radio" name="q4" value="d"><label>Ota element height belgilangan bo'lishi kerak</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Foiz birligidan foydalanib responsive layout yarating.</p>
+                        <ol>
+                            <li>Konteyner uchun <code>width: 90%; max-width: 1200px; margin: 0 auto;</code></li>
+                            <li>Grid yaratish uchun ustunlarga <code>width: 33.333%</code> bering</li>
+                            <li>Elementni markazga tekislash uchun <code>position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);</code></li>
+                            <li><code>padding</code> va <code>margin</code> uchun foiz ishlatib ko'ring</li>
+                            <li>Kvadrat element yarating: <code>width: 30%; padding-bottom: 30%;</code></li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-css">.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+.row { display: flex; flex-wrap: wrap; }
+.col { width: 33.333%; padding: 2%; }
+
+.square { width: 30%; padding-bottom: 30%; background: #3b82f6; position: relative; }
+
+.square-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; }
+
+.hero { position: relative; height: 400px; background: #f3f4f6; }
+.centered-box { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; padding: 5%; background: white; }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>width/height %:</strong> ota element o'lchamlariga nisbatan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>margin/padding %:</strong> har doim ota element <strong>kengligiga</strong> nisbatan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>position %:</strong> ota element (yoki viewport) o'lchamlariga nisbatan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>transform translate %:</strong> elementning o'z o'lchamiga nisbatan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>font-size %:</strong> ota element font-size iga nisbatan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>line-height:</strong> unitless qiymat (1.5) foizdan afzal</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> "em" o'lchov birligi - Nazorat ishi!</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../33/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../35/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#width-height-percent">Width/Height da %</a></li>
+                    <li><a href="#margin-padding-percent">Margin/Padding da %</a></li>
+                    <li><a href="#position-percent">Position da %</a></li>
+                    <li><a href="#transform-percent">Transform da %</a></li>
+                    <li><a href="#font-percent">Font-size da %</a></li>
+                    <li><a href="#test">Test</a></li>
+                    <li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li>
+                    <li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">34/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 54.0%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51-Dars: Transitions | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "51",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=IL_7vzcmkJs",
+            "lessonTitle": "Transitions"
+        }
+    </script>
+    
+    <!-- Test javoblari (51-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>51-Dars: Transitions</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 11:42
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/IL_7vzcmkJs" 
+                            title="CSS | 51. Transitions"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 51. Transitions</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 11:42</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Transitions</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 28-fevral, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Transitions va Animations</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da <code>transition</code> xususiyati yordamida element holatlari o'rtasida silliq o'tish effektlarini yaratishni o'rganasiz. Bu zamonaviy web dizayn va interaktiv elementlar uchun asosiy vosita hisoblanadi.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>transition-property</code> - qaysi xususiyat o'zgarishi</li>
+                        <li><i class="fas fa-check-circle"></i> <code>transition-duration</code> - qancha vaqt davom etishi</li>
+                        <li><i class="fas fa-check-circle"></i> <code>transition-timing-function</code> - tezlik egri chizig'i</li>
+                        <li><i class="fas fa-check-circle"></i> <code>transition-delay</code> - kechikish vaqti</li>
+                        <li><i class="fas fa-check-circle"></i> <code>transition</code> shorthand - barchasini bir qatorda</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar - Senior daraja uchun -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun Senior maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>all dan qoching:</strong> <code>transition: all</code> performans muammolariga sabab bo'ladi. Faqat kerakli xususiyatlarni ko'rsating.</span>
+                            <span class="badge must-know">Senior yodlaydi</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>ease-out foydalanuvchi uchun:</strong> <code>ease-out</code> - tez boshlanib sekin tugaydi, eng tabiiy ko'rinadi.</span>
+                            <span class="badge good-to-know">UI/UX</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>GPU tezlashtirish:</strong> <code>transform</code> va <code>opacity</code> GPU da ishlaydi, silliq animatsiyalar uchun.</span>
+                            <span class="badge tip">Performance</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span><strong>prefers-reduced-motion:</strong> Foydalanuvchi animatsiyalarni kamaytirishni so'ragan bo'lsa, transitionlarni o'chiring.</span>
+                            <span class="badge tip">Accessibility</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: TRANSITION NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-transition">
+                    <h2><i class="fas fa-clock"></i> Transition nima?</h2>
+                    
+                    <p><code>transition</code> xususiyati elementning bir holatdan ikkinchi holatga silliq o'tishini ta'minlaydi. Odatda <code>:hover</code>, <code>:focus</code>, <code>:active</code> kabi psevdo-klasslar bilan birga ishlatiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Transitionsiz - keskin o'zgarish */
+.btn {
+    background: #3b82f6;
+    /* hover bo'lganda birdaniga o'zgaradi */
+}
+.btn:hover {
+    background: #2563eb;
+    transform: translateY(-3px);
+}
+
+/* Transition bilan - silliq o'tish */
+.btn {
+    background: #3b82f6;
+    transition: all 0.3s ease;  /* Barcha xususiyatlar 0.3s davomida silliq o'zgaradi */
+}
+.btn:hover {
+    background: #2563eb;
+    transform: translateY(-3px);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: TRANSITION-PROPERTY ==================== -->
+                <section class="lesson-section" id="transition-property">
+                    <h2><i class="fas fa-list"></i> transition-property</h2>
+                    
+                    <p><code>transition-property</code> qaysi CSS xususiyatlari transition bilan o'zgarishini belgilaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Bitta xususiyat */
+.btn {
+    transition-property: background;
+    transition-duration: 0.3s;
+}
+
+/* Bir nechta xususiyat */
+.card {
+    transition-property: transform, box-shadow, background;
+    transition-duration: 0.3s;
+}
+
+/* Barcha xususiyatlar (tavsiya etilmaydi) */
+.all-transition {
+    transition-property: all;  /* Performans muammolari */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: TRANSITION-DURATION ==================== -->
+                <section class="lesson-section" id="transition-duration">
+                    <h2><i class="fas fa-hourglass-half"></i> transition-duration</h2>
+                    
+                    <p><code>transition-duration</code> transition qancha vaqt davom etishini belgilaydi. <code>s</code> (sekund) yoki <code>ms</code> (millisekund) da beriladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Sekundlarda */
+.fast { transition-duration: 0.15s; }    /* 150ms - tez */
+.normal { transition-duration: 0.3s; }   /* 300ms - o'rtacha */
+.slow { transition-duration: 0.5s; }     /* 500ms - sekin */
+
+/* Millisekundlarda */
+.ms-example { transition-duration: 200ms; }
+
+/* Bir nechta xususiyat uchun turli vaqtlar */
+.multiple {
+    transition-property: background, transform;
+    transition-duration: 0.3s, 0.5s;  /* background 0.3s, transform 0.5s */
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: TRANSITION-TIMING-FUNCTION ==================== -->
+                <section class="lesson-section" id="transition-timing">
+                    <h2><i class="fas fa-chart-line"></i> transition-timing-function</h2>
+                    
+                    <p><code>transition-timing-function</code> transition tezligining vaqt bo'yicha qanday o'zgarishini belgilaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Asosiy timing funksiyalari */
+.ease { transition-timing-function: ease; }           /* default - sekin-tez-sekin */
+.linear { transition-timing-function: linear; }       /* bir xil tezlik */
+.ease-in { transition-timing-function: ease-in; }     /* sekin boshlanib tezlashadi */
+.ease-out { transition-timing-function: ease-out; }   /* tez boshlanib sekinlashadi ⭐ */
+.ease-in-out { transition-timing-function: ease-in-out; } /* sekin-tez-sekin */
+
+/* Custom cubic-bezier */
+.custom { transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); }</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> <code>ease-out</code> eng tabiiy ko'rinadi va UI elementlar uchun eng yaxshi tanlovdir.
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: TRANSITION-DELAY ==================== -->
+                <section class="lesson-section" id="transition-delay">
+                    <h2><i class="fas fa-pause"></i> transition-delay</h2>
+                    
+                    <p><code>transition-delay</code> transition boshlanishidan oldin qancha kutish kerakligini belgilaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Kechikish */
+.delayed { transition-delay: 0.2s; }    /* 0.2s kutib, keyin boshlanadi */
+
+/* Staggered effekt */
+.menu-item { transition: all 0.3s; }
+.menu-item:nth-child(1) { transition-delay: 0s; }
+.menu-item:nth-child(2) { transition-delay: 0.1s; }
+.menu-item:nth-child(3) { transition-delay: 0.2s; }</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 6-BO'LIM: TRANSITION SHORTHAND ==================== -->
+                <section class="lesson-section" id="transition-shorthand">
+                    <h2><i class="fas fa-compress"></i> Transition shorthand</h2>
+                    
+                    <p><code>transition</code> shorthand barcha xususiyatlarni bir qatorda yozish imkonini beradi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Shorthand sintaksisi */
+/* transition: property duration timing-function delay; */
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn-2 {
+    transition: background 0.2s ease-out, transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.card {
+    transition: transform 0.3s, box-shadow 0.3s, background 0.2s;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> 51-dars testi</h3><span class="test-badge">4 ta savol</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span>Transition qaysi psevdo-klass bilan eng ko'p ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>:active</label></div><div class="option"><input type="radio" name="q1" value="b"><label>:hover</label></div><div class="option"><input type="radio" name="q1" value="c"><label>:visited</label></div><div class="option"><input type="radio" name="q1" value="d"><label>:focus-within</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span>Qaysi timing-function eng tabiiy ko'rinadi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>linear</label></div><div class="option"><input type="radio" name="q2" value="b"><label>ease-in</label></div><div class="option"><input type="radio" name="q2" value="c"><label>ease-out</label></div><div class="option"><input type="radio" name="q2" value="d"><label>step-start</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span><code>transition: all 0.3s;</code> nima uchun tavsiya etilmaydi?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>Performans muammolari</label></div><div class="option"><input type="radio" name="q3" value="b"><label>Ko'proq kod yoziladi</label></div><div class="option"><input type="radio" name="q3" value="c"><label>Brauzer qo'llamaydi</label></div><div class="option"><input type="radio" name="q3" value="d"><label>Ranglar o'zgarmaydi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Transition shorthand da to'g'ri tartib qaysi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>duration property timing delay</label></div><div class="option"><input type="radio" name="q4" value="b"><label>timing property duration delay</label></div><div class="option"><input type="radio" name="q4" value="c"><label>delay duration property timing</label></div><div class="option"><input type="radio" name="q4" value="d"><label>property duration timing delay</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Transition yordamida interaktiv tugmalar yarating.</p>
+                        <ol><li>Tugmaga hover bo'lganda <code>background</code> va <code>transform</code> o'zgarsin</li><li><code>transition-duration: 0.3s</code> va <code>ease-out</code> ishlating</li><li>Karta uchun <code>transform</code> va <code>box-shadow</code> transition qo'shing</li></ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-css">.btn { background: #3b82f6; padding: 12px 24px; border: none; border-radius: 8px; color: white; cursor: pointer; transition: all 0.3s ease-out; }
+.btn:hover { background: #2563eb; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+.card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; }
+.card:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>transition-property:</strong> qaysi xususiyat (all dan qoching)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>transition-duration:</strong> qancha vaqt (s yoki ms)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>transition-timing-function:</strong> ease, ease-out, linear</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>transition-delay:</strong> kechikish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Shorthand:</strong> <code>transition: property duration timing delay;</code></li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Animations (1-qism)</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../50/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../52/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#what-is-transition">Transition nima?</a></li>
+                    <li><a href="#transition-property">transition-property</a></li>
+                    <li><a href="#transition-duration">transition-duration</a></li>
+                    <li><a href="#transition-timing">transition-timing-function</a></li>
+                    <li><a href="#transition-delay">transition-delay</a></li>
+                    <li><a href="#transition-shorthand">Shorthand</a></li>
+                    <li><a href="#test">Test</a></li><li><a href="#practice">Amaliy mashq</a></li>
+                    <li><a href="#summary">Xulosa</a></li><li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">51/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 81.0%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

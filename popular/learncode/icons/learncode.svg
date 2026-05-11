@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+    <style>
+        /* O'sha quvnoq animatsiya, lekin ranglar o'zgarmaydi! */
+        @keyframes superFunny {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg) translateY(0); 
+            }
+            5% { 
+                transform: scale(1.2, 0.8) translateY(0); 
+            }
+            10% { 
+                transform: scale(0.8, 1.2) translateY(-50px) rotate(-5deg); 
+            }
+            15% { 
+                transform: scale(1.1, 0.9) translateY(-20px) rotate(3deg); 
+            }
+            20% { 
+                transform: scale(1) translateY(0) rotate(0deg); 
+            }
+            30% { 
+                transform: rotate(-20deg) scale(1.05); 
+            }
+            35% { 
+                transform: rotate(20deg) scale(1.05); 
+            }
+            40% { 
+                transform: rotate(-10deg) scale(1.02); 
+            }
+            45% { 
+                transform: rotate(0deg) scale(1); 
+            }
+            55% { 
+                transform: scale(1.25); 
+            }
+            65% { 
+                transform: scale(1); 
+            }
+            72% { 
+                transform: rotate(360deg) scale(1.15); 
+            }
+            80% { 
+                transform: rotate(360deg) scale(1); 
+            }
+            88% { 
+                transform: translateY(-25px) scale(1.05); 
+            }
+            92% { 
+                transform: translateY(0) scale(0.98); 
+            }
+            96% { 
+                transform: translateY(-10px) scale(1.02); 
+            }
+        }
+
+        /* Mr. Gram Blue jilolanishi (och rangsiz) */
+        @keyframes blueShimmer {
+            0%, 100% { stop-color: #2563eb; } /* Asosiy Mr. Gram Blue */
+            50% { stop-color: #1d4ed8; } /* To'qroq ko'k */
+        }
+
+        @keyframes blueShimmer2 {
+            0%, 100% { stop-color: #1d4ed8; } /* To'qroq ko'k */
+            50% { stop-color: #2563eb; } /* Asosiy Mr. Gram Blue */
+        }
+
+        .logo-main {
+            transform-origin: center;
+            animation: superFunny 6s ease-in-out infinite;
+        }
+
+        .stop1 { animation: blueShimmer 3s ease infinite; }
+        .stop2 { animation: blueShimmer2 3.5s ease infinite; }
+        .stop3 { animation: blueShimmer 2.8s ease infinite; }
+
+    </style>
+    
+    <defs>
+        <linearGradient id="mrGramPartyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" class="stop1" style="stop-color:#2563eb">
+                </stop>
+            <stop offset="50%" class="stop2" style="stop-color:#1d4ed8">
+            </stop>
+            <stop offset="100%" class="stop3" style="stop-color:#2563eb">
+            </stop>
+        </linearGradient>
+
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <text x="200" y="270" class="logo-main" 
+          font-family="'Inter', 'Segoe UI', 'Fira Code', monospace" 
+          font-size="200" font-weight="900" 
+          fill="url(#mrGramPartyGradient)" 
+          text-anchor="middle" 
+          letter-spacing="-6"
+          filter="url(#glow)">
+        &lt;/&gt;
+    </text>
+</svg>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MR BOARD Studio · Jamoaviy ishlashning yangi davri</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="shortcut icon" href="favicon.svg">
+    <style>
+        :root {
+            --bg-base: #ffffff;
+            --bg-alt: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --brand-primary: #007aff;
+            --brand-hover: #0056b3;
+            --brand-alpha: rgba(0, 122, 255, 0.1);
+            --border-subtle: #e2e8f0;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --shadow-float: 0 24px 48px -12px rgba(0,0,0,0.15);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-base: #020617;
+                --bg-alt: #0f172a;
+                --text-main: #f8fafc;
+                --text-muted: #94a3b8;
+                --border-subtle: rgba(255,255,255,0.1);
+                --glass-bg: rgba(15,23,42,0.6);
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            background: var(--bg-alt);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== HEADER & NAV ========== */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: var(--glass-bg); backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 16px 5%; display: flex; justify-content: space-between; align-items: center;
+        }
+        .brand {
+            font-size: 24px; font-weight: 900; display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--text-main);
+            transition: transform 0.3s var(--ease-spring);
+        }
+        .brand:hover { transform: scale(1.02); }
+        .brand span { color: var(--brand-primary); }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a {
+            color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 15px;
+            position: relative;
+        }
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background: var(--brand-primary);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .header-btn {
+            background: var(--brand-primary); color: white; padding: 10px 24px;
+            border-radius: 99px; text-decoration: none; font-weight: 700; font-size: 14px;
+            transition: 0.3s var(--ease-spring);
+        }
+        .header-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px var(--brand-alpha); }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 180px 5% 100px; text-align: center;
+            background: radial-gradient(circle at 50% -20%, var(--brand-alpha) 0%, transparent 60%);
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .hero-badge {
+            background: var(--bg-base); border: 1px solid var(--border-subtle);
+            padding: 8px 20px; border-radius: 99px; font-size: 13px; font-weight: 800;
+            color: var(--brand-primary); margin-bottom: 24px; display: inline-flex;
+            align-items: center; gap: 8px; animation: slideDown 0.6s ease-out;
+        }
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 84px); font-weight: 900; letter-spacing: -2.5px;
+            line-height: 1.05; margin-bottom: 24px; max-width: 1000px;
+            animation: slideUp 0.8s ease-out 0.1s both;
+        }
+        .hero p {
+            font-size: clamp(18px, 2vw, 22px); color: var(--text-muted);
+            max-width: 700px; margin-bottom: 40px; animation: slideUp 0.8s ease-out 0.2s both;
+        }
+        .hero-actions {
+            display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+            animation: slideUp 0.8s ease-out 0.3s both;
+        }
+        .btn-main {
+            padding: 18px 36px; border-radius: 20px; font-size: 18px; font-weight: 700;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 12px;
+            transition: 0.3s var(--ease-spring);
+        }
+        .btn-start { background: var(--brand-primary); color: #fff; box-shadow: 0 10px 30px var(--brand-alpha); }
+        .btn-start:hover { transform: translateY(-4px) scale(1.02); }
+        .btn-doc { background: var(--glass-bg); backdrop-filter: blur(10px); color: var(--text-main); border: 1px solid var(--border-subtle); }
+        .btn-doc:hover { background: var(--bg-base); border-color: var(--brand-primary); transform: translateY(-4px); }
+
+        /* ========== MOCKUP IFRAME ========== */
+        .app-mockup-wrapper {
+            margin-top: 80px; width: 100%; max-width: 1200px; position: relative;
+            perspective: 1200px; animation: slideUp 1s ease-out 0.5s both;
+        }
+        .app-mockup {
+            background: var(--bg-alt);
+            background-image: radial-gradient(var(--border-subtle) 1px, transparent 1px);
+            background-size: 24px 24px;
+            border-radius: 24px; border: 1px solid var(--border-subtle);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+            height: 65vh; min-height: 500px; max-height: 700px; overflow: hidden;
+            display: flex; flex-direction: column; transform: rotateX(5deg);
+            transition: transform 0.5s ease;
+        }
+        .app-mockup-wrapper:hover .app-mockup { transform: rotateX(0deg) translateY(-10px); }
+        .mock-header {
+            height: 52px; background: var(--glass-bg); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex; align-items: center; padding: 0 20px; gap: 8px;
+        }
+        .mock-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .mock-dot.r { background: #ff3b30; }
+        .mock-dot.y { background: #ffcc00; }
+        .mock-dot.g { background: #34c759; }
+        .mock-header span { flex:1; text-align:center; font-size:13px; font-weight:700; color:var(--text-muted); }
+        .iframe-container { flex: 1; position: relative; overflow: hidden; background: var(--bg-alt); }
+        #board-iframe { width: 100%; height: 100%; border: none; background: transparent; pointer-events: auto; }
+
+        /* ========== FEATURES & ABOUT ========== */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .section { padding: 120px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 48px; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 20px; }
+        .section-header p { font-size: 20px; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+        .feature-card {
+            background: var(--bg-base); border: 1px solid var(--border-subtle); padding: 40px;
+            border-radius: 32px; transition: 0.4s var(--ease-spring); position: relative; overflow: hidden;
+        }
+        .feature-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--brand-primary), #34c759); opacity: 0; transition: 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); border-color: transparent; }
+        .feature-card:hover::before { opacity: 1; }
+        .icon-box {
+            width: 64px; height: 64px; border-radius: 20px; background: var(--brand-alpha);
+            color: var(--brand-primary); display: flex; align-items: center; justify-content: center;
+            margin-bottom: 24px; transition: 0.3s;
+        }
+        .feature-card:hover .icon-box { transform: scale(1.1) rotate(5deg); }
+        .feature-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+        .feature-card p { color: var(--text-muted); font-size: 16px; line-height: 1.7; }
+
+        .text-content { max-width: 800px; margin: 0 auto; }
+        .text-content h3 { font-size: 28px; font-weight: 800; margin: 50px 0 20px; display: flex; align-items: center; gap: 12px; }
+        .text-content p { font-size: 18px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.8; }
+        .text-content ul { margin-left: 24px; color: var(--text-muted); font-size: 18px; margin-bottom: 32px; }
+        .text-content li { margin-bottom: 16px; padding-left: 8px; }
+        .text-content li::marker { color: var(--brand-primary); font-weight: bold; }
+
+        .cta-section {
+            margin: 100px 5%; padding: 100px 40px; background: var(--text-main); color: var(--bg-base);
+            border-radius: 40px; text-align: center; display: flex; flex-direction: column; align-items: center;
+            position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); pointer-events: none;
+        }
+        .cta-section h2 { font-size: 56px; font-weight: 900; letter-spacing: -2px; margin-bottom: 24px; z-index: 1; }
+        .cta-section p { font-size: 22px; opacity: 0.8; max-width: 600px; margin-bottom: 40px; z-index: 1; }
+
+        footer {
+            border-top: 1px solid var(--border-subtle); padding: 50px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            color: var(--text-muted); font-size: 15px; margin-top: 40px;
+        }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ========== FLOATING BUTTONS (AI + DONATE) ========== */
+        .floating-buttons {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 1000;
+        }
+
+        /* AI Button */
+        .floating-ai {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007aff, #0056b3);
+            box-shadow: 0 8px 24px rgba(0,122,255,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            animation: floatPulse 2s ease-in-out infinite;
+        }
+        .floating-ai:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(0,122,255,0.6);
+        }
+        .floating-ai svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        /* Donate Button */
+        .floating-donate {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #34c759, #2b8c3e);
+            box-shadow: 0 8px 24px rgba(52,199,89,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            animation: floatPulse 2s ease-in-out infinite;
+        }
+        .floating-donate:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(52,199,89,0.6);
+        }
+        .floating-donate svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        @keyframes floatPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @media (max-width: 768px) {
+            .floating-buttons {
+                bottom: 16px;
+                right: 16px;
+                gap: 12px;
+            }
+            .floating-ai, .floating-donate {
+                width: 48px;
+                height: 48px;
+            }
+            .floating-ai svg, .floating-donate svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="brand">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a84ff" stroke-width="1.5">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            MR <span>BOARD</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#features">Imkoniyatlar</a>
+            <a href="#about">Texnologiya</a>
+            <a href="doc.html">Dokumentatsiya</a>
+        </nav>
+        <a href="dashboard.html" class="header-btn">Doskani ochish</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            Enterprise Edition 2.0
+        </div>
+        <h1>Jamoaviy ishlashning <br> yangi davri</h1>
+        <p>MR BOARD — g'oyalaringizni real vaqtda, cheksiz doskada, ovozli muloqot va chat orqali jamoangiz bilan hayotga tatbiq etish uchun mukammal muhit.</p>
+
+        <div class="hero-actions">
+            <a href="dashboard.html" class="btn-main btn-start">
+                MR BOARD ni boshlash <i data-lucide="arrow-right"></i>
+            </a>
+            <a href="doc.html" class="btn-main btn-doc">
+                <i data-lucide="book-open"></i> Dokumentatsiya
+            </a>
+        </div>
+
+        <div class="app-mockup-wrapper">
+            <div class="app-mockup">
+                <div class="mock-header">
+                    <div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div>
+                    <span>mr-board.uz · interaktiv demo</span>
+                </div>
+                <div class="iframe-container">
+                    <iframe id="board-iframe" src="part1.html" title="MR BOARD interaktiv namoyish" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal" id="features">
+        <div class="section-header">
+            <h2>Hamma narsa bir joyda</h2>
+            <p>Sizga va jamoangizga kerak bo'ladigan barcha kuchli vositalar silliq interfeys ortiga yashiringan.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card"><div class="icon-box"><i data-lucide="infinity" size="32"></i></div><h3>Cheksiz Doska</h3><p>G'oyalaringiz chegaralanmasligi uchun cheksiz Canvas tizimi.</p></div>
+            <div class="feature-card"><div class="icon-box"><i data-lucide="mic" size="32"></i></div><h3>Ovozli Muloqot</h3><p>WebRTC orqali bevosita brauzerdan yuqori sifatli ovozli gaplashish.</p></div>
+            <div class="feature-card"><div class="icon-box"><i data-lucide="zap" size="32"></i></div><h3>Nol-Kechikish</h3><p>Firebase RTDB orqali chizgan chiziq millisoniyalarda yetib boradi.</p></div>
+            <div class="feature-card"><div class="icon-box"><i data-lucide="shield-check" size="32"></i></div><h3>Xavfsizlik va Rollar</h3><p>Xona egasi barcha jarayonni nazorat qiladi.</p></div>
+        </div>
+    </section>
+
+    <section class="section reveal" id="about">
+        <div class="text-content">
+            <h2 style="font-size: 48px; font-weight: 900; text-align: center; margin-bottom: 70px;">Nega aynan MR BOARD?</h2>
+            <h3><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Kreativlik va Texnologiya uyg'unligi</h3>
+            <p>MR BOARD eng so'nggi <strong>Glassmorphism</strong> dizayn kodidan ilhomlanib ishlangan. Ekrandagi barcha elementlar yarim shaffof oynadan iborat va ko'zni charchatmaydi.</p>
+            <h3><i data-lucide="cpu"></i> Dvigatel ostida nimalar bor?</h3>
+            <p>MR BOARD to'laqonli <strong>Monolith Web-Application</strong> hisoblanadi. Uning barqaror ishlashini quyidagi texnologiyalar ta'minlaydi:</p>
+            <ul><li><strong>HTML5 Canvas API:</strong> 60FPS da chizish.</li><li><strong>Firebase RTDB:</strong> Ma'lumotlarni sinxronlash.</li><li><strong>WebRTC Architecture:</strong> P2P audioni ulash.</li></ul>
+        </div>
+    </section>
+
+    <section class="cta-section reveal">
+        <h2>O'z xonangizni yarating</h2>
+        <p>Hech qanday murakkab ro'yxatdan o'tishlar yo'q. Shunchaki ismingizni yozing va hamkorlikni hoziroq boshlang.</p>
+        <a href="dashboard.html" class="btn-main" style="background: var(--bg-base); color: var(--text-main);">Doskani ochish <i data-lucide="arrow-right"></i></a>
+    </section>
+
+    <footer>
+        <div><div style="font-size: 20px; font-weight: 900; display: flex; align-items: center; gap: 8px;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a84ff" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> MR BOARD Studio</div><div>Barcha huquqlar himoyalangan &copy; 2026</div></div>
+        <div style="display: flex; gap: 32px; font-weight: 600;"><a href="dashboard.html" style="color: var(--text-muted); text-decoration: none;">Doska</a><a href="doc.html" style="color: var(--text-muted); text-decoration: none;">Dokumentatsiya</a><a href="https://github.com/" target="_blank" style="color: var(--text-muted); text-decoration: none;">GitHub</a></div>
+    </footer>
+
+    <!-- ========== FLOATING BUTTONS (AI + DONATE) ========== -->
+    <div class="floating-buttons">
+        <!-- AI Button -->
+        <button class="floating-ai" id="floatingAiBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 8V4H8"/>
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <path d="M8 12h8"/>
+                <path d="M12 8v8"/>
+            </svg>
+        </button>
+
+        <!-- Donate Button -->
+        <button class="floating-donate" id="floatingDonateBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M12 2v4M12 22v-4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M22 12h-4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Donate Modal -->
+    <div class="donate-modal" id="donateModal">
+        <div class="donate-modal-overlay" id="donateModalClose"></div>
+        <div class="donate-modal-container card-only">
+            <div class="card-3d-container">
+                <div class="card-3d">
+                    <div class="card-shine"></div>
+                    <div class="card-watermark">VISA</div>
+                    <div class="card-bank-name">MR BOARD</div>
+                    <div class="card-chip-area">
+                        <div class="card-chip"></div>
+                        <div class="card-contactless">)))</div>
+                    </div>
+                    <div class="card-number">8600 1234 5678 9012</div>
+                    <div class="card-footer">
+                        <div class="card-holder-name">MUHAMMADRASUL QOSIMOV</div>
+                        <div class="card-expiry-box">
+                            <span class="expiry-label">Valid Thru</span>
+                            <span class="expiry-date">12/28</span>
+                        </div>
+                        <div class="card-visa-logo">VISA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .donate-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .donate-modal.is-visible {
+            visibility: visible;
+            opacity: 1;
+        }
+        .donate-modal-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+        }
+        .donate-modal-container.card-only {
+            position: relative;
+            width: auto;
+            background: transparent;
+            box-shadow: none;
+            padding: 0;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .donate-modal.is-visible .donate-modal-container.card-only {
+            transform: scale(1);
+        }
+        .card-3d-container {
+            width: 450px;
+            height: 284px;
+            transform-style: preserve-3d;
+            animation: autoRotateCard 8s ease-in-out infinite;
+            cursor: pointer;
+        }
+        @keyframes autoRotateCard {
+            0% { transform: rotateY(-15deg) rotateX(10deg); }
+            50% { transform: rotateY(15deg) rotateX(-10deg); }
+            100% { transform: rotateY(-15deg) rotateX(10deg); }
+        }
+        .card-3d {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #007aff, #0056b3);
+            border-radius: 20px;
+            padding: 25px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .card-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(110deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+            animation: moveShine 4s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes moveShine {
+            0% { transform: translateX(-150%); }
+            100% { transform: translateX(150%); }
+        }
+        .card-watermark {
+            position: absolute;
+            top: -40px;
+            right: -20px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 220px;
+            font-weight: 900;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.08);
+            letter-spacing: -12px;
+            pointer-events: none;
+        }
+        .card-bank-name {
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+        }
+        .card-chip-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .card-chip {
+            width: 58px;
+            height: 42px;
+            background: linear-gradient(135deg, #f1c40f, #d4af37, #f1c40f);
+            border-radius: 8px;
+            border: 0.5px solid rgba(0,0,0,0.2);
+        }
+        .card-contactless {
+            transform: rotate(90deg);
+            font-size: 20px;
+            color: rgba(255,255,255,0.5);
+            font-family: sans-serif;
+        }
+        .card-number {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .card-holder-name {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .card-expiry-box {
+            text-align: center;
+            margin-right: 30px;
+        }
+        .expiry-label {
+            display: block;
+            font-size: 7px;
+            font-family: Arial;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .expiry-date {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .card-visa-logo {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 42px;
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: -2px;
+            line-height: 0.8;
+        }
+        @media (max-width: 768px) {
+            .card-3d-container {
+                width: 320px;
+                height: 202px;
+            }
+            .card-bank-name { font-size: 18px; }
+            .card-chip-area { margin: 15px 0; }
+            .card-chip { width: 42px; height: 30px; }
+            .card-number { font-size: 20px; letter-spacing: 1px; margin-bottom: 12px; }
+            .card-holder-name { font-size: 11px; }
+            .expiry-date { font-size: 12px; }
+            .card-visa-logo { font-size: 30px; }
+            .card-watermark { font-size: 150px; top: -20px; right: -10px; }
+        }
+    </style>
+
+    <script>
+        lucide.createIcons();
+
+        function reveal() {
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        const partCount = 20;
+        let currentPart = 1, isWaiting = false;
+        const iframe = document.getElementById('board-iframe');
+        window.addEventListener('message', e => {
+            if (e.data === 'next' && !isWaiting) {
+                isWaiting = true;
+                setTimeout(() => {
+                    let next = currentPart + 1;
+                    if (next > partCount) next = 1;
+                    currentPart = next;
+                    iframe.src = `part${currentPart}.html`;
+                    isWaiting = false;
+                }, 500);
+            }
+        });
+
+        // Donate modal
+        const floatingDonate = document.getElementById('floatingDonateBtn');
+        const donateModal = document.getElementById('donateModal');
+        const closeModal = document.getElementById('donateModalClose');
+        if (floatingDonate) floatingDonate.addEventListener('click', () => donateModal.classList.add('is-visible'));
+        if (closeModal) closeModal.addEventListener('click', () => donateModal.classList.remove('is-visible'));
+        if (donateModal) donateModal.addEventListener('click', e => { if (e.target === donateModal) donateModal.classList.remove('is-visible'); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') donateModal.classList.remove('is-visible'); });
+
+        // AI Modal - js/ai-modal.js ga ulanadi
+        const floatingAi = document.getElementById('floatingAiBtn');
+        if (floatingAi) {
+            floatingAi.addEventListener('click', () => {
+                if (typeof openAIModal === 'function') {
+                    openAIModal();
+                } else {
+                    console.log('AI modal yuklanmagan, dashboardga otish');
+                    window.location.href = 'dashboard.html';
+                }
+            });
+        }
+    </script>
+
+    <!-- AI Modal JS -->
+    <script src="js/ai-modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>NOTIFYHUB - MRDEV</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" href="notifyhub.svg" type="image/svg+xml">
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Google+Sans:wght@400;500;700&display=swap');
+        
+        :root {
+            --notify-primary: #6366f1;
+            --notify-danger: #ff4757;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Google Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ============ MODE SELECTOR ============ */
+        .notify-mode-selector {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .notify-selector-title {
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: var(--text);
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .notify-selector-title .notify-blue {
+            color: #6366f1;
+        }
+
+        .notify-selector-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            margin-top: -30px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .notify-selector-btn {
+            width: 300px;
+            padding: 20px;
+            margin: 8px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 15px;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .notify-selector-btn:hover {
+            background: var(--blue);
+            color: #fff;
+            border-color: var(--blue);
+        }
+
+        body.dark .notify-selector-btn:hover {
+            background: var(--blue-light);
+            color: #202124;
+        }
+
+        .notify-selector-btn.admin-btn:hover {
+            background: #6366f1;
+            border-color: #6366f1;
+            color: #fff;
+        }
+
+        .notify-selector-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .notify-selector-icon.admin {
+            background: rgba(99, 102, 241, 0.12);
+            color: #6366f1;
+        }
+
+        .notify-selector-icon.monitor {
+            background: var(--blue-bg);
+            color: var(--blue);
+        }
+
+        body.dark .notify-selector-icon.monitor {
+            color: var(--blue-light);
+        }
+
+        /* ============ MONITOR PAGE ============ */
+        #show-page {
+            display: none;
+            width: 100vw;
+            height: calc(100vh - 60px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notify-nano-header {
+            position: absolute;
+            top: 5vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 20;
+        }
+
+        .notify-clock-box {
+            font-size: clamp(1rem, 4vw, 1.6rem);
+            font-weight: 200;
+            letter-spacing: 4px;
+            color: var(--text-secondary);
+            font-family: 'Google Sans', monospace;
+        }
+
+        .notify-micro-status {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .notify-zoom-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            transition: transform 0.1s ease-out;
+            transform-origin: center;
+        }
+
+        #m-text {
+            font-size: clamp(1.8rem, 7vw, 6vw);
+            font-weight: 800;
+            white-space: nowrap;
+            display: inline-block;
+            padding: 0 50px;
+            color: var(--text);
+            transition: opacity 0.4s ease;
+        }
+
+        .notify-marquee {
+            animation: notifyScroll var(--speed, 15s) linear infinite;
+        }
+
+        @keyframes notifyScroll {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* ============ ADMIN PANEL ============ */
+        #admin-page {
+            display: none;
+            padding: 16px;
+            max-width: 700px;
+            margin: 0 auto;
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+
+        .notify-nav-pills {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            padding: 12px 0;
+            z-index: 10;
+        }
+
+        .notify-pill {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .notify-pill.active {
+            background: #6366f1;
+            color: #fff;
+            border-color: #6366f1;
+        }
+
+        .notify-glass-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .notify-input, .notify-select, .notify-textarea {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 12px 14px;
+            color: var(--text);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            font-family: 'Plus Jakarta Sans', 'Google Sans', sans-serif;
+            transition: border-color 0.2s;
+        }
+
+        .notify-input:focus, .notify-select:focus, .notify-textarea:focus {
+            border-color: #6366f1;
+        }
+
+        .notify-textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .notify-select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .notify-btn-action {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .notify-btn-action:hover {
+            background: var(--hover);
+            border-color: #6366f1;
+        }
+
+        .notify-btn-sos {
+            border-color: rgba(234, 67, 53, 0.3);
+            color: var(--notify-danger);
+        }
+
+        .notify-btn-sos:hover {
+            background: rgba(234, 67, 53, 0.08);
+            border-color: var(--notify-danger);
+        }
+
+        .notify-history-box {
+            margin-top: 16px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .notify-history-item {
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            font-size: 0.75rem;
+            transition: background 0.2s;
+        }
+
+        .notify-history-item span {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .notify-history-item b {
+            color: #6366f1;
+        }
+
+        .notify-del-icon {
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 4px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .notify-del-icon:hover {
+            color: var(--notify-danger);
+            background: rgba(234, 67, 53, 0.1);
+        }
+
+        .notify-del-icon svg {
+            display: block;
+        }
+
+        .notify-sos-timer {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--notify-danger);
+            margin-bottom: 12px;
+            font-family: 'Google Sans', monospace;
+        }
+
+        .notify-tab-content {
+            display: none;
+        }
+
+        .notify-tab-content.active {
+            display: block;
+        }
+
+        .notify-time-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .notify-time-row .notify-input {
+            flex: 1;
+        }
+
+        @media (max-width: 500px) {
+            .notify-selector-title {
+                font-size: 24px;
+                letter-spacing: 2px;
+            }
+            .notify-selector-btn {
+                width: 260px;
+                padding: 16px;
+                font-size: 14px;
+            }
+            .notify-pill {
+                padding: 6px 10px;
+                font-size: 0.7rem;
+                gap: 4px;
+            }
+            .notify-glass-card {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MRDEV Header -->
+<header>
+    <div class="header-left">
+        <a href="../../popular/" class="header-btn" aria-label="Orqaga" style="display: flex; align-items: center; text-decoration: none;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+        </a>
+
+        <a href="../../popular/notifyhub" class="logo" style="text-decoration: none;">
+            <span style="color:#6366f1; font-weight: bold;">NOTIFY</span><span class="logo-dev" style="font-weight: bold;">HUB</span>
+        </a>
+    </div>
+
+    <button id="theme-btn" class="header-btn theme-btn" onclick="toggleTheme()" aria-label="Rejimni almashtirish"></button>
+</header>
+
+    <!-- ===== MODE SELECTOR ===== -->
+    <div id="mode-selector" class="notify-mode-selector">
+        <h1 class="notify-selector-title">
+            <span class="notify-blue">NOTIFY</span>HUB
+        </h1>
+        <p class="notify-selector-subtitle">Masofaviy boshqaruv tizimi</p>
+        <button class="notify-selector-btn admin-btn" onclick="checkAdmin()">
+            <div class="notify-selector-icon admin">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+            </div>
+            ADMIN PANEL
+        </button>
+        <button class="notify-selector-btn" onclick="selectMode('show')">
+            <div class="notify-selector-icon monitor">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+            </div>
+            MONITOR KO'RINISHI
+        </button>
+    </div>
+
+    <!-- ===== ADMIN PANEL ===== -->
+    <div id="admin-page">
+        <div class="notify-nav-pills">
+            <button class="notify-pill active" onclick="switchTab('weekly', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                JADVAL
+            </button>
+            <button class="notify-pill" onclick="switchTab('daily', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                E'LON
+            </button>
+            <button class="notify-pill" onclick="switchTab('sos', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                SOS
+            </button>
+        </div>
+        
+        <!-- Weekly Tab -->
+        <div id="weekly-tab" class="notify-glass-card notify-tab-content active">
+            <select id="w-day" class="notify-select">
+                <option value="1">Dushanba</option><option value="2">Seshanba</option><option value="3">Chorshanba</option>
+                <option value="4">Payshanba</option><option value="5">Juma</option><option value="6">Shanba</option>
+            </select>
+            <div class="notify-time-row">
+                <input type="time" id="w-start" class="notify-input" placeholder="Boshlanish">
+                <input type="time" id="w-end" class="notify-input" placeholder="Tugash">
+            </div>
+            <input type="text" id="w-msg" class="notify-input" placeholder="Dars yoki tanaffus matni">
+            <button class="notify-btn-action" onclick="saveData('weekly')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                JADVALGA QO'SHISH
+            </button>
+            <div class="notify-history-box" id="list-weekly"></div>
+        </div>
+
+        <!-- Daily Tab -->
+        <div id="daily-tab" class="notify-glass-card notify-tab-content">
+            <input type="date" id="d-date" class="notify-input">
+            <div class="notify-time-row">
+                <input type="time" id="d-start" class="notify-input" placeholder="Boshlanish">
+                <input type="time" id="d-end" class="notify-input" placeholder="Tugash">
+            </div>
+            <textarea id="d-msg" class="notify-textarea" placeholder="E'lon matnini yozing..." rows="3"></textarea>
+            <button class="notify-btn-action" onclick="saveData('daily')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                E'LONNI CHIQARISH
+            </button>
+            <div class="notify-history-box" id="list-daily"></div>
+        </div>
+
+        <!-- SOS Tab -->
+        <div id="sos-tab" class="notify-glass-card notify-tab-content">
+            <div class="notify-sos-timer" id="admin-sos-timer">00:00</div>
+            <textarea id="e-msg" class="notify-textarea" placeholder="SOS xabari (Masalan: EVAKUATSIYA!)" rows="2"></textarea>
+            <button class="notify-btn-action notify-btn-sos" onclick="sosAction(true)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                SOSNI YOQISH
+            </button>
+            <button class="notify-btn-action" style="margin-top:8px;" onclick="sosAction(false)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                SOSNI TO'XTATISH
+            </button>
+            <div class="notify-history-box" id="list-sos"></div>
+        </div>
+    </div>
+
+    <!-- ===== MONITOR PAGE ===== -->
+    <div id="show-page">
+        <div class="notify-nano-header">
+            <div class="notify-clock-box" id="clock">00:00:00</div>
+            <div class="notify-micro-status" id="status-circle">
+                <i id="status-icon" class="fas fa-circle"></i>
+            </div>
+        </div>
+        <div class="notify-zoom-wrapper" id="zoom-cont">
+            <div id="m-text">TIZIM TAYYOR...</div>
+        </div>
+    </div>
+
+    <script src="../../script.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "window.__ENV__?.MAIN_API_KEY || """,
+            authDomain: "monitorelon-cbaba.firebaseapp.com",
+            databaseURL: "https://monitorelon-cbaba-default-rtdb.firebaseio.com",
+            projectId: "monitorelon-cbaba",
+            storageBucket: "monitorelon-cbaba.firebasestorage.app",
+            messagingSenderId: "433185645641",
+            appId: "1:433185645641:web:eac6cf0bf36b61b5758b98"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        let weeklyData = {}, dailyData = {}, emData = {active: false}, sosHistory = {};
+        let currentMsg = "";
+        let currentScale = 1;
+        let initialDist = 0;
+        const zoomCont = document.getElementById('zoom-cont');
+
+        // Zoom Logic
+        document.getElementById('show-page').addEventListener('touchstart', e => {
+            if (e.touches.length === 2) initialDist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
+        });
+        document.getElementById('show-page').addEventListener('touchmove', e => {
+            if (e.touches.length === 2 && initialDist > 0) {
+                let dist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
+                let zoom = dist / initialDist;
+                let newScale = Math.min(Math.max(0.5, currentScale * zoom), 5);
+                zoomCont.style.transform = `scale(${newScale})`;
+            }
+        });
+        document.getElementById('show-page').addEventListener('touchend', e => {
+            if (e.touches.length < 2) {
+                let style = window.getComputedStyle(zoomCont);
+                let matrix = new WebKitCSSMatrix(style.transform);
+                currentScale = matrix.a;
+                initialDist = 0;
+            }
+        });
+
+        db.ref('system').on('value', snap => {
+            const val = snap.val() || {};
+            weeklyData = val.weekly || {};
+            dailyData = val.daily || {};
+            emData = val.emergency || {active: false};
+            sosHistory = val.sos_history || {};
+            renderLists();
+        });
+
+        function tToM(t) { if(!t) return -1; const [h, m] = t.split(':').map(Number); return h * 60 + m; }
+
+        function updateLogic() {
+            const now = new Date();
+            const curMin = now.getHours() * 60 + now.getMinutes();
+            const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+            const weekDay = now.getDay();
+            document.getElementById('clock').innerText = now.toLocaleTimeString('uz-UZ', {hour12:false});
+
+            let msg = "Hikmat: Ilm — najot yo'lidir.", icon = "fa-circle", color = "var(--text-secondary)";
+
+            if (weeklyData[weekDay]) {
+                Object.values(weeklyData[weekDay]).forEach(item => {
+                    if (curMin >= tToM(item.start) && curMin < tToM(item.end)) { msg = item.msg; icon = "fa-clock"; color = "#6366f1"; }
+                });
+            }
+            if (dailyData) {
+                Object.values(dailyData).forEach(item => {
+                    if (item.date === dateStr && curMin >= tToM(item.start) && curMin < tToM(item.end)) { msg = item.msg; icon = "fa-bullhorn"; color = "#a855f7"; }
+                });
+            }
+            if (emData.active) {
+                msg = emData.msg; icon = "fa-exclamation-triangle"; color = "#ff4757";
+                document.getElementById('show-page').style.background = document.body.classList.contains('dark') ? 
+                    "radial-gradient(circle, #220505, #202124)" : "radial-gradient(circle, #fff0f0, #ffffff)";
+                const diff = Math.floor((Date.now() - emData.startTime) / 1000);
+                const timerEl = document.getElementById('admin-sos-timer');
+                if (timerEl) timerEl.innerText = `${String(Math.floor(diff/60)).padStart(2,'0')}:${String(diff%60).padStart(2,'0')}`;
+            } else {
+                document.getElementById('show-page').style.background = '';
+            }
+
+            const iconEl = document.getElementById('status-icon');
+            iconEl.className = "fas " + icon; iconEl.style.color = color;
+            document.getElementById('status-circle').style.borderColor = color;
+
+            const textEl = document.getElementById('m-text');
+            if (currentMsg !== msg) {
+                textEl.style.opacity = "0";
+                setTimeout(() => {
+                    textEl.innerText = msg;
+                    textEl.classList.remove('notify-marquee');
+                    void textEl.offsetWidth;
+                    if (textEl.scrollWidth > window.innerWidth) {
+                        textEl.style.setProperty('--speed', Math.max(10, msg.length * 0.2) + 's');
+                        textEl.classList.add('notify-marquee');
+                        textEl.style.textAlign = "left";
+                    } else { textEl.style.textAlign = "center"; }
+                    textEl.style.opacity = "1";
+                    currentMsg = msg;
+                }, 400);
+            }
+        }
+
+        function saveData(type) {
+            const data = type === 'weekly' ? { start: document.getElementById('w-start').value, end: document.getElementById('w-end').value, msg: document.getElementById('w-msg').value, day: document.getElementById('w-day').value } 
+            : { date: document.getElementById('d-date').value, start: document.getElementById('d-start').value, end: document.getElementById('d-end').value, msg: document.getElementById('d-msg').value };
+            if(!data.msg || !data.start) return;
+            type === 'weekly' ? db.ref(`system/weekly/${data.day}`).push(data) : db.ref('system/daily').push(data);
+        }
+
+        function sosAction(act) {
+            if(act) {
+                const m = document.getElementById('e-msg').value || "SOS";
+                db.ref('system/emergency').set({ active: true, msg: m, startTime: Date.now() });
+                db.ref('system/sos_history').push({ msg: m, time: new Date().toLocaleString() });
+            } else db.ref('system/emergency').update({ active: false });
+        }
+
+        function renderLists() {
+            let wH = "", dH = "", sH = "";
+            const delIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+            Object.keys(weeklyData).forEach(d => { Object.keys(weeklyData[d]).forEach(k => { wH += `<div class="notify-history-item"><span><b>K:${d}</b> ${weeklyData[d][k].msg}</span><span class="notify-del-icon" onclick="db.ref('system/weekly/${d}/${k}').remove()">${delIcon}</span></div>`; })});
+            Object.keys(dailyData).forEach(k => { dH += `<div class="notify-history-item"><span><b>${dailyData[k].date}</b> ${dailyData[k].msg}</span><span class="notify-del-icon" onclick="db.ref('system/daily/${k}').remove()">${delIcon}</span></div>`; });
+            Object.keys(sosHistory).reverse().slice(0, 5).forEach(k => { sH += `<div class="notify-history-item"><span>${sosHistory[k].msg}</span><span class="notify-del-icon" onclick="db.ref('system/sos_history/${k}').remove()">${delIcon}</span></div>`; });
+            document.getElementById('list-weekly').innerHTML = wH; document.getElementById('list-daily').innerHTML = dH; document.getElementById('list-sos').innerHTML = sH;
+        }
+
+        function switchTab(tab, el) { 
+            document.querySelectorAll('.notify-tab-content').forEach(c => c.classList.remove('active')); 
+            document.querySelectorAll('.notify-pill').forEach(p => p.classList.remove('active')); 
+            document.getElementById(tab+'-tab').classList.add('active'); 
+            el.classList.add('active'); 
+        }
+        
+        function checkAdmin() { 
+            if(prompt("PIN:")==="byMR") { 
+                document.getElementById('admin-page').style.display='block'; 
+                document.getElementById('mode-selector').style.display='none'; 
+            } 
+        }
+        
+        function selectMode(m) { 
+            document.getElementById('mode-selector').style.display='none'; 
+            document.getElementById(m+'-page').style.display='flex'; 
+        }
+        
+        setInterval(updateLogic, 1000);
+    </script>
+</body>
+</html>

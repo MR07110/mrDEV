@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learncode.uz | CSS darslari</title>
+    
+    <link rel="icon" type="image/svg+xml" href="../icons/learncode_favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Bosh sahifa</span>
+                </a>
+                <div class="course-title-header">
+                    <img src="../icons/css3.svg" alt="CSS">
+                    <h1>CSS To'liq Kurs</h1>
+                </div>
+                <div class="progress-info">
+                    <span id="progressCount">0</span>/63
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="course-progress-bar">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="course-intro">
+            <div class="intro-content">
+                <div class="intro-icon">
+                    <img src="../icons/css3.svg" alt="CSS">
+                </div>
+                <div class="intro-text">
+                    <h2>CSS To'liq Kurs</h2>
+                    <p>Ulug'bek Samigjonov tomonidan tayyorlangan 63 ta video dars. Har bir darsda test, maslahatlar va amaliy mashqlar. Har 5 ta darsda mustahkamlash testlari mavjud.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="lessons-grid">
+            
+            <!-- 1-5 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">CSS Asoslari (1-5)</h2>
+                <div class="lesson-items">
+                    <a href="1/" class="lesson-item" data-lesson="1">
+                        <span class="lesson-num">1</span>
+                        <span class="lesson-name">Kirish</span>
+                        <span class="lesson-time">8:57</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="2/" class="lesson-item" data-lesson="2">
+                        <span class="lesson-num">2</span>
+                        <span class="lesson-name">CSS haqida. Kurs loyihasi</span>
+                        <span class="lesson-time">7:42</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="3/" class="lesson-item" data-lesson="3">
+                        <span class="lesson-num">3</span>
+                        <span class="lesson-name">HTML hujjat va CSS. Loyiha strukturasi</span>
+                        <span class="lesson-time">9:41</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="4/" class="lesson-item" data-lesson="4">
+                        <span class="lesson-num">4</span>
+                        <span class="lesson-name">Selectors (Tanlab oluvchilar)</span>
+                        <span class="lesson-time">10:29</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="5/" class="lesson-item mix-lesson" data-lesson="5">
+                        <span class="lesson-num">5</span>
+                        <span class="lesson-name">Comments (Izohlar)</span>
+                        <span class="lesson-time">6:33</span>
+                  
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6-10 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">CSS Asoslari davomi (6-10)</h2>
+                <div class="lesson-items">
+                    <a href="6/" class="lesson-item" data-lesson="6">
+                        <span class="lesson-num">6</span>
+                        <span class="lesson-name">Specificity (O'ziga xoslik)</span>
+                        <span class="lesson-time">13:53</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="7/" class="lesson-item" data-lesson="7">
+                        <span class="lesson-num">7</span>
+                        <span class="lesson-name">Inheritance (Meros olish)</span>
+                        <span class="lesson-time">9:35</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="8/" class="lesson-item" data-lesson="8">
+                        <span class="lesson-num">8</span>
+                        <span class="lesson-name">Combinators (Kombinatorlar)</span>
+                        <span class="lesson-time">22:08</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="9/" class="lesson-item" data-lesson="9">
+                        <span class="lesson-num">9</span>
+                        <span class="lesson-name">Classlar va qo'shma selektorlar</span>
+                        <span class="lesson-time">10:45</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="10/" class="lesson-item mix-lesson" data-lesson="10">
+                        <span class="lesson-num">10</span>
+                        <span class="lesson-name">Class yoki ID. !important haqida</span>
+                        <span class="lesson-time">7:16</span>
+                       
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 11-15 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Box Model (11-15)</h2>
+                <div class="lesson-items">
+                    <a href="11/" class="lesson-item" data-lesson="11">
+                        <span class="lesson-num">11</span>
+                        <span class="lesson-name">CSS asoslari yordamida loyihani yaxshilash</span>
+                        <span class="lesson-time">12:57</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="12/" class="lesson-item" data-lesson="12">
+                        <span class="lesson-num">12</span>
+                        <span class="lesson-name">Box model. Margin, Padding, Border</span>
+                        <span class="lesson-time">9:36</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="13/" class="lesson-item" data-lesson="13">
+                        <span class="lesson-num">13</span>
+                        <span class="lesson-name">Margin collapsing. Shorthands</span>
+                        <span class="lesson-time">13:29</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="14/" class="lesson-item" data-lesson="14">
+                        <span class="lesson-num">14</span>
+                        <span class="lesson-name">Height, Width. Max/Min height/width</span>
+                        <span class="lesson-time">20:39</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="15/" class="lesson-item mix-lesson" data-lesson="15">
+                        <span class="lesson-num">15</span>
+                        <span class="lesson-name">Display xossasi</span>
+                        <span class="lesson-time">15:23</span>
+           
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 16-20 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Display va Positioning (16-20)</h2>
+                <div class="lesson-items">
+                    <a href="16/" class="lesson-item" data-lesson="16">
+                        <span class="lesson-num">16</span>
+                        <span class="lesson-name">Text align, Vertical align va Float</span>
+                        <span class="lesson-time">12:12</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="17/" class="lesson-item" data-lesson="17">
+                        <span class="lesson-num">17</span>
+                        <span class="lesson-name">Text decoration. Pseudo classes</span>
+                        <span class="lesson-time">10:47</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="18/" class="lesson-item" data-lesson="18">
+                        <span class="lesson-num">18</span>
+                        <span class="lesson-name">Asosiy xossalar - loyiha (1-qism)</span>
+                        <span class="lesson-time">10:23</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="19/" class="lesson-item" data-lesson="19">
+                        <span class="lesson-num">19</span>
+                        <span class="lesson-name">Asosiy xossalar - loyiha (2-qism)</span>
+                        <span class="lesson-time">24:55</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="20/" class="lesson-item mix-lesson" data-lesson="20">
+                        <span class="lesson-num">20</span>
+                        <span class="lesson-name">Asosiy xossalar - loyiha (3-qism)</span>
+                        <span class="lesson-time">25:31</span>
+              
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 21-25 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Positioning (21-25)</h2>
+                <div class="lesson-items">
+                    <a href="21/" class="lesson-item" data-lesson="21">
+                        <span class="lesson-num">21</span>
+                        <span class="lesson-name">Joylashish va "static" qiymati</span>
+                        <span class="lesson-time">6:20</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="22/" class="lesson-item" data-lesson="22">
+                        <span class="lesson-num">22</span>
+                        <span class="lesson-name">Relative va Fixed</span>
+                        <span class="lesson-time">16:01</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="23/" class="lesson-item" data-lesson="23">
+                        <span class="lesson-num">23</span>
+                        <span class="lesson-name">Absolute va Sticky</span>
+                        <span class="lesson-time">9:23</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="24/" class="lesson-item" data-lesson="24">
+                        <span class="lesson-num">24</span>
+                        <span class="lesson-name">Z-index va Overflow</span>
+                        <span class="lesson-time">15:12</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="25/" class="lesson-item mix-lesson" data-lesson="25">
+                        <span class="lesson-num">25</span>
+                        <span class="lesson-name">Positioning yordamida loyihani yaxshilash</span>
+                        <span class="lesson-time">22:56</span>
+                  
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 26-30 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Background va Rasmlar (26-30)</h2>
+                <div class="lesson-items">
+                    <a href="26/" class="lesson-item" data-lesson="26">
+                        <span class="lesson-num">26</span>
+                        <span class="lesson-name">Background</span>
+                        <span class="lesson-time">11:23</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="27/" class="lesson-item" data-lesson="27">
+                        <span class="lesson-num">27</span>
+                        <span class="lesson-name">Styling images</span>
+                        <span class="lesson-time">6:22</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="28/" class="lesson-item" data-lesson="28">
+                        <span class="lesson-num">28</span>
+                        <span class="lesson-name">Gradient va Filterlar</span>
+                        <span class="lesson-time">13:27</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="29/" class="lesson-item" data-lesson="29">
+                        <span class="lesson-num">29</span>
+                        <span class="lesson-name">Rasmlar yordamida loyihani yaxshilash</span>
+                        <span class="lesson-time">20:27</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="30/" class="lesson-item mix-lesson" data-lesson="30">
+                        <span class="lesson-num">30</span>
+                        <span class="lesson-name">Formalarga style berish (1-qism)</span>
+                        <span class="lesson-time">11:39</span>
+   
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 31-35 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Formalar va Units (31-35)</h2>
+                <div class="lesson-items">
+                    <a href="31/" class="lesson-item" data-lesson="31">
+                        <span class="lesson-num">31</span>
+                        <span class="lesson-name">Formalarga style berish (2-qism)</span>
+                        <span class="lesson-time">18:20</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="32/" class="lesson-item" data-lesson="32">
+                        <span class="lesson-num">32</span>
+                        <span class="lesson-name">Formalar yordamida loyihani yaxshilash</span>
+                        <span class="lesson-time">15:08</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="33/" class="lesson-item" data-lesson="33">
+                        <span class="lesson-num">33</span>
+                        <span class="lesson-name">O'lchov birliklari (Units)</span>
+                        <span class="lesson-time">9:38</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="34/" class="lesson-item" data-lesson="34">
+                        <span class="lesson-num">34</span>
+                        <span class="lesson-name">Foiz (%) o'lchov birligi</span>
+                        <span class="lesson-time">11:12</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="35/" class="lesson-item mix-lesson" data-lesson="35">
+                        <span class="lesson-num">35</span>
+                        <span class="lesson-name">"em" o'lchov birligi</span>
+                        <span class="lesson-time">15:43</span>
+        
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 36-40 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Units va RWD (36-40)</h2>
+                <div class="lesson-items">
+                    <a href="36/" class="lesson-item" data-lesson="36">
+                        <span class="lesson-num">36</span>
+                        <span class="lesson-name">rem o'lchov birligi</span>
+                        <span class="lesson-time">13:31</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="37/" class="lesson-item" data-lesson="37">
+                        <span class="lesson-num">37</span>
+                        <span class="lesson-name">Viewport o'lchov birligi</span>
+                        <span class="lesson-time">14:34</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="38/" class="lesson-item" data-lesson="38">
+                        <span class="lesson-num">38</span>
+                        <span class="lesson-name">Units yordamida loyihani yaxshilash</span>
+                        <span class="lesson-time">19:57</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="39/" class="lesson-item" data-lesson="39">
+                        <span class="lesson-num">39</span>
+                        <span class="lesson-name">Responsive Web Design (RWD)</span>
+                        <span class="lesson-time">12:45</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="40/" class="lesson-item mix-lesson" data-lesson="40">
+                        <span class="lesson-num">40</span>
+                        <span class="lesson-name">Media queries</span>
+                        <span class="lesson-time">19:33</span>
+
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 41-45 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">RWD va Fontlar (41-45)</h2>
+                <div class="lesson-items">
+                    <a href="41/" class="lesson-item" data-lesson="41">
+                        <span class="lesson-num">41</span>
+                        <span class="lesson-name">Breakpoints</span>
+                        <span class="lesson-time">11:50</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="42/" class="lesson-item" data-lesson="42">
+                        <span class="lesson-num">42</span>
+                        <span class="lesson-name">RWD yordamida loyihani yaxshilash (1)</span>
+                        <span class="lesson-time">29:53</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="43/" class="lesson-item" data-lesson="43">
+                        <span class="lesson-num">43</span>
+                        <span class="lesson-name">RWD yordamida loyihani yaxshilash (2)</span>
+                        <span class="lesson-time">13:42</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="44/" class="lesson-item" data-lesson="44">
+                        <span class="lesson-num">44</span>
+                        <span class="lesson-name">Fonts</span>
+                        <span class="lesson-time">13:46</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="45/" class="lesson-item mix-lesson" data-lesson="45">
+                        <span class="lesson-num">45</span>
+                        <span class="lesson-name">Yangi font qo'shish</span>
+                        <span class="lesson-time">20:15</span>
+             
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 46-50 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Fontlar va Transforms (46-50)</h2>
+                <div class="lesson-items">
+                    <a href="46/" class="lesson-item" data-lesson="46">
+                        <span class="lesson-num">46</span>
+                        <span class="lesson-name">Local font qo'shish</span>
+                        <span class="lesson-time">17:26</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="47/" class="lesson-item" data-lesson="47">
+                        <span class="lesson-num">47</span>
+                        <span class="lesson-name">Font xossalari</span>
+                        <span class="lesson-time">14:09</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="48/" class="lesson-item" data-lesson="48">
+                        <span class="lesson-num">48</span>
+                        <span class="lesson-name">Fonts yordamida loyihani yaxshilash</span>
+                        <span class="lesson-time">14:50</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="49/" class="lesson-item" data-lesson="49">
+                        <span class="lesson-num">49</span>
+                        <span class="lesson-name">2D transforms</span>
+                        <span class="lesson-time">15:27</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="50/" class="lesson-item mix-lesson" data-lesson="50">
+                        <span class="lesson-num">50</span>
+                        <span class="lesson-name">3D transforms</span>
+                        <span class="lesson-time">10:25</span>
+                
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 51-55 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Transitions va Animations (51-55)</h2>
+                <div class="lesson-items">
+                    <a href="51/" class="lesson-item" data-lesson="51">
+                        <span class="lesson-num">51</span>
+                        <span class="lesson-name">Transitions</span>
+                        <span class="lesson-time">11:42</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="52/" class="lesson-item" data-lesson="52">
+                        <span class="lesson-num">52</span>
+                        <span class="lesson-name">Animations (1-qism)</span>
+                        <span class="lesson-time">10:30</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="53/" class="lesson-item" data-lesson="53">
+                        <span class="lesson-num">53</span>
+                        <span class="lesson-name">Animations (2-qism)</span>
+                        <span class="lesson-time">13:05</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="54/" class="lesson-item" data-lesson="54">
+                        <span class="lesson-num">54</span>
+                        <span class="lesson-name">CSS Advanced yordamida loyihani yaxshilash</span>
+                        <span class="lesson-time">7:13</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="55/" class="lesson-item mix-lesson" data-lesson="55">
+                        <span class="lesson-num">55</span>
+                        <span class="lesson-name">Flexbox: asoslari va terminlari</span>
+                        <span class="lesson-time">10:53</span>
+               
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 56-60 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Flexbox (56-60)</h2>
+                <div class="lesson-items">
+                    <a href="56/" class="lesson-item" data-lesson="56">
+                        <span class="lesson-num">56</span>
+                        <span class="lesson-name">Flexbox: direction, wrap, flow, justify-content</span>
+                        <span class="lesson-time">14:28</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="57/" class="lesson-item" data-lesson="57">
+                        <span class="lesson-num">57</span>
+                        <span class="lesson-name">Flexbox: align-items va align-content</span>
+                        <span class="lesson-time">8:34</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="58/" class="lesson-item" data-lesson="58">
+                        <span class="lesson-num">58</span>
+                        <span class="lesson-name">Flexbox: order, flex-grow, flex-shrink</span>
+                        <span class="lesson-time">12:55</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="59/" class="lesson-item" data-lesson="59">
+                        <span class="lesson-num">59</span>
+                        <span class="lesson-name">Flexbox: flex-basis, flex, align-self</span>
+                        <span class="lesson-time">7:58</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="60/" class="lesson-item mix-lesson" data-lesson="60">
+                        <span class="lesson-num">60</span>
+                        <span class="lesson-name">Flexbox yordamida loyihani yaxshilash</span>
+                        <span class="lesson-time">13:44</span>
+                       
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 61-63 darslar -->
+            <div class="lesson-group">
+                <h2 class="group-title">Yakuniy Darslar (61-63)</h2>
+                <div class="lesson-items">
+                    <a href="61/" class="lesson-item" data-lesson="61">
+                        <span class="lesson-num">61</span>
+                        <span class="lesson-name">CSS Grid</span>
+                        <span class="lesson-time">9:56</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="62/" class="lesson-item" data-lesson="62">
+                        <span class="lesson-num">62</span>
+                        <span class="lesson-name">Best practices</span>
+                        <span class="lesson-time">7:00</span>
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                    <a href="63/" class="lesson-item mix-lesson" data-lesson="63">
+                        <span class="lesson-num">63</span>
+                        <span class="lesson-name">Loyihani yakunlash. Kurs yakuni</span>
+                        <span class="lesson-time">-</span>
+                 
+                        <i class="fas fa-check-circle lesson-check"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="course-stats">
+            <div class="stat-item">
+                <i class="fas fa-video"></i>
+                <span class="stat-value">63</span>
+                <span class="stat-label">video dars</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-clock"></i>
+                <span class="stat-value">15+</span>
+                <span class="stat-label">soat</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-pencil-alt"></i>
+                <span class="stat-value">63</span>
+                <span class="stat-label">test</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-layer-group"></i>
+                <span class="stat-value">12</span>
+                <span class="stat-label">aralash test</span>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+<script>
+    function loadProgress() {
+        const stored = localStorage.getItem('learncode_progress');
+        const progress = stored ? JSON.parse(stored) : { html: [], css: [], js: [], bootstrap: [] };
+        
+        const completed = progress.css || [];
+        const total = 63;
+        
+        document.getElementById('progressCount').textContent = completed.length;
+        document.getElementById('progressFill').style.width = (completed.length / total * 100) + '%';
+        
+        document.querySelectorAll('.lesson-item').forEach(item => {
+            const lessonNum = item.dataset.lesson;
+            if (completed.includes(lessonNum)) {
+                item.classList.add('completed');
+            }
+        });
+    }
+    
+    loadProgress();
+    window.addEventListener('storage', loadProgress);
+</script>
+</body>
+</html>

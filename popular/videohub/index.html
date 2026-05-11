@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Videos - MRDEV</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" href="../../favicons/videohub.svg" type="image/svg+xml">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .videos-wrapper {
+            min-height: calc(100vh - 60px);
+            min-height: calc(100dvh - 60px);
+            background: var(--bg);
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .videos-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .upload-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .upload-title {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--bg);
+        }
+
+        .upload-area:active {
+            transform: scale(0.98);
+        }
+
+        .upload-area:hover {
+            border-color: var(--blue);
+            background: var(--hover);
+        }
+
+        .preview-area {
+            margin-top: 16px;
+            display: none;
+        }
+
+        .preview-area video {
+            width: 100%;
+            max-height: 200px;
+            border-radius: 16px;
+        }
+
+        .video-input-group {
+            margin-top: 16px;
+        }
+
+        .video-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--text);
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .video-input:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+
+        .upload-btn {
+            width: 100%;
+            margin-top: 16px;
+            padding: 14px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 28px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .upload-btn:active {
+            transform: scale(0.96);
+        }
+
+        .upload-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .videos-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .video-card {
+            background: var(--surface);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .video-card:active {
+            transform: scale(0.98);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            background: #000;
+            cursor: pointer;
+        }
+
+        .video-thumbnail video {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+        }
+
+        .video-info {
+            padding: 14px 16px;
+        }
+
+        .video-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .delete-video {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .delete-video:active {
+            transform: scale(0.9);
+            color: #ea4335;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--blue);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .video-modal.show {
+            display: flex;
+        }
+
+        .video-modal video {
+            width: 90%;
+            max-height: 85vh;
+            border-radius: 16px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-info {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            background: rgba(0,0,0,0.6);
+            padding: 10px 16px;
+            border-radius: 30px;
+        }
+
+        @media (max-width: 500px) {
+            .videos-wrapper {
+                padding: 12px;
+            }
+            .video-thumbnail video {
+                max-height: 180px;
+            }
+            .play-overlay {
+                width: 48px;
+                height: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <button class="header-btn" onclick="window.history.back()" aria-label="Orqaga">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </button>
+            <a href="../../popular/" class="logo">
+                <span class="logo-mr">MR</span><span class="logo-dev">DEV</span>
+            </a>
+            <span style="color: var(--text-secondary); font-size: 14px; margin-left: 4px; font-weight: 400;">/ Videos</span>
+        </div>
+        <button id="theme-btn" class="header-btn theme-btn" onclick="toggleTheme()" aria-label="Rejimni almashtirish"></button>
+    </header>
+
+    <div class="videos-wrapper">
+        <div class="videos-container">
+            <!-- Upload Card -->
+            <div class="upload-card">
+                <div class="upload-title">Video yuklash</div>
+                <div class="upload-area" id="uploadArea">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="M10 9l5 3-5 3V9z"/>
+                    </svg>
+                    <p style="margin-top: 12px;">Video tanlash uchun bosing</p>
+                    <small style="color: var(--text-secondary);">MP4, MOV, WebM formatlar</small>
+                </div>
+                <input type="file" id="videoInput" style="display: none;" accept="video/*">
+                
+                <div class="preview-area" id="previewArea">
+                    <video id="previewVideo" controls></video>
+                </div>
+                
+                <div class="video-input-group">
+                    <input type="text" id="videoTitle" class="video-input" placeholder="Video nomi (ixtiyoriy)">
+                </div>
+                
+                <button class="upload-btn" id="uploadBtn" disabled>Yuklash</button>
+            </div>
+
+            <!-- Videos List -->
+            <div class="upload-title" style="margin-top: 8px;">Barcha videolar</div>
+            <div class="videos-grid" id="videosGrid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Yuklanmoqda...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <button class="modal-close" id="closeModalBtn">×</button>
+        <video id="modalVideo" controls autoplay></video>
+        <div class="modal-info" id="modalInfo"></div>
+    </div>
+
+    <script src="../../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script>
+        // Supabase configuration
+        const SUPABASE_URL = 'window.__ENV__?.SUPABASE_URL || ""';
+        const SUPABASE_KEY = 'window.__ENV__?.SUPABASE_KEY || ""';
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        let currentUser = null;
+        let videos = [];
+        let selectedFile = null;
+
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const videoInput = document.getElementById('videoInput');
+        const previewArea = document.getElementById('previewArea');
+        const previewVideo = document.getElementById('previewVideo');
+        const videoTitle = document.getElementById('videoTitle');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const videosGrid = document.getElementById('videosGrid');
+        const videoModal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const modalInfo = document.getElementById('modalInfo');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        // Load videos from Supabase
+        async function loadVideos() {
+            try {
+                const { data, error } = await supabase
+                    .storage
+                    .from('videos')
+                    .list('', {
+                        limit: 100,
+                        sortBy: { column: 'created_at', order: 'desc' }
+                    });
+                
+                if (error) throw error;
+                
+                videos = data || [];
+                renderVideos();
+            } catch (err) {
+                console.error('Error loading videos:', err);
+                videosGrid.innerHTML = `<div class="empty-state"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>Videolar yuklanmadi</p><small>${err.message}</small></div>`;
+            }
+        }
+
+        // Get public URL for video
+        function getVideoUrl(fileName) {
+            const { data } = supabase.storage.from('videos').getPublicUrl(fileName);
+            return data.publicUrl;
+        }
+
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Format date
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            const now = new Date();
+            const diff = now - date;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            
+            if (days === 0) return 'Bugun';
+            if (days === 1) return 'Kecha';
+            if (days < 7) return `${days} kun oldin`;
+            return date.toLocaleDateString('uz-UZ');
+        }
+
+        // Render videos
+        function renderVideos() {
+            if (videos.length === 0) {
+                videosGrid.innerHTML = `<div class="empty-state"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z"/></svg><p>Hali video yo'q</p><small>Birinchi videoni yuklang</small></div>`;
+                return;
+            }
+            
+            videosGrid.innerHTML = videos.map(video => {
+                const videoUrl = getVideoUrl(video.name);
+                const title = video.name.split('_').pop() || video.name;
+                const size = formatFileSize(video.metadata?.size || 0);
+                const date = formatDate(video.created_at);
+                
+                return `
+                    <div class="video-card" data-name="${video.name}">
+                        <div class="video-thumbnail" data-url="${videoUrl}" data-name="${title}">
+                            <video src="${videoUrl}" preload="metadata"></video>
+                            <div class="play-overlay">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="none">
+                                    <polygon points="5 3 19 12 5 21 5 3"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">
+                                <span>${escapeHtml(title.length > 40 ? title.substring(0, 40) + '...' : title)}</span>
+                                <button class="delete-video" data-name="${video.name}" title="O'chirish">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="3 6 5 6 21 6"/>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="video-meta">
+                                <span>${size}</span>
+                                <span>${date}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Attach events
+            document.querySelectorAll('.video-thumbnail').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const url = el.dataset.url;
+                    const name = el.dataset.name;
+                    modalVideo.src = url;
+                    modalInfo.textContent = name;
+                    videoModal.classList.add('show');
+                });
+            });
+            
+            document.querySelectorAll('.delete-video').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    const fileName = btn.dataset.name;
+                    if (confirm(`"${fileName}" videoni o'chirmoqchimisiz?`)) {
+                        await deleteVideo(fileName);
+                    }
+                });
+            });
+        }
+
+        // Delete video from Supabase
+        async function deleteVideo(fileName) {
+            try {
+                const { error } = await supabase.storage.from('videos').remove([fileName]);
+                if (error) throw error;
+                showToast('Video o\'chirildi', 'success');
+                loadVideos();
+            } catch (err) {
+                showToast('Xatolik: ' + err.message, 'error');
+            }
+        }
+
+        // Upload video to Supabase
+        async function uploadVideo() {
+            if (!selectedFile) {
+                showToast('Video tanlang', 'error');
+                return;
+            }
+            
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = 'Yuklanmoqda...';
+            
+            try {
+                const fileName = `${Date.now()}_${selectedFile.name.replace(/[^a-zA-Z0-9.]/g, '_')}`;
+                
+                const { data, error } = await supabase.storage
+                    .from('videos')
+                    .upload(fileName, selectedFile, {
+                        cacheControl: '3600',
+                        upsert: false
+                    });
+                
+                if (error) throw error;
+                
+                showToast('Video yuklandi!', 'success');
+                
+                // Reset form
+                selectedFile = null;
+                videoInput.value = '';
+                previewArea.style.display = 'none';
+                previewVideo.src = '';
+                videoTitle.value = '';
+                uploadBtn.disabled = true;
+                uploadBtn.textContent = 'Yuklash';
+                
+                // Reload videos
+                loadVideos();
+                
+            } catch (err) {
+                console.error('Upload error:', err);
+                showToast('Xatolik: ' + err.message, 'error');
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = 'Qayta urunish';
+            }
+        }
+
+        // Handle file selection
+        function handleFileSelect(file) {
+            if (!file || !file.type.startsWith('video/')) {
+                showToast('Video formatidagi fayl tanlang', 'error');
+                return;
+            }
+            
+            selectedFile = file;
+            
+            // Preview
+            const url = URL.createObjectURL(file);
+            previewVideo.src = url;
+            previewArea.style.display = 'block';
+            
+            // Auto fill title
+            if (!videoTitle.value) {
+                const name = file.name.replace(/\.[^/.]+$/, '');
+                videoTitle.value = name.length > 50 ? name.substring(0, 50) : name;
+            }
+            
+            uploadBtn.disabled = false;
+        }
+
+        // Events
+        uploadArea.addEventListener('click', () => {
+            videoInput.click();
+        });
+        
+        videoInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                handleFileSelect(e.target.files[0]);
+            }
+        });
+        
+        uploadBtn.addEventListener('click', uploadVideo);
+        
+        closeModalBtn.addEventListener('click', () => {
+            videoModal.classList.remove('show');
+            modalVideo.pause();
+            modalVideo.src = '';
+        });
+        
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('show');
+                modalVideo.pause();
+                modalVideo.src = '';
+            }
+        });
+
+        // Drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--blue)';
+        });
+        
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '';
+            const file = e.dataTransfer.files[0];
+            if (file) handleFileSelect(file);
+        });
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${type === 'success' ? '#34a853' : type === 'error' ? '#ea4335' : '#303134'};
+                color: white;
+                padding: 10px 20px;
+                border-radius: 30px;
+                font-size: 13px;
+                z-index: 2000;
+                animation: fadeOut 2.5s forwards;
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Initial load
+        loadVideos();
+        
+        // Check if bucket exists, if not create hint
+        async function checkBucket() {
+            try {
+                const { data, error } = await supabase.storage.getBucket('videos');
+                if (error && error.message.includes('not found')) {
+                    console.warn('Bucket "videos" mavjud emas. Iltimos, Supabase dashboardda yarating.');
+                    showToast('Video bucket mavjud emas', 'error');
+                }
+            } catch(e) {}
+        }
+        
+        checkBucket();
+    </script>
+</body>
+</html>

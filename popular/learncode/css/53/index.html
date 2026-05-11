@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>53-Dars: Animations (2-qism) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "53",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=2R3ynMxBGc0",
+            "lessonTitle": "Animations (2-qism)"
+        }
+    </script>
+    
+    <!-- Test javoblari (53-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>53-Dars: Animations (2-qism)</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 13:05
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/2R3ynMxBGc0" 
+                            title="CSS | 53. Animations (2-qism)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 53. Animations (2-qism)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 13:05</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Animations (2-qism)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 1-mart, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Transitions va Animations</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>52-darsda o'rgangan animatsiya asoslarini davom ettiramiz. <code>animation-play-state</code>, <code>will-change</code>, <code>prefers-reduced-motion</code> va murakkab <code>@keyframes</code> texnikalarini o'rganasiz. Professional animatsiyalar yaratish uchun zarur bo'lgan ilg'or bilimlar.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>animation-play-state</code> - animatsiyani to'xtatish/ishga tushirish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>will-change</code> - brauzerga animatsiya bo'lishini oldindan aytish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>prefers-reduced-motion</code> - accessibility media query</li>
+                        <li><i class="fas fa-check-circle"></i> Murakkab <code>@keyframes</code> - bir nechta xususiyatlar bilan</li>
+                        <li><i class="fas fa-check-circle"></i> Animatsiya performansini optimizatsiya qilish</li>
+                        <li><i class="fas fa-check-circle"></i> Real loyiha uchun professional animatsiyalar</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: ANIMATION-PLAY-STATE ==================== -->
+                <section class="lesson-section" id="play-state">
+                    <h2><i class="fas fa-pause-circle"></i> animation-play-state</h2>
+                    
+                    <p><code>animation-play-state</code> xususiyati animatsiyani vaqtincha to'xtatish yoki davom ettirish imkonini beradi. Bu hover bo'lganda animatsiyani to'xtatish yoki JavaScript orqali boshqarish uchun juda foydali.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* animation-play-state qiymatlari */
+.running { animation-play-state: running; }  /* Animatsiya ishlaydi (default) */
+.paused { animation-play-state: paused; }    /* Animatsiya to'xtatilgan */
+
+/* Amaliy misol - hover bo'lganda to'xtatish */
+.loader {
+    animation: spin 1s linear infinite;
+}
+.loader:hover {
+    animation-play-state: paused;  /* Sichqoncha olib borilganda to'xtaydi */
+}
+
+/* Murakkab misol - barcha animatsiyalarni to'xtatish */
+.animation-paused * {
+    animation-play-state: paused !important;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> <code>animation-play-state: paused</code> animatsiyani joriy holatida muzlatadi. Davom ettirilganda xuddi shu joydan boshlanadi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: WILL-CHANGE ==================== -->
+                <section class="lesson-section" id="will-change">
+                    <h2><i class="fas fa-gauge-high"></i> will-change - Performans optimizatsiyasi</h2>
+                    
+                    <p><code>will-change</code> xususiyati brauzerga qaysi CSS xususiyatlari o'zgarishini oldindan aytib beradi. Bu brauzerga kerakli optimizatsiyalarni oldindan qilish imkonini beradi va animatsiya silliqroq ishlaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* will-change - brauzerga oldindan xabar berish */
+.animated-element {
+    will-change: transform, opacity;  /* Bu xususiyatlar o'zgaradi */
+    transition: transform 0.3s, opacity 0.3s;
+}
+.animated-element:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+/* Noto'g'ri ishlatish - hamma narsaga will-change berish */
+*, *::before, *::after {
+    will-change: all;  /* ❌ BU NOTO'G'RI! Performansni pasaytiradi! */
+}
+
+/* To'g'ri ishlatish - faqat animatsiya bo'ladigan elementlarga */
+.card {
+    will-change: transform;  /* ✅ Faqat kerakli xususiyat */
+    transition: transform 0.3s;
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Muhim:</strong> <code>will-change</code> ni faqat haqiqatan ham animatsiya bo'ladigan elementlarga bering. Hammasiga berish xotirani ortiqcha sarflaydi va performansni pasaytiradi!
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: PREFERS-REDUCED-MOTION ==================== -->
+                <section class="lesson-section" id="reduced-motion">
+                    <h2><i class="fas fa-universal-access"></i> prefers-reduced-motion (Accessibility)</h2>
+                    
+                    <p><code>prefers-reduced-motion</code> - bu media query bo'lib, foydalanuvchi operatsion tizimida "animatsiyalarni kamaytirish" sozlamasini yoqqan yoki yoqmaganligini tekshiradi. Professional dasturchi har doim accessibility ni hisobga olishi kerak!</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Foydalanuvchi animatsiyalarni kamaytirishni so'ragan bo'lsa */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Yoki aniq elementlar uchun */
+@media (prefers-reduced-motion: reduce) {
+    .loader {
+        animation: none;  /* Animatsiyani butunlay o'chirish */
+    }
+    .animated-card {
+        transition: none;  /* Transitionlarni o'chirish */
+    }
+}
+
+/* no-preference - animatsiyalarni yoqish mumkin bo'lganda */
+@media (prefers-reduced-motion: no-preference) {
+    .hero-title {
+        animation: slideIn 1s ease-out;
+    }
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Senior biladi:</strong> <code>prefers-reduced-motion</code> ni qo'llash nafaqat yaxshi amaliyot, balki ba'zi hollarda qonuniy talab hamdir (WCAG accessibility standartlari).
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: MURAKKAB @KEYFRAMES ==================== -->
+                <section class="lesson-section" id="complex-keyframes">
+                    <h2><i class="fas fa-film"></i> Murakkab @keyframes yozish</h2>
+                    
+                    <p>Professional animatsiyalar bir nechta xususiyatlarni bir vaqtda o'zgartirishni talab qiladi. Har bir foizda bir nechta xususiyatni o'zgartirish mumkin.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* Murakkab animatsiya - bir nechta xususiyatlar */
+@keyframes professionalEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+        filter: blur(5px);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateY(10px) scale(1.02);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Shimmer loading effekti */
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+.shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: ANIMATSIYA PERFORMANSI ==================== -->
+                <section class="lesson-section" id="animation-performance">
+                    <h2><i class="fas fa-tachometer-alt"></i> Animatsiya performansi - GPU vs CPU</h2>
+                    
+                    <p>Barcha CSS xususiyatlari bir xil tezlikda animatsiya qilinmaydi. Faqat <code>transform</code> va <code>opacity</code> GPU da ishlaydi va eng silliq animatsiyalarni beradi.</p>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead><tr><th>Xususiyat</th><th>Qayerda ishlaydi</th><th>Performans</th><th>Tavsiya</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>transform</code></td><td>GPU</td><td>⭐⭐⭐⭐⭐</td><td>Har doim ishlating</td></tr>
+                                <tr><td><code>opacity</code></td><td>GPU</td><td>⭐⭐⭐⭐⭐</td><td>Har doim ishlating</td></tr>
+                                <tr><td><code>filter</code></td><td>GPU (ba'zilari)</td><td>⭐⭐⭐</td><td>Ehtiyot bo'ling</td></tr>
+                                <tr><td><code>background-color</code></td><td>CPU</td><td>⭐⭐⭐</td><td>Kerak bo'lganda</td></tr>
+                                <tr><td><code>width/height</code></td><td>CPU</td><td>⭐</td><td>Iloji boricha ishlatmang</td></tr>
+                                <tr><td><code>top/left</code></td><td>CPU</td><td>⭐</td><td><code>transform</code> ishlating</td></tr>
+                                <tr><td><code>box-shadow</code></td><td>CPU</td><td>⭐</td><td>Ehtiyot bo'ling</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">CSS - Yaxshi vs Yomon</span><button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button></div>
+                        <pre><code class="language-css">/* YOMON - CPU da ishlaydi, lag bo'ladi */
+.bad-animation {
+    transition: left 0.3s, top 0.3s, width 0.3s, height 0.3s;
+}
+.bad-animation:hover {
+    left: 100px;
+    top: 50px;
+    width: 200px;
+    height: 150px;
+}
+
+/* YAXSHI - GPU da ishlaydi, juda silliq */
+.good-animation {
+    transition: transform 0.3s, opacity 0.3s;
+}
+.good-animation:hover {
+    transform: translate(100px, 50px) scale(1.2);
+    opacity: 0.8;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header"><h3><i class="fas fa-pencil-alt"></i> 53-dars testi</h3><span class="test-badge">4 ta savol</span></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">1</span><code>animation-play-state: paused</code> nima qiladi?</div><div class="options"><div class="option"><input type="radio" name="q1" value="a"><label>Animatsiyani butunlay o'chiradi</label></div><div class="option"><input type="radio" name="q1" value="b"><label>Animatsiyani joriy holatida to'xtatadi</label></div><div class="option"><input type="radio" name="q1" value="c"><label>Animatsiyani boshidan boshlaydi</label></div><div class="option"><input type="radio" name="q1" value="d"><label>Animatsiya tezligini oshiradi</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">2</span><code>will-change</code> xususiyati nima uchun ishlatiladi?</div><div class="options"><div class="option"><input type="radio" name="q2" value="a"><label>Element rangini o'zgartirish</label></div><div class="option"><input type="radio" name="q2" value="b"><label>Animatsiyani to'xtatish</label></div><div class="option"><input type="radio" name="q2" value="c"><label>Brauzerga oldindan optimizatsiya qilish imkonini berish</label></div><div class="option"><input type="radio" name="q2" value="d"><label>Media query yozish</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">3</span><code>prefers-reduced-motion</code> nima uchun kerak?</div><div class="options"><div class="option"><input type="radio" name="q3" value="a"><label>Accessibility - foydalanuvchi sozlamasiga moslashish</label></div><div class="option"><input type="radio" name="q3" value="b"><label>Animatsiyani tezlashtirish</label></div><div class="option"><input type="radio" name="q3" value="c"><label>Mobil qurilmalar uchun</label></div><div class="option"><input type="radio" name="q3" value="d"><label>Brauzer versiyasini tekshirish</label></div></div></div>
+                    
+                    <div class="test-question"><div class="question-text"><span class="question-number">4</span>Qaysi xususiyatlar GPU da ishlaydi va eng silliq animatsiya beradi?</div><div class="options"><div class="option"><input type="radio" name="q4" value="a"><label>width va height</label></div><div class="option"><input type="radio" name="q4" value="b"><label>top va left</label></div><div class="option"><input type="radio" name="q4" value="c"><label>background-color</label></div><div class="option"><input type="radio" name="q4" value="d"><label>transform va opacity</label></div></div></div>
+                    
+                    <div class="test-submit"><button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button></div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header"><i class="fas fa-pencil-alt"></i><h3>Amaliy mashq (Senior daraja)</h3></div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Professional animatsiyalar yarating va accessibility ni hisobga oling.</p>
+                        <ol><li>Loader yarating va hover bo'lganda <code>animation-play-state: paused</code> qo'llang</li><li>Animatsiya bo'ladigan elementlarga <code>will-change</code> qo'shing</li><li><code>prefers-reduced-motion</code> media query qo'shing</li><li>Murakkab <code>@keyframes</code> yozing (bir nechta xususiyatlar bilan)</li></ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Senior darajadagi yechim:</h4>
+                        <pre><code class="language-css">@keyframes professionalSpin {
+    0% { transform: rotate(0deg) scale(1); opacity: 0.8; }
+    50% { transform: rotate(180deg) scale(1.1); opacity: 1; }
+    100% { transform: rotate(360deg) scale(1); opacity: 0.8; }
+}
+.loader {
+    width: 60px; height: 60px; border: 4px solid #e2e8f0; border-top-color: #3b82f6;
+    border-radius: 50%; will-change: transform, opacity;
+    animation: professionalSpin 1.2s ease-in-out infinite;
+}
+.loader:hover { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+    .loader { animation: none; border-top-color: #e2e8f0; opacity: 0.5; }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi (Senior bilishi kerak)</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>animation-play-state</strong> - animatsiyani to'xtatish/davom ettirish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>will-change</strong> - brauzerga oldindan xabar berish (faqat kerakli elementlarga!)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>prefers-reduced-motion</strong> - accessibility media query</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Murakkab @keyframes</strong> - bir nechta xususiyatlar bilan</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>GPU vs CPU</strong> - <code>transform</code> va <code>opacity</code> eng yaxshisi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> CSS Advanced yordamida loyihani yaxshilash</li>
+                    </ul>
+                </div>
+                
+                <!-- IZOHLAR, NAVIGATSIYA, SIDEBAR, FOOTER - STANDART -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header"><h2><i class="fas fa-comments"></i> Izohlar</h2><span class="comments-count" id="commentsCount">0 ta izoh</span></div>
+                    <div class="comment-form"><div class="comment-avatar"><i class="fas fa-user"></i></div><div class="comment-input-wrapper"><input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi"><textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea><div class="comment-form-footer"><span class="char-count"><span id="charCount">0</span>/500</span><button class="btn-submit-comment" id="submitComment"><i class="fas fa-paper-plane"></i><span>Yuborish</span></button></div></div></div>
+                    <div class="comments-list" id="commentsList"><div class="comments-loading"><i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span></div></div>
+                </section>
+                
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../52/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../54/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson"><i class="fas fa-check"></i><span>Darsni yakunlash</span></button>
+                </div>
+                
+            </div>
+            
+            <aside class="sidebar">
+                <div class="sidebar-card"><h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4><ul class="sidebar-outline">
+                    <li><a href="#play-state">play-state</a></li><li><a href="#will-change">will-change</a></li>
+                    <li><a href="#reduced-motion">reduced-motion</a></li>
+                    <li><a href="#complex-keyframes">Murakkab @keyframes</a></li>
+                    <li><a href="#animation-performance">Performans</a></li>
+                    <li><a href="#test">Test</a></li><li><a href="#practice">Amaliy mashq</a></li><li><a href="#summary">Xulosa</a></li><li><a href="#comments">Izohlar</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-toolbox"></i> Resurslar</h4><ul class="sidebar-outline">
+                    <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                    <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                </ul></div>
+                <div class="sidebar-card"><h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4><div class="sidebar-progress"><div class="progress-label"><span>CSS kursi</span><span id="progressFraction">53/63</span></div><div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 84.1%"></div></div></div></div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <div class="toast-notification" id="toastNotification"><i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span></div>
+    <footer class="footer"><div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div></footer>
+
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

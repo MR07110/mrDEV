@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16-Dars: Text align, Vertical align va Float | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "16",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=69VWgCVJ7Bo&list=PLpDyZ4xZcDg_gyII__1jtnE2FEgqpfJU8&index=16",
+            "lessonTitle": "Text align, Vertical align va Float"
+        }
+    </script>
+    
+    <!-- Test javoblari (16-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>16-Dars: Text align, Vertical align va Float</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 12:12
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/69VWgCVJ7Bo" 
+                            title="CSS | 16. Text align, Vertical align va Float"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 16. Text align, Vertical align va Float</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 12:12</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Text align, Vertical align va Float</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 23-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Display va Positioning</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da matnlarni gorizontal tekislash (<code>text-align</code>), inline va inline-block elementlarni vertikal tekislash (<code>vertical-align</code>), va elementlarni suzdirib joylashtirish (<code>float</code>) xususiyatlarini o'rganasiz. Bu xususiyatlar sahifa layoutini yaratishda juda muhim.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>text-align</code> - matnni gorizontal tekislash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>vertical-align</code> - inline elementlarni vertikal tekislash</li>
+                        <li><i class="fas fa-check-circle"></i> <code>float</code> - elementlarni suzdirib joylashtirish</li>
+                        <li><i class="fas fa-check-circle"></i> <code>clear</code> - float ni tozalash</li>
+                        <li><i class="fas fa-check-circle"></i> Float bilan layout yaratish usullari</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>text-align faqat inline kontent uchun:</strong> Bu xususiyat block element ichidagi matn va inline elementlarni tekislaydi, block elementning o'zini emas.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>vertical-align faqat inline/inline-block uchun:</strong> Bu xususiyat faqat inline yoki inline-block elementlarda ishlaydi. Block elementlarda ishlamaydi!</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Float o'rniga Flexbox:</strong> Zamonaviy layoutlar uchun float o'rniga Flexbox yoki Grid ishlatish tavsiya etiladi.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: TEXT-ALIGN ==================== -->
+                <section class="lesson-section" id="text-align">
+                    <h2><i class="fas fa-align-left"></i> Text align - matnni gorizontal tekislash</h2>
+                    
+                    <p><strong><code>text-align</code></strong> xususiyati block element ichidagi matn va inline elementlarni gorizontal tekislash uchun ishlatiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* text-align qiymatlari */
+.text-left {
+    text-align: left;      /* Chapga tekislash (default) */
+}
+
+.text-center {
+    text-align: center;    /* Markazga tekislash */
+}
+
+.text-right {
+    text-align: right;     /* O'ngga tekislash */
+}
+
+.text-justify {
+    text-align: justify;   /* Ikki tomonga tekislash */
+}
+
+/* Block elementni markazga tekislash uchun */
+.container {
+    width: 80%;
+    margin: 0 auto;        /* Block elementni markazga tekislash */
+    text-align: center;    /* Ichidagi matnni markazga tekislash */
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Eslatma:</strong> <code>text-align</code> block elementning o'zini emas, balki uning ichidagi kontentni tekislaydi. Block elementni markazga tekislash uchun <code>margin: 0 auto;</code> ishlatiladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: VERTICAL-ALIGN ==================== -->
+                <section class="lesson-section" id="vertical-align">
+                    <h2><i class="fas fa-align-center"></i> Vertical align - vertikal tekislash</h2>
+                    
+                    <p><strong><code>vertical-align</code></strong> xususiyati inline yoki inline-block elementlarni vertikal tekislash uchun ishlatiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* vertical-align qiymatlari */
+.inline-element {
+    display: inline-block;
+    vertical-align: baseline;    /* Asosiy chiziq bo'yicha (default) */
+}
+
+.top-aligned {
+    vertical-align: top;         /* Tepaga tekislash */
+}
+
+.middle-aligned {
+    vertical-align: middle;      /* O'rtaga tekislash */
+}
+
+.bottom-aligned {
+    vertical-align: bottom;      /* Pastga tekislash */
+}
+
+/* Matn bilan rasmni tekislash */
+img {
+    vertical-align: middle;      /* Rasm matn bilan o'rtada turadi */
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> <code>vertical-align</code> faqat <strong>inline</strong> va <strong>inline-block</strong> elementlarda ishlaydi. Block elementlarda bu xususiyat ishlamaydi!
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Inline-block elementlar orasidagi bo'shliq:</strong> Inline-block elementlar orasida kichik bo'shliq paydo bo'ladi. Uni yo'qotish uchun ota elementga <code>font-size: 0</code> berib, elementlarga kerakli <code>font-size</code> ni qayta tiklang.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: FLOAT ==================== -->
+                <section class="lesson-section" id="float">
+                    <h2><i class="fas fa-float"></i> Float - elementlarni suzdirish</h2>
+                    
+                    <p><strong><code>float</code></strong> xususiyati elementni chap yoki o'ng tomonga suzdirib, boshqa elementlarning uning atrofida joylashishini ta'minlaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* float qiymatlari */
+.float-left {
+    float: left;        /* Chapga suzdirish */
+    margin-right: 20px; /* O'ngdan bo'shliq */
+}
+
+.float-right {
+    float: right;       /* O'ngga suzdirish */
+    margin-left: 20px;  /* Chapdan bo'shliq */
+}
+
+.float-none {
+    float: none;        /* Suzdirishni bekor qilish (default) */
+}
+
+/* Rasm va matn - klassik misol */
+img {
+    float: left;
+    margin: 0 20px 20px 0;
+    width: 300px;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: CLEAR ==================== -->
+                <section class="lesson-section" id="clear">
+                    <h2><i class="fas fa-times-circle"></i> Clear - float ni tozalash</h2>
+                    
+                    <p><strong><code>clear</code></strong> xususiyati elementning qaysi tomondan float elementlar ta'siridan xalos bo'lishini belgilaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* clear qiymatlari */
+.clear-left {
+    clear: left;        /* Chap float dan tozalash */
+}
+
+.clear-right {
+    clear: right;       /* O'ng float dan tozalash */
+}
+
+.clear-both {
+    clear: both;        /* Ikkala float dan tozalash */
+}
+
+/* Clearfix - float konteyner muammosini hal qilish */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Float konteyner muammosi:</strong> Agar ota element faqat float elementlardan iborat bo'lsa, uning balandligi 0 bo'lib qoladi. Buni <code>clearfix</code> yoki <code>overflow: hidden</code> bilan hal qilish mumkin.
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: FLOAT BILAN LAYOUT ==================== -->
+                <section class="lesson-section" id="float-layout">
+                    <h2><i class="fas fa-columns"></i> Float bilan layout yaratish</h2>
+                    
+                    <p>Float yordamida ko'p ustunli layoutlar yaratish mumkin. Bu Flexbox va Grid dan oldin asosiy layout usuli edi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* 2 ustunli layout */
+.column {
+    float: left;
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 3 ustunli layout */
+.column-3 {
+    float: left;
+    width: 33.333%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Sidebar va asosiy kontent */
+.sidebar {
+    float: left;
+    width: 30%;
+}
+
+.main-content {
+    float: right;
+    width: 70%;
+}
+
+/* Clearfix */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Zamonaviy alternativ:</strong> Bugungi kunda float o'rniga <code>display: flex</code> yoki <code>display: grid</code> ishlatish tavsiya etiladi. Float asosan rasm atrofida matn joylashtirish uchun ishlatiladi.
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 16-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            <code>text-align: center</code> nimani markazga tekislaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>Block elementning o'zini</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>Block element ichidagi matn va inline elementlarni</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>Barcha elementlarni</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>Faqat inline-block elementlarni</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            <code>vertical-align</code> qaysi turdagi elementlarda ishlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>Block elementlarda</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>Barcha elementlarda</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>Inline va inline-block elementlarda</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>Faqat flex elementlarda</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            Elementni chap tomonga suzdirish uchun qaysi xususiyat ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>float: left;</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>float: right;</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>align: left;</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>position: left;</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            Float elementlardan keyin float ta'sirini tozalash uchun qaysi xususiyat ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>float: none;</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>overflow: hidden;</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>display: block;</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>clear: both;</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Text align, vertical align va float xususiyatlaridan foydalanib sahifa yarating.</p>
+                        <ol>
+                            <li>Sarlavhani <code>text-align: center</code> bilan markazga tekislang</li>
+                            <li>Rasmni <code>float: left</code> qilib, matn uning atrofida joylashsin</li>
+                            <li>3 ta inline-block element yarating va ularni <code>vertical-align: middle</code> bilan tekislang</li>
+                            <li>Float elementlardan keyin <code>clear: both</code> ishlating</li>
+                            <li>2 ustunli layout yarating (sidebar va main content)</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-html">&lt;h1 style="text-align: center;"&gt;Sarlavha&lt;/h1&gt;
+
+&lt;div class="clearfix"&gt;
+    &lt;img src="image.jpg" alt="Rasm" style="float: left; margin-right: 20px; width: 300px;"&gt;
+    &lt;p&gt;Rasm atrofidagi matn...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style="font-size: 0; margin: 30px 0;"&gt;
+    &lt;div style="display: inline-block; width: 100px; height: 100px; background: #3b82f6; vertical-align: middle; font-size: 16px;"&gt;Element 1&lt;/div&gt;
+    &lt;div style="display: inline-block; width: 150px; height: 150px; background: #10b981; vertical-align: middle; font-size: 16px;"&gt;Element 2&lt;/div&gt;
+    &lt;div style="display: inline-block; width: 80px; height: 80px; background: #f59e0b; vertical-align: middle; font-size: 16px;"&gt;Element 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+    &lt;div class="sidebar"&gt;Sidebar&lt;/div&gt;
+    &lt;div class="main-content"&gt;Asosiy kontent&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.sidebar {
+    float: left;
+    width: 30%;
+    background: #f3f4f6;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main-content {
+    float: right;
+    width: 70%;
+    background: #e5e7eb;
+    padding: 20px;
+    box-sizing: border-box;
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>text-align</strong> - block ichidagi matn va inline elementlarni gorizontal tekislaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>vertical-align</strong> - faqat inline va inline-block elementlarni vertikal tekislaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>float</strong> - elementni chap yoki o'ngga suzdirib, boshqa elementlarni atrofida joylashtiradi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>clear</strong> - float ta'sirini tozalaydi (left, right, both)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Clearfix</strong> - float konteyner muammosini hal qilish uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Text decoration. Pseudo classes</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../15/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../17/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#text-align">Text align</a></li>
+                        <li><a href="#vertical-align">Vertical align</a></li>
+                        <li><a href="#float">Float</a></li>
+                        <li><a href="#clear">Clear</a></li>
+                        <li><a href="#float-layout">Float bilan layout</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">16/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 25.4%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

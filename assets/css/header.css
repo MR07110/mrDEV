@@ -1,0 +1,247 @@
+/* ==================== HEADER ==================== */
+header {
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--glass);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: background 0.2s var(--ease-smooth), border-color 0.2s;
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.header-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-3);
+    transition: background 0.15s var(--ease-out);
+}
+
+.header-btn:hover {
+    background: var(--hover-strong);
+    color: var(--text);
+}
+
+.logo {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 1px;
+    color: var(--text);
+}
+
+.logo:hover { opacity: 0.8; }
+.logo-mr  { color: var(--accent); font-weight: 600; }
+.logo-dev { color: var(--text); font-weight: 400; }
+
+/* ==================== HEADER SEARCH (DESKTOP) ==================== */
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 420px;
+    margin: 0 16px;
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 6px 14px;
+    width: 100%;
+    transition: all 0.2s var(--ease-out);
+}
+
+.header-search:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+    background: var(--surface);
+}
+
+.search-icon-small {
+    color: var(--text-3);
+    flex-shrink: 0;
+}
+
+.header-search-input {
+    flex: 1;
+    padding: 6px 10px;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 13px;
+    font-family: var(--font-sans);
+    outline: none;
+}
+
+.header-search-input::placeholder {
+    color: var(--text-3);
+}
+
+.mobile-search-btn {
+    display: none;
+}
+
+/* ==================== HEADER USER TRIGGER ==================== */
+.header-user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 12px 4px 4px;
+    border-radius: 28px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    transition: all 0.15s var(--ease-out);
+    box-shadow: var(--shadow-xs);
+    max-width: 200px;
+}
+
+.header-user-trigger:hover {
+    background: var(--hover-strong);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-sm);
+}
+
+.header-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.header-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-user-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+
+.header-user-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+.header-user-role {
+    font-size: 10px;
+    color: var(--text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+.header-user-arrow {
+    flex-shrink: 0;
+    color: var(--text-3);
+    transition: transform 0.2s var(--ease-out);
+}
+
+.header-user-trigger:hover .header-user-arrow {
+    color: var(--text);
+}
+
+/* ==================== HEADER BADGE ==================== */
+.header-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: var(--red);
+    color: white;
+    padding: 2px 5px;
+    border-radius: 10px;
+    font-size: 9px;
+    font-weight: 600;
+    display: none;
+    min-width: 16px;
+    text-align: center;
+}
+
+.notif-header-btn {
+    position: relative;
+}
+
+/* ==================== OVERLAY ==================== */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s var(--ease-out), visibility 0.2s;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* Header tugmalar - kok scope o'chirish */
+.header-btn,
+.mobile-search-btn,
+.header-user-trigger {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+}
+
+.header-btn:focus,
+.mobile-search-btn:focus,
+.header-user-trigger:focus,
+.header-btn:focus-visible,
+.mobile-search-btn:focus-visible,
+.header-user-trigger:focus-visible {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header-btn:active,
+.mobile-search-btn:active,
+.header-user-trigger:active {
+    -webkit-tap-highlight-color: transparent;
+}

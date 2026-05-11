@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-Dars: Kirish | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "1",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=KPPhQ0F-SDY",
+            "lessonTitle": "CSS ga Kirish"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>1-Dars: Kirish</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 8:57
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/KPPhQ0F-SDY" 
+                            title="CSS | 1. Kirish"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 1. Kirish</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 8:57</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>CSS ga Kirish</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 8-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu dars kimlar uchun?</strong>
+                    <p>Agar siz HTML ni o'rgangan bo'lsangiz va endi web sahifalaringizni chiroyli qilishni istasangiz - bu dars aynan siz uchun. HTML bilan tanish bo'lgan junior dasturchilar CSS ga o'tishda hech qanday qiyinchilikka duch kelmaydilar. Bu darsda hech qanday kod yozilmaydi, faqat CSS haqida tushuncha beriladi.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> CSS nima va nima uchun kerak?</li>
+                        <li><i class="fas fa-check-circle"></i> CSS qanday ishlaydi?</li>
+                        <li><i class="fas fa-check-circle"></i> CSS ning HTML ga nisbatan roli</li>
+                        <li><i class="fas fa-check-circle"></i> CSS yordamida nimalar qilish mumkin?</li>
+                        <li><i class="fas fa-check-circle"></i> Kurs davomida nimalarni o'rganasiz?</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Tushunib oling:</strong> CSS ning asosiy vazifasi - HTML elementlariga ko'rinish berish. Bu darsda kod yozish shart emas, faqat tushuncha hosil qiling!</span>
+                            <span class="badge good-to-know">tushunish kerak</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Eslab qoling:</strong> CSS = Cascading Style Sheets. "Cascading" so'zi juda muhim, keyingi darslarda nima uchun cascading deb atalishini tushunasiz.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>HTML bilimingiz:</strong> CSS HTML bilan chambarchas bog'liq. Agar HTML ni yaxshi bilsangiz, CSS juda oson tuyuladi.</span>
+                            <span class="badge tip">HTML muhim</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: CSS NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-css">
+                    <h2><i class="fas fa-question-circle"></i> CSS nima?</h2>
+                    
+                    <p><strong>CSS (Cascading Style Sheets)</strong> - bu HTML elementlariga ko'rinish (styling) berish uchun ishlatiladigan maxsus til. CSS yordamida siz web sahifangizning ranglarini, shriftlarini, elementlarning joylashuvini va hatto animatsiyalarini boshqarishingiz mumkin.</p>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title">
+                            <i class="fas fa-home"></i>
+                            <span>Oddiy tushuntirish: HTML va CSS</span>
+                        </div>
+                        <div class="analogy-content">
+                            <div class="analogy-item">
+                                <div class="analogy-icon html-bg">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <div class="analogy-text">
+                                    <strong>HTML</strong><br>
+                                    uyning <strong>skeleti va g'ishtlari</strong>
+                                </div>
+                            </div>
+                            <div class="analogy-arrow">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="analogy-item">
+                                <div class="analogy-icon css-bg">
+                                    <i class="fab fa-css3-alt"></i>
+                                </div>
+                                <div class="analogy-text">
+                                    <strong>CSS</strong><br>
+                                    uyning <strong>bo'yog'i, mebellari va bezaklari</strong>
+                                </div>
+                            </div>
+                            <div class="analogy-arrow">
+                                <i class="fas fa-equals"></i>
+                            </div>
+                            <div class="analogy-item">
+                                <div class="analogy-icon result-bg">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="analogy-text">
+                                    <strong>Natija</strong><br>
+                                    <strong>chiroyli va yashashga tayyor uy</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>HTML sizga sahifaning <strong>tuzilishini</strong> beradi: sarlavhalar, paragraflar, ro'yxatlar, rasmlar. CSS esa ularning <strong>qanday ko'rinishini</strong> belgilaydi: ranglar, o'lchamlar, joylashuv, animatsiyalar. CSS bo'lmasa, barcha web sahifalar faqat qora matn va oq fondan iborat bo'lardi.</p>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: CSS QANDAY ISHLAYDI? ==================== -->
+                <section class="lesson-section" id="how-css-works">
+                    <h2><i class="fas fa-cogs"></i> CSS qanday ishlaydi?</h2>
+                    
+                    <p>Brauzer HTML hujjatni yuklaganda, CSS fayllarini ham yuklaydi va CSS qoidalarini HTML elementlariga qo'llaydi. Bu jarayon quyidagi bosqichlardan iborat:</p>
+                    
+                    <div class="steps-visual">
+                        <div class="step-visual-item">
+                            <div class="step-number">1</div>
+                            <div class="step-desc">
+                                <strong>Brauzer HTML ni yuklaydi</strong>
+                                <p>DOM (Document Object Model) deb ataladigan daraxtsimon tuzilmani yaratadi</p>
+                            </div>
+                        </div>
+                        <div class="step-visual-item">
+                            <div class="step-number">2</div>
+                            <div class="step-desc">
+                                <strong>CSS ni yuklaydi va tahlil qiladi</strong>
+                                <p>Barcha CSS fayllarini o'qiydi va qoidalarni ajratib oladi</p>
+                            </div>
+                        </div>
+                        <div class="step-visual-item">
+                            <div class="step-number">3</div>
+                            <div class="step-desc">
+                                <strong>CSS qoidalarini qo'llaydi</strong>
+                                <p>Har bir HTML elementiga mos keladigan CSS xususiyatlarini biriktiradi</p>
+                            </div>
+                        </div>
+                        <div class="step-visual-item">
+                            <div class="step-number">4</div>
+                            <div class="step-desc">
+                                <strong>Render (chizish)</strong>
+                                <p>Yakuniy natijani hisoblab, ekranda ko'rsatadi</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Bilib qo'ying:</strong> Brauzer CSS ni yuqoridan pastga qarab o'qiydi. Bir elementga bir nechta CSS qoidasi berilgan bo'lsa, qaysi biri kuchliroq ekanligini "Specificity" (o'ziga xoslik) belgilaydi. Bu mavzuni 6-darsda batafsil o'rganamiz.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: CSS IMKONIYATLARI ==================== -->
+                <section class="lesson-section" id="css-capabilities">
+                    <h2><i class="fas fa-magic"></i> CSS yordamida nimalar qilish mumkin?</h2>
+                    
+                    <p>CSS juda kuchli vosita. Quyida CSS yordamida amalga oshirish mumkin bo'lgan asosiy imkoniyatlar keltirilgan:</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-palette"></i>
+                            <h4>Ranglar va fonlar</h4>
+                            <p>Matn ranglari, fon ranglari, gradientlar, fon rasmlari</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-text-height"></i>
+                            <h4>Tipografiya</h4>
+                            <p>Shriftlar, matn o'lchamlari, qalinlik, qator oralig'i</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-border-all"></i>
+                            <h4>Chegaralar va soyalar</h4>
+                            <p>Border, border-radius, box-shadow, text-shadow</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-arrows-alt"></i>
+                            <h4>Joylashuv</h4>
+                            <p>Margin, padding, position, display, flexbox, grid</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-film"></i>
+                            <h4>Animatsiyalar</h4>
+                            <p>Transition, transform, keyframe animatsiyalar</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Responsive dizayn</h4>
+                            <p>Media queries, turli ekran o'lchamlariga moslashish</p>
+                        </div>
+                    </div>
+                    
+                    <p>Bu imkoniyatlarning barchasini kurs davomida batafsil o'rganamiz. Har bir darsda yangi CSS xususiyatlarini o'zlashtirib borasiz.</p>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: KURS REJASI ==================== -->
+                <section class="lesson-section" id="course-roadmap">
+                    <h2><i class="fas fa-road"></i> Kurs davomida nimalarni o'rganasiz?</h2>
+                    
+                    <p>Bu kurs 63 ta darsdan iborat bo'lib, CSS ni noldan professional darajagacha o'rganasiz. Har bir darsda nazariy bilimlar, amaliy mashqlar va testlar mavjud. Har 5-darsda esa o'tilgan mavzular bo'yicha aralash test bo'ladi.</p>
+                    
+                    <div class="course-roadmap">
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">1-11 darslar</div>
+                            <div class="roadmap-title">CSS Asoslari</div>
+                            <div class="roadmap-desc">Selektorlar, specificity, inheritance, combinators</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">12-20 darslar</div>
+                            <div class="roadmap-title">Box Model va Display</div>
+                            <div class="roadmap-desc">Margin, padding, border, width, height, display</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">21-25 darslar</div>
+                            <div class="roadmap-title">Positioning</div>
+                            <div class="roadmap-desc">Static, relative, absolute, fixed, sticky, z-index</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">26-32 darslar</div>
+                            <div class="roadmap-title">Background va Formalar</div>
+                            <div class="roadmap-desc">Rasmlar, gradientlar, filterlar, formalar</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">33-38 darslar</div>
+                            <div class="roadmap-title">O'lchov birliklari</div>
+                            <div class="roadmap-desc">px, %, em, rem, vh, vw</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">39-43 darslar</div>
+                            <div class="roadmap-title">Responsive Web Design</div>
+                            <div class="roadmap-desc">Media queries, breakpoints, mobile-first</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">44-48 darslar</div>
+                            <div class="roadmap-title">Fontlar</div>
+                            <div class="roadmap-desc">Google Fonts, local fontlar, font xossalari</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">49-54 darslar</div>
+                            <div class="roadmap-title">Advanced CSS</div>
+                            <div class="roadmap-desc">2D/3D transforms, transitions, animations</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">55-61 darslar</div>
+                            <div class="roadmap-title">Flexbox va Grid</div>
+                            <div class="roadmap-desc">Zamonaviy layout tizimlari</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">62-63 darslar</div>
+                            <div class="roadmap-title">Yakuniy</div>
+                            <div class="roadmap-desc">Best practices va yakuniy loyiha</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3>
+                        <span class="test-badge">1-dars testi</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            CSS ning to'liq nomi nima?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1a" value="a">
+                                <label for="q1a">Computer Style Sheets</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1b" value="b">
+                                <label for="q1b">Cascading Style Sheets</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1c" value="c">
+                                <label for="q1c">Creative Style System</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1d" value="d">
+                                <label for="q1d">Colorful Style Sheets</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            CSS ning asosiy vazifasi nima?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2a" value="a">
+                                <label for="q2a">Web sahifaning tuzilishini yaratish</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2b" value="b">
+                                <label for="q2b">Web sahifaga ko'rinish (styling) berish</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2c" value="c">
+                                <label for="q2c">Ma'lumotlar bazasi bilan ishlash</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2d" value="d">
+                                <label for="q2d">Server bilan aloqa qilish</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            HTML va CSS o'rtasidagi munosabat qanday?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3a" value="a">
+                                <label for="q3a">CSS - bu HTML ning yangi versiyasi</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3b" value="b">
+                                <label for="q3b">CSS HTML o'rnini bosadi</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3c" value="c">
+                                <label for="q3c">HTML tuzilish, CSS ko'rinish beradi</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3d" value="d">
+                                <label for="q3d">Ular bir-biriga bog'liq emas</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> CSS haqida olgan bilimlaringizni mustahkamlash uchun quyidagi savollarga javob bering:</p>
+                        <ol>
+                            <li>CSS nima uchun kerak? O'z so'zlaringiz bilan tushuntirib bering.</li>
+                            <li>CSS yordamida qanday o'zgarishlar qilish mumkin? Kamida 5 ta imkoniyatni sanab bering.</li>
+                            <li>Nima uchun CSS "Cascading" deb nomlangan? (Video diqqat bilan tinglagan bo'lsangiz, javobini bilasiz)</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy javoblar:</h4>
+                        <p><strong>1. CSS nima uchun kerak?</strong><br>
+                        CSS web sahifalarga dizayn va ko'rinish berish uchun kerak. HTML sahifaning tuzilishini bersa, CSS uni chiroyli, tartibli va foydalanuvchiga qulay qiladi. CSS bo'lmasa, barcha saytlar faqat qora matn va oq fondan iborat bo'lib qolardi.</p>
+                        
+                        <p><strong>2. CSS imkoniyatlari (5 ta):</strong><br>
+                        • Ranglarni o'zgartirish (matn rangi, fon rangi)<br>
+                        • Shriftlarni tanlash va o'lchamini belgilash<br>
+                        • Elementlarni sahifada joylashtirish (layout)<br>
+                        • Animatsiyalar va hover effektlar yaratish<br>
+                        • Turli ekran o'lchamlariga moslash (responsive dizayn)</p>
+                        
+                        <p><strong>3. "Cascading" so'zining ma'nosi:</strong><br>
+                        "Cascading" inglizcha "sharshara" degan ma'noni anglatadi. CSS da bu - qoidalarning ustunlik tartibini bildiradi. Agar bir elementga bir nechta CSS qoidasi berilgan bo'lsa, brauzer ularni "sharshara" kabi yuqoridan pastga qarab o'qiydi va eng kuchli (specific) qoidani qo'llaydi.</p>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>CSS</strong> - Cascading Style Sheets, HTML elementlariga ko'rinish berish tili</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>HTML = tuzilish (skelet), CSS = ko'rinish (dizayn)</strong> - ular bir-birini to'ldiradi</li>
+                        <li><i class="fas fa-check-circle"></i> Brauzer HTML va CSS ni yuklab, qoidalarni qo'llaydi va natijani ekranda ko'rsatadi</li>
+                        <li><i class="fas fa-check-circle"></i> CSS yordamida ranglar, shriftlar, joylashuv, animatsiyalar va responsive dizayn yaratish mumkin</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> CSS versiyalari va kurs loyihasi haqida tanishamiz</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../2/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#what-is-css">CSS nima?</a></li>
+                        <li><a href="#how-css-works">CSS qanday ishlaydi?</a></li>
+                        <li><a href="#css-capabilities">CSS imkoniyatlari</a></li>
+                        <li><a href="#course-roadmap">Kurs rejasi</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">1/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 1.6%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <!-- Firebase va Lesson Common -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <!-- Umumiy JavaScript -->
+    <script src="../script.js"></script>
+    <!-- Prism.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

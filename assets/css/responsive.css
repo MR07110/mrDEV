@@ -1,0 +1,97 @@
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 720px) {
+    :root { --sidebar-w: 300px; }
+    
+    .container { padding: 32px 16px 60px; }
+    .page-title { font-size: 32px; }
+    
+    .app-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+    
+    .app-icon { width: 48px; height: 48px; }
+    .app-icon img { width: 26px; height: 26px; }
+    .app-item { padding: 14px 6px 10px; }
+    .modal-content { max-width: 100%; }
+    
+    /* Header qidiruvni yashirish */
+    .header-center { display: none; }
+    .mobile-search-btn { display: flex; }
+    
+    /* Mobil qidiruvni ko'rsatish */
+    .search-section { display: block; }
+    
+    /* User trigger soddalashtirish */
+    .header-user-info { display: none; }
+    .header-user-arrow { display: none; }
+    .header-user-trigger {
+        padding: 4px;
+        border-radius: 50%;
+        max-width: none;
+    }
+}
+
+@media (min-width: 721px) {
+    .search-section { display: none; }
+    .header-center { display: flex; }
+    .mobile-search-btn { display: none; }
+}
+
+@media (max-width: 440px) {
+    :root { --sidebar-w: 280px; }
+    .page-title { font-size: 28px; }
+    .app-grid { grid-template-columns: repeat(3, 1fr); }
+    .tab { padding: 7px 12px; font-size: 12px; }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 720px) {
+    :root { --sidebar-w: 300px; }
+    
+    .container { padding: 32px 16px 60px; }
+    .page-title { font-size: 32px; }
+    
+    .app-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+    
+    .app-icon { width: 48px; height: 48px; }
+    .app-icon img { width: 26px; height: 26px; }
+    .app-item { padding: 14px 6px 10px; }
+    .modal-content { max-width: 100%; }
+    
+    /* Header qidiruvni yashirish */
+    .header-center { display: none; }
+    
+    /* Mobil qidiruv tugmasini ko'rsatish */
+    .mobile-search-btn { display: flex; }
+    
+    /* User trigger soddalashtirish */
+    .header-user-info { display: none; }
+    .header-user-arrow { display: none; }
+    .header-user-trigger {
+        padding: 4px;
+        border-radius: 50%;
+        max-width: none;
+    }
+}
+
+@media (min-width: 721px) {
+    /* Katta ekranda mobil qidiruv yashirin */
+    .search-section { display: none; }
+    
+    /* Header qidiruv ko'rinadi */
+    .header-center { display: flex; }
+    
+    /* Mobil toggle yashirin */
+    .mobile-search-btn { display: none; }
+}
+
+@media (max-width: 440px) {
+    :root { --sidebar-w: 280px; }
+    .page-title { font-size: 28px; }
+    .app-grid { grid-template-columns: repeat(3, 1fr); }
+    .tab { padding: 7px 12px; font-size: 12px; }
+}

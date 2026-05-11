@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-Dars: Selectors (Tanlab oluvchilar) | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "4",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=0UsPKt4gU9I",
+            "lessonTitle": "Selectors (Tanlab oluvchilar)"
+        }
+    </script>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>4-Dars: Selectors</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 10:29
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/0UsPKt4gU9I" 
+                            title="CSS | 4. Selectors (Tanlab oluvchilar)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 4. Selectors (Tanlab oluvchilar)</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 10:29</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Selectors (Tanlab oluvchilar)</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 11-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS selektorlari - bu CSS ning eng muhim qismlaridan biri. Selektorlar yordamida siz HTML elementlarini tanlab, ularga stillar berasiz. Bu darsda asosiy selektor turlarini: universal, element, class va ID selektorlarini o'rganasiz.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Selektor nima va u qanday ishlaydi?</li>
+                        <li><i class="fas fa-check-circle"></i> Universal selektor (*) - barcha elementlarni tanlash</li>
+                        <li><i class="fas fa-check-circle"></i> Element selektor - teg nomi orqali tanlash</li>
+                        <li><i class="fas fa-check-circle"></i> Class selektor (.) - klass nomi orqali tanlash</li>
+                        <li><i class="fas fa-check-circle"></i> ID selektor (#) - ID orqali tanlash</li>
+                        <li><i class="fas fa-check-circle"></i> Selektorlarni guruhlash - bir nechta selektorga bir xil stil berish</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Class selektorni ko'proq ishlating:</strong> Class selektorlar eng ko'p ishlatiladigan selektor turidir. ID selektorni CSS da kamroq ishlating.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Sintaksisni eslab qoling:</strong> Class uchun nuqta (.), ID uchun panjara (#), universal uchun yulduzcha (*).</span>
+                            <span class="badge good-to-know">tushunish kerak</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Selektorlarni guruhlang:</strong> Bir xil stillarni bir nechta selektorga berish uchun vergul (,) dan foydalaning.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: SELEKTOR NIMA? ==================== -->
+                <section class="lesson-section" id="what-is-selector">
+                    <h2><i class="fas fa-question-circle"></i> Selektor nima?</h2>
+                    
+                    <p><strong>Selektor</strong> - bu CSS qoidasining qaysi HTML elementlariga qo'llanilishini belgilaydigan qism. Selektor orqali siz brauzerga "mana shu elementlarni ol va ularga quyidagi stillarni ber" deysiz.</p>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>CSS qoidasi tuzilishi</span>
+                        </div>
+                        <div class="analogy-content" style="flex-direction: column;">
+                            <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                                <div style="background: #3b82f6; color: white; padding: 12px 24px; border-radius: 8px; font-weight: bold;">selektor</div>
+                                <div style="font-size: 24px; color: #64748b;">{</div>
+                                <div style="background: #10b981; color: white; padding: 12px 24px; border-radius: 8px;">xususiyat: qiymat;</div>
+                                <div style="font-size: 24px; color: #64748b;">}</div>
+                            </div>
+                            <p style="margin-top: 20px; text-align: center;">Selektor - "kimga", xususiyat: qiymat - "nima qilish kerak"</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: UNIVERSAL SELEKTOR ==================== -->
+                <section class="lesson-section" id="universal-selector">
+                    <h2><i class="fas fa-asterisk"></i> Universal selektor (*)</h2>
+                    
+                    <p><strong>Universal selektor (*)</strong> - sahifadagi barcha elementlarni tanlaydi. Ko'pincha <code>margin</code> va <code>padding</code> ni nollash uchun ishlatiladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Barcha elementlarning margin va paddingini nollash */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Barcha elementlarga bir xil shrift berish */
+* {
+    font-family: 'Segoe UI', sans-serif;
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> Universal selektor juda kuchli. Uni ehtiyotkorlik bilan ishlating, chunki u sahifadagi barcha elementlarga ta'sir qiladi va sahifa yuklanishini sekinlashtirishi mumkin.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: ELEMENT SELEKTOR ==================== -->
+                <section class="lesson-section" id="element-selector">
+                    <h2><i class="fas fa-tag"></i> Element selektor (Teg selektori)</h2>
+                    
+                    <p><strong>Element selektor</strong> - HTML tegining nomi orqali elementlarni tanlaydi. Masalan: <code>h1</code>, <code>p</code>, <code>div</code>, <code>span</code>.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Barcha h1 sarlavhalarni tanlash */
+h1 {
+    color: #2563eb;
+    text-align: center;
+    font-size: 32px;
+}
+
+/* Barcha paragraflarni tanlash */
+p {
+    line-height: 1.6;
+    margin-bottom: 16px;
+    color: #334155;
+}
+
+/* Barcha div elementlarini tanlash */
+div {
+    padding: 20px;
+    background-color: #f8fafc;
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Qachon ishlatiladi?</strong> Element selektor sayt bo'ylab bir xil ko'rinishda bo'lishi kerak bo'lgan elementlar uchun ishlatiladi. Masalan, barcha paragraflar bir xil shrift va qator oralig'iga ega bo'lishi uchun.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: CLASS SELEKTOR ==================== -->
+                <section class="lesson-section" id="class-selector">
+                    <h2><i class="fas fa-tags"></i> Class selektor (.) - Eng ko'p ishlatiladigan</h2>
+                    
+                    <p><strong>Class selektor</strong> - nuqta (<code>.</code>) bilan boshlanadi va klass nomi orqali elementlarni tanlaydi. Bir klassni ko'plab elementlarga berish mumkin.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">&lt;h2 class="title"&gt;Sarlavha&lt;/h2&gt;
+&lt;p class="title"&gt;Bu ham title klassiga ega&lt;/p&gt;
+&lt;div class="box red"&gt;Bir nechta klass&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* title klassiga ega barcha elementlar */
+.title {
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* box klassiga ega elementlar */
+.box {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* red klassiga ega elementlar */
+.red {
+    background-color: #fee2e2;
+    color: #dc2626;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Muhim:</strong> Bitta elementga bir nechta klass berish mumkin. Klasslar orasiga bo'shliq qo'yiladi: <code>class="box red large"</code>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: ID SELEKTOR ==================== -->
+                <section class="lesson-section" id="id-selector">
+                    <h2><i class="fas fa-hashtag"></i> ID selektor (#)</h2>
+                    
+                    <p><strong>ID selektor</strong> - panjara (<code>#</code>) bilan boshlanadi va ID nomi orqali elementni tanlaydi. <strong>ID sahifada faqat BIR marta ishlatilishi kerak.</strong></p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">&lt;div id="header"&gt;
+    &lt;h1&gt;Sayt sarlavhasi&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id="main-content"&gt;
+    &lt;p&gt;Asosiy kontent&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="footer"&gt;
+    &lt;p&gt;Footer&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">#header {
+    background-color: #1e293b;
+    color: white;
+    padding: 20px;
+}
+
+#main-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#footer {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #e2e8f0;
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>CSS da ID ishlatmang!</strong> ID selektor juda yuqori o'ziga xoslikka (specificity) ega. Bu keyinchalik stillarni qayta yozishda muammo tug'diradi. CSS da stillash uchun har doim class selektordan foydalaning. ID ni faqat JavaScript yoki sahifa ichidagi havolalar uchun ishlating.
+                    </div>
+                </section>
+                
+                <!-- ==================== 6-BO'LIM: SELEKTORLARNI GURUHLASH ==================== -->
+                <section class="lesson-section" id="grouping-selectors">
+                    <h2><i class="fas fa-layer-group"></i> Selektorlarni guruhlash</h2>
+                    
+                    <p>Bir xil stillarni bir nechta selektorga berish uchun ularni vergul (<code>,</code>) bilan ajratib yozish mumkin. Bu kodni qisqartiradi va toza saqlaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Guruhlanmagan - kod takrorlanadi */
+h1 {
+    font-family: 'Segoe UI', sans-serif;
+    color: #1e293b;
+}
+h2 {
+    font-family: 'Segoe UI', sans-serif;
+    color: #1e293b;
+}
+h3 {
+    font-family: 'Segoe UI', sans-serif;
+    color: #1e293b;
+}
+
+/* Guruhlangan - toza va qisqa */
+h1, h2, h3 {
+    font-family: 'Segoe UI', sans-serif;
+    color: #1e293b;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== 7-BO'LIM: SELEKTORLAR JADVALI ==================== -->
+                <section class="lesson-section" id="selectors-table">
+                    <h2><i class="fas fa-table"></i> Selektorlar xulosasi</h2>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Selektor</th>
+                                    <th>Sintaksis</th>
+                                    <th>Misol</th>
+                                    <th>Qachon ishlatiladi?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Universal</strong></td>
+                                    <td><code>*</code></td>
+                                    <td><code>* { margin: 0; }</code></td>
+                                    <td>Barcha elementlarga bir xil stil berish</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Element</strong></td>
+                                    <td><code>teg</code></td>
+                                    <td><code>p { color: blue; }</code></td>
+                                    <td>Bir xil turdagi barcha elementlarga</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Class</strong></td>
+                                    <td><code>.class</code></td>
+                                    <td><code>.btn { padding: 10px; }</code></td>
+                                    <td>Eng ko'p ishlatiladi, qayta ishlatish mumkin</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ID</strong></td>
+                                    <td><code>#id</code></td>
+                                    <td><code>#header { height: 80px; }</code></td>
+                                    <td>Faqat bir marta, CSS da tavsiya etilmaydi</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Guruhlash</strong></td>
+                                    <td><code>sel1, sel2</code></td>
+                                    <td><code>h1, h2, h3 { font: bold; }</code></td>
+                                    <td>Bir xil stillarni bir nechta selektorga berish</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3>
+                        <span class="test-badge">4-dars testi</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            Class selektor qaysi belgi bilan boshlanadi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1a" value="a">
+                                <label for="q1a"># (panjara)</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1b" value="b">
+                                <label for="q1b">. (nuqta)</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1c" value="c">
+                                <label for="q1c">* (yulduzcha)</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1d" value="d">
+                                <label for="q1d">Hech qanday belgi</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            Qaysi selektor sahifadagi barcha elementlarni tanlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2a" value="a">
+                                <label for="q2a">Element selektor</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2b" value="b">
+                                <label for="q2b">Class selektor</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2c" value="c">
+                                <label for="q2c">ID selektor</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2d" value="d">
+                                <label for="q2d">Universal selektor (*)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            CSS da eng ko'p tavsiya etiladigan selektor turi qaysi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3a" value="a">
+                                <label for="q3a">ID selektor</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3b" value="b">
+                                <label for="q3b">Class selektor</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3c" value="c">
+                                <label for="q3c">Element selektor</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3d" value="d">
+                                <label for="q3d">Universal selektor</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Har xil selektor turlaridan foydalanib, HTML elementlariga stillar bering.</p>
+                        <ol>
+                            <li><code>index.html</code> va <code>style.css</code> fayllarini yarating</li>
+                            <li>Universal selektor yordamida barcha elementlarning <code>margin</code> va <code>padding</code> ini nollang</li>
+                            <li>Element selektor yordamida barcha <code>h1</code> larni ko'k rangda, markazga tekislangan qiling</li>
+                            <li>Class selektor yordamida <code>.card</code> klassini yarating: oq fon, 20px padding, yumaloq burchaklar, soya</li>
+                            <li>ID selektor yordamida <code>#footer</code> elementini yarating: to'q fon, oq matn, markazga tekislangan</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4> Namunaviy yechim:</h4>
+                        <p><strong>index.html:</strong></p>
+                        <pre><code class="language-css">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Selektorlar bilan tanishtiruv&lt;/h1&gt;
+    
+    &lt;div class="card"&gt;
+        &lt;h2&gt;Karta sarlavhasi&lt;/h2&gt;
+        &lt;p&gt;Bu karta ichidagi matn.&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="card"&gt;
+        &lt;h2&gt;Ikkinchi karta&lt;/h2&gt;
+        &lt;p&gt;Yana bir karta.&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;div id="footer"&gt;
+        &lt;p&gt;© 2026 Mening Saytim&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        
+                        <p><strong>style.css:</strong></p>
+                        <pre><code class="language-css">/* Universal selektor */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 40px;
+    background: #f0f9ff;
+}
+
+/* Element selektor */
+h1 {
+    color: #2563eb;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Class selektor */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+/* ID selektor */
+#footer {
+    background: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 8px;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Selektor</strong> - CSS qoidasining qaysi elementlarga qo'llanilishini belgilaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Universal (*)</strong> - barcha elementlarni tanlaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Element</strong> - teg nomi orqali tanlaydi (<code>h1</code>, <code>p</code>, <code>div</code>)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Class (.)</strong> - klass nomi orqali tanlaydi, eng ko'p ishlatiladi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>ID (#)</strong> - ID orqali tanlaydi, CSS da tavsiya etilmaydi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Guruhlash (,)</strong> - bir nechta selektorga bir xil stil berish</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Comments (Izohlar)</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../3/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../5/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#what-is-selector">Selektor nima?</a></li>
+                        <li><a href="#universal-selector">Universal selektor (*)</a></li>
+                        <li><a href="#element-selector">Element selektor</a></li>
+                        <li><a href="#class-selector">Class selektor (.)</a></li>
+                        <li><a href="#id-selector">ID selektor (#)</a></li>
+                        <li><a href="#grouping-selectors">Selektorlarni guruhlash</a></li>
+                        <li><a href="#selectors-table">Selektorlar jadvali</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">4/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 6.3%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

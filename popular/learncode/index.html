@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="icons/learncode_favicon.svg">
+    
+    <title>Learncode.uz | Dasturlashni o'rganing</title>
+    
+    <!-- Font Awesome (faqat chevron uchun) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- ==================== SPLASH SCREEN ==================== -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-blur"></div>
+        <div class="splash-content">
+            <div class="splash-logo">
+                <img src="icons/learncode.svg" alt="Learncode" class="splash-svg">
+            </div>
+            
+            <div class="splash-text-wrapper">
+                <span class="splash-char l">L</span>
+                <span class="splash-char e1">e</span>
+                <span class="splash-char a">a</span>
+                <span class="splash-char r">r</span>
+                <span class="splash-char n">n</span>
+                <span class="splash-char c">c</span>
+                <span class="splash-char o">o</span>
+                <span class="splash-char d">d</span>
+                <span class="splash-char e2">e</span>
+                <span class="splash-dot">.</span>
+                <span class="splash-char u">u</span>
+                <span class="splash-char z">z</span>
+            </div>
+            
+            <p class="splash-slogan">Dasturlashni o'rganish uchun</p>
+            <p class="splash-slogan2">eng yaxshi platforma</p>
+            
+            <div class="splash-progress">
+                <div class="splash-progress-fill" id="splashProgressFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ASOSIY KONTENT ==================== -->
+    <div class="main-content" id="mainContent">
+        
+        <header class="header">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <img src="icons/learncode.svg" alt="Learncode" class="logo-svg">
+                    
+                    <div class="logo-text-wrapper">
+                        <span class="logo-char l">L</span>
+                        <span class="logo-char e1">e</span>
+                        <span class="logo-char a">a</span>
+                        <span class="logo-char r">r</span>
+                        <span class="logo-char n">n</span>
+                        <span class="logo-char c">c</span>
+                        <span class="logo-char o">o</span>
+                        <span class="logo-char d">d</span>
+                        <span class="logo-char e2">e</span>
+                        <span class="logo-dot">.</span>
+                        <span class="logo-char u">u</span>
+                        <span class="logo-char z">z</span>
+                    </div>
+                </a>
+            </div>
+        </header>
+
+        <main class="container">
+            
+            <section class="hero">
+                <h1 class="hero-title animate-fade-up">Dasturlashni o'rganishni boshlang</h1>
+                
+                <div class="steps">
+                    <!-- Step 1: HTML -->
+                    <div class="step animate-fade-up delay-1">
+                        <div class="step-icon">
+                            <img src="icons/html5.svg" alt="HTML" class="course-icon-svg">
+                        </div>
+                        <div class="step-text">
+                            <p>Dasturlashni o'rganishni <strong>HTML</strong> dan boshlang</p>
+                        </div>
+                        <a href="./html/" class="btn btn-html">
+                            <span>HTML ni o'rganish</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Step 2: CSS -->
+                    <div class="step animate-fade-up delay-2">
+                        <div class="step-icon">
+                            <img src="icons/css3.svg" alt="CSS" class="course-icon-svg">
+                        </div>
+                        <div class="step-text">
+                            <p>HTML ni tugatganingizdan so'ng <strong>CSS</strong> ni o'rganing</p>
+                        </div>
+                        <a href="css/index.html" class="btn btn-css">
+                            <span>CSS ni o'rganish</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Step 3: Bootstrap -->
+                    <div class="step animate-fade-up delay-3">
+                        <div class="step-icon">
+                            <img src="icons/bootstrap.svg" alt="Bootstrap" class="course-icon-svg">
+                        </div>
+                        <div class="step-text">
+                            <p>Keyin <strong>Bootstrap</strong> frameworkini o'rganing</p>
+                        </div>
+                        <a href="bootstrap/index.html" class="btn btn-bootstrap">
+                            <span>Bootstrap ni o'rganish</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Step 4: JavaScript -->
+                    <div class="step animate-fade-up delay-4">
+                        <div class="step-icon">
+                            <img src="icons/js.svg" alt="JavaScript" class="course-icon-svg">
+                        </div>
+                        <div class="step-text">
+                            <p>Keyin esa <strong>JavaScript</strong> bilan dasturlashni o'rganing</p>
+                        </div>
+                        <a href="js/index.html" class="btn btn-js">
+                            <span>JavaScript ni o'rganish</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Learncode.uz | Ulug'bek Samigjonov darslari asosida</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <script>
+        (function() {
+            const splashScreen = document.getElementById('splashScreen');
+            const mainContent = document.getElementById('mainContent');
+            const progressFill = document.getElementById('splashProgressFill');
+            
+            let progress = 0;
+            const interval = setInterval(function() {
+                progress += 2;
+                if (progress <= 100) {
+                    progressFill.style.width = progress + '%';
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(function() {
+                        splashScreen.classList.add('splash-hidden');
+                        setTimeout(function() {
+                            mainContent.classList.add('content-visible');
+                        }, 300);
+                    }, 300);
+                }
+            }, 30);
+        })();
+    </script>
+</body>
+</html>
+

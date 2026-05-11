@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-Dars: CSS haqida. Kurs loyihasi | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "2",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=U7Mq0paFXlA",
+            "lessonTitle": "CSS haqida. Kurs loyihasi"
+        }
+    </script>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>2-Dars: CSS haqida. Kurs loyihasi</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 7:42
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/U7Mq0paFXlA" 
+                            title="CSS | 2. CSS haqida. Kurs loyihasi"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 2. CSS haqida. Kurs loyihasi</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 7:42</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>CSS haqida. Kurs loyihasi</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 9-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> Boshlang'ich daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS ning tarixiy versiyalari (CSS1, CSS2, CSS3), brauzerlar tomonidan qo'llab-quvvatlanishi, caniuse.com saytidan foydalanish va kurs davomida yaratiladigan loyiha haqida batafsil ma'lumot olasiz. Bu bilimlar professional dasturchi bo'lish yo'lida juda muhim.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> CSS ning tarixiy versiyalari (CSS1, CSS2, CSS3)</li>
+                        <li><i class="fas fa-check-circle"></i> Brauzerlar va CSS muvofiqligi</li>
+                        <li><i class="fas fa-check-circle"></i> caniuse.com saytidan foydalanish</li>
+                        <li><i class="fas fa-check-circle"></i> Kurs davomida yaratiladigan loyiha</li>
+                        <li><i class="fas fa-check-circle"></i> Loyiha uchun kerakli papka tuzilmasi</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>CSS3 ga e'tibor qarating:</strong> Bugungi kunda biz asosan CSS3 dan foydalanamiz. CSS1 va CSS2 tarixiy ahamiyatga ega, lekin ularni bilish foydali.</span>
+                            <span class="badge good-to-know">tushunish kerak</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>caniuse.com ni yodlang:</strong> Bu sayt har qanday CSS xususiyati qaysi brauzerda ishlashini ko'rsatadi. Professional dasturchining eng yaxshi do'sti!</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Loyihani boshlang:</strong> Kurs davomida bitta katta loyiha ustida ishlaymiz. Har bir darsda loyihaga yangi stillar qo'shib boramiz.</span>
+                            <span class="badge tip">amaliyot muhim</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: CSS VERSIYALARI ==================== -->
+                <section class="lesson-section" id="css-versions">
+                    <h2><i class="fas fa-code-branch"></i> CSS versiyalari tarixi</h2>
+                    
+                    <p>CSS vaqt o'tishi bilan rivojlanib bordi. Har bir yangi versiya yangi imkoniyatlar olib keldi. Keling, asosiy versiyalar bilan tanishamiz:</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1996</div>
+                            <div class="timeline-content">
+                                <h4>CSS1</h4>
+                                <p>Birinchi versiya. Asosiy xususiyatlar: ranglar, shriftlar, margin, padding, border, background. Juda oddiy imkoniyatlar.</p>
+                                <span class="timeline-badge">Asosiy</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1998</div>
+                            <div class="timeline-content">
+                                <h4>CSS2</h4>
+                                <p>Positioning (absolute, relative), z-index, media types, pseudo-elementlar qo'shildi. Sahifalarni joylashtirish imkoniyatlari kengaydi.</p>
+                                <span class="timeline-badge">Kengaytirilgan</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2011+</div>
+                            <div class="timeline-content">
+                                <h4>CSS3</h4>
+                                <p>Modullarga bo'lindi. Flexbox, Grid, Animatsiyalar, Gradientlar, Media Queries, Transforms va boshqa ko'plab zamonaviy imkoniyatlar.</p>
+                                <span class="timeline-badge success">Zamonaviy</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Muhim:</strong> CSS3 "modulli" yondashuvni qo'llaydi. Ya'ni, har bir yangi xususiyat (flexbox, grid, animations) alohida modul sifatida ishlab chiqiladi. Bu tezroq yangilanish va brauzerlar tomonidan bosqichma-bosqich qo'llab-quvvatlash imkonini beradi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: BRAUZER MUVOFIQLIGI ==================== -->
+                <section class="lesson-section" id="browser-support">
+                    <h2><i class="fas fa-globe"></i> Brauzer muvofiqligi va caniuse.com</h2>
+                    
+                    <p>Har bir brauzer (Chrome, Firefox, Safari, Edge) CSS xususiyatlarini turlicha qo'llab-quvvatlaydi. Yangi CSS xususiyatlari eski brauzerlarda ishlamasligi mumkin. Shuning uchun professional dasturchilar <strong>caniuse.com</strong> saytidan foydalanadi.</p>
+                    
+                    <div class="browser-support">
+                        <h4><i class="fas fa-link"></i> caniuse.com - dasturchining eng yaxshi do'sti</h4>
+                        <p><strong>caniuse.com</strong> sayti har qanday CSS, HTML yoki JavaScript xususiyati qaysi brauzer versiyalarida ishlashini aniq ko'rsatadi. Yashil rang - to'liq qo'llab-quvvatlaydi, qizil - qo'llab-quvvatlamaydi.</p>
+                        
+                        <div class="browser-icons">
+                            <div class="browser-icon"><i class="fab fa-chrome"></i> Chrome</div>
+                            <div class="browser-icon"><i class="fab fa-firefox"></i> Firefox</div>
+                            <div class="browser-icon"><i class="fab fa-safari"></i> Safari</div>
+                            <div class="browser-icon"><i class="fab fa-edge"></i> Edge</div>
+                        </div>
+                        
+                        <div class="support-table">
+                            <div class="support-row header">
+                                <div>Xususiyat</div>
+                                <div>Chrome</div>
+                                <div>Firefox</div>
+                                <div>Safari</div>
+                                <div>Edge</div>
+                            </div>
+                            <div class="support-row">
+                                <div>Flexbox</div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                            </div>
+                            <div class="support-row">
+                                <div>CSS Grid</div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                            </div>
+                            <div class="support-row">
+                                <div>Container Queries</div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                                <div><i class="fas fa-check-circle"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Professional maslahat:</strong> Yangi loyiha boshlaganingizda, maqsadli auditoriyangiz qaysi brauzerlardan foydalanishini aniqlang. Agar eski brauzerlarni qo'llab-quvvatlash kerak bo'lsa, "progressive enhancement" (bosqichma-bosqich yaxshilash) yondashuvini qo'llang.
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: KURS LOYIHASI ==================== -->
+                <section class="lesson-section" id="course-project">
+                    <h2><i class="fas fa-project-diagram"></i> Kurs loyihasi</h2>
+                    
+                    <p>Bu kurs davomida biz <strong>"Natour"</strong> (tabiat sayohatlari uchun sayt) loyihasini yaratamiz. Bu zamonaviy, to'liq ishlaydigan web-sayt bo'lib, quyidagi elementlarni o'z ichiga oladi:</p>
+                    
+                    <div class="project-features">
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Header va navigatsiya menyusi</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Hero section (katta rasm va sarlavha)</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Kartalar (cards) bilan ma'lumotlar</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Formalar (aloqa, ro'yxatdan o'tish)</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Animatsiyalar va hover effektlar</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Responsive dizayn (mobil, planshet, desktop)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="folder-structure">
+                        <h4><i class="fas fa-folder-tree"></i> Loyiha papka tuzilmasi</h4>
+                        <div class="folder-tree">
+                            <pre><code class="language-css">natour-project/
+├── index.html
+├── css/
+│   └── style.css
+├── img/
+│   ├── logo.png
+│   ├── hero.jpg
+│   ├── nat-1.jpg
+│   └── ...
+└── js/
+    └── script.js</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Eslatma:</strong> Kurs davomida har bir yangi mavzuni o'rganganimizdan so'ng, loyihamizga yangi stillar qo'shib boramiz. Masalan, Box Model mavzusidan keyin margin va padding larni, Positioning mavzusidan keyin elementlarni joylashtirishni qo'shamiz.
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3>
+                        <span class="test-badge">2-dars testi</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            CSS3 qachondan boshlab faol rivojlana boshlagan?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1a" value="a">
+                                <label for="q1a">1996 yildan</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1b" value="b">
+                                <label for="q1b">1998 yildan</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1c" value="c">
+                                <label for="q1c">2011 yildan</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q1" id="q1d" value="d">
+                                <label for="q1d">2005 yildan</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            Brauzerda CSS xususiyati ishlashini tekshirish uchun qaysi sayt ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2a" value="a">
+                                <label for="q2a">css-tricks.com</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2b" value="b">
+                                <label for="q2b">caniuse.com</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2c" value="c">
+                                <label for="q2c">w3schools.com</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q2" id="q2d" value="d">
+                                <label for="q2d">mdn.com</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            CSS3 ning oldingi versiyalardan asosiy farqi nimada?
+                        </div>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3a" value="a">
+                                <label for="q3a">Tezroq ishlaydi</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3b" value="b">
+                                <label for="q3b">Modullarga bo'lingan</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3c" value="c">
+                                <label for="q3c">Kamroq kod yoziladi</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="q3" id="q3d" value="d">
+                                <label for="q3d">Faqat mobil qurilmalar uchun</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> O'zingizning loyihangiz uchun papka tuzilmasini yarating va caniuse.com saytida 3 ta CSS xususiyatini tekshiring.</p>
+                        <ol>
+                            <li>Kompyuteringizda "mening-saytim" nomli papka yarating</li>
+                            <li>Ichida <code>index.html</code>, <code>css/style.css</code> va <code>img/</code> papkasini yarating</li>
+                            <li><code>index.html</code> fayliga asosiy HTML strukturani yozing</li>
+                            <li>caniuse.com saytiga kirib, quyidagi xususiyatlarni tekshiring: <code>flexbox</code>, <code>grid</code>, <code>border-radius</code></li>
+                            <li>Har bir xususiyat uchun qaysi brauzer versiyalarida ishlashini yozib oling</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4> Namunaviy natijalar:</h4>
+                        <p><strong>1. Papka tuzilmasi:</strong></p>
+                        <pre><code class="language-css">mening-saytim/
+├── index.html
+├── css/
+│   └── style.css
+└── img/</code></pre>
+                        
+                        <p><strong>2. index.html namunasi:</strong></p>
+                        <pre><code class="language-css">&lt;!DOCTYPE html&gt;
+&lt;html lang="uz"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Mening Saytim&lt;/title&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Salom Dunyo!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        
+                        <p><strong>3. caniuse.com tekshiruvi natijalari:</strong></p>
+                        <ul>
+                            <li><strong>flexbox:</strong> Barcha zamonaviy brauzerlarda to'liq ishlaydi (Chrome 29+, Firefox 28+, Safari 9+, Edge 12+)</li>
+                            <li><strong>grid:</strong> Barcha zamonaviy brauzerlarda to'liq ishlaydi (Chrome 57+, Firefox 52+, Safari 10.1+, Edge 16+)</li>
+                            <li><strong>border-radius:</strong> Juda eski brauzerlardan tashqari hammasida ishlaydi (Chrome 4+, Firefox 4+, Safari 5+, Edge 12+)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>CSS1 (1996)</strong> - asosiy stillar, <strong>CSS2 (1998)</strong> - positioning, <strong>CSS3 (2011+)</strong> - modulli tizim</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>CSS3 modullarga bo'lingan</strong> - bu tezroq rivojlanish va bosqichma-bosqich qo'llash imkonini beradi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>caniuse.com</strong> - CSS xususiyatlarining brauzer muvofiqligini tekshirish uchun eng yaxshi vosita</li>
+                        <li><i class="fas fa-check-circle"></i> Kurs davomida <strong>"Natour"</strong> sayti loyihasini yaratamiz</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> HTML hujjat va CSS. Loyiha strukturasi</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../1/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../3/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#css-versions">CSS versiyalari</a></li>
+                        <li><a href="#browser-support">Brauzer muvofiqligi</a></li>
+                        <li><a href="#course-project">Kurs loyihasi</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">2/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 3.2%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <!-- Firebase va Lesson Common -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <!-- Umumiy JavaScript -->
+    <script src="../script.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

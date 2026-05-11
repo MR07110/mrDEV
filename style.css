@@ -1,0 +1,341 @@
+/* ==================== MRDEV STYLE v6.0 | ROOT DEFAULT ==================== */
+
+/* 1. CSS Variables */
+@import url('./assets/css/variables.css');
+
+/* 2. Reset */
+@import url('./assets/css/reset.css');
+
+/* 3. Header */
+@import url('./assets/css/header.css');
+
+/* 4. Sidebar */
+@import url('./assets/css/sidebar.css');
+
+/* 5. Main */
+@import url('./assets/css/main.css');
+
+/* 6. User Menu */
+@import url('./assets/css/user-menu.css');
+
+/* 7. Modal */
+@import url('./assets/css/modal.css');
+
+/* 8. Toast */
+@import url('./assets/css/toast.css');
+
+/* 9. Responsive */
+@import url('./assets/css/responsive.css');
+
+/* ==================== DEFAULT EXTRA ANIMATIONS ==================== */
+
+/* Smooth page load */
+@keyframes pageLoad {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+body {
+    animation: pageLoad 0.3s ease-out;
+}
+
+/* Focus visible - accessibility */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Selection color */
+::selection {
+    background: var(--accent-dim);
+    color: var(--accent);
+}
+
+/* Skeleton loading animation */
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.skeleton {
+    background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface) 50%, var(--surface-2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius-sm);
+}
+
+/* Fade in up */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.4s var(--ease-out) both;
+}
+
+/* Stagger children */
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.30s; }
+
+/* Pulse animation for notifications */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Slide in right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-right {
+    animation: slideInRight 0.3s var(--ease-out) both;
+}
+
+/* Scale in */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.scale-in {
+    animation: scaleIn 0.3s var(--ease-out) both;
+}
+
+/* Ripple effect */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, var(--accent-dim) 10%, transparent 10%);
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.ripple:active::after {
+    background-size: 20000%;
+    opacity: 1;
+    transition: background-size 0s;
+}
+
+/* Hover lift */
+.hover-lift {
+    transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Glass morphism */
+.glass {
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+}
+
+/* Disable state */
+.disabled, [disabled] {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+/* Truncate text */
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Flex center */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Gap utilities */
+.gap-4  { gap: 4px; }
+.gap-8  { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }
+
+/* Margin utilities */
+.mt-8  { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-8  { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+
+/* Padding utilities */
+.p-8  { padding: 8px; }
+.p-12 { padding: 12px; }
+.p-16 { padding: 16px; }
+.p-24 { padding: 24px; }
+
+/* Text utilities */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.font-bold    { font-weight: 600; }
+.font-medium  { font-weight: 500; }
+.font-normal  { font-weight: 400; }
+
+.text-xs   { font-size: 10px; }
+.text-sm   { font-size: 12px; }
+.text-base { font-size: 14px; }
+.text-lg   { font-size: 16px; }
+.text-xl   { font-size: 20px; }
+.text-2xl  { font-size: 24px; }
+
+/* Color utilities */
+.text-primary    { color: var(--text); }
+.text-secondary  { color: var(--text-2); }
+.text-tertiary   { color: var(--text-3); }
+.text-accent     { color: var(--accent); }
+.text-red        { color: var(--red); }
+.text-green      { color: var(--green); }
+
+/* Background utilities */
+.bg-surface  { background: var(--surface); }
+.bg-surface2 { background: var(--surface-2); }
+.bg-accent   { background: var(--accent); color: white; }
+
+/* Border utilities */
+.rounded-sm  { border-radius: var(--radius-sm); }
+.rounded-md  { border-radius: var(--radius-md); }
+.rounded-lg  { border-radius: var(--radius-lg); }
+.rounded-xl  { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+.border { border: 1px solid var(--border); }
+
+/* Shadow utilities */
+.shadow-xs { box-shadow: var(--shadow-xs); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+/* Display utilities */
+.d-none         { display: none; }
+.d-flex         { display: flex; }
+.d-block        { display: block; }
+.d-inline-flex  { display: inline-flex; }
+.d-grid         { display: grid; }
+
+/* Flex utilities */
+.flex-row    { flex-direction: row; }
+.flex-col    { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-1      { flex: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
+
+/* Width utilities */
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+
+/* Cursor */
+.cursor-pointer { cursor: pointer; }
+.cursor-default { cursor: default; }
+
+/* Overflow */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto   { overflow: auto; }
+
+/* Position */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed    { position: fixed; }
+.sticky   { position: sticky; }
+
+/* Z-index */
+.z-10  { z-index: 10; }
+.z-50  { z-index: 50; }
+.z-100 { z-index: 100; }
+.z-200 { z-index: 200; }
+.z-300 { z-index: 300; }
+
+/* ==================== MOBIL KOK SCOPE - AGGRESSIVE OVERRIDE ==================== */
+
+/* Barcha bosiladigan elementlar */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+
+/* Header ichidagi barcha elementlar */
+header * {
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+
+/* Qidiruv tugmasi maxsus override */
+.mobile-search-btn,
+.mobile-search-btn *,
+#mobileSearchBtn,
+#mobileSearchBtn * {
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    -webkit-focus-ring-color: rgba(0,0,0,0) !important;
+    outline: none !important;
+}
+
+.mobile-search-btn:focus,
+.mobile-search-btn:active,
+.mobile-search-btn:focus-visible,
+.mobile-search-btn:focus-within,
+.mobile-search-btn:hover,
+#mobileSearchBtn:focus,
+#mobileSearchBtn:active,
+#mobileSearchBtn:focus-visible,
+#mobileSearchBtn:focus-within,
+#mobileSearchBtn:hover {
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    -webkit-focus-ring-color: rgba(0,0,0,0) !important;
+    outline: none !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}

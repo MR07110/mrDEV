@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23-Dars: Absolute va Sticky | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "23",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=HQnSWvz-R0w",
+            "lessonTitle": "Absolute va Sticky"
+        }
+    </script>
+    
+    <!-- Test javoblari (23-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "d"
+        }
+    </script>
+</head>
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>23-Dars: Absolute va Sticky</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 9:23
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/HQnSWvz-R0w" 
+                            title="CSS | 23. Absolute va Sticky"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 23. Absolute va Sticky</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 9:23</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>Absolute va Sticky</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 30-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> Positioning</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>CSS da <code>position: absolute</code> va <code>position: sticky</code> qiymatlarini batafsil o'rganasiz. Absolute elementni aniq nuqtaga joylashtirish, Sticky esa elementni scroll bo'lganda yopishqoq qilish uchun ishlatiladi.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <code>position: absolute</code> - absolyut joylashuv</li>
+                        <li><i class="fas fa-check-circle"></i> Absolute element qayerga nisbatan joylashadi?</li>
+                        <li><i class="fas fa-check-circle"></i> <code>position: sticky</code> - yopishqoq joylashuv</li>
+                        <li><i class="fas fa-check-circle"></i> Sticky element qanday ishlaydi?</li>
+                        <li><i class="fas fa-check-circle"></i> Absolute va Sticky ning farqlari va qo'llanilishi</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Absolute ota elementga bog'liq:</strong> <code>position: absolute</code> elementi <code>position: relative</code> bo'lgan eng yaqin ota elementga nisbatan joylashadi.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Sticky - gibrid:</strong> <code>position: sticky</code> relative va fixed ning aralashmasi. Scroll bo'lmaganda relative, scroll bo'lganda fixed kabi ishlaydi.</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Sticky uchun top kerak:</strong> <code>position: sticky</code> ishlashi uchun <code>top</code>, <code>right</code>, <code>bottom</code> yoki <code>left</code> qiymati berilishi shart.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: POSITION: ABSOLUTE ==================== -->
+                <section class="lesson-section" id="position-absolute">
+                    <h2><i class="fas fa-map-pin"></i> Position: Absolute</h2>
+                    
+                    <p><strong><code>position: absolute</code></strong> - elementni normal oqimdan chiqarib, <code>position: relative</code>, <code>absolute</code>, <code>fixed</code> yoki <code>sticky</code> bo'lgan eng yaqin ota elementga nisbatan joylashtiradi. Agar bunday ota element bo'lmasa, <code>&lt;html&gt;</code> ga nisbatan joylashadi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Ota element - relative */
+.parent {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    background: #f3f4f6;
+}
+
+/* Bola element - absolute */
+.child {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: #3b82f6;
+    color: white;
+    padding: 15px;
+}
+
+/* Markazga joylashtirish */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Badge - kartada */
+.card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ef4444;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+}</code></pre>
+                    </div>
+                    
+                    <div class="analogy-box">
+                        <div class="analogy-title">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>Absolute tushunchasi</span>
+                        </div>
+                        <div class="analogy-content">
+                            <div class="analogy-item">
+                                <div style="background: #dbeafe; padding: 15px; border-radius: 8px; border: 2px solid #3b82f6;">
+                                    <strong>Ota element</strong><br>
+                                    (position: relative)
+                                </div>
+                            </div>
+                            <div class="analogy-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="analogy-item">
+                                <div style="background: #3b82f6; color: white; padding: 15px; border-radius: 8px;">
+                                    <strong>Bola element</strong><br>
+                                    (position: absolute)<br>
+                                    top: 20px; right: 30px;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat:</strong> <code>position: absolute</code> element normal oqimdan butunlay chiqariladi. Uning asl joyi band bo'lmaydi va boshqa elementlar bu bo'shliqqa joylashadi.
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Markazga tekislash siri:</strong> <code>top: 50%; left: 50%; transform: translate(-50%, -50%);</code> - bu kombinatsiya elementni ota konteynerning to'liq markaziga joylashtiradi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: POSITION: STICKY ==================== -->
+                <section class="lesson-section" id="position-sticky">
+                    <h2><i class="fas fa-sticky-note"></i> Position: Sticky</h2>
+                    
+                    <p><strong><code>position: sticky</code></strong> - bu relative va fixed ning gibridi. Element scroll bo'lmaganda relative kabi, belgilangan chegaraga yetganda esa fixed kabi yopishib qoladi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Sticky header */
+.sticky-header {
+    position: sticky;
+    top: 0;                /* Yuqoriga yopishadi */
+    background: #1e293b;
+    color: white;
+    padding: 20px;
+    z-index: 100;
+}
+
+/* Sticky sidebar */
+.sticky-sidebar {
+    position: sticky;
+    top: 20px;             /* Yuqoridan 20px masofada yopishadi */
+    align-self: flex-start;
+}
+
+/* Sticky kategoriya sarlavhasi */
+.sticky-category {
+    position: sticky;
+    top: 0;
+    background: #f3f4f6;
+    padding: 15px;
+    font-weight: bold;
+}</code></pre>
+                    </div>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Xususiyat</th>
+                                    <th>position: sticky</th>
+                                    <th>position: fixed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ota elementga bog'liq</strong></td>
+                                    <td>Ha, ota element ichida qoladi</td>
+                                    <td>Yo'q, viewport ga nisbatan</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Normal oqim</strong></td>
+                                    <td>Qoladi (yopishmaguncha)</td>
+                                    <td>Chiqariladi</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Offset talab qiladi</strong></td>
+                                    <td>Ha (top, right, bottom, left)</td>
+                                    <td>Shart emas</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Asosiy ishlatilishi</strong></td>
+                                    <td>Header, kategoriya sarlavhalari</td>
+                                    <td>Navigatsiya, popup</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Sticky ishlashi uchun shartlar:</strong>
+                        <ul style="margin-top: 10px;">
+                            <li><code>top</code>, <code>right</code>, <code>bottom</code> yoki <code>left</code> qiymati berilishi shart</li>
+                            <li>Ota elementda <code>overflow: hidden</code> bo'lmasligi kerak</li>
+                            <li>Ota element balandligi sticky elementdan katta bo'lishi kerak</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: BARCHA POSITION QIYMATLARI TAQQOSLASH ==================== -->
+                <section class="lesson-section" id="all-positions">
+                    <h2><i class="fas fa-table"></i> Barcha Position qiymatlari taqqoslash</h2>
+                    
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Qiymat</th>
+                                    <th>Normal oqim</th>
+                                    <th>Nisbatan</th>
+                                    <th>Offset ishlaydi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>static</code></td>
+                                    <td>Ha</td>
+                                    <td>-</td>
+                                    <td>Yo'q</td>
+                                </tr>
+                                <tr>
+                                    <td><code>relative</code></td>
+                                    <td>Ha (joyi band)</td>
+                                    <td>O'z joyiga</td>
+                                    <td>Ha</td>
+                                </tr>
+                                <tr>
+                                    <td><code>absolute</code></td>
+                                    <td>Yo'q</td>
+                                    <td>Position berilgan ota elementga</td>
+                                    <td>Ha</td>
+                                </tr>
+                                <tr>
+                                    <td><code>fixed</code></td>
+                                    <td>Yo'q</td>
+                                    <td>Viewport ga</td>
+                                    <td>Ha</td>
+                                </tr>
+                                <tr>
+                                    <td><code>sticky</code></td>
+                                    <td>Ha (yopishmaguncha)</td>
+                                    <td>Ota elementga / Viewport ga</td>
+                                    <td>Ha</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: AMALIY MISOL ==================== -->
+                <section class="lesson-section" id="practical-example">
+                    <h2><i class="fas fa-laptop"></i> Amaliy misol</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Karta va badge (absolute) */
+.product-card {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ef4444;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* Sticky kategoriya sarlavhasi */
+.category-title {
+    position: sticky;
+    top: 0;
+    background: #f8fafc;
+    padding: 15px 20px;
+    margin: 0;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 10;
+}
+
+/* Modal overlay (absolute) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}</code></pre>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> 23-dars testi</h3>
+                        <span class="test-badge">4 ta savol</span>
+                    </div>
+                    
+                    <!-- 1-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            <code>position: absolute</code> elementi qayerga nisbatan joylashadi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>Har doim viewport ga</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>Position berilgan eng yaqin ota elementga</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>O'zining normal joyiga</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>Har doim body ga</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            <code>position: sticky</code> ishlashi uchun nima shart?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>z-index berilishi shart</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>width berilishi shart</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>top, right, bottom yoki left berilishi shart</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>background berilishi shart</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            Elementni ota konteynerning to'liq markaziga joylashtirish uchun qaysi kombinatsiya ishlatiladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>top: 50%; left: 50%; transform: translate(-50%, -50%);</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>margin: auto;</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>text-align: center;</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>display: flex; align-items: center;</label></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4-savol -->
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            <code>position: absolute</code> elementi normal oqimda qoladimi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>Ha, qoladi</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>Ha, lekin joyi band bo'lmaydi</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>Faqat scroll bo'lganda qoladi</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>Yo'q, normal oqimdan chiqariladi</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Absolute va Sticky position lardan foydalanib sahifa elementlarini yarating.</p>
+                        <ol>
+                            <li><strong>Karta va badge:</strong> Ota elementga <code>position: relative</code>, badge ga <code>position: absolute</code> bering</li>
+                            <li>Badge ni kartaning yuqori o'ng burchagiga joylashtiring (<code>top: -10px; right: -10px</code>)</li>
+                            <li><strong>Sticky header:</strong> Yuqoriga yopishib qoladigan header yarating (<code>position: sticky; top: 0</code>)</li>
+                            <li><strong>Sticky kategoriya:</strong> Kategoriya sarlavhalarini sticky qiling</li>
+                            <li><strong>Modal oyna:</strong> <code>position: fixed</code> overlay va <code>position: absolute</code> yopish tugmasi yarating</li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-html">&lt;!-- Sticky header --&gt;
+&lt;header class="sticky-header"&gt;
+    &lt;h1&gt;Sahifa sarlavhasi&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;!-- Sticky kategoriya --&gt;
+    &lt;section&gt;
+        &lt;h2 class="sticky-category"&gt;Kategoriya 1&lt;/h2&gt;
+        &lt;div class="product-grid"&gt;
+            &lt;div class="product-card"&gt;
+                &lt;span class="discount-badge"&gt;-20%&lt;/span&gt;
+                &lt;h3&gt;Mahsulot nomi&lt;/h3&gt;
+                &lt;p&gt;Mahsulot tavsifi...&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;style&gt;
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background: #1e293b;
+    color: white;
+    padding: 20px;
+    z-index: 100;
+}
+
+.sticky-category {
+    position: sticky;
+    top: 78px; /* Header balandligi */
+    background: #f8fafc;
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 50;
+}
+
+.product-card {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.discount-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ef4444;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>position: absolute</strong> - position berilgan eng yaqin ota elementga nisbatan joylashadi, normal oqimdan chiqariladi</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>position: sticky</strong> - relative va fixed gibridi, scroll bo'lganda yopishib qoladi</li>
+                        <li><i class="fas fa-check-circle"></i> Sticky ishlashi uchun <code>top</code>, <code>right</code>, <code>bottom</code> yoki <code>left</code> berilishi shart</li>
+                        <li><i class="fas fa-check-circle"></i> Markazga tekislash: <code>top: 50%; left: 50%; transform: translate(-50%, -50%);</code></li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Z-index va Overflow</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    
+                    <div class="comment-form">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../22/" class="btn-nav">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Oldingi dars</span>
+                        </a>
+                        <a href="../" class="btn-nav">
+                            <i class="fas fa-list"></i>
+                            <span>Darslar ro'yxati</span>
+                        </a>
+                        <a href="../24/" class="btn-nav btn-primary" id="nextLessonBtn">
+                            <span>Keyingi dars</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i>
+                        <span>Darsni yakunlash</span>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <!-- Dars tarkibi -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#position-absolute">Position: Absolute</a></li>
+                        <li><a href="#position-sticky">Position: Sticky</a></li>
+                        <li><a href="#all-positions">Barcha position qiymatlari</a></li>
+                        <li><a href="#practical-example">Amaliy misol</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resurslar -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                
+                <!-- O'rganish jarayoni -->
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label">
+                            <span>CSS kursi</span>
+                            <span id="progressFraction">23/63</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="sidebarProgressFill" style="width: 36.5%"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>

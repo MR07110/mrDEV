@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9-Dars: Classlar va qo'shma selektorlar | CSS Kurs</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../icons/learncode_favicon.svg">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Umumiy CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Lesson Config -->
+    <script type="application/json" id="lessonConfig">
+        {
+            "course": "css",
+            "lessonId": "9",
+            "totalLessons": 63,
+            "youtubeWatchUrl": "https://www.youtube.com/watch?v=uvefHirWsG4&list=PLpDyZ4xZcDg_gyII__1jtnE2FEgqpfJU8&index=9",
+            "lessonTitle": "Classlar va qo'shma selektorlar"
+        }
+    </script>
+    
+    <!-- Test javoblari (9-dars) -->
+    <script type="application/json" id="testAnswers">
+        {
+            "q1": "b",
+            "q2": "c",
+            "q3": "a",
+            "q4": "b"
+        }
+    </script>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<body>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="course-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Darslar ro'yxati</span>
+                </a>
+                
+                <div class="course-title-header">
+                    <img src="../../icons/css3.svg" alt="CSS">
+                    <h1>9-Dars: Classlar va qo'shma selektorlar</h1>
+                </div>
+                
+                <div class="progress-info">
+                    <i class="far fa-clock"></i> 10:45
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="container">
+        <div class="lesson-grid">
+            
+            <!-- Asosiy kontent -->
+            <div class="lesson-content">
+                
+                <!-- Video -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/uvefHirWsG4" 
+                            title="CSS | 9. Classlar va qo'shma selektorlar"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-title"><i class="fab fa-youtube"></i> CSS | 9. Classlar va qo'shma selektorlar</span>
+                        <span class="video-duration"><i class="far fa-clock"></i> 10:45</span>
+                    </div>
+                </div>
+                
+                <!-- Dars sarlavhasi -->
+                <div class="lesson-header">
+                    <h1>"Class"lar va qo'shma (combined) selektorlar</h1>
+                    <div class="lesson-meta">
+                        <span><i class="fas fa-calendar"></i> 16-yanvar, 2021</span>
+                        <span><i class="fas fa-layer-group"></i> CSS Asoslari</span>
+                        <span><i class="fas fa-signal"></i> O'rta daraja</span>
+                    </div>
+                </div>
+                
+                <!-- Kimlar uchun? -->
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <strong>Bu darsda nimalarni o'rganasiz?</strong>
+                    <p>Class selektorlarini chuqurroq o'rganamiz: bir elementga bir nechta klass berish, klasslarni biriktirib yozish (combined selectors) va klasslar bilan ishlashning eng yaxshi amaliyotlari.</p>
+                </div>
+                
+                <!-- O'rganish maqsadlari -->
+                <div class="learning-objectives">
+                    <h3><i class="fas fa-bullseye"></i> Bu darsda nimalarni o'rganasiz?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Bir elementga bir nechta klass berish</li>
+                        <li><i class="fas fa-check-circle"></i> Qo'shma (combined) selektorlar - klasslarni biriktirish</li>
+                        <li><i class="fas fa-check-circle"></i> Element va klassni birgalikda ishlatish</li>
+                        <li><i class="fas fa-check-circle"></i> Class nomlash qoidalari va BEM metodologiyasi</li>
+                        <li><i class="fas fa-check-circle"></i> Klasslar bilan ishlashda eng yaxshi amaliyotlar</li>
+                    </ul>
+                </div>
+                
+                <!-- Maslahatlar -->
+                <div class="advice-box">
+                    <div class="advice-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Bu dars uchun maslahatlar</h4>
+                    </div>
+                    <div class="advice-content">
+                        <div class="advice-item">
+                            <i class="fas fa-brain"></i>
+                            <span><strong>Bir nechta klass - kuchli vosita:</strong> Bitta elementga bir nechta klass berish kodni qayta ishlatish imkonini beradi.</span>
+                            <span class="badge must-know">yodlash shart</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-bookmark"></i>
+                            <span><strong>Qo'shma selektor:</strong> <code>.btn.primary</code> - ikkala klassga ham ega elementni tanlaydi (bo'shliqsiz!).</span>
+                            <span class="badge good-to-know">muhim</span>
+                        </div>
+                        <div class="advice-item">
+                            <i class="fas fa-code"></i>
+                            <span><strong>BEM metodologiyasi:</strong> Block__Element--Modifier - katta loyihalarda klass nomlash uchun standart.</span>
+                            <span class="badge tip">amaliyot</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 1-BO'LIM: BIR NECHTA KLASS ==================== -->
+                <section class="lesson-section" id="multiple-classes">
+                    <h2><i class="fas fa-tags"></i> Bir elementga bir nechta klass berish</h2>
+                    
+                    <p>HTML da bitta elementga bir nechta klass berish mumkin. Klasslar bo'shliq bilan ajratiladi. Bu kodni qayta ishlatish va modulli yozish imkonini beradi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">&lt;!-- Bir nechta klassga ega element --&gt;
+&lt;button class="btn btn-primary btn-large"&gt;Yuborish&lt;/button&gt;
+
+&lt;div class="card shadow rounded"&gt;
+    &lt;p&gt;Karta kontenti&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Asosiy tugma stillari */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Asosiy tugma rangi */
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+/* Katta tugma */
+.btn-large {
+    padding: 14px 28px;
+    font-size: 18px;
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Afzalligi:</strong> Kod takrorlanmaydi. <code>.btn</code> asosiy stillarni, <code>.btn-primary</code> rangni, <code>.btn-large</code> o'lchamni boshqaradi.
+                    </div>
+                </section>
+                
+                <!-- ==================== 2-BO'LIM: QO'SHMA SELEKTORLAR ==================== -->
+                <section class="lesson-section" id="combined-selectors">
+                    <h2><i class="fas fa-link"></i> Qo'shma (combined) selektorlar</h2>
+                    
+                    <p><strong>Qo'shma selektor</strong> - bir nechta klassni bo'shliqsiz yonma-yon yozish. Bu faqat barcha ko'rsatilgan klasslarga ega elementlarni tanlaydi.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Ikkala klassga ham ega element */
+.btn.primary {
+    background: #3b82f6;
+    color: white;
+}
+
+/* Uchta klassga ega element */
+.card.shadow.rounded {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 12px;
+}</code></pre>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Diqqat! Bo'shliq bor yoki yo'q?</strong>
+                        <ul>
+                            <li><code>.btn .primary</code> (bo'shliq bor) - <code>.btn</code> ichidagi <code>.primary</code> elementini tanlaydi</li>
+                            <li><code>.btn.primary</code> (bo'shliq yo'q) - ikkala klassga ega elementni tanlaydi</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- ==================== 3-BO'LIM: ELEMENT VA KLASSNI BIRGALIKDA ==================== -->
+                <section class="lesson-section" id="element-with-class">
+                    <h2><i class="fas fa-code"></i> Element va klassni birgalikda ishlatish</h2>
+                    
+                    <p>Element selektor va klassni birgalikda ishlatish orqali aniqroq tanlash mumkin.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">/* Faqat button elementidagi .primary klassini tanlaydi */
+button.primary {
+    background: #3b82f6;
+}
+
+/* Faqat p elementidagi .highlight klassini tanlaydi */
+p.highlight {
+    background: #fef3c7;
+    padding: 10px;
+}</code></pre>
+                    </div>
+                    
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Qachon ishlatiladi?</strong> Bir xil klass nomi turli elementlarda turlicha ko'rinishda bo'lishi kerak bo'lganda.
+                    </div>
+                </section>
+                
+                <!-- ==================== 4-BO'LIM: CLASS NOMLASH QOIDALARI ==================== -->
+                <section class="lesson-section" id="naming-conventions">
+                    <h2><i class="fas fa-tag"></i> Class nomlash qoidalari</h2>
+                    
+                    <p>Katta loyihalarda klass nomlarini to'g'ri tanlash juda muhim. Eng mashhur metodologiyalardan biri - <strong>BEM (Block Element Modifier)</strong>.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">BEM namunasi</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Nusxalash</button>
+                        </div>
+                        <pre><code class="language-css">&lt;!-- Block --&gt;
+&lt;div class="card"&gt;
+    &lt;!-- Element --&gt;
+    &lt;h2 class="card__title"&gt;Sarlavha&lt;/h2&gt;
+    &lt;p class="card__text"&gt;Matn&lt;/p&gt;
+    &lt;!-- Modifier --&gt;
+    &lt;button class="card__button card__button--primary"&gt;Bosish&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-cube"></i>
+                            <h4>Block</h4>
+                            <p>Mustaqil komponent (<code>.card</code>, <code>.btn</code>)</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <h4>Element</h4>
+                            <p>Blokning qismi (<code>.card__title</code>)</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-paint-brush"></i>
+                            <h4>Modifier</h4>
+                            <p>O'zgartirilgan holat (<code>.btn--large</code>)</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== 5-BO'LIM: KLASSLAR BILAN ENG YAXSHI AMALIYOTLAR ==================== -->
+                <section class="lesson-section" id="best-practices">
+                    <h2><i class="fas fa-check-circle"></i> Klasslar bilan eng yaxshi amaliyotlar</h2>
+                    
+                    <div class="tips-list">
+                        <div class="tip-item">
+                            <div class="tip-icon">1</div>
+                            <div class="tip-content">
+                                <strong>Mazmunli nomlar bering</strong>
+                                <p><code>.red-text</code> emas, <code>.error-message</code> deb nomlang. Agar keyin rang o'zgarsa, nom mos kelmay qoladi.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">2</div>
+                            <div class="tip-content">
+                                <strong>Modulli yondashing</strong>
+                                <p>Har bir klass faqat bitta vazifani bajarsin. <code>.btn</code> asosiy, <code>.btn-primary</code> rang uchun.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">3</div>
+                            <div class="tip-content">
+                                <strong>ID o'rniga klass ishlating</strong>
+                                <p>CSS da stillash uchun ID ishlatmang. Klasslar qayta ishlatilishi mumkin va specificity muammolarini keltirib chiqarmaydi.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">4</div>
+                            <div class="tip-content">
+                                <strong>Kichik harflar va defis</strong>
+                                <p>Klass nomlarida kichik harflar va so'zlar orasida defis ishlating: <code>.main-header</code>, <code>.btn-primary</code>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== TEST ==================== -->
+                <div class="test-block" id="test">
+                    <div class="test-header">
+                        <h3><i class="fas fa-pencil-alt"></i> Bilimingizni tekshiring</h3>
+                        <span class="test-badge">9-dars testi</span>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            Bitta elementga bir nechta klass qanday beriladi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"><label>Vergul bilan: class="btn, primary"</label></div>
+                            <div class="option"><input type="radio" name="q1" value="b"><label>Bo'shliq bilan: class="btn primary"</label></div>
+                            <div class="option"><input type="radio" name="q1" value="c"><label>Nuqta bilan: class="btn.primary"</label></div>
+                            <div class="option"><input type="radio" name="q1" value="d"><label>Defis bilan: class="btn-primary"</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            <code>.btn.primary</code> (bo'shliqsiz) qanday elementni tanlaydi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"><label>.btn ichidagi .primary elementini</label></div>
+                            <div class="option"><input type="radio" name="q2" value="b"><label>Faqat .btn elementini</label></div>
+                            <div class="option"><input type="radio" name="q2" value="c"><label>Ikkala klassga ega elementni</label></div>
+                            <div class="option"><input type="radio" name="q2" value="d"><label>Faqat .primary elementini</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            BEM metodologiyasida Element qanday belgilanadi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"><label>__ (ikkita pastki chiziq): card__title</label></div>
+                            <div class="option"><input type="radio" name="q3" value="b"><label>-- (ikkita defis): card--title</label></div>
+                            <div class="option"><input type="radio" name="q3" value="c"><label>_ (bitta pastki chiziq): card_title</label></div>
+                            <div class="option"><input type="radio" name="q3" value="d"><label>- (defis): card-title</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-question">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            CSS da stillash uchun qaysi selektor turi eng yaxshi?
+                        </div>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"><label>ID selektor</label></div>
+                            <div class="option"><input type="radio" name="q4" value="b"><label>Class selektor</label></div>
+                            <div class="option"><input type="radio" name="q4" value="c"><label>Element selektor</label></div>
+                            <div class="option"><input type="radio" name="q4" value="d"><label>Universal selektor</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="test-submit">
+                        <button class="btn-test" id="checkAnswers">Javoblarni tekshirish</button>
+                    </div>
+                    <div class="test-result" id="testResult"></div>
+                </div>
+                
+                <!-- ==================== AMALIY MASHQ ==================== -->
+                <div class="practice-block" id="practice">
+                    <div class="practice-header">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Amaliy mashq</h3>
+                    </div>
+                    <div class="tawindow.__ENV__?.OPENAI_API_KEY || """>
+                        <p><strong>Vazifa:</strong> Klasslar va qo'shma selektorlardan foydalanib tugmalar tizimini yarating.</p>
+                        <ol>
+                            <li><code>.btn</code> klassi - asosiy tugma stillari (padding, border-radius, cursor)</li>
+                            <li><code>.btn-primary</code> - ko'k tugma</li>
+                            <li><code>.btn-secondary</code> - kulrang tugma</li>
+                            <li><code>.btn-large</code> - katta tugma</li>
+                            <li><code>button.primary</code> - faqat button elementidagi primary klassiga qo'shimcha stil</li>
+                            <li>BEM uslubida <code>.card</code> blokini yarating: <code>.card__title</code>, <code>.card__text</code>, <code>.card__button</code></li>
+                        </ol>
+                    </div>
+                    <button class="btn-solution" id="showSolution">Yechimni ko'rish</button>
+                    <div class="solution-panel" id="solutionPanel">
+                        <h4>Namunaviy yechim:</h4>
+                        <pre><code class="language-css">&lt;!-- HTML --&gt;
+&lt;button class="btn btn-primary"&gt;Yuborish&lt;/button&gt;
+&lt;button class="btn btn-secondary btn-large"&gt;Bekor qilish&lt;/button&gt;
+&lt;a href="#" class="btn btn-primary"&gt;Havola tugma&lt;/a&gt;
+
+&lt;div class="card"&gt;
+    &lt;h3 class="card__title"&gt;Karta sarlavhasi&lt;/h3&gt;
+    &lt;p class="card__text"&gt;Karta ichidagi matn.&lt;/p&gt;
+    &lt;button class="card__button card__button--primary"&gt;Batafsil&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-secondary {
+    background: #64748b;
+    color: white;
+}
+
+.btn-large {
+    padding: 14px 28px;
+    font-size: 18px;
+}
+
+button.primary {
+    font-weight: bold;
+}
+
+/* BEM */
+.card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+}
+.card__title { color: #1e293b; margin-bottom: 10px; }
+.card__text { color: #64748b; margin-bottom: 15px; }
+.card__button--primary { background: #3b82f6; color: white; }</code></pre>
+                    </div>
+                </div>
+                
+                <!-- ==================== XULOSA ==================== -->
+                <div class="lesson-summary" id="summary">
+                    <h3><i class="fas fa-check-double"></i> Dars xulosasi</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Bir elementga <strong>bir nechta klass</strong> berish: <code>class="btn btn-primary btn-large"</code></li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Qo'shma selektor:</strong> <code>.btn.primary</code> (bo'shliqsiz) - ikkala klassga ega element</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Element + klass:</strong> <code>button.primary</code> - aniq element uchun</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>BEM:</strong> Block__Element--Modifier - klass nomlash standarti</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Keyingi darsda:</strong> Class yoki ID. "!important" haqida</li>
+                    </ul>
+                </div>
+                
+                <!-- ==================== IZOHLAR ==================== -->
+                <section class="comments-section" id="comments">
+                    <div class="comments-header">
+                        <h2><i class="fas fa-comments"></i> Izohlar</h2>
+                        <span class="comments-count" id="commentsCount">0 ta izoh</span>
+                    </div>
+                    <div class="comment-form">
+                        <div class="comment-avatar"><i class="fas fa-user"></i></div>
+                        <div class="comment-input-wrapper">
+                            <input type="text" id="commentName" placeholder="Ismingiz" maxlength="30" value="O'quvchi">
+                            <textarea id="commentText" placeholder="Fikringizni yozing..." rows="3" maxlength="500"></textarea>
+                            <div class="comment-form-footer">
+                                <span class="char-count"><span id="charCount">0</span>/500</span>
+                                <button class="btn-submit-comment" id="submitComment">
+                                    <i class="fas fa-paper-plane"></i><span>Yuborish</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comments-list" id="commentsList">
+                        <div class="comments-loading">
+                            <i class="fas fa-spinner fa-spin"></i><span>Izohlar yuklanmoqda...</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ==================== NAVIGATSIYA ==================== -->
+                <div class="lesson-navigation">
+                    <div class="nav-buttons">
+                        <a href="../8/" class="btn-nav"><i class="fas fa-arrow-left"></i><span>Oldingi dars</span></a>
+                        <a href="../" class="btn-nav"><i class="fas fa-list"></i><span>Darslar ro'yxati</span></a>
+                        <a href="../10/" class="btn-nav btn-primary"><span>Keyingi dars</span><i class="fas fa-arrow-right"></i></a>
+                    </div>																																												
+                    <button class="btn-nav btn-success" id="completeLesson">
+                        <i class="fas fa-check"></i><span>Darsni yakunlash</span>
+                    </button>
+                </div>
+    							            
+            </div>
+            
+            <!-- ==================== SIDEBAR ==================== -->
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-list-ul"></i> Dars tarkibi</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#multiple-classes">Bir nechta klass</a></li>
+                        <li><a href="#combined-selectors">Qo'shma selektorlar</a></li>
+                        <li><a href="#element-with-class">Element va klass</a></li>
+                        <li><a href="#naming-conventions">Nomlash qoidalari (BEM)</a></li>
+                        <li><a href="#best-practices">Eng yaxshi amaliyotlar</a></li>
+                        <li><a href="#test">Test</a></li>
+                        <li><a href="#practice">Amaliy mashq</a></li>
+                        <li><a href="#summary">Xulosa</a></li>
+                        <li><a href="#comments">Izohlar</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-toolbox"></i> Resurslar</h4>
+                    <ul class="sidebar-outline">
+                        <li><a href="#" id="copyLessonLink"><i class="fas fa-link"></i> Dars linkini nusxalash</a></li>
+                        <li><a href="#" id="youtubeWatchBtn"><i class="fab fa-youtube"></i> YouTubeda ko'rish</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-chart-line"></i> O'rganish jarayoni</h4>
+                    <div class="sidebar-progress">
+                        <div class="progress-label"><span>CSS kursi</span><span id="progressFraction">9/63</span></div>
+                        <div class="progress-track"><div class="progress-fill" id="sidebarProgressFill" style="width: 14.3%"></div></div>
+                    </div>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle"></i><span id="toastMessage">Nusxalandi!</span>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container"><p>© 2026 Learncode.uz | Ulug'bek Samigjonov - CSS To'liq Kurs</p></div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script type="module" src="../../assets/firebase-config.js"></script>
+    <script type="module" src="../../assets/lesson-common.js"></script>
+    <script src="../script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+</body>
+</html>
