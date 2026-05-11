@@ -1,0 +1,102 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ==================== MRDEV_INDEX (LOGIN UCHUN PUBLIC) ====================
+    // BUG FIX: Login vaqtida user autentifikatsiya qilinmagan bo'ladi.
+    //          users collectioniga auth kerak — shuning uchun permission denied chiqardi.
+    //          mrdev_index — faqat { uid, email, displayName, photoURL } saqlaydi (parol yo'q!)
+    //          Public read — login ishlashi uchun auth kerak emas.
+    //          Write — faqat authenticated userlar (saveUserMrdevId ichida chaqiriladi).
+    match /mrdev_index/{mrdevId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    // ==================== USERS COLLECTION ====================
+    match /users/{userId} {
+      // O'qish: har qanday autentifikatsiya qilingan user
+      allow read, get, list: if request.auth != null;
+      // YARATISH: faqat o'z UID'i bilan
+      allow create: if request.auth != null
+        && request.auth.uid == userId;
+      // YANGILASH:
+      //   - uid, createdAt HECH QACHON o'zgartirilmaydi
+      //   - email: mavjud bo'lsa o'zgartirilmaydi (bo'sh bo'lsa yoziladi)
+      //   - mrdevId: bir marta yozilgach o'zgartirilmaydi (bo'sh bo'lsa yoziladi)
+      //   - displayName, photoURL, lastLogin, updatedAt, isActive — har doim yangilanadi
+      //   - mrdevPassword — bir marta yozilgach o'zgartirilmaydi
+      allow update: if request.auth != null
+        && request.auth.uid == userId
+        // uid va createdAt o'zgartirilmasin
+        && !request.resource.data.diff(resource.data).affectedKeys()
+            .hasAny(['uid', 'createdAt'])
+        // email: faqat bo'sh yoki null bo'lsa yozilsin
+        && (
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(['email'])
+          || resource.data.email == null
+          || resource.data.email == ''
+          || resource.data.email == request.resource.data.email
+        )
+        // mrdevId: faqat bo'sh yoki null bo'lsa yozilsin
+        && (
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(['mrdevId'])
+          || resource.data.mrdevId == null
+          || resource.data.mrdevId == ''
+        )
+        // mrdevPassword: faqat bo'sh yoki null bo'lsa yozilsin
+        && (
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(['mrdevPassword'])
+          || resource.data.mrdevPassword == null
+          || resource.data.mrdevPassword == ''
+        );
+      allow delete: if false;
+    }
+
+    // ==================== MINI APP SUBCOLLECTIONS ====================
+    match /users/{userId}/alarms/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/calculations/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/timers/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/stopwatch/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/board/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/bingo/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/bingo_stats/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/qrcodes/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/notes/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/exams/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/todos/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/music/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /users/{userId}/splitview_urls/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    // UNIVERSAL SUBCOLLECTION
+    match /users/{userId}/{subcollection}/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

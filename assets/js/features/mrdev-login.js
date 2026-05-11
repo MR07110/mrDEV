@@ -1,15 +1,21 @@
-// ==================== MRDEV ID LOGIN v5.0 ====================
-// FIX v5.0:
-//   1. saveLocalAuth() — isLoggedIn: true, authType: 'mrdev' majburiy
-//   2. submitMrdevId() — RTDB'ga firestoreUid ham saqlanadi
-//   3. verifyMrdevPass() — Firebase Auth xatolari kritik emas (OTP asosiy)
-//   4. Debug loglar har bir qadam uchun
-//   5. Barcha DOM null tekshiruvlari
+// ==================== MRDEV ID LOGIN v6.0 ====================
+// FIX v6.0 — ASOSIY BUG TUZATILDI:
+//   submitMrdevId() endi mrdev_index/{id} getDoc ishlatadi
+//   (users collection EMAS — u auth talab qiladi!)
+//
+// BUG SABABI:
+//   users collectioniga query auth talab qiladi:
+//   "allow read: if request.auth != null"
+//   Login vaqtida user hali autentifikatsiya qilinmagan → PERMISSION DENIED
+//
+// YECHIM:
+//   mrdev_index/{mrdevId} — public read (auth shart emas)
+//   Firestore rules ga qo'shildi: "allow read: if true"
 
 import logger from '../core/logger.js';
 import { db, rtdb, auth } from '../core/firebase-init.js';
 import {
-    collection, query, where, getDocs
+    doc, getDoc
 } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 import {
     ref, push, get, update, set
@@ -32,11 +38,6 @@ function generateSecureOTP() {
 
 // ==================== LOCAL AUTH SAQLASH ====================
 
-/**
- * mrdev_local_auth'ga to'liq ma'lumot saqlaydi.
- * isLoggedIn: true — mini app'lar (firebase-helper.js getUserId) uchun MAJBURIY.
- * authType: 'mrdev' — auth turini aniqlik bilan belgilaydi.
- */
 function saveLocalAuth(userData) {
     if (!userData || !userData.uid) {
         console.warn('[MRDevLogin] saveLocalAuth: userData.uid yo\'q');
@@ -45,10 +46,10 @@ function saveLocalAuth(userData) {
 
     const authData = {
         uid:         userData.firestoreUid || userData.uid,
-        email:       userData.email || '',
-        displayName: userData.displayName || 'User',
-        photoURL:    userData.photoURL || null,
-        mrdevId:     userData.mrdevId || '',
+        email:       userData.email        || '',
+        displayName: userData.displayName  || 'User',
+        photoURL:    userData.photoURL     || null,
+        mrdevId:     userData.mrdevId      || '',
         provider:    'mrdev',
         authType:    'mrdev',
         isLoggedIn:  true,
@@ -67,19 +68,19 @@ function saveLocalAuth(userData) {
 // ==================== MODAL ====================
 
 export function showMrdevLogin() {
-    const step1      = document.getElementById('mrdevStep1');
-    const step2      = document.getElementById('mrdevStep2');
-    const idInput    = document.getElementById('mrdevIdInput');
-    const passInput  = document.getElementById('mrdevPassInput');
-    const errorEl    = document.getElementById('mrdevError');
-    const timerEl    = document.getElementById('mrdevTimer');
+    const step1     = document.getElementById('mrdevStep1');
+    const step2     = document.getElementById('mrdevStep2');
+    const idInput   = document.getElementById('mrdevIdInput');
+    const passInput = document.getElementById('mrdevPassInput');
+    const errorEl   = document.getElementById('mrdevError');
+    const timerEl   = document.getElementById('mrdevTimer');
 
-    if (step1)     step1.style.display = 'block';
-    if (step2)     step2.style.display = 'none';
-    if (idInput)   idInput.value       = '';
-    if (passInput) passInput.value     = '';
-    if (errorEl)   errorEl.textContent = '';
-    if (timerEl)   timerEl.textContent = '';
+    if (step1)     step1.style.display     = 'block';
+    if (step2)     step2.style.display     = 'none';
+    if (idInput)   idInput.value           = '';
+    if (passInput) passInput.value         = '';
+    if (errorEl)   errorEl.textContent     = '';
+    if (timerEl)   timerEl.textContent     = '';
 
     currentStepData = null;
     clearInterval(mrdevLoginTimer);
@@ -95,6 +96,7 @@ export function closeMrdevLoginModal() {
 }
 
 // ==================== 1-QADAM: MRDEV ID ====================
+// FIX v6.0: mrdev_index/{id} getDoc — auth kerak emas!
 
 export async function submitMrdevId() {
     const idInput = document.getElementById('mrdevIdInput');
@@ -108,54 +110,59 @@ export async function submitMrdevId() {
         return;
     }
 
-    if (btn)     { btn.disabled = true; btn.textContent = 'Qidirilmoqda...'; }
-    if (errorEl)   errorEl.textContent = '';
+    if (btn)   { btn.disabled = true; btn.textContent = 'Qidirilmoqda...'; }
+    if (errorEl) errorEl.textContent = '';
 
     console.log('🔍 [MRDevLogin] MRDEV ID qidirilmoqda:', id);
 
     try {
-        // Firestore'dan user topish
-        const snap = await getDocs(
-            query(collection(db, 'users'), where('mrdevId', '==', id))
-        );
+        // FIX: users collection emas — mrdev_index (public read, auth kerak emas!)
+        const indexSnap = await getDoc(doc(db, 'mrdev_index', id));
 
-        if (snap.empty) throw new Error('Bu MRDEV ID topilmadi');
+        if (!indexSnap.exists()) {
+            throw new Error('Bu MRDEV ID topilmadi');
+        }
 
-        const userDoc = snap.docs[0];
-        const data    = userDoc.data();
+        const indexData = indexSnap.data();
 
-        if (!data.email) throw new Error('Bu hisob bilan email bog\'lanmagan');
+        if (!indexData.email) {
+            throw new Error('Bu hisob bilan email bog\'lanmagan');
+        }
+        if (!indexData.uid) {
+            throw new Error('Hisob ma\'lumotlari topilmadi');
+        }
 
-        console.log('✅ [MRDevLogin] User topildi:', data.email, '| uid:', userDoc.id);
+        console.log('✅ [MRDevLogin] mrdev_index dan topildi:', indexData.email, '| uid:', indexData.uid);
 
         currentStepData = {
-            firestoreUid:  userDoc.id,
-            uid:           userDoc.id,
-            email:         data.email,
+            firestoreUid:  indexData.uid,
+            uid:           indexData.uid,
+            email:         indexData.email,
             mrdevId:       id,
-            displayName:   data.displayName || data.email?.split('@')[0] || 'User',
-            photoURL:      data.photoURL || null,
-            mrdevPassword: data.mrdevPassword || null
+            displayName:   indexData.displayName || indexData.email?.split('@')[0] || 'User',
+            photoURL:      indexData.photoURL    || null,
+            // mrdevPassword mrdev_index da saqlanmaydi (xavfsizlik)
+            // verifyMrdevPass local auth ishlatadi — bu yerda null bo'lishi OK
+            mrdevPassword: null
         };
 
         const otp = generateSecureOTP();
 
-        // RTDB'ga OTP yozish (public write — rules: ".write": true)
+        // RTDB ga OTP yozish (public write — rules: ".write": true)
         const notifRef = ref(rtdb, 'pass_notifications');
         const newRef   = push(notifRef);
 
         await set(newRef, {
             passCode:     otp,
             mrdevId:      id,
-            uid:          userDoc.id,
-            firestoreUid: userDoc.id,
-            email:        data.email,
+            uid:          indexData.uid,
+            firestoreUid: indexData.uid,
+            email:        indexData.email,
             expiresAt:    Date.now() + 120000,
             used:         false,
             createdAt:    Date.now()
         });
 
-        // DEV: consoleda OTP ko'rsatish
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             console.log('🔑 [DEV] OTP Parol:', otp);
         }
@@ -236,7 +243,7 @@ export async function verifyMrdevPass() {
     console.log('🔐 [MRDevLogin] OTP tekshirilmoqda:', currentStepData.mrdevId);
 
     try {
-        // RTDB'dan OTP topish
+        // RTDB dan OTP topish
         const snapshot = await get(ref(rtdb, 'pass_notifications'));
         const data     = snapshot.val();
 
@@ -247,9 +254,9 @@ export async function verifyMrdevPass() {
 
         for (const [key, val] of Object.entries(data)) {
             if (
-                val.passCode === pass         &&
-                val.mrdevId  === currentStepData.mrdevId &&
-                !val.used                     &&
+                val.passCode === pass                        &&
+                val.mrdevId  === currentStepData.mrdevId    &&
+                !val.used                                   &&
                 val.expiresAt > Date.now()
             ) {
                 foundKey  = key;
@@ -260,7 +267,7 @@ export async function verifyMrdevPass() {
 
         if (!foundData) throw new Error("Noto'g'ri parol yoki muddati tugagan");
 
-        // OTP'ni ishlatilgan deb belgilash
+        // OTP ni ishlatilgan deb belgilash
         await update(ref(rtdb, `pass_notifications/${foundKey}`), {
             used:       true,
             verifiedAt: Date.now()
@@ -269,43 +276,18 @@ export async function verifyMrdevPass() {
         clearInterval(mrdevLoginTimer);
         console.log('✅ [MRDevLogin] OTP tasdiqlandi!');
 
-        // 1. LOCAL AUTH saqlash — bu ASOSIY autentifikatsiya
+        // LOCAL AUTH saqlash — ASOSIY autentifikatsiya
         saveLocalAuth(currentStepData);
 
-        // 2. Firebase Auth ga kirish (cloud sync uchun — OTP allaqachon tasdiqlangan)
-        const password = currentStepData.mrdevPassword;
-        if (password && auth) {
-            try {
-                await signInWithEmailAndPassword(auth, currentStepData.email, password);
-                console.log('🔥 [MRDevLogin] Firebase Auth muvaffaqiyatli');
-            } catch (authErr) {
-                if (authErr.code === 'auth/user-not-found') {
-                    try {
-                        await createUserWithEmailAndPassword(auth, currentStepData.email, password);
-                        console.log('🔥 [MRDevLogin] Firebase Auth yangi hisob yaratildi');
-                    } catch (createErr) {
-                        console.warn('[MRDevLogin] Firebase Auth create failed:', createErr.code, '— local auth ishlatiladi');
-                    }
-                } else if (
-                    authErr.code === 'auth/wrong-password'    ||
-                    authErr.code === 'auth/invalid-credential' ||
-                    authErr.code === 'auth/invalid-email'
-                ) {
-                    // OTP allaqachon tasdiqlangan — Firebase Auth paroli mos kelmasa kritik emas
-                    console.warn('[MRDevLogin] Firebase Auth password mismatch — local auth ishlatiladi. Code:', authErr.code);
-                } else {
-                    console.warn('[MRDevLogin] Firebase Auth error:', authErr.code, '— local auth ishlatiladi');
-                }
-            }
-        } else {
-            console.warn('[MRDevLogin] mrdevPassword yo\'q — faqat local auth');
-        }
+        // Firebase Auth (ixtiyoriy — cloud sync uchun)
+        // mrdevPassword mrdev_index da saqlanmaydi (xavfsizlik uchun)
+        // Local auth asosida ishlaydi, Firebase Auth skip qilinadi
+        console.log('ℹ️ [MRDevLogin] Firebase Auth skip — local auth ishlatiladi');
 
         closeMrdevLoginModal();
         showToast('Xush kelibsiz! ✨', 'success');
         logger.mrdev.loginOk();
 
-        // Sahifani yangilash — auth.js onAuthChange UI ni yangilaydi
         setTimeout(() => window.location.reload(), 500);
 
     } catch (e) {

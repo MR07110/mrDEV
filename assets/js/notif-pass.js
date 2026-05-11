@@ -1,11 +1,19 @@
-// ==================== MRDEV NOTIF-PASS v3.0 ====================
-// FIX v3.0:
-//   1. Orphaned kod o'chirildi (syntax error tuzatildi) ← BU ASOSIY BUG
-//   2. generateUserId() (crypto) ishlatiladi, Math.random() emas
-//   3. MRDEV ID unikalligi Firestore query bilan tekshiriladi
-//   4. syncCloudToLocal uchun orderBy, limit importlari qo'shildi
-//   5. saveUserMrdevId: setDoc (yangi) / updateDoc (mavjud) to'g'ri ishlatiladi
-//   6. mrdevPassword faqat yangi yaratilganda beriladi (mavjudida o'zgartirilmaydi)
+// ==================== MRDEV NOTIF-PASS v4.0 ====================
+// FIX v4.0 — ASOSIY BUG TUZATILDI:
+//   1. mrdev_index collection qo'shildi (public read — auth kerak emas!)
+//   2. generateUniqueId() → mrdev_index dan tekshiradi (auth shart emas)
+//   3. loginWithMrdevId() → mrdev_index/{mrdevId} getDoc (auth shart emas)
+//   4. sendPassCode() → mrdev_index/{mrdevId} getDoc (auth shart emas)
+//   5. saveUserMrdevId() → users ga yozganidan keyin mrdev_index ga ham yozadi
+//
+// BUG SABABI:
+//   users collection: "allow read: if request.auth != null" — login vaqtida
+//   foydalanuvchi hali autentifikatsiya qilinmagan, shuning uchun
+//   "Missing or insufficient permissions" xatosi chiqadi.
+//
+// YECHIM:
+//   mrdev_index/{mrdevId} → { uid, email, displayName, photoURL }
+//   Firestore rule: "allow read: if true" (public, login uchun)
 
 import logger from './core/logger.js';
 import { db, rtdb } from './core/firebase-init.js';
@@ -43,20 +51,18 @@ export function generateSecurePassword() {
 }
 
 // ==================== UNIKAL MRDEV ID YARATISH ====================
-// Firestore da mavjud bo'lmagan ID qaytaradi
+// FIX v4.0: mrdev_index dan tekshiradi (auth kerak emas)
 
 async function generateUniqueId() {
-    let mrdevId = generateUserId();
+    let mrdevId  = generateUserId();
     let attempts = 0;
 
     while (attempts < 10) {
         try {
-            const snap = await getDocs(
-                query(collection(db, 'users'), where('mrdevId', '==', mrdevId))
-            );
-            if (snap.empty) return mrdevId;
+            // FIX: users query emas — mrdev_index getDoc (auth shart emas)
+            const snap = await getDoc(doc(db, 'mrdev_index', mrdevId));
+            if (!snap.exists()) return mrdevId;
         } catch (e) {
-            // Query xatosi bo'lsa ham ID qaytaramiz (uniqueness 100% kerak emas agar query ishlasa)
             console.warn('[MRDev] Uniqueness check failed:', e.message);
             return mrdevId;
         }
@@ -64,17 +70,30 @@ async function generateUniqueId() {
         attempts++;
     }
 
-    // 10 urinishdan keyin ham topilmasa, timestamp qo'shamiz
     return '#' + Date.now().toString().slice(-6);
 }
 
+// ==================== mrdev_index GA YOZISH ====================
+// Faqat authenticated holda chaqiriladi (saveUserMrdevId ichida)
+
+async function writeMrdevIndex(mrdevId, uid, email, displayName, photoURL) {
+    if (!mrdevId || !uid) return;
+    try {
+        await setDoc(doc(db, 'mrdev_index', mrdevId), {
+            uid:         uid,
+            email:       email       || '',
+            displayName: displayName || '',
+            photoURL:    photoURL    || null,
+            updatedAt:   serverTimestamp()
+        });
+        console.log('📇 [MRDev] mrdev_index yozildi:', mrdevId, '→', uid);
+    } catch (e) {
+        console.warn('[MRDev] mrdev_index write failed:', e.message);
+    }
+}
+
 // ==================== ASOSIY: saveUserMrdevId ====================
-// FIX v3.0:
-//   - user.uid to'g'ridan-to'g'ri ishlatiladi (Firebase Auth UID)
-//   - Mavjud mrdevId o'ZGARTIRILMAYDI — faqat o'qiladi
-//   - Yangi user: setDoc (create) — to'liq doc
-//   - Mavjud user: mrdevId yo'q bo'lsa updateDoc, bor bo'lsa faqat o'qib qaytaradi
-//   - mrdevPassword: faqat yangi yaratilganda
+// FIX v4.0: users ga yozgandan keyin mrdev_index ga ham yozadi
 
 export async function saveUserMrdevId(user) {
     if (!user || !user.uid) {
@@ -82,14 +101,15 @@ export async function saveUserMrdevId(user) {
         return null;
     }
 
-    const uid = user.uid;
-    const email = user.email || '';
+    const uid         = user.uid;
+    const email       = user.email       || '';
     const displayName = user.displayName || email.split('@')[0] || 'User';
+    const photoURL    = user.photoURL    || null;
 
     console.log('🔍 [MRDev] saveUserMrdevId chaqirildi:', { uid, email });
 
     try {
-        const userRef = doc(db, 'users', uid);
+        const userRef  = doc(db, 'users', uid);
         const userSnap = await getDoc(userRef);
 
         // ── MAVJUD USER ──────────────────────────────────────────────
@@ -97,18 +117,18 @@ export async function saveUserMrdevId(user) {
             const data = userSnap.data();
             console.log('📄 [MRDev] Mavjud user doc topildi, mrdevId:', data.mrdevId);
 
-            // Allaqachon mrdevId bor — o'zgartirmaymiz, faqat o'qib qaytaramiz
             if (data.mrdevId && data.mrdevId !== '') {
                 console.log('✅ [MRDev] Mavjud MRDEV ID qaytarildi:', data.mrdevId);
 
-                // Oxirgi loginni yangilash (mrdevId o'zgarmaydi — rule ruxsat beradi)
+                // mrdev_index ni ham yangilab qo'yamiz (yo'q bo'lsa qo'shiladi)
+                await writeMrdevIndex(data.mrdevId, uid, email, displayName, photoURL);
+
                 try {
                     await updateDoc(userRef, {
                         lastLogin: serverTimestamp(),
                         updatedAt: serverTimestamp()
                     });
                 } catch (e) {
-                    // Lastlogin xatosi kritik emas
                     console.warn('[MRDev] lastLogin update failed:', e.message);
                 }
 
@@ -116,15 +136,18 @@ export async function saveUserMrdevId(user) {
             }
 
             // mrdevId bo'sh — yangi yaratib updateDoc bilan yozamiz
-            const newId = await generateUniqueId();
+            const newId       = await generateUniqueId();
             const newPassword = generateSecurePassword();
 
             await updateDoc(userRef, {
-                mrdevId: newId,
+                mrdevId:       newId,
                 mrdevPassword: newPassword,
-                lastLogin: serverTimestamp(),
-                updatedAt: serverTimestamp()
+                lastLogin:     serverTimestamp(),
+                updatedAt:     serverTimestamp()
             });
+
+            // FIX: mrdev_index ga ham yozamiz
+            await writeMrdevIndex(newId, uid, email, displayName, photoURL);
 
             logger.notifPass.created(newId);
             console.log('🆕 [MRDev] Yangi MRDEV ID yaratildi (updateDoc):', newId);
@@ -132,14 +155,14 @@ export async function saveUserMrdevId(user) {
         }
 
         // ── YANGI USER ────────────────────────────────────────────────
-        const newId = await generateUniqueId();
+        const newId       = await generateUniqueId();
         const newPassword = generateSecurePassword();
 
         await setDoc(userRef, {
             uid:           uid,
             email:         email,
             displayName:   displayName,
-            photoURL:      user.photoURL || null,
+            photoURL:      photoURL,
             mrdevId:       newId,
             mrdevPassword: newPassword,
             provider:      user.providerData?.[0]?.providerId || 'unknown',
@@ -148,6 +171,9 @@ export async function saveUserMrdevId(user) {
             lastLogin:     serverTimestamp(),
             isActive:      true
         });
+
+        // FIX: mrdev_index ga ham yozamiz
+        await writeMrdevIndex(newId, uid, email, displayName, photoURL);
 
         logger.notifPass.created(newId);
         console.log('🆕 [MRDev] Yangi MRDEV ID yaratildi (setDoc):', newId);
@@ -161,28 +187,30 @@ export async function saveUserMrdevId(user) {
 }
 
 // ==================== MRDEV ID ORQALI KIRISH ====================
+// FIX v4.0: users collection emas — mrdev_index/{mrdevId} getDoc (auth kerak emas!)
 
 export async function loginWithMrdevId(mrdevId) {
     console.log('🔍 [MRDev] loginWithMrdevId:', mrdevId);
 
     try {
-        const snap = await getDocs(
-            query(collection(db, 'users'), where('mrdevId', '==', mrdevId))
-        );
-        if (snap.empty) throw new Error('MRDEV ID topilmadi');
+        // FIX: mrdev_index — public read, auth shart emas
+        const indexSnap = await getDoc(doc(db, 'mrdev_index', mrdevId));
 
-        const userData = snap.docs[0].data();
-        if (!userData.email) throw new Error('Email topilmadi');
+        if (!indexSnap.exists()) throw new Error('MRDEV ID topilmadi');
 
-        console.log('✅ [MRDev] User topildi:', userData.email);
+        const indexData = indexSnap.data();
+        if (!indexData.email) throw new Error('Email topilmadi');
+        if (!indexData.uid)   throw new Error('UID topilmadi');
+
+        console.log('✅ [MRDev] mrdev_index dan topildi:', indexData.email);
 
         return {
-            uid:           snap.docs[0].id,
-            email:         userData.email,
-            displayName:   userData.displayName || userData.email.split('@')[0],
-            photoURL:      userData.photoURL || null,
-            mrdevId:       userData.mrdevId,
-            mrdevPassword: userData.mrdevPassword || null
+            uid:           indexData.uid,
+            email:         indexData.email,
+            displayName:   indexData.displayName || indexData.email.split('@')[0],
+            photoURL:      indexData.photoURL    || null,
+            mrdevId:       mrdevId,
+            mrdevPassword: null  // mrdev_index da saqlanmaydi (xavfsizlik)
         };
     } catch (error) {
         console.error('❌ [MRDev] loginWithMrdevId xatolik:', error.message);
@@ -192,17 +220,21 @@ export async function loginWithMrdevId(mrdevId) {
 }
 
 // ==================== PAROL XABARNOMALARI ====================
+// FIX v4.0: mrdev_index/{mrdevId} getDoc (auth kerak emas!)
 
 export async function sendPassCode(mrdevId) {
     console.log('📤 [MRDev] sendPassCode:', mrdevId);
 
     try {
-        const snap = await getDocs(
-            query(collection(db, 'users'), where('mrdevId', '==', mrdevId))
-        );
-        if (snap.empty) throw new Error('ID topilmadi');
+        // FIX: mrdev_index — public read, auth shart emas
+        const indexSnap = await getDoc(doc(db, 'mrdev_index', mrdevId));
 
-        const userData  = snap.docs[0].data();
+        if (!indexSnap.exists()) throw new Error('ID topilmadi');
+
+        const indexData = indexSnap.data();
+        const uid       = indexData.uid;
+        const email     = indexData.email;
+
         const passCode  = generatePassCode();
         const expiresAt = Date.now() + 120000;
 
@@ -210,15 +242,14 @@ export async function sendPassCode(mrdevId) {
         await set(newRef, {
             passCode:     passCode,
             mrdevId:      mrdevId,
-            uid:          snap.docs[0].id,
-            firestoreUid: snap.docs[0].id,
-            email:        userData.email,
+            uid:          uid,
+            firestoreUid: uid,
+            email:        email,
             expiresAt:    expiresAt,
             used:         false,
             createdAt:    Date.now()
         });
 
-        // DEV: consoleda parolni ko'rsatish
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             console.log('🔑 [DEV] Pass Code:', passCode);
         }
@@ -228,9 +259,9 @@ export async function sendPassCode(mrdevId) {
 
         return {
             success:   true,
-            email:     userData.email,
+            email:     email,
             expiresAt: expiresAt,
-            userId:    snap.docs[0].id
+            userId:    uid
         };
     } catch (error) {
         console.error('❌ [MRDev] sendPassCode xatolik:', error.message);
@@ -245,7 +276,7 @@ export async function verifyPassCode(mrdevId, passCode) {
 
     try {
         const snapshot = await get(ref(rtdb, 'pass_notifications'));
-        const data = snapshot.val();
+        const data     = snapshot.val();
 
         if (!data) throw new Error('Xabarlar topilmadi');
 
@@ -255,8 +286,8 @@ export async function verifyPassCode(mrdevId, passCode) {
         for (const [key, val] of Object.entries(data)) {
             if (
                 val.passCode === passCode &&
-                val.mrdevId  === mrdevId &&
-                !val.used    &&
+                val.mrdevId  === mrdevId  &&
+                !val.used                 &&
                 val.expiresAt > Date.now()
             ) {
                 foundKey  = key;
@@ -310,7 +341,6 @@ export function loadNotifications(callback) {
             callback([]);
             return;
         }
-
         const items = Object.entries(data).map(([key, value]) => ({
             id:   key,
             ...value,
@@ -335,7 +365,6 @@ export async function getUserNotifications(uid) {
     try {
         const data = (await get(ref(rtdb, 'pass_notifications'))).val();
         if (!data) return [];
-
         return Object.entries(data)
             .filter(([_, v]) => v.uid === uid || v.firestoreUid === uid)
             .map(([key, v]) => ({ id: key, ...v }))
@@ -384,7 +413,7 @@ export async function getUserDoc(uid) {
 // ==================== SINXRONIZATSIYA ====================
 
 export async function syncCloudToLocal(uid) {
-    if (!uid) return { success: false, error: 'uid yo\'q' };
+    if (!uid) return { success: false, error: "uid yo'q" };
 
     const cols = [
         'alarms', 'calculations', 'timers', 'stopwatch', 'board',
@@ -411,7 +440,6 @@ export async function syncCloudToLocal(uid) {
                 count++;
             }
         } catch (e) {
-            // Collection bo'lmasa o'tkazib yuborish
             console.warn(`[MRDev] syncCloudToLocal ${col}:`, e.message);
         }
     }
