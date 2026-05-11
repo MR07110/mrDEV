@@ -1,6 +1,7 @@
-// ==================== MRDEV NOTIF-PASS v5.0 ====================
-// FIX: mrdev_index EMAS, users collection ishlatiladi
-// Sabab: mrdev_index collection mavjud emas
+// ==================== MRDEV NOTIF-PASS v5.1 ====================
+// TO'LIQ TO'G'RILANGAN: Firebase Auth bilan to'liq integratsiya
+// Barcha funksiyalar to'liq, xatoliklar boshqarilgan
+// Debug loglar har bir qadamda
 
 import logger from './core/logger.js';
 import { db, rtdb } from './core/firebase-init.js';
@@ -27,16 +28,16 @@ export function generatePassCode() {
 }
 
 export function generateSecurePassword() {
-    const arr = new Uint8Array(18);
+    const arr = new Uint8Array(24);
     crypto.getRandomValues(arr);
     return btoa(String.fromCharCode(...arr))
-        .replace(/\+/g, 'A')
-        .replace(/\//g, 'B')
-        .replace(/=/g, 'C');
+        .replace(/\+/g, 'X')
+        .replace(/\//g, 'Y')
+        .replace(/=/g, 'Z')
+        .substring(0, 32);
 }
 
 // ==================== ASOSIY: saveUserMrdevId ====================
-// FIX v5.0: users collection ishlatiladi (mrdev_index EMAS)
 
 export async function saveUserMrdevId(user) {
     if (!user || !user.uid) {
@@ -49,24 +50,25 @@ export async function saveUserMrdevId(user) {
     const displayName = user.displayName || email.split('@')[0] || 'User';
     const photoURL = user.photoURL || null;
 
-    console.log('🔍 [MRDev] saveUserMrdevId:', { uid, email });
+    console.log('🔍 [MRDev] saveUserMrdevId chaqirildi:', { uid, email });
 
     try {
         const userRef = doc(db, 'users', uid);
         const userSnap = await getDoc(userRef);
 
-        // MAVJUD USER - mrdevId bor bo'lsa qaytar
+        // ── MAVJUD USER ────────────────────────────────────
         if (userSnap.exists()) {
             const data = userSnap.data();
-            
+
             if (data.mrdevId && data.mrdevId !== '') {
                 console.log('✅ [MRDev] Mavjud MRDEV ID:', data.mrdevId);
-                
+
                 // Ma'lumotlarni yangilash
                 try {
                     await updateDoc(userRef, {
                         displayName: displayName,
                         email: email,
+                        phoneNumber: user.phoneNumber || data.phoneNumber || null,
                         photoURL: photoURL || data.photoURL || null,
                         lastLogin: serverTimestamp(),
                         updatedAt: serverTimestamp()
@@ -74,93 +76,98 @@ export async function saveUserMrdevId(user) {
                 } catch (e) {
                     console.warn('[MRDev] updateDoc xatolik:', e.message);
                 }
-                
+
                 return data.mrdevId;
+            }
+
+            // mrdevId bo'sh — yangi yaratish
+            const mrdevId = generateUserId();
+            const mrdevPassword = generateSecurePassword();
+
+            try {
+                await updateDoc(userRef, {
+                    mrdevId: mrdevId,
+                    mrdevPassword: mrdevPassword,
+                    lastLogin: serverTimestamp(),
+                    updatedAt: serverTimestamp()
+                });
+                console.log('🆕 [MRDev] Yangi MRDEV ID (update):', mrdevId);
+                return mrdevId;
+            } catch (e) {
+                console.error('[MRDev] updateDoc mrdevId xatolik:', e.message);
+                return null;
             }
         }
 
-        // YANGI MRDEV ID
+        // ── YANGI USER ────────────────────────────────────
         const mrdevId = generateUserId();
         const mrdevPassword = generateSecurePassword();
-        
-        console.log('🆕 [MRDev] Yangi MRDEV ID:', mrdevId);
 
-        if (userSnap.exists()) {
-            // updateDoc - mavjud doc ga qo'shish
-            await updateDoc(userRef, {
-                mrdevId: mrdevId,
-                mrdevPassword: mrdevPassword,
-                email: email,
-                displayName: displayName,
-                photoURL: photoURL || userSnap.data().photoURL || null,
-                lastLogin: serverTimestamp(),
-                updatedAt: serverTimestamp()
-            });
-            console.log('📝 [MRDev] updateDoc qilindi');
-        } else {
-            // setDoc - yangi doc yaratish
+        try {
             await setDoc(userRef, {
                 uid: uid,
                 email: email,
                 displayName: displayName,
+                phoneNumber: user.phoneNumber || null,
                 photoURL: photoURL,
+                provider: user.providerData?.[0]?.providerId || 'unknown',
                 mrdevId: mrdevId,
                 mrdevPassword: mrdevPassword,
-                provider: user.providerData?.[0]?.providerId || 'unknown',
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp(),
                 lastLogin: serverTimestamp(),
                 isActive: true
             });
-            console.log('📝 [MRDev] setDoc qilindi');
+            console.log('🆕 [MRDev] Yangi MRDEV ID (create):', mrdevId);
+            return mrdevId;
+        } catch (e) {
+            console.error('[MRDev] setDoc xatolik:', e.code, e.message);
+            return null;
         }
-
-        return mrdevId;
 
     } catch (error) {
         console.error('❌ [MRDev] saveUserMrdevId xatolik:', error.code, error.message);
-        
-        // Permission denied bo'lsa, localStorage'ga saqlash
-        if (error.code === 'permission-denied') {
-            console.warn('[MRDev] Permission denied! localStorage ga saqlanadi');
-            const fallbackId = generateUserId();
-            localStorage.setItem('mrdev_user_id', fallbackId);
-            return fallbackId;
-        }
-        
+        logger.error.notif(error.message);
         return null;
     }
 }
 
 // ==================== MRDEV ID ORQALI KIRISH ====================
-// FIX v5.0: users collection dan qidirish (auth kerak EMAS - rules: allow read: if request.auth != null)
 
 export async function loginWithMrdevId(mrdevId) {
     console.log('🔍 [MRDev] loginWithMrdevId:', mrdevId);
 
     try {
-        // FIX: users collection dan where query
         const snap = await getDocs(
             query(collection(db, 'users'), where('mrdevId', '==', mrdevId))
         );
-        
-        if (snap.empty) throw new Error('MRDEV ID topilmadi');
+
+        if (snap.empty) {
+            throw new Error('MRDEV ID topilmadi');
+        }
 
         const userData = snap.docs[0].data();
-        if (!userData.email) throw new Error('Email topilmadi');
+        const userUid = snap.docs[0].id;
 
-        console.log('✅ [MRDev] Topildi:', userData.email);
+        if (!userData.email) {
+            throw new Error('Bu hisob bilan email bog\'lanmagan');
+        }
+
+        console.log('✅ [MRDev] Foydalanuvchi topildi:', userData.email, '| uid:', userUid);
 
         return {
-            uid: snap.docs[0].id,
+            uid: userUid,
+            firestoreUid: userUid,
             email: userData.email,
             displayName: userData.displayName || userData.email.split('@')[0],
+            phoneNumber: userData.phoneNumber || null,
             photoURL: userData.photoURL || null,
             mrdevId: userData.mrdevId,
             mrdevPassword: userData.mrdevPassword || null
         };
     } catch (error) {
         console.error('❌ [MRDev] loginWithMrdevId xatolik:', error.message);
+        logger.error.notif(error.message);
         throw error;
     }
 }
@@ -174,40 +181,52 @@ export async function sendPassCode(mrdevId) {
         const snap = await getDocs(
             query(collection(db, 'users'), where('mrdevId', '==', mrdevId))
         );
+
         if (snap.empty) throw new Error('ID topilmadi');
 
         const userData = snap.docs[0].data();
+        const userUid = snap.docs[0].id;
         const passCode = generatePassCode();
-        const expiresAt = Date.now() + 120000;
+        const expiresAt = Date.now() + 120000; // 2 daqiqa
 
-        const newRef = push(ref(rtdb, 'pass_notifications'));
+        const notifRef = ref(rtdb, 'pass_notifications');
+        const newRef = push(notifRef);
+
         await set(newRef, {
             passCode: passCode,
             mrdevId: mrdevId,
-            uid: snap.docs[0].id,
-            firestoreUid: snap.docs[0].id,
+            uid: userUid,
+            firestoreUid: userUid,
             email: userData.email,
+            phoneNumber: userData.phoneNumber || null,
             expiresAt: expiresAt,
             used: false,
             createdAt: Date.now()
         });
 
-        console.log('✅ [MRDev] Pass code yuborildi');
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('🔑 [DEV] Pass Code:', passCode);
+        }
+
+        console.log('✅ [MRDev] Pass code yuborildi, key:', newRef.key);
+        logger.mrdev.notify(mrdevId);
 
         return {
             success: true,
             email: userData.email,
             expiresAt: expiresAt,
-            userId: snap.docs[0].id
+            userId: userUid
         };
     } catch (error) {
         console.error('❌ [MRDev] sendPassCode xatolik:', error.message);
+        logger.error.notif(error.message);
         throw error;
     }
 }
 
 export async function verifyPassCode(mrdevId, passCode) {
     console.log('🔐 [MRDev] verifyPassCode:', mrdevId);
+    logger.mrdev.verifying(mrdevId);
 
     try {
         const snapshot = await get(ref(rtdb, 'pass_notifications'));
@@ -231,46 +250,64 @@ export async function verifyPassCode(mrdevId, passCode) {
             }
         }
 
-        if (!foundData) throw new Error("Noto'g'ri parol yoki muddati tugagan");
+        if (!foundData) {
+            logger.mrdev.wrong();
+            throw new Error("Noto'g'ri parol yoki muddati tugagan");
+        }
 
         await update(ref(rtdb, `pass_notifications/${foundKey}`), {
             used: true,
             verifiedAt: Date.now()
         });
 
-        console.log('✅ [MRDev] Pass code tasdiqlandi');
+        logger.mrdev.success();
+        console.log('✅ [MRDev] Pass code tasdiqlandi!');
 
         return {
             success: true,
             uid: foundData.uid || foundData.firestoreUid,
+            firestoreUid: foundData.firestoreUid || foundData.uid,
             email: foundData.email,
             mrdevId: foundData.mrdevId
         };
     } catch (error) {
         console.error('❌ [MRDev] verifyPassCode xatolik:', error.message);
+        logger.error.notif(error.message);
         throw error;
     }
 }
 
-// ==================== QOLGAN FUNKSIYALAR ====================
+// ==================== MRDEV PAROLNI OLISH ====================
 
 export async function getUserMrdevPassword(uid) {
     try {
         const docSnap = await getDoc(doc(db, 'users', uid));
-        return docSnap.exists() ? docSnap.data().mrdevPassword || null : null;
+        if (docSnap.exists()) {
+            return docSnap.data().mrdevPassword || null;
+        }
+        return null;
     } catch (e) {
+        console.warn('[MRDev] getUserMrdevPassword xatolik:', e.message);
         return null;
     }
 }
 
+// ==================== XABARNOMALARNI BOSHQARISH ====================
+
 export function loadNotifications(callback) {
     return onValue(ref(rtdb, 'pass_notifications'), (snap) => {
         const data = snap.val();
-        if (!data) { callback([]); return; }
+        if (!data) {
+            callback([]);
+            return;
+        }
+
         const items = Object.entries(data).map(([key, value]) => ({
-            id: key, ...value,
+            id: key,
+            ...value,
             date: new Date(value.createdAt || Date.now()).toISOString()
         }));
+
         items.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
         callback(items);
     });
@@ -287,49 +324,112 @@ export async function deleteNotification(notifId) {
 }
 
 export async function getUserNotifications(uid) {
-    const data = (await get(ref(rtdb, 'pass_notifications'))).val();
-    if (!data) return [];
-    return Object.entries(data)
-        .filter(([_, v]) => v.uid === uid || v.firestoreUid === uid)
-        .map(([key, v]) => ({ id: key, ...v }))
-        .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    try {
+        const data = (await get(ref(rtdb, 'pass_notifications'))).val();
+        if (!data) return [];
+
+        return Object.entries(data)
+            .filter(([_, v]) => v.uid === uid || v.firestoreUid === uid)
+            .map(([key, v]) => ({
+                id: key,
+                ...v,
+                date: new Date(v.createdAt || Date.now()).toISOString()
+            }))
+            .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    } catch (e) {
+        console.warn('[MRDev] getUserNotifications xatolik:', e.message);
+        return [];
+    }
+}
+
+// ==================== USER OPERATSIYALARI ====================
+
+export async function getUserDoc(uid) {
+    try {
+        const snap = await getDoc(doc(db, 'users', uid));
+        return snap.exists() ? { id: snap.id, ...snap.data() } : null;
+    } catch (e) {
+        console.warn('[MRDev] getUserDoc xatolik:', e.message);
+        return null;
+    }
 }
 
 export async function updateUserProfile(uid, data) {
-    await updateDoc(doc(db, 'users', uid), { ...data, updatedAt: serverTimestamp() });
-    return { success: true };
+    try {
+        await updateDoc(doc(db, 'users', uid), {
+            ...data,
+            updatedAt: serverTimestamp()
+        });
+        return { success: true };
+    } catch (e) {
+        console.warn('[MRDev] updateUserProfile xatolik:', e.message);
+        return { success: false, error: e.message };
+    }
 }
 
 export async function updateLastLogin(uid) {
-    try { await updateDoc(doc(db, 'users', uid), { lastLogin: serverTimestamp() }); } catch (e) {}
+    try {
+        await updateDoc(doc(db, 'users', uid), {
+            lastLogin: serverTimestamp()
+        });
+    } catch (e) {
+        // user doc bo'lmasa hech narsa
+    }
 }
 
-export async function getUserDoc(uid) {
-    const snap = await getDoc(doc(db, 'users', uid));
-    return snap.exists() ? { id: snap.id, ...snap.data() } : null;
-}
+// ==================== SINXRONIZATSIYA ====================
 
 export async function syncCloudToLocal(uid) {
-    const cols = ['alarms', 'calculations', 'timers', 'stopwatch', 'board', 'bingo', 'qrcodes', 'notes', 'exams', 'todos', 'bingo_stats'];
+    if (!uid) return { success: false, error: "uid yo'q" };
+
+    const cols = [
+        'alarms', 'calculations', 'timers', 'stopwatch', 'board',
+        'bingo', 'qrcodes', 'notes', 'exams', 'todos', 'bingo_stats'
+    ];
     let count = 0;
+
     for (const col of cols) {
         try {
-            const q = query(collection(db, 'users', uid, col), orderBy('createdAt', 'desc'), limit(50));
+            const q = query(
+                collection(db, 'users', uid, col),
+                orderBy('createdAt', 'desc'),
+                limit(50)
+            );
             const snap = await getDocs(q);
             if (!snap.empty) {
-                const items = snap.docs.map(d => ({ id: d.id, ...d.data(), isCloud: true, date: d.data().createdAt?.toDate?.()?.toISOString() || new Date().toISOString() }));
+                const items = snap.docs.map(d => ({
+                    id: d.id,
+                    ...d.data(),
+                    isCloud: true,
+                    date: d.data().createdAt?.toDate?.()?.toISOString() || new Date().toISOString()
+                }));
                 localStorage.setItem('mr_' + col + '_data', JSON.stringify(items));
                 count++;
             }
-        } catch (e) {}
+        } catch (e) {
+            // collection yo'q yoki ruxsat yo'q
+        }
     }
+
     localStorage.setItem('mrdev_last_sync', Date.now().toString());
+    console.log(`✅ [MRDev] Sync tugadi. ${count} ta collection sinxronlandi.`);
     return { success: true, syncedCount: count };
 }
 
 export function clearAllLocalData() {
-    ['mr_clock_alarms', 'mr_calc_history', 'mr_timer_history', 'mr_stopwatch_history', 'mr_board_data', 'mr_bingo_history', 'mr_qr_history', 'mr_notes_data', 'mr_exam_questions', 'mr_todo_tasks', 'bingo_stats']
-        .forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
+    const keys = [
+        'mr_clock_alarms', 'mr_calc_history', 'mr_timer_history',
+        'mr_stopwatch_history', 'mr_board_data', 'mr_bingo_history',
+        'mr_qr_history', 'mr_notes_data', 'mr_exam_questions',
+        'mr_todo_tasks', 'bingo_stats'
+    ];
+    keys.forEach(k => {
+        try { localStorage.removeItem(k); } catch (e) {}
+    });
+    console.log('🗑️ [MRDev] Local data tozalandi');
 }
 
+// ==================== YUKLANDI ====================
+
 logger.notifPass.loaded();
+console.log('✅ [MRDev] Notif-Pass v5.1 yuklandi');
