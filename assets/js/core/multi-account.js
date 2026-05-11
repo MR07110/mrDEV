@@ -1,12 +1,15 @@
-// ==================== MRDEV MULTI-ACCOUNT MANAGER v1.0 ====================
+// ==================== MRDEV MULTI-ACCOUNT MANAGER v2.0 ====================
+// FIX v2.0:
+//   1. addOrUpdateAccount — mrdevId har doim saqlanadi
+//   2. getActiveAccount — mrdevId qaytaradi
+//   3. localStorage debug loglar
 
-const STORAGE_KEY = 'mrdev_accounts';
-const ACTIVE_KEY = 'mrdev_active_account';
-const MAX_ACCOUNTS = 3; // Maksimal 3 ta akkaunt
+const STORAGE_KEY  = 'mrdev_accounts';
+const ACTIVE_KEY   = 'mrdev_active_account';
+const MAX_ACCOUNTS = 3;
 
-/**
- * Barcha saqlangan akkauntlarni olish
- */
+// ==================== O'QISH ====================
+
 export function getAllAccounts() {
     try {
         return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -15,80 +18,94 @@ export function getAllAccounts() {
     }
 }
 
-/**
- * Aktiv akkauntni olish
- */
 export function getActiveAccount() {
     try {
-        return JSON.parse(localStorage.getItem(ACTIVE_KEY) || 'null');
+        const data = JSON.parse(localStorage.getItem(ACTIVE_KEY) || 'null');
+        return data;
     } catch (e) {
         return null;
     }
 }
 
-/**
- * Akkauntlarni saqlash
- */
+// ==================== YOZISH ====================
+
 function saveAccounts(accounts) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts));
 }
 
-/**
- * Aktiv akkauntni saqlash
- */
 function saveActiveAccount(account) {
     if (account) {
         localStorage.setItem(ACTIVE_KEY, JSON.stringify({
-            uid: account.uid,
-            email: account.email,
-            displayName: account.displayName,
-            photoURL: account.photoURL,
-            provider: account.provider,
-            mrdevId: account.mrdevId || '',
-            lastActive: Date.now()
+            uid:         account.uid,
+            email:       account.email       || '',
+            displayName: account.displayName || 'User',
+            photoURL:    account.photoURL    || null,
+            provider:    account.provider    || 'mrdev',
+            mrdevId:     account.mrdevId     || '',
+            lastActive:  Date.now()
         }));
     } else {
         localStorage.removeItem(ACTIVE_KEY);
     }
 }
 
+// ==================== ASOSIY OPERATSIYALAR ====================
+
 /**
- * Yangi akkaunt qo'shish yoki mavjudini yangilash
+ * Yangi akkaunt qo'shish yoki mavjudini yangilash.
+ * FIX: mrdevId har doim saqlanadi — user.mrdevId yoki extra.mrdevId.
  */
 export function addOrUpdateAccount(user, extra = {}) {
-    if (!user || !user.uid) return null;
+    if (!user || !user.uid) {
+        console.warn('[MultiAccount] addOrUpdateAccount: user.uid yo\'q');
+        return null;
+    }
 
-    const accounts = getAllAccounts();
+    const accounts      = getAllAccounts();
     const existingIndex = accounts.findIndex(a => a.uid === user.uid);
 
+    // mrdevId: user.mrdevId > extra.mrdevId > mavjud account.mrdevId > localStorage
+    const existingMrdevId = existingIndex >= 0 ? accounts[existingIndex].mrdevId : '';
+    const mrdevId = (
+        user.mrdevId        ||
+        extra.mrdevId       ||
+        existingMrdevId     ||
+        localStorage.getItem('mrdev_user_id') ||
+        ''
+    );
+
     const accountData = {
-        uid: user.uid,
-        email: user.email || extra.email || '',
+        uid:         user.uid,
+        email:       user.email       || extra.email       || '',
         displayName: user.displayName || extra.displayName || 'User',
-        photoURL: user.photoURL || extra.photoURL || null,
-        provider: extra.provider || 'email',
-        mrdevId: extra.mrdevId || '',
-        addedAt: existingIndex >= 0 ? accounts[existingIndex].addedAt : Date.now(),
-        lastActive: Date.now()
+        photoURL:    user.photoURL    || extra.photoURL    || null,
+        provider:    extra.provider   || user.providerData?.[0]?.providerId || 'mrdev',
+        mrdevId:     mrdevId,
+        addedAt:     existingIndex >= 0 ? (accounts[existingIndex].addedAt || Date.now()) : Date.now(),
+        lastActive:  Date.now()
     };
 
     if (existingIndex >= 0) {
         accounts[existingIndex] = accountData;
     } else {
+        if (accounts.length >= MAX_ACCOUNTS) {
+            // Eng eski akkauntni olib tashlaymiz
+            accounts.sort((a, b) => (a.lastActive || 0) - (b.lastActive || 0));
+            accounts.shift();
+        }
         accounts.push(accountData);
     }
 
     saveAccounts(accounts);
     setActiveAccount(user.uid);
+
+    console.log('💾 [MultiAccount] Saqlandi:', accountData.uid, '| mrdevId:', accountData.mrdevId || '(yo\'q)');
     return accountData;
 }
 
-/**
- * Akkauntni aktiv qilish
- */
 export function setActiveAccount(uid) {
     const accounts = getAllAccounts();
-    const account = accounts.find(a => a.uid === uid);
+    const account  = accounts.find(a => a.uid === uid);
     if (account) {
         account.lastActive = Date.now();
         saveAccounts(accounts);
@@ -98,13 +115,10 @@ export function setActiveAccount(uid) {
     return null;
 }
 
-/**
- * Akkauntni o'chirish
- */
 export function removeAccount(uid) {
     const accounts = getAllAccounts();
     const filtered = accounts.filter(a => a.uid !== uid);
-    
+
     if (filtered.length === 0) {
         localStorage.removeItem(STORAGE_KEY);
         localStorage.removeItem(ACTIVE_KEY);
@@ -122,31 +136,20 @@ export function removeAccount(uid) {
     return activeAccount;
 }
 
-/**
- * Akkauntlar soni limitga yetganmi
- */
 export function isAccountLimitReached() {
     return getAllAccounts().length >= MAX_ACCOUNTS;
 }
 
-/**
- * Akkauntlar sonini olish
- */
 export function getAccountCount() {
     return getAllAccounts().length;
 }
 
-/**
- * Maksimal akkauntlar soni
- */
 export function getMaxAccounts() {
     return MAX_ACCOUNTS;
 }
 
-/**
- * Barcha akkauntlarni tozalash
- */
 export function clearAllAccounts() {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(ACTIVE_KEY);
+    console.log('[MultiAccount] Barcha akkauntlar tozalandi');
 }

@@ -1,8 +1,10 @@
-// ==================== MRDEV EMAIL AUTH v3.1 ====================
-// FIX v3.1:
-// 1. saveUserMrdevId to'g'ri Firebase user obyekti bilan chaqiriladi
-// 2. mrdev_local_auth'ga mrdevId to'g'ri yoziladi
-// 3. Xatolik bo'lsa ham login davom etadi
+// ==================== MRDEV EMAIL AUTH v4.0 ====================
+// FIX v4.0:
+//   1. signInWithEmail: saveUserMrdevId to'g'ri Firebase user bilan chaqiriladi
+//   2. signUpWithEmail: setDoc bilan bo'sh mrdevId, keyin saveUserMrdevId updateDoc qiladi
+//   3. mrdev_local_auth: mrdevId, isLoggedIn: true, authType: 'email' to'liq yoziladi
+//   4. authError elementi ko'rinadi
+//   5. Barcha xatoliklar catch da ko'rinadi
 
 import logger from '../core/logger.js';
 import { auth, db } from '../core/firebase-init.js';
@@ -30,7 +32,7 @@ function $(id) { return document.getElementById(id); }
 function setErr(msg) {
     const el = $('authError');
     if (!el) return;
-    el.textContent = msg;
+    el.textContent = msg || '';
     el.style.display = msg ? 'block' : 'none';
 }
 
@@ -39,7 +41,7 @@ function clearErr() { setErr(''); }
 function setBtnLoading(on) {
     const btn = $('authSubmitBtn');
     if (!btn) return;
-    btn.disabled = on;
+    btn.disabled    = on;
     btn.textContent = on
         ? (_mode === 'register' ? 'Yaratilmoqda...' : 'Kirilmoqda...')
         : (_mode === 'register' ? "Ro'yxatdan o'tish" : 'Kirish');
@@ -51,24 +53,24 @@ function toEmail(raw) {
 }
 
 function checkUsername(u) {
-    if (!u || u.length < 3) return "Username kamida 3 ta belgi bo'lishi kerak";
-    if (u.length > 20) return "Username 20 ta belgidan oshmasin";
+    if (!u || u.length < 3)        return "Username kamida 3 ta belgi bo'lishi kerak";
+    if (u.length > 20)             return "Username 20 ta belgidan oshmasin";
     if (!/^[a-z0-9._]+$/.test(u)) return "Faqat kichik harflar, raqamlar, nuqta yoki _";
-    if (/^[._]|[._]$/.test(u)) return "Nuqta yoki _ bilan boshlanib/tugamasin";
+    if (/^[._]|[._]$/.test(u))    return "Nuqta yoki _ bilan boshlanib/tugamasin";
     return null;
 }
 
 function firebaseErr(code) {
     return ({
-        'auth/user-not-found': 'Foydalanuvchi topilmadi',
-        'auth/wrong-password': 'Parol noto\'g\'ri',
-        'auth/invalid-credential': 'Email yoki parol xato',
-        'auth/email-already-in-use': 'Bu username allaqachon band — boshqasini tanlang',
-        'auth/weak-password': 'Parol juda oddiy — kamida 6 ta belgi kiriting',
-        'auth/invalid-email': 'Email formati noto\'g\'ri',
-        'auth/user-disabled': 'Bu hisob bloklangan',
-        'auth/too-many-requests': 'Ko\'p urinish. Bir oz kutib, qayta urinib ko\'ring',
-        'auth/network-request-failed': 'Internet aloqasi yo\'q',
+        'auth/user-not-found':        'Foydalanuvchi topilmadi',
+        'auth/wrong-password':        'Parol noto\'g\'ri',
+        'auth/invalid-credential':    'Email yoki parol xato',
+        'auth/email-already-in-use':  'Bu username allaqachon band — boshqasini tanlang',
+        'auth/weak-password':         'Parol juda oddiy — kamida 6 ta belgi kiriting',
+        'auth/invalid-email':         'Email formati noto\'g\'ri',
+        'auth/user-disabled':         'Bu hisob bloklangan',
+        'auth/too-many-requests':     'Ko\'p urinish. Bir oz kutib, qayta urinib ko\'ring',
+        'auth/network-request-failed':'Internet aloqasi yo\'q',
     })[code] || 'Xatolik yuz berdi. Qayta urinib ko\'ring';
 }
 
@@ -84,23 +86,22 @@ export function setAuthMode(mode) {
 
     if ($('loginEmail')) {
         $('loginEmail').placeholder = isReg
-            ? 'sardor  (sardor@mrdev.uz bo\'ladi)'
+            ? "sardor  (sardor@mrdev.uz bo'ladi)"
             : 'username@mrdev.uz';
     }
 
     if ($('loginPassword')) {
-        $('loginPassword').placeholder = isReg ? 'Yangi parol (kamida 6 belgi)' : '••••••••';
+        $('loginPassword').placeholder  = isReg ? 'Yangi parol (kamida 6 belgi)' : '••••••••';
         $('loginPassword').autocomplete = isReg ? 'new-password' : 'current-password';
     }
 
     const hint = $('emailDomainHint');
     if (hint) hint.style.display = isReg ? 'block' : 'none';
 
-    if ($('modalTitle')) $('modalTitle').textContent = isReg ? "Ro'yxatdan o'tish" : 'Hisobga kirish';
-    if ($('authSubmitBtn')) $('authSubmitBtn').textContent = isReg ? "Ro'yxatdan o'tish" : 'Kirish';
-
-    if ($('authToggleText')) $('authToggleText').textContent = isReg ? "Hisobingiz bormi?" : "Hisobingiz yo'qmi?";
-    if ($('authToggleLink')) $('authToggleLink').textContent = isReg ? 'Kirish' : "Ro'yxatdan o'tish";
+    if ($('modalTitle'))     $('modalTitle').textContent     = isReg ? "Ro'yxatdan o'tish" : 'Hisobga kirish';
+    if ($('authSubmitBtn'))  $('authSubmitBtn').textContent  = isReg ? "Ro'yxatdan o'tish" : 'Kirish';
+    if ($('authToggleText')) $('authToggleText').textContent = isReg ? "Hisobingiz bormi?"  : "Hisobingiz yo'qmi?";
+    if ($('authToggleLink')) $('authToggleLink').textContent = isReg ? 'Kirish'             : "Ro'yxatdan o'tish";
 
     setTimeout(() => {
         (isReg ? $('registerName') : $('loginEmail'))?.focus();
@@ -115,15 +116,15 @@ export function toggleAuthMode() {
 
 export async function signInWithEmail() {
     clearErr();
-    const raw = $('loginEmail')?.value.trim() || '';
+    const raw  = $('loginEmail')?.value.trim() || '';
     const pass = $('loginPassword')?.value || '';
 
-    if (!raw) { setErr("Username yoki email kiriting"); $('loginEmail')?.focus(); return; }
-    if (!pass) { setErr("Parolni kiriting"); $('loginPassword')?.focus(); return; }
+    if (!raw)  { setErr("Username yoki email kiriting"); $('loginEmail')?.focus();   return; }
+    if (!pass) { setErr("Parolni kiriting");              $('loginPassword')?.focus(); return; }
 
-    const email = toEmail(raw);
+    const email    = toEmail(raw);
     const username = email.split('@')[0];
-    const uErr = checkUsername(username);
+    const uErr     = checkUsername(username);
     if (uErr) { setErr(uErr); return; }
 
     setBtnLoading(true);
@@ -131,34 +132,37 @@ export async function signInWithEmail() {
         const cred = await signInWithEmailAndPassword(auth, email, pass);
         const user = cred.user;
 
-        // FIX: saveUserMrdevId - user Firebase Auth obyekti (uid mavjud)
+        console.log('✅ [EmailAuth] Firebase login OK:', user.uid);
+
+        // MRDEV ID ni Firestore'dan olish yoki yaratish
         let mrdevId = '';
         try {
             mrdevId = await saveUserMrdevId(user) || '';
-            if (mrdevId) {
-                localStorage.setItem('mrdev_user_id', mrdevId);
-            }
+            if (mrdevId) localStorage.setItem('mrdev_user_id', mrdevId);
+            console.log('🆔 [EmailAuth] MRDEV ID:', mrdevId);
         } catch (idErr) {
-            console.warn('[MRDev] MRDEV ID xatosi:', idErr.message);
+            console.warn('[EmailAuth] MRDEV ID xatosi:', idErr.message);
         }
 
-        // FIX: mrdev_local_auth to'liq saqlanadi
+        // mrdev_local_auth'ga to'liq yozish
         localStorage.setItem('mrdev_local_auth', JSON.stringify({
-            uid: user.uid,
-            email: user.email,
+            uid:         user.uid,
+            email:       user.email,
             displayName: user.displayName || username,
-            photoURL: user.photoURL || null,
-            mrdevId: mrdevId,
-            provider: 'mrdev_email',
-            authType: 'email',
-            isLoggedIn: true,
-            loginTime: Date.now()
+            photoURL:    user.photoURL || null,
+            mrdevId:     mrdevId,
+            provider:    'mrdev_email',
+            authType:    'email',
+            isLoggedIn:  true,
+            loginTime:   Date.now()
         }));
 
         showToast('Xush kelibsiz! ✨', 'success');
         closeModal('authModal');
         _reset();
+
     } catch (e) {
+        console.error('[EmailAuth] signInWithEmail xatolik:', e.code, e.message);
         setErr(firebaseErr(e.code));
     } finally {
         setBtnLoading(false);
@@ -170,11 +174,11 @@ export async function signInWithEmail() {
 export async function signUpWithEmail() {
     clearErr();
     const name = $('registerName')?.value.trim() || '';
-    const raw = $('loginEmail')?.value.trim() || '';
+    const raw  = $('loginEmail')?.value.trim() || '';
     const pass = $('loginPassword')?.value || '';
 
     const username = raw.includes('@') ? raw.split('@')[0] : raw;
-    const email = username + DOMAIN;
+    const email    = username + DOMAIN;
 
     if (!name || name.length < 2) {
         setErr("Ism kiriting (kamida 2 belgi)");
@@ -191,52 +195,52 @@ export async function signUpWithEmail() {
 
     setBtnLoading(true);
     try {
-        // 1. Firebase Auth
+        // 1. Firebase Auth — yangi hisob
         const cred = await createUserWithEmailAndPassword(auth, email, pass);
         const user = cred.user;
+        console.log('✅ [EmailAuth] Firebase register OK:', user.uid);
 
         // 2. Profil nomi
         await updateProfile(user, { displayName: name });
 
-        // 3. Firestore hujjat
+        // 3. Firestore user doc yaratish (mrdevId bo'sh — saveUserMrdevId to'ldiradi)
         await setDoc(doc(db, 'users', user.uid), {
-            uid: user.uid,
-            email: email,
-            username: username,
-            displayName: name,
-            photoURL: null,
-            provider: 'mrdev_email',
-            mrdevId: '',
+            uid:           user.uid,
+            email:         email,
+            username:      username,
+            displayName:   name,
+            photoURL:      null,
+            provider:      'mrdev_email',
+            mrdevId:       '',      // saveUserMrdevId updateDoc bilan to'ldiradi
             mrdevPassword: '',
-            createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp(),
-            lastLogin: serverTimestamp(),
-            isActive: true
+            createdAt:     serverTimestamp(),
+            updatedAt:     serverTimestamp(),
+            lastLogin:     serverTimestamp(),
+            isActive:      true
         });
+        console.log('📄 [EmailAuth] Firestore doc yaratildi');
 
-        // 4. MRDEV ID avtomatik yaratish
-        // FIX: user = Firebase Auth user (uid mavjud)
+        // 4. MRDEV ID yaratish — doc mavjud bo'lgani uchun updateDoc ishlatiladi
         let mrdevId = '';
         try {
             mrdevId = await saveUserMrdevId(user) || '';
-            if (mrdevId) {
-                localStorage.setItem('mrdev_user_id', mrdevId);
-            }
+            if (mrdevId) localStorage.setItem('mrdev_user_id', mrdevId);
+            console.log('🆔 [EmailAuth] Yangi MRDEV ID:', mrdevId);
         } catch (idErr) {
-            console.warn('[MRDev] MRDEV ID xatosi:', idErr.message);
+            console.warn('[EmailAuth] MRDEV ID xatosi:', idErr.message);
         }
 
         // 5. Local auth saqlash
         localStorage.setItem('mrdev_local_auth', JSON.stringify({
-            uid: user.uid,
-            email: email,
+            uid:         user.uid,
+            email:       email,
             displayName: name,
-            photoURL: null,
-            mrdevId: mrdevId,
-            provider: 'mrdev_email',
-            authType: 'email',
-            isLoggedIn: true,
-            loginTime: Date.now()
+            photoURL:    null,
+            mrdevId:     mrdevId,
+            provider:    'mrdev_email',
+            authType:    'email',
+            isLoggedIn:  true,
+            loginTime:   Date.now()
         }));
 
         showToast('Hisob yaratildi! Xush kelibsiz 🎉', 'success');
@@ -245,6 +249,7 @@ export async function signUpWithEmail() {
         logger.auth.loginOk();
 
     } catch (e) {
+        console.error('[EmailAuth] signUpWithEmail xatolik:', e.code, e.message);
         setErr(firebaseErr(e.code));
     } finally {
         setBtnLoading(false);
