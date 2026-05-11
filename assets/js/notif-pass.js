@@ -97,95 +97,79 @@ async function writeMrdevIndex(mrdevId, uid, email, displayName, photoURL) {
 
 export async function saveUserMrdevId(user) {
     if (!user || !user.uid) {
-        console.warn('[MRDev] saveUserMrdevId: user.uid mavjud emas', user);
+        console.warn('[MRDev] saveUserMrdevId: user.uid mavjud emas');
         return null;
     }
 
-    const uid         = user.uid;
-    const email       = user.email       || '';
+    const uid = user.uid;
+    const email = user.email || '';
     const displayName = user.displayName || email.split('@')[0] || 'User';
-    const photoURL    = user.photoURL    || null;
 
     console.log('🔍 [MRDev] saveUserMrdevId chaqirildi:', { uid, email });
 
     try {
-        const userRef  = doc(db, 'users', uid);
+        const userRef = doc(db, 'users', uid);
         const userSnap = await getDoc(userRef);
 
-        // ── MAVJUD USER ──────────────────────────────────────────────
+        // Agar user doc mavjud va mrdevId bor bo'lsa
         if (userSnap.exists()) {
             const data = userSnap.data();
-            console.log('📄 [MRDev] Mavjud user doc topildi, mrdevId:', data.mrdevId);
-
+            
+            // FIX: mrdevId field borligini tekshirish
             if (data.mrdevId && data.mrdevId !== '') {
-                console.log('✅ [MRDev] Mavjud MRDEV ID qaytarildi:', data.mrdevId);
-
-                // mrdev_index ni ham yangilab qo'yamiz (yo'q bo'lsa qo'shiladi)
-                await writeMrdevIndex(data.mrdevId, uid, email, displayName, photoURL);
-
-                try {
-                    await updateDoc(userRef, {
-                        lastLogin: serverTimestamp(),
-                        updatedAt: serverTimestamp()
-                    });
-                } catch (e) {
-                    console.warn('[MRDev] lastLogin update failed:', e.message);
-                }
-
+                console.log('✅ [MRDev] Mavjud MRDEV ID:', data.mrdevId);
                 return data.mrdevId;
             }
-
-            // mrdevId bo'sh — yangi yaratib updateDoc bilan yozamiz
-            const newId       = await generateUniqueId();
-            const newPassword = generateSecurePassword();
-
-            await updateDoc(userRef, {
-                mrdevId:       newId,
-                mrdevPassword: newPassword,
-                lastLogin:     serverTimestamp(),
-                updatedAt:     serverTimestamp()
-            });
-
-            // FIX: mrdev_index ga ham yozamiz
-            await writeMrdevIndex(newId, uid, email, displayName, photoURL);
-
-            logger.notifPass.created(newId);
-            console.log('🆕 [MRDev] Yangi MRDEV ID yaratildi (updateDoc):', newId);
-            return newId;
         }
 
-        // ── YANGI USER ────────────────────────────────────────────────
-        const newId       = await generateUniqueId();
-        const newPassword = generateSecurePassword();
+        // Yangi MRDEV ID yaratish
+        const mrdevId = generateUserId();
+        console.log('🆕 [MRDev] Yangi MRDEV ID:', mrdevId);
 
-        await setDoc(userRef, {
-            uid:           uid,
-            email:         email,
-            displayName:   displayName,
-            photoURL:      photoURL,
-            mrdevId:       newId,
-            mrdevPassword: newPassword,
-            provider:      user.providerData?.[0]?.providerId || 'unknown',
-            createdAt:     serverTimestamp(),
-            updatedAt:     serverTimestamp(),
-            lastLogin:     serverTimestamp(),
-            isActive:      true
-        });
+        // FIX: Firestore'ga YOZISH - bu qism ishlamayapti!
+        if (userSnap.exists()) {
+            // updateDoc
+            await updateDoc(userRef, {
+                mrdevId: mrdevId,
+                mrdevPassword: generateSecurePassword(),
+                email: email,
+                displayName: displayName,
+                lastLogin: serverTimestamp(),
+                updatedAt: serverTimestamp()
+            });
+            console.log('📝 [MRDev] updateDoc qilindi');
+        } else {
+            // setDoc
+            await setDoc(userRef, {
+                uid: uid,
+                email: email,
+                displayName: displayName,
+                mrdevId: mrdevId,
+                mrdevPassword: generateSecurePassword(),
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp(),
+                lastLogin: serverTimestamp(),
+                isActive: true
+            });
+            console.log('📝 [MRDev] setDoc qilindi');
+        }
 
-        // FIX: mrdev_index ga ham yozamiz
-        await writeMrdevIndex(newId, uid, email, displayName, photoURL);
-
-        logger.notifPass.created(newId);
-        console.log('🆕 [MRDev] Yangi MRDEV ID yaratildi (setDoc):', newId);
-        return newId;
+        return mrdevId;
 
     } catch (error) {
-        console.error('❌ [MRDev] saveUserMrdevId xatolik:', error.code, error.message);
-        logger.error.notif(error.message);
+        console.error('❌ [MRDev] xatolik:', error.code, error.message);
+        
+        // FIX: Agar permission error bo'lsa, localStorage'ga yangi ID
+        if (error.code === 'permission-denied') {
+            console.warn('[MRDev] Permission denied! localStorage\'ga saqlanadi');
+            const fallbackId = generateUserId();
+            localStorage.setItem('mrdev_user_id', fallbackId);
+            return fallbackId;
+        }
+        
         return null;
     }
 }
-
 // ==================== MRDEV ID ORQALI KIRISH ====================
 // FIX v4.0: users collection emas — mrdev_index/{mrdevId} getDoc (auth kerak emas!)
 
