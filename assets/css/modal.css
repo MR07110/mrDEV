@@ -209,3 +209,108 @@
 .pass-notif-status.used    { background: var(--red-dim); color: var(--red); }
 .pass-notif-status.active  { background: var(--green-dim); color: var(--green); }
 .pass-notif-status.expired { background: var(--orange-dim); color: var(--orange); }
+
+/* ==================== MRDEV LOGIN MODAL QO'SHIMCHA ==================== */
+
+/* Info va Help boxlar */
+.mrdev-info-box {
+    margin-top: 12px;
+    padding: 14px;
+    background: var(--surface-2);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 400px;
+    }
+}
+
+/* Katta input maydoni */
+.mrdev-input-large {
+    text-align: center !important;
+    font-weight: 500 !important;
+    letter-spacing: 3px !important;
+}
+
+.mrdev-input-large.id-input {
+    font-size: 20px !important;
+}
+
+.mrdev-input-large.pass-input {
+    font-size: 24px !important;
+    letter-spacing: 8px !important;
+}
+
+/* Ko'proq tugmasi */
+.mrdev-more-link {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.mrdev-more-link:hover {
+    color: var(--accent-light);
+    text-decoration: underline;
+}
+
+/* MRDEV ikonka */
+.mrdev-icon-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+
+.mrdev-icon-circle.accent {
+    background: var(--accent-dim);
+}
+
+.mrdev-icon-circle.green {
+    background: var(--green-dim);
+}
+
+/* MRDEV sarlavha */
+.mrdev-title {
+    font-size: 14px;
+    color: var(--text-2);
+    margin: 0 0 4px;
+}
+
+.mrdev-subtitle {
+    font-size: 11px;
+    color: var(--text-3);
+    margin: 0;
+}
+
+/* Info box text */
+.mrdev-info-title {
+    font-size: 12px;
+    color: var(--text-2);
+    margin: 0 0 8px;
+    font-weight: 500;
+}
+
+.mrdev-info-text {
+    font-size: 11px;
+    color: var(--text-3);
+    margin: 0 0 8px;
+    line-height: 1.6;
+} 
