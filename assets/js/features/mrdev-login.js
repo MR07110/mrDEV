@@ -1,74 +1,58 @@
 // ==================== MRDEV ID LOGIN v7.0 ====================
-// MAXIMUM DARAJA: Firebase Auth'ga avtomatik kiritish bilan
+// YANGI: linkedTo — oilaviy ulashish
+//   - verifyMrdevPass: linked hisobni topib, o'sha UID ga o'tadi
 
 import logger from '../core/logger.js';
 import { db, rtdb, auth } from '../core/firebase-init.js';
-import {
-    doc, getDoc, collection, query, where, getDocs
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-import {
-    ref, push, get, update, set
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
-import {
-    signInWithEmailAndPassword
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { doc, getDoc, collection, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { ref, push, get, update, set } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 import { showToast } from '../core/toast.js';
 import { showModal, closeModal } from '../ui/modal.js';
+import { loginWithMrdevId, getLinkedAccount } from '../notif-pass.js';
 
-// ==================== STATE ====================
 let mrdevLoginTimer = null;
 let currentStepData = null;
 
-// ==================== GENERATORLAR ====================
 function generateSecureOTP() {
     const arr = new Uint32Array(1);
     crypto.getRandomValues(arr);
     return (100000 + (arr[0] % 900000)).toString();
 }
 
-// ==================== LOCAL AUTH SAQLASH ====================
 function saveLocalAuth(userData) {
-    if (!userData || !userData.uid) {
-        console.warn('[MRDevLogin] saveLocalAuth: userData.uid yo\'q');
-        return;
-    }
-
-    const authData = {
-        uid:         userData.uid,
-        email:       userData.email        || '',
-        displayName: userData.displayName  || 'User',
-        photoURL:    userData.photoURL     || null,
-        mrdevId:     userData.mrdevId      || '',
-        provider:    'mrdev',
-        authType:    'mrdev',
-        isLoggedIn:  true,
-        loginTime:   Date.now()
-    };
-
-    localStorage.setItem('mrdev_local_auth', JSON.stringify(authData));
-
-    if (userData.mrdevId) {
-        localStorage.setItem('mrdev_user_id', userData.mrdevId);
-    }
-
-    console.log('💾 [MRDevLogin] Local auth saqlandi:', authData.uid, '| mrdevId:', authData.mrdevId);
+    if (!userData || !userData.uid) return;
+    localStorage.setItem('mrdev_local_auth', JSON.stringify({
+        uid: userData.uid,
+        email: userData.email || '',
+        displayName: userData.displayName || 'User',
+        photoURL: userData.photoURL || null,
+        mrdevId: userData.mrdevId || '',
+        linkedTo: userData.linkedTo || null,
+        provider: 'mrdev',
+        authType: 'mrdev',
+        isLoggedIn: true,
+        loginTime: Date.now()
+    }));
+    if (userData.mrdevId) localStorage.setItem('mrdev_user_id', userData.mrdevId);
 }
 
 // ==================== MODAL ====================
-export function showMrdevLogin() {
-    const step1     = document.getElementById('mrdevStep1');
-    const step2     = document.getElementById('mrdevStep2');
-    const idInput   = document.getElementById('mrdevIdInput');
-    const passInput = document.getElementById('mrdevPassInput');
-    const errorEl   = document.getElementById('mrdevError');
-    const timerEl   = document.getElementById('mrdevTimer');
 
-    if (step1)     step1.style.display     = 'block';
-    if (step2)     step2.style.display     = 'none';
-    if (idInput)   idInput.value           = '';
-    if (passInput) passInput.value         = '';
-    if (errorEl)   errorEl.textContent     = '';
-    if (timerEl)   timerEl.textContent     = '';
+export function showMrdevLogin() {
+    const step1 = document.getElementById('mrdevStep1');
+    const step2 = document.getElementById('mrdevStep2');
+    const idInput = document.getElementById('mrdevIdInput');
+    const passInput = document.getElementById('mrdevPassInput');
+    const errorEl = document.getElementById('mrdevError');
+    const timerEl = document.getElementById('mrdevTimer');
+
+    if (step1) step1.style.display = 'block';
+    if (step2) step2.style.display = 'none';
+    if (idInput) idInput.value = '';
+    if (passInput) passInput.value = '';
+    if (errorEl) errorEl.textContent = '';
+    if (timerEl) timerEl.textContent = '';
 
     currentStepData = null;
     clearInterval(mrdevLoginTimer);
@@ -84,78 +68,43 @@ export function closeMrdevLoginModal() {
 }
 
 // ==================== 1-QADAM: MRDEV ID ====================
+
 export async function submitMrdevId() {
     const idInput = document.getElementById('mrdevIdInput');
     const errorEl = document.getElementById('mrdevError');
-    const btn     = document.querySelector('#mrdevStep1 .auth-submit-btn');
-
+    const btn = document.querySelector('#mrdevStep1 .auth-submit-btn');
     const id = idInput?.value.trim() || '';
 
-    if (!id) {
-        if (errorEl) errorEl.textContent = 'MRDEV ID kiriting';
-        return;
-    }
+    if (!id) { if (errorEl) errorEl.textContent = 'MRDEV ID kiriting'; return; }
 
-    if (btn)   { btn.disabled = true; btn.textContent = 'Qidirilmoqda...'; }
+    if (btn) { btn.disabled = true; btn.textContent = 'Qidirilmoqda...'; }
     if (errorEl) errorEl.textContent = '';
 
-    console.log('🔍 [MRDevLogin] MRDEV ID qidirilmoqda:', id);
-
     try {
-        // users collection dan mrdevId bo'yicha qidirish
-        const snap = await getDocs(
-            query(collection(db, 'users'), where('mrdevId', '==', id))
-        );
-
-        if (snap.empty) {
-            throw new Error('Bu MRDEV ID topilmadi');
-        }
-
-        const userData = snap.docs[0].data();
-        const userUid  = snap.docs[0].id;
-
-        if (!userData.email) {
-            throw new Error('Bu hisob bilan email bog\'lanmagan');
-        }
-
-        console.log('✅ [MRDevLogin] Foydalanuvchi topildi:', userData.email, '| uid:', userUid);
-
+        const userData = await loginWithMrdevId(id);
+        
         currentStepData = {
-            firestoreUid:  userUid,
-            uid:           userUid,
-            email:         userData.email,
-            mrdevId:       id,
-            displayName:   userData.displayName || userData.email?.split('@')[0] || 'User',
-            photoURL:      userData.photoURL    || null,
-            mrdevPassword: userData.mrdevPassword || null
+            firestoreUid: userData.firestoreUid,
+            uid: userData.uid,
+            email: userData.email,
+            mrdevId: id,
+            displayName: userData.displayName,
+            photoURL: userData.photoURL,
+            mrdevPassword: userData.mrdevPassword,
+            linkedTo: userData.linkedTo // YANGI
         };
 
-        // OTP yaratish va RTDB ga yuborish
         const otp = generateSecureOTP();
-        const expiresAt = Date.now() + 120000; // 2 daqiqa
-
-        const notifRef = ref(rtdb, 'pass_notifications');
-        const newRef   = push(notifRef);
-
+        const newRef = push(ref(rtdb, 'pass_notifications'));
         await set(newRef, {
-            passCode:     otp,
-            mrdevId:      id,
-            uid:          userUid,
-            firestoreUid: userUid,
-            email:        userData.email,
-            expiresAt:    expiresAt,
-            used:         false,
-            createdAt:    Date.now()
+            passCode: otp, mrdevId: id,
+            uid: userData.uid, firestoreUid: userData.firestoreUid,
+            email: userData.email,
+            expiresAt: Date.now() + 120000, used: false, createdAt: Date.now()
         });
 
-        // Dev mode: konsolga chiqarish
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log('🔑 [DEV] OTP Parol:', otp);
-        }
+        if (window.location.hostname === 'localhost') console.log('🔑 [DEV] OTP:', otp);
 
-        console.log('📤 [MRDevLogin] OTP RTDB\'ga yozildi');
-
-        // UI: 2-qadamga o'tish
         const step1 = document.getElementById('mrdevStep1');
         const step2 = document.getElementById('mrdevStep2');
         if (step1) step1.style.display = 'none';
@@ -163,39 +112,29 @@ export async function submitMrdevId() {
 
         startTimer(120);
         showToast('Parol yuborildi! 📱', 'success');
-
     } catch (e) {
-        console.error('[MRDevLogin] submitMrdevId xatolik:', e.message);
         if (errorEl) errorEl.textContent = e.message;
     } finally {
         if (btn) { btn.disabled = false; btn.textContent = 'Davom etish'; }
     }
 }
 
-// ==================== TAYMER ====================
 function startTimer(sec) {
     clearInterval(mrdevLoginTimer);
     let remaining = sec;
     const el = document.getElementById('mrdevTimer');
-
     mrdevLoginTimer = setInterval(() => {
         remaining--;
-        const m = Math.floor(remaining / 60);
-        const s = remaining % 60;
+        const m = Math.floor(remaining / 60), s = remaining % 60;
         if (el) el.textContent = `⏱️ ${m}:${s.toString().padStart(2, '0')}`;
-
         if (remaining <= 0) {
             clearInterval(mrdevLoginTimer);
             if (el) el.textContent = '⏰ Muddati tugadi';
-
             const errorEl = document.getElementById('mrdevError');
-            if (errorEl) errorEl.textContent = 'Parol muddati tugadi. Qayta boshlang.';
-
+            if (errorEl) errorEl.textContent = 'Parol muddati tugadi.';
             setTimeout(() => {
-                const step2 = document.getElementById('mrdevStep2');
-                const step1 = document.getElementById('mrdevStep1');
-                if (step2) step2.style.display = 'none';
-                if (step1) step1.style.display = 'block';
+                document.getElementById('mrdevStep2').style.display = 'none';
+                document.getElementById('mrdevStep1').style.display = 'block';
                 currentStepData = null;
             }, 2000);
         }
@@ -203,106 +142,76 @@ function startTimer(sec) {
 }
 
 // ==================== 2-QADAM: OTP TASDIQLASH ====================
+
 export async function verifyMrdevPass() {
     const passInput = document.getElementById('mrdevPassInput');
-    const errorEl   = document.getElementById('mrdevError');
-    const btn       = document.querySelector('#mrdevStep2 .auth-submit-btn');
-
+    const errorEl = document.getElementById('mrdevError');
+    const btn = document.querySelector('#mrdevStep2 .auth-submit-btn');
     const pass = passInput?.value.trim() || '';
 
-    if (!pass || pass.length !== 6) {
-        if (errorEl) errorEl.textContent = '6 xonali kod kiriting';
-        return;
-    }
-
-    if (!currentStepData) {
-        if (errorEl) errorEl.textContent = 'Sessiya tugadi, qayta boshlang';
-        return;
-    }
+    if (!pass || pass.length !== 6) { if (errorEl) errorEl.textContent = '6 xonali kod kiriting'; return; }
+    if (!currentStepData) { if (errorEl) errorEl.textContent = 'Sessiya tugadi'; return; }
 
     if (btn) { btn.disabled = true; btn.textContent = 'Tekshirilmoqda...'; }
     if (errorEl) errorEl.textContent = '';
 
-    console.log('🔐 [MRDevLogin] OTP tekshirilmoqda...');
-
     try {
-        // RTDB dan OTP topish
         const snapshot = await get(ref(rtdb, 'pass_notifications'));
-        const data     = snapshot.val();
+        const data = snapshot.val();
+        if (!data) throw new Error('Parol topilmadi');
 
-        if (!data) throw new Error("Parol topilmadi. Qayta yuborib ko'ring.");
-
-        let foundKey  = null;
-        let foundData = null;
-
+        let foundKey = null, foundData = null;
         for (const [key, val] of Object.entries(data)) {
-            if (
-                val.passCode === pass                        &&
-                val.mrdevId  === currentStepData.mrdevId    &&
-                !val.used                                   &&
-                val.expiresAt > Date.now()
-            ) {
-                foundKey  = key;
-                foundData = val;
-                break;
+            if (val.passCode === pass && val.mrdevId === currentStepData.mrdevId && !val.used && val.expiresAt > Date.now()) {
+                foundKey = key; foundData = val; break;
             }
         }
-
         if (!foundData) throw new Error("Noto'g'ri parol yoki muddati tugagan");
 
-        // OTP ni ishlatilgan deb belgilash
-        await update(ref(rtdb, `pass_notifications/${foundKey}`), {
-            used:       true,
-            verifiedAt: Date.now()
-        });
-
+        await update(ref(rtdb, `pass_notifications/${foundKey}`), { used: true, verifiedAt: Date.now() });
         clearInterval(mrdevLoginTimer);
-        console.log('✅ [MRDevLogin] OTP tasdiqlandi!');
 
-        // ==================== FIREBASE AUTH GA KIRISH ====================
-        // Bu qism MRDEV ID login ni to'liq Firebase Auth'ga ulaydi
-        let firebaseLoginSuccess = false;
+        // ==================== YANGI: LINKED HISOBGA O'TISH ====================
+        let targetUid = currentStepData.firestoreUid;
+        let targetEmail = currentStepData.email;
+        let targetDisplayName = currentStepData.displayName;
 
-        if (currentStepData.email && currentStepData.mrdevPassword) {
-            try {
-                // mrdevPassword orqali Firebase Auth'ga kirish
-                await signInWithEmailAndPassword(
-                    auth,
-                    currentStepData.email,
-                    currentStepData.mrdevPassword
-                );
-                firebaseLoginSuccess = true;
-                console.log('🔥 [MRDevLogin] Firebase Auth\'ga kiritildi!');
-            } catch (authErr) {
-                console.warn('[MRDevLogin] Firebase Auth\'ga kirishda xatolik:', authErr.code);
-                // Agar parol noto'g'ri bo'lsa yoki user topilmasa, local auth bilan davom etamiz
+        if (currentStepData.linkedTo) {
+            console.log('🔗 [MRDevLogin] Linked hisobga o\'tilmoqda:', currentStepData.linkedTo);
+            const linkedAccount = await getLinkedAccount(currentStepData.linkedTo);
+            if (linkedAccount) {
+                targetUid = linkedAccount.uid;
+                targetEmail = linkedAccount.email;
+                targetDisplayName = linkedAccount.displayName;
+                console.log('✅ [MRDevLogin] Linked hisob:', targetDisplayName, targetUid);
             }
         }
 
-        // ==================== LOCAL AUTH SAQLASH ====================
-        saveLocalAuth({
-            uid:         currentStepData.firestoreUid,
-            email:       currentStepData.email,
-            displayName: currentStepData.displayName,
-            photoURL:    currentStepData.photoURL,
-            mrdevId:     currentStepData.mrdevId
-        });
-
-        // ==================== YAKUNLASH ====================
-        closeMrdevLoginModal();
-        
-        if (firebaseLoginSuccess) {
-            showToast('Xush kelibsiz! ✨ (Firebase Auth)', 'success');
-        } else {
-            showToast('Xush kelibsiz! ✨ (Local Auth)', 'success');
+        // Firebase Auth'ga kirish (agar parol bo'lsa)
+        if (currentStepData.email && currentStepData.mrdevPassword) {
+            try {
+                await signInWithEmailAndPassword(auth, currentStepData.email, currentStepData.mrdevPassword);
+                console.log('🔥 [MRDevLogin] Firebase Auth\'ga kiritildi');
+            } catch (e) {
+                console.warn('[MRDevLogin] Firebase Auth xatolik:', e.message);
+            }
         }
 
-        console.log('✅ [MRDevLogin] Login muvaffaqiyatli! Firebase Auth:', firebaseLoginSuccess);
+        // YANGI: target UID bilan local auth saqlash
+        saveLocalAuth({
+            uid: targetUid,
+            email: targetEmail,
+            displayName: targetDisplayName,
+            photoURL: currentStepData.photoURL,
+            mrdevId: currentStepData.mrdevId,
+            linkedTo: currentStepData.linkedTo
+        });
 
+        closeMrdevLoginModal();
+        showToast('Xush kelibsiz! ✨', 'success');
         setTimeout(() => window.location.reload(), 500);
 
     } catch (e) {
-        console.error('[MRDevLogin] verifyMrdevPass xatolik:', e.message);
         if (errorEl) errorEl.textContent = e.message;
         if (btn) { btn.disabled = false; btn.textContent = 'Tasdiqlash'; }
     }
